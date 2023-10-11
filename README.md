@@ -14,4 +14,8 @@ An appropriate empowerment of people with the use of technology in the workplace
 
 harness technology's power to foster inclusivity and diversity, recognizing and valuing talent above all else.
 
+Utilising your personality to build an application that uses AI 
+
+"Creating an AI-driven personal development coach that leverages personality assessments to generate custom-tailored recommendations, derived from user prompts, designed to enhance personal development in the workplace. This coach is adept at comprehending your distinct personality, career aspirations, and workplace hurdles, offering personalised guidance and a wealth of resources to foster career advancement and overall well-being."
+
 //
