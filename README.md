@@ -1,7 +1,7 @@
 # PeregrineHack
 
 
-// USP PLACEHOLDER/BRAINSTORMING
+// USP PLACEHOLDER/BRAINSTORMING/DUMP
 
 transform the way you work: sustainability, inclusiveness and employee experience, empower individuals with their unique needs, access to proper tools, bridging gaps and levelling the playing field. 
 The issue of accessibility strongly aligns with the Sustainable Development Goal 10, which aims to reduce inequality.
@@ -17,5 +17,7 @@ harness technology's power to foster inclusivity and diversity, recognizing and 
 Utilising your personality to build an application that uses AI 
 
 "Creating an AI-driven personal development coach that leverages personality assessments to generate custom-tailored recommendations, derived from user prompts, designed to enhance personal development in the workplace. This coach is adept at comprehending your distinct personality, career aspirations, and workplace hurdles, offering personalised guidance and a wealth of resources to foster career advancement and overall well-being."
+
+"Building a personal development coach driven by AI, which leverages personality assessments to shape tailored recommendations, guided by user input, while also taking into account the cultural values and ethos of your company. This coach comprehends your distinct personality, career aspirations, and workplace hurdles, offering custom-tailored guidance and resources for career growth and well-being."
 
 //
