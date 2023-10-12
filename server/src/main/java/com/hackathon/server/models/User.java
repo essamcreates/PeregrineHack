@@ -27,8 +27,6 @@ public class User {
     @Column
     private String gender;
 
-    @Column
-    private PersonalityType personalityType;
 
     // RELATIONS
     /*
@@ -41,15 +39,15 @@ public class User {
     - mood
      */
 
+
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender, PersonalityType personalityType) {
+    public User(String name, LocalDate dateOfBirth, String password, String gender) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
-        this.personalityType = personalityType;
     }
 
     public Long getId() {
@@ -92,11 +90,4 @@ public class User {
         this.gender = gender;
     }
 
-    public PersonalityType getPersonalityType() {
-        return personalityType;
-    }
-
-    public void setPersonalityType(PersonalityType personalityType) {
-        this.personalityType = personalityType;
-    }
 }
