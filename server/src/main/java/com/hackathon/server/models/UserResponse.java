@@ -1,5 +1,7 @@
 package com.hackathon.server.models;
 
+import java.time.LocalDate;
+
 public class UserResponse {
 
     private Long id;
