@@ -1,4 +1,8 @@
 package com.hackathon.server.services;
 
-public class PersonalityTypeService {
+
+public class BigFiveTraits {
+
+
+
 }
