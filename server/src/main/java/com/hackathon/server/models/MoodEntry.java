@@ -1,7 +1,14 @@
 package com.hackathon.server.models;
 
-public class MoodEntry {
+import java.time.LocalDateTime;
 
+public class MoodEntry {
     private Long id;
-    
+
+    private String mood;
+
+    private LocalDateTime dateTime;
+    private String emojiUnicode;
+
+
 }
