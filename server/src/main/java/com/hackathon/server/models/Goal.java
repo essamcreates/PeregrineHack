@@ -1,4 +1,4 @@
 package com.hackathon.server.models;
 
-public class SetOfGoal {
+public class Goal {
 }

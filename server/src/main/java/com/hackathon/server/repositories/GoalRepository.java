@@ -1,4 +1,4 @@
 package com.hackathon.server.repositories;
 
-public interface SetOfGoalRepository {
+public interface GoalRepository {
 }
