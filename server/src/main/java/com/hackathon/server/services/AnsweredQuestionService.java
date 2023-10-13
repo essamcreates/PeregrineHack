@@ -28,17 +28,13 @@ public class AnsweredQuestionService {
         return answeredQuestionRepository.findById(id).get();
     }
 
-    public List<AnsweredQuestion> getAnsweredQuestionsByUser(Long userId) {
+    public List<AnsweredQuestion> findAnsweredQuestionsByUser(Long userId) {
         User user = userRepository.findById(userId).get();
         return user.getAnsweredQuestions();
     }
 
-
-    GET getAllAnsweredQuestions
-    GET getAnsweredQuestionById
-    GET getAllAnsweredQuestionsByUser
-    POST createAnsweredQuestion
-    DELETE deleteAnsweredQuestion
+//    POST createAnsweredQuestion
+//    DELETE deleteAnsweredQuestion
 
 }
 

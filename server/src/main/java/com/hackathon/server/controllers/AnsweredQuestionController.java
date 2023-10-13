@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -21,13 +23,15 @@ public class AnsweredQuestionController {
     }
     @GetMapping
     public ResponseEntity<AnsweredQuestion> getAnsweredQuestionById(@PathVariable Long id){
-        AnsweredQuestion answeredQuestion = answeredQuestionService.findAnsweredQuestionsById(id);
+        AnsweredQuestion answeredQuestion = answeredQuestionService.findAnsweredQuestionById(id);
         return new ResponseEntity<>(answeredQuestion, HttpStatus.FOUND);
     }
 
     @GetMapping
-    public ResponseEntity<List<AnsweredQuestion>. getAnsweredQuestionByUser(@PathVariable Long id){
-        List<AnsweredQuestion> answeredQuestions = answeredQuestionService.getAnsweredQuestionsByUser(id);
+    public ResponseEntity<List<AnsweredQuestion>> getAnsweredQuestionByUser(@PathVariable Long id){
+        List<AnsweredQuestion> answeredQuestions = answeredQuestionService.findAnsweredQuestionsByUser(id);
         return new ResponseEntity<>(answeredQuestions, HttpStatus.FOUND);
     }
+
+
 }
