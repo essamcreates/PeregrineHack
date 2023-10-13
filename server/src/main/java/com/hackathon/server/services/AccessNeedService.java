@@ -4,23 +4,22 @@ import com.hackathon.server.models.AccessNeed;
 import com.hackathon.server.repositories.AccessNeedRepository;
 import com.hackathon.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AccessNeedService {
 
-// <<<<<<< tarek_test
 
-// =======
-//     @Autowired
-//     AccessNeedRepository accessNeedRepository;
+     @Autowired
+     AccessNeedRepository accessNeedRepository;
 
-//     public List<AccessNeed> getAllAccessNeeds() {
-//      return this.accessNeedRepository.findAll();
-//     }
+     public List<AccessNeed> getAllAccessNeeds() {
+      return this.accessNeedRepository.findAll();
+     }
 
-//     public AccessNeed getAccessNeedById(Long id) {
-//         return this.accessNeedRepository.findById(id).get();
-//     }
-// >>>>>>> develop
+     public AccessNeed getAccessNeedById(Long id) {
+         return this.accessNeedRepository.findById(id).get();
+     }
+
 }

@@ -28,20 +28,20 @@ public class AccessNeedController {
 //         DELETE deleteAccessNeed (maybe)
 // */
 
-//         @Autowired
-//         AccessNeedService accessNeedService;
+         @Autowired
+         AccessNeedService accessNeedService;
 
-//         @GetMapping
-//         public ResponseEntity<List<AccessNeed>> getAllAccessNeeds(){
-//             return new ResponseEntity<>(this.accessNeedService.getAllAccessNeeds(), HttpStatus.FOUND);
-//         }
+         @GetMapping
+         public ResponseEntity<List<AccessNeed>> getAllAccessNeeds(){
+             return new ResponseEntity<>(this.accessNeedService.getAllAccessNeeds(), HttpStatus.FOUND);
+         }
 
-//         @GetMapping("/id")
-//         public ResponseEntity<AccessNeed> getAccessNeedById(@PathVariable Long id){
-//             AccessNeed accessNeed = accessNeedService.getAccessNeedById(id);
-//             return new ResponseEntity<>(accessNeed,HttpStatus.FOUND);
-//         }
+         @GetMapping("/id")
+         public ResponseEntity<AccessNeed> getAccessNeedById(@PathVariable Long id){
+             AccessNeed accessNeed = accessNeedService.getAccessNeedById(id);
+             return new ResponseEntity<>(accessNeed,HttpStatus.FOUND);
+         }
 
-//     }
+     }
 
 // >>>>>>> develop

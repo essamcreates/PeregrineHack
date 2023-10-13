@@ -185,10 +185,19 @@ public class User {
         this.mentalHealthConditions = mentalHealthConditions;
     }
 
-    public void addGoal(Goal goal){
-        this.careerGoals.add(goal);
-    }
-    public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition){
-        this.mentalHealthConditions.add(mentalHealthCondition);
+// <<<<<<< developCharlotte
+//     public void addGoal(Goal goal){
+//         this.careerGoals.add(goal);
+//     }
+//     public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition){
+//         this.mentalHealthConditions.add(mentalHealthCondition);
+// =======
+//     public String getEmail() {
+//         return email;
+//     }
+
+//     public void setEmail(String email) {
+//         this.email = email;
+// >>>>>>> develop
     }
 }
