@@ -26,6 +26,9 @@ public class AccessNeed {
         this.accessNeedENUM = accessNeedENUM;
     }
 
+    public AccessNeed() {
+    }
+
     public Long getId() {
         return id;
     }

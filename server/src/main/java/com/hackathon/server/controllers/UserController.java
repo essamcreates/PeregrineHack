@@ -40,20 +40,17 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.FOUND);
     }
 
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
-        User addUser = userService.addUser(userDTO);
-        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
+//        User addUser = userService.addUser(userDTO);
+//        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
+//    }
 
     @PostMapping
     public ResponseEntity<User> authenticateUser(@RequestBody LoginForm loginForm){
         User checkUser = userService.checkCredentials(loginForm.getEmail(),loginForm.getPassword());
-// <<<<<<< tarek_test
-//         return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-// =======
-//         return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED)
-// >>>>>>> develop
+         return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
     }
 
     @DeleteMapping("/id")

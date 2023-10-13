@@ -29,7 +29,7 @@ public class MentalHealthConditionController {
         return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping(value = "/user/{userId}")
     public ResponseEntity<Optional<List<MentalHealthCondition>>> getMentalHealthConditionsByUser(@PathVariable Long userId){
         Optional<List<MentalHealthCondition>> userMentalHealthConditions= mentalHealthConditionService.getMentalHealthConditionsByUser(userId);
         if(userMentalHealthConditions.isPresent()){

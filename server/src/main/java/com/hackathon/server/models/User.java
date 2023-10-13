@@ -185,13 +185,16 @@ public class User {
         this.mentalHealthConditions = mentalHealthConditions;
     }
 
+    public void addGoal(Goal goal){
+        this.careerGoals.add(goal);
+    }
 
-     public void addGoal(Goal goal){
-         this.careerGoals.add(goal);
-     }
-     public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition) {
-         this.mentalHealthConditions.add(mentalHealthCondition);
-     }
+    public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition) {
+        this.mentalHealthConditions.add(mentalHealthCondition);
+    }
+    public void addAccessNeed(AccessNeed accessNeed){
+        this.accessNeeds.add(accessNeed);
+    }
 
     public String getEmail() {
         return email;

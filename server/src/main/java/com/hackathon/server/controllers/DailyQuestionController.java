@@ -17,11 +17,11 @@ public class DailyQuestionController {
 
     @Autowired
     DailyQuestionService dailyQuestionService;
-@GetMapping
+    @GetMapping
     public ResponseEntity<List<DailyQuestion>> getAllDailyQuestions(){
         return new ResponseEntity<>(this.dailyQuestionService.getAllDailyQuestions(), HttpStatus.FOUND);
     }
-@GetMapping
+    @GetMapping(value="/{id}")
     public ResponseEntity<DailyQuestion> getDailyQuestionById(@PathVariable Long id){
         DailyQuestion dailyQuestion = dailyQuestionService.getDailyQuestionById(id);
         return new ResponseEntity<>(dailyQuestion, HttpStatus.FOUND);
