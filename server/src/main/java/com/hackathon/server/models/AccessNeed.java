@@ -15,6 +15,7 @@ public class AccessNeed {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "access_need")
     private AccessNeedENUM accessNeedENUM;
 
     @ManyToMany(mappedBy = "accessNeeds")

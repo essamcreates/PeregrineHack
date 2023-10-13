@@ -15,6 +15,7 @@ public class MentalHealthCondition {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "mental_health_condition")
     private MentalHealthConditionENUM mentalHealthConditionENUM;
 
     @ManyToMany(mappedBy = "mentalHealthConditions")
