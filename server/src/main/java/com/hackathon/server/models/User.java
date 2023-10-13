@@ -21,6 +21,9 @@ public class User {
     private String name;
 
     @Column
+    private String email;
+
+    @Column
     private LocalDate dateOfBirth;
 
     @Column
@@ -85,11 +88,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender) {
+    public User(String name, LocalDate dateOfBirth, String password, String gender, String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
+        this.email = email;
     }
 
     public Long getId() {
@@ -131,6 +135,7 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 
     public List<AccessNeed> getAccessNeeds() {
         return accessNeeds;

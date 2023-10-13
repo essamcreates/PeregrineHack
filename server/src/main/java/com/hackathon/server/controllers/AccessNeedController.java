@@ -17,27 +17,31 @@ import java.util.List;
 @RequestMapping({"/accessneed"})
 public class AccessNeedController {
 
-    /*
-    * TODO:
-    *   GET getAllAccessNeeds
-        GET getAccessNeedById
-        POST createAccessNeed (maybe)
-        DELETE deleteAccessNeed (maybe)
-*/
+// <<<<<<< tarek_test
+// }
+// =======
+//     /*
+//     * TODO:
+//     *   GET getAllAccessNeeds
+//         GET getAccessNeedById
+//         POST createAccessNeed (maybe)
+//         DELETE deleteAccessNeed (maybe)
+// */
 
-        @Autowired
-        AccessNeedService accessNeedService;
+//         @Autowired
+//         AccessNeedService accessNeedService;
 
-        @GetMapping
-        public ResponseEntity<List<AccessNeed>> getAllAccessNeeds(){
-            return new ResponseEntity<>(this.accessNeedService.getAllAccessNeeds(), HttpStatus.FOUND);
-        }
+//         @GetMapping
+//         public ResponseEntity<List<AccessNeed>> getAllAccessNeeds(){
+//             return new ResponseEntity<>(this.accessNeedService.getAllAccessNeeds(), HttpStatus.FOUND);
+//         }
 
-        @GetMapping("/id")
-        public ResponseEntity<AccessNeed> getAccessNeedById(@PathVariable Long id){
-            AccessNeed accessNeed = accessNeedService.getAccessNeedById(id);
-            return new ResponseEntity<>(accessNeed,HttpStatus.FOUND);
-        }
+//         @GetMapping("/id")
+//         public ResponseEntity<AccessNeed> getAccessNeedById(@PathVariable Long id){
+//             AccessNeed accessNeed = accessNeedService.getAccessNeedById(id);
+//             return new ResponseEntity<>(accessNeed,HttpStatus.FOUND);
+//         }
 
-    }
+//     }
 
+// >>>>>>> develop
