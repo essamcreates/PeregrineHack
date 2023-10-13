@@ -25,8 +25,8 @@ public class DailyQuestionController {
         return new List<DailyQuestion>(this.dailyQuestionService.findAllDailyQuestions(), HttpStatus.FOUND);
     }
 
-    public ResponseEntity<DailyQuestion> getDailyQuestionsById(@PathVariable Long id){
-        DailyQuestion dailyQuestion = dailyQuestionService.getDailyQuestionById(id);
+    public ResponseEntity<DailyQuestion> getDailyQuestionById(@PathVariable Long id){
+        DailyQuestion dailyQuestion = dailyQuestionService.findDailyQuestionById(id);
         return new ResponseEntity<DailyQuestion>(dailyQuestion, HttpStatus.FOUND);
     }
 
