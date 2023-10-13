@@ -136,13 +136,6 @@ public class User {
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public List<AccessNeed> getAccessNeeds() {
         return accessNeeds;
