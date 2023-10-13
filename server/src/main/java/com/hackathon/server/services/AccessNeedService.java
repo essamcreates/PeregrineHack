@@ -9,14 +9,18 @@ import java.util.List;
 
 public class AccessNeedService {
 
-    @Autowired
-    AccessNeedRepository accessNeedRepository;
+// <<<<<<< tarek_test
 
-    public List<AccessNeed> getAllAccessNeeds() {
-     return this.accessNeedRepository.findAll();
-    }
+// =======
+//     @Autowired
+//     AccessNeedRepository accessNeedRepository;
 
-    public AccessNeed getAccessNeedById(Long id) {
-        return this.accessNeedRepository.findById(id).get();
-    }
+//     public List<AccessNeed> getAllAccessNeeds() {
+//      return this.accessNeedRepository.findAll();
+//     }
+
+//     public AccessNeed getAccessNeedById(Long id) {
+//         return this.accessNeedRepository.findById(id).get();
+//     }
+// >>>>>>> develop
 }
