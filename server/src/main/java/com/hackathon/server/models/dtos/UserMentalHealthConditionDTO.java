@@ -13,7 +13,7 @@ public class UserMentalHealthConditionDTO {
 //        this.MentalHealthConditionIds = MentalHealthConditionIds;
 //    }
 
-    public List<Long> setMentalHealthConditionIds() {
+    public List<Long> getMentalHealthConditionIds() {
         return MentalHealthConditionIds;
     }
 

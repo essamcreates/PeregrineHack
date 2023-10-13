@@ -184,4 +184,11 @@ public class User {
     public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
         this.mentalHealthConditions = mentalHealthConditions;
     }
+
+    public void addGoal(Goal goal){
+        this.careerGoals.add(goal);
+    }
+    public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition){
+        this.mentalHealthConditions.add(mentalHealthCondition);
+    }
 }

@@ -24,20 +24,29 @@ public class GoalController {
         return new ResponseEntity<>(goalService.getAllGoals(), HttpStatus.OK);
     }
 
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Goal> getGoalById(@PathVariable Long id){
         return new ResponseEntity<>(goalService.getGoalById(id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<List<Goal>> getGoalsByUser(@PathVariable Long userId){
-        return new ResponseEntity<>(goalService.getGoalsByUser(userId), HttpStatus.OK);
+    public ResponseEntity<Optional<List<Goal>>> getGoalsByUser(@PathVariable Long userId){
+        Optional<List<Goal>> userGoals= goalService.getGoalsByUser(userId);
+        if(userGoals.isPresent()){
+            return new ResponseEntity<>(goalService.getGoalsByUser(userId).get(), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(value = "/{userId}")
     public void createUserGoals(@RequestBody UserGoalDTO userGoalDTO, @PathVariable Long userId){
         goalService.saveUserGoals(userGoalDTO, userId);
     }
+
+
+
 
 
 //    GET getAllGoals
