@@ -1,7 +1,6 @@
 package com.hackathon.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.hackathon.server.models.enums.AccessNeedENUM;
 import jakarta.persistence.*;
 
 
@@ -65,7 +64,7 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     @JoinColumn(name = "big_five_trait_id")
-    private BigFiveTrait bigFiveTrait;
+    private PersonalityScore personalityScore;
 
     @ManyToMany
     @JoinTable(

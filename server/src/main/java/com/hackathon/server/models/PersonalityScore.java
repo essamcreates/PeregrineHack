@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class BigFiveTrait {
+public class PersonalityScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class BigFiveTrait {
     @Column
     private double openness;
     @Column
-    private double consientiousness;
+    private double conscientiousness;
     @Column
     private double extraversion;
     @Column
@@ -25,12 +25,12 @@ public class BigFiveTrait {
     @OneToOne
     private User user;
 
-    public BigFiveTrait() {
+    public PersonalityScore() {
     }
 
-    public BigFiveTrait(double openness, double consientiousness, double extraversion, double agreeableness, double neuroticism, User user) {
+    public PersonalityScore(double openness, double conscientiousness, double extraversion, double agreeableness, double neuroticism, User user) {
         this.openness = openness;
-        this.consientiousness = consientiousness;
+        this.conscientiousness = conscientiousness;
         this.extraversion = extraversion;
         this.agreeableness = agreeableness;
         this.neuroticism = neuroticism;
@@ -53,12 +53,12 @@ public class BigFiveTrait {
         this.openness = openness;
     }
 
-    public double getConsientiousness() {
-        return consientiousness;
+    public double getConscientiousness() {
+        return conscientiousness;
     }
 
-    public void setConsientiousness(double consientiousness) {
-        this.consientiousness = consientiousness;
+    public void setConscientiousness(double conscientiousness) {
+        this.conscientiousness = conscientiousness;
     }
 
     public double getExtraversion() {
