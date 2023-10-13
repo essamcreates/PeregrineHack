@@ -49,13 +49,13 @@ public class User {
 //    @Column(name = "access_needs")
 //    private List<AccessNeed> accessNeeds;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "users_access_needs",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "access_need_id")
-//    )
-//    private List<AccessNeed> accessNeeds;
+    @ManyToMany
+    @JoinTable(
+            name = "users_access_needs",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "access_need_id")
+    )
+    private List<AccessNeed> accessNeeds;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
