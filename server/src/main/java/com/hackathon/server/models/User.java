@@ -1,6 +1,7 @@
 package com.hackathon.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hackathon.server.models.enums.AccessNeedENUM;
 import jakarta.persistence.*;
 
 
@@ -42,11 +43,19 @@ public class User {
      */
 
 
-    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_access_needs",joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "access_needs")
-    private List<AccessNeed> accessNeeds;
+//    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
+//    @CollectionTable(name = "user_access_needs",joinColumns = @JoinColumn(name = "user_id"))
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "access_needs")
+//    private List<AccessNeed> accessNeeds;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "users_access_needs",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "access_need_id")
+//    )
+//    private List<AccessNeed> accessNeeds;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
@@ -61,30 +70,28 @@ public class User {
     )
     private List<Goal> careerGoals;
 
-//    @OneToMany(mappedBy = "user")
-//    @JsonIgnoreProperties({"user"})
-//    @Column(name = "mood_entries")
-    //private List<MoodEntry> moodEntries;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @Column(name = "mood_entries")
+    private List<MoodEntry> moodEntries;
 
     @OneToOne(mappedBy = "user")
     @JoinColumn(name = "big_five_trait_id")
     private BigFiveTrait bigFiveTrait;
 
-    // LOOK INTO THIS (ITS ENUM BUT WE NEED A MANY TO MANY)--------------------------------------------------------------
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "users_mental_health_conditions",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "mh_id")
-//    )
-//    private List<MhCondition> mentalHealthConditions;
-
-    @ElementCollection(targetClass = MentalHealthCondition.class,fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_mental_health_conditions",joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "mental_health_conditions")
+    @ManyToMany
+    @JoinTable(
+            name = "users_mental_health_conditions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "mental_health_condition_id")
+    )
     private List<MentalHealthCondition> mentalHealthConditions;
+
+//    @ElementCollection(targetClass = MentalHealthCondition.class,fetch = FetchType.EAGER)
+//    @CollectionTable(name = "user_mental_health_conditions",joinColumns = @JoinColumn(name = "user_id"))
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "mental_health_conditions")
+//    private List<MentalHealthCondition> mentalHealthConditions;
 
 
 

@@ -1,6 +1,6 @@
-package com.hackathon.server.models;
+package com.hackathon.server.models.enums;
 
-public enum AccessNeed {
+public enum AccessNeedENUM {
 
     ADHD,
     DYSLEXIA,
