@@ -26,15 +26,15 @@ public class MentalHealthConditionController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<MentalHealthCondition> getMentalHealthConditionById(@PathVariable Long id){
-        return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionById(id).get(), HttpStatus.OK);
+        return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionById(id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}")
     public ResponseEntity<Optional<List<MentalHealthCondition>>> getMentalHealthConditionsByUser(@PathVariable Long userId){
         Optional<List<MentalHealthCondition>> userMentalHealthConditions= mentalHealthConditionService.getMentalHealthConditionsByUser(userId);
         if(userMentalHealthConditions.isPresent()){
-            return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionsByUser(userId).get(), HttpStatus.OK);
-        }else {
+            return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionsByUser(userId), HttpStatus.OK);
+        }else{
             return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
         }
     }

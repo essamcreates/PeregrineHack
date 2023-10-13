@@ -25,15 +25,21 @@ public class MoodEntryController {
     }
 
     @GetMapping(value = "/{date}")
-    public ResponseEntity<MoodEntry> getMoodEntryByDate(@PathVariable LocalDate date){
-        return new ResponseEntity<>(moodEntryService.getMoodEntryByDate().get(), HttpStatus.OK);
+    public ResponseEntity<Optional<List<MoodEntry>>> getMoodEntryByDate(@PathVariable LocalDate date){
+        Optional<List<MoodEntry>> moodEntriesOnDay= moodEntryService.getMoodEntryByDate(date);
+        if(moodEntriesOnDay.isPresent()){
+            return new ResponseEntity<>(moodEntriesOnDay, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+        }
+
     }
 
     @GetMapping(value = "/{userId}")
     public ResponseEntity<Optional<List<MoodEntry>>> getMoodEntriesByUser(@PathVariable Long userId){
         Optional<List<MoodEntry>> userMoodEntries= moodEntryService.getMoodEntriesByUser(userId);
         if(userMoodEntries.isPresent()){
-            return new ResponseEntity<>(moodEntryService.getMoodEntrysByUser(userId).get(), HttpStatus.OK);
+            return new ResponseEntity<>(userMoodEntries, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
         }
