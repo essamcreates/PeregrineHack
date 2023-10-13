@@ -16,13 +16,9 @@ public class AnsweredQuestion {
     @Column
     private String chosenOption;
 
-
-
-
-//    private DailyQuestion dailyQuestion;
-//
-//   private User user;
-//
+    @ManyToOne
+    @JoinColumn(name = "daily_question_id")
+    private DailyQuestion dailyQuestion;
 
     @ManyToOne
     @JsonIgnoreProperties("answeredQuestion")
@@ -31,8 +27,10 @@ public class AnsweredQuestion {
     public AnsweredQuestion() {
     }
 
-    public AnsweredQuestion(String chosenOption) {
+    public AnsweredQuestion(String chosenOption, DailyQuestion dailyQuestion, User user) {
         this.chosenOption = chosenOption;
+        this.dailyQuestion = dailyQuestion;
+        this.user = user;
     }
 
     public Long getId() {
@@ -49,5 +47,21 @@ public class AnsweredQuestion {
 
     public void setChosenOption(String chosenOption) {
         this.chosenOption = chosenOption;
+    }
+
+    public DailyQuestion getDailyQuestion() {
+        return dailyQuestion;
+    }
+
+    public void setDailyQuestion(DailyQuestion dailyQuestion) {
+        this.dailyQuestion = dailyQuestion;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

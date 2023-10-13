@@ -1,6 +1,9 @@
 package com.hackathon.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "daily_questions")
@@ -28,6 +31,11 @@ public class DailyQuestion {
 
     @Column
     private String optionFive;
+
+    @OneToMany(mappedBy = "dailyQuestion")
+    @JsonIgnoreProperties({"dailyQuestion"})
+    @Column(name = "answered_questions")
+    private List<AnsweredQuestion> answeredQuestions;
 
     public DailyQuestion() {
     }

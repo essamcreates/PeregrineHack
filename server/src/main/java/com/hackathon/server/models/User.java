@@ -22,25 +22,13 @@ public class User {
     private String name;
 
     @Column
-    private LocalDate dateOfBirth; // COULD JUST MAKE THIS A STRING?
+    private LocalDate dateOfBirth;
 
     @Column
     private String password;
 
     @Column
     private String gender;
-
-
-    // RELATIONS
-    /*
-    TODO:
-    - do the getters and setters for these
-    - update the constructor too if needed
-
-    - accessNeeds
-    - careerGoals
-    - mood
-     */
 
 
 //    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
