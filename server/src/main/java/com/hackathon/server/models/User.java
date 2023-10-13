@@ -21,6 +21,9 @@ public class User {
     private String name;
 
     @Column
+    private String email;
+
+    @Column
     private LocalDate dateOfBirth;
 
     @Column
@@ -85,11 +88,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender) {
+    public User(String name, LocalDate dateOfBirth, String password, String gender, String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
+        this.email = email;
     }
 
     public Long getId() {
@@ -132,4 +136,59 @@ public class User {
         this.gender = gender;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<AccessNeed> getAccessNeeds() {
+        return accessNeeds;
+    }
+
+    public void setAccessNeeds(List<AccessNeed> accessNeeds) {
+        this.accessNeeds = accessNeeds;
+    }
+
+    public List<AnsweredQuestion> getAnsweredQuestions() {
+        return answeredQuestions;
+    }
+
+    public void setAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+        this.answeredQuestions = answeredQuestions;
+    }
+
+    public List<Goal> getCareerGoals() {
+        return careerGoals;
+    }
+
+    public void setCareerGoals(List<Goal> careerGoals) {
+        this.careerGoals = careerGoals;
+    }
+
+    public List<MoodEntry> getMoodEntries() {
+        return moodEntries;
+    }
+
+    public void setMoodEntries(List<MoodEntry> moodEntries) {
+        this.moodEntries = moodEntries;
+    }
+
+    public PersonalityScore getPersonalityScore() {
+        return personalityScore;
+    }
+
+    public void setPersonalityScore(PersonalityScore personalityScore) {
+        this.personalityScore = personalityScore;
+    }
+
+    public List<MentalHealthCondition> getMentalHealthConditions() {
+        return mentalHealthConditions;
+    }
+
+    public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
+        this.mentalHealthConditions = mentalHealthConditions;
+    }
 }
