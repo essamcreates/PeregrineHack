@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> authenticateUser(@RequestBody LoginForm loginForm){
         User checkUser = userService.checkCredentials(loginForm.getEmail(),loginForm.getPassword());
-        return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED)
+        return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @DeleteMapping("/id")
@@ -63,7 +63,5 @@ public class UserController {
         User updateUser = userService.updateUser(id);
         return new ResponseEntity<>(updateUser,HttpStatus.OK);
     }
-
-
 
 }
