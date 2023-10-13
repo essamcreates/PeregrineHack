@@ -132,4 +132,51 @@ public class User {
         this.gender = gender;
     }
 
+    public List<AccessNeed> getAccessNeeds() {
+        return accessNeeds;
+    }
+
+    public void setAccessNeeds(List<AccessNeed> accessNeeds) {
+        this.accessNeeds = accessNeeds;
+    }
+
+    public List<AnsweredQuestion> getAnsweredQuestions() {
+        return answeredQuestions;
+    }
+
+    public void setAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+        this.answeredQuestions = answeredQuestions;
+    }
+
+    public List<Goal> getCareerGoals() {
+        return careerGoals;
+    }
+
+    public void setCareerGoals(List<Goal> careerGoals) {
+        this.careerGoals = careerGoals;
+    }
+
+    public List<MoodEntry> getMoodEntries() {
+        return moodEntries;
+    }
+
+    public void setMoodEntries(List<MoodEntry> moodEntries) {
+        this.moodEntries = moodEntries;
+    }
+
+    public PersonalityScore getPersonalityScore() {
+        return personalityScore;
+    }
+
+    public void setPersonalityScore(PersonalityScore personalityScore) {
+        this.personalityScore = personalityScore;
+    }
+
+    public List<MentalHealthCondition> getMentalHealthConditions() {
+        return mentalHealthConditions;
+    }
+
+    public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
+        this.mentalHealthConditions = mentalHealthConditions;
+    }
 }
