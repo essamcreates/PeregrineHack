@@ -17,11 +17,17 @@ public class AnsweredQuestionController {
 
     @GetMapping
     public ResponseEntity<List<AnsweredQuestion>> getAllAnsweredQuestions(){
-        return new List<AnsweredQuestion>(this.answeredQuestionService.findAllAnsweredQuestions(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.answeredQuestionService.findAllAnsweredQuestions(), HttpStatus.FOUND);
     }
-@GetMapping
-    public ResponseEntity<AnsweredQuestion> getDailyQuestionById(@PathVariable Long id){
-        AnsweredQuestion answeredQuestion = answeredQuestionService.findAnsweredQuestionById(id);
-        return new ResponseEntity<AnsweredQuestion>(answeredQuestion, HttpStatus.FOUND);
+    @GetMapping
+    public ResponseEntity<AnsweredQuestion> getAnsweredQuestionById(@PathVariable Long id){
+        AnsweredQuestion answeredQuestion = answeredQuestionService.findAnsweredQuestionsById(id);
+        return new ResponseEntity<>(answeredQuestion, HttpStatus.FOUND);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AnsweredQuestion>. getAnsweredQuestionByUser(@PathVariable Long id){
+        List<AnsweredQuestion> answeredQuestions = answeredQuestionService.getAnsweredQuestionsByUser(id);
+        return new ResponseEntity<>(answeredQuestions, HttpStatus.FOUND);
     }
 }

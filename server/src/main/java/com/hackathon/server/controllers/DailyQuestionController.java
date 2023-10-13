@@ -19,12 +19,12 @@ public class DailyQuestionController {
     DailyQuestionService dailyQuestionService;
 @GetMapping
     public ResponseEntity<List<DailyQuestion>> getAllDailyQuestions(){
-        return new List<DailyQuestion>(this.dailyQuestionService.findAllDailyQuestions(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.dailyQuestionService.getAllDailyQuestions(), HttpStatus.FOUND);
     }
 @GetMapping
     public ResponseEntity<DailyQuestion> getDailyQuestionById(@PathVariable Long id){
-        DailyQuestion dailyQuestion = dailyQuestionService.findDailyQuestionById(id);
-        return new ResponseEntity<DailyQuestion>(dailyQuestion, HttpStatus.FOUND);
+        DailyQuestion dailyQuestion = dailyQuestionService.getDailyQuestionById(id);
+        return new ResponseEntity<>(dailyQuestion, HttpStatus.FOUND);
     }
 
 
