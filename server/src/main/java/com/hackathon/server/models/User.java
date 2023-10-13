@@ -1,9 +1,11 @@
 package com.hackathon.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -38,6 +40,52 @@ public class User {
     - careerGoals
     - mood
      */
+
+
+    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_access_needs",joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "access_needs")
+    private List<AccessNeed> accessNeeds;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @Column(name = "answered_questions")
+    private List<AnsweredQuestion> answeredQuestions;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_goals",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "goal_id")
+    )
+    private List<Goal> careerGoals;
+
+//    @OneToMany(mappedBy = "user")
+//    @JsonIgnoreProperties({"user"})
+//    @Column(name = "mood_entries")
+    //private List<MoodEntry> moodEntries;
+
+    @OneToOne(mappedBy = "user")
+    @JoinColumn(name = "big_five_trait_id")
+    private BigFiveTrait bigFiveTrait;
+
+    // LOOK INTO THIS (ITS ENUM BUT WE NEED A MANY TO MANY)--------------------------------------------------------------
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "users_mental_health_conditions",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "mh_id")
+//    )
+//    private List<MhCondition> mentalHealthConditions;
+
+    @ElementCollection(targetClass = MentalHealthCondition.class,fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_mental_health_conditions",joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "mental_health_conditions")
+    private List<MentalHealthCondition> mentalHealthConditions;
+
 
 
     public User() {

@@ -22,13 +22,17 @@ public class MoodEntry {
     @Column
     private String emojiUnicode;
 
+    @ManyToOne
+    private User user;
+
     public MoodEntry() {
     }
 
-    public MoodEntry(String mood, LocalDateTime dateTime, String emojiUnicode) {
+    public MoodEntry(String mood, LocalDateTime dateTime, String emojiUnicode, User user) {
         this.mood = mood;
         this.dateTime = dateTime;
         this.emojiUnicode = emojiUnicode;
+        this.user = user;
     }
 
     public Long getId() {
@@ -62,4 +66,6 @@ public class MoodEntry {
     public void setEmojiUnicode(String emojiUnicode) {
         this.emojiUnicode = emojiUnicode;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.hackathon.server.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +23,10 @@ public class AnsweredQuestion {
 //
 //   private User user;
 //
+
+    @ManyToOne
+    @JsonIgnoreProperties("answeredQuestion")
+    private User user;
 
     public AnsweredQuestion() {
     }

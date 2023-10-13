@@ -1,6 +1,9 @@
 package com.hackathon.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "goals")
@@ -13,6 +16,10 @@ public class Goal {
 
     @Column
     private String goal;
+
+    @ManyToMany(mappedBy = "careerGoals")
+    @JsonIgnoreProperties({"goal"})
+    private List<User> users;
 
     public Goal() {
     }
