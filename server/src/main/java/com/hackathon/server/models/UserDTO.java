@@ -14,27 +14,19 @@ public class UserDTO {
 
     private String gender;
 
-// <<<<<<< tarek_test
-//     private String email;
 
-//     public UserDTO() {
-//     }
+     private String email;
 
-//     public UserDTO(String name, LocalDate dateOfBirth, String password, String gender, String email) {
-// =======
-//     public UserDTO() {
-//     }
+     public UserDTO() {
+     }
 
-//     public UserDTO(String name, LocalDate dateOfBirth, String password, String gender) {
-// >>>>>>> develop
+     public UserDTO(String name, LocalDate dateOfBirth, String password, String gender) {
+
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
-// <<<<<<< tarek_test
-//         this.email = email;
-// =======
-// >>>>>>> develop
+         this.email = email;
     }
 
     public String getName() {
@@ -68,15 +60,14 @@ public class UserDTO {
     public void setGender(String gender) {
         this.gender = gender;
     }
-// <<<<<<< tarek_test
 
-//     public String getEmail() {
-//         return email;
-//     }
 
-//     public void setEmail(String email) {
-//         this.email = email;
-//     }
-// =======
-// >>>>>>> develop
+     public String getEmail() {
+         return email;
+     }
+
+     public void setEmail(String email) {
+         this.email = email;
+     }
+
 }

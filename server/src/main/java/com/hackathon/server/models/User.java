@@ -184,4 +184,12 @@ public class User {
     public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
         this.mentalHealthConditions = mentalHealthConditions;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
