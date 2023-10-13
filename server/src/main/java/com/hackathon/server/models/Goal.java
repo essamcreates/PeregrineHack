@@ -1,16 +1,23 @@
 package com.hackathon.server.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "goals")
 public class Goal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column
     private String goal;
 
     public Goal() {
     }
 
-    public Goal(Long id, String goal) {
-        this.id = id;
+    public Goal(String goal) {
         this.goal = goal;
     }
 

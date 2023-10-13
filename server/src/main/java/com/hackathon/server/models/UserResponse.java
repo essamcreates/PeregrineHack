@@ -1,24 +1,33 @@
 package com.hackathon.server.models;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "user_responses")
 public class UserResponse {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
     //private USER USER
 
+    @Column
     private String userPrompt;
 
+    @Column
     private String responseText;
 
+    @Column
     private LocalDate dateTime;
 
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String userPrompt, String responseText, LocalDate dateTime) {
-        this.id = id;
+    public UserResponse(String userPrompt, String responseText, LocalDate dateTime) {
         this.userPrompt = userPrompt;
         this.responseText = responseText;
         this.dateTime = dateTime;

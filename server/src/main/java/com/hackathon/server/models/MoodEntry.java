@@ -1,20 +1,31 @@
 package com.hackathon.server.models;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "mood_entry")
 public class MoodEntry {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column
     private String mood;
 
+    @Column
     private LocalDateTime dateTime;
+
+    @Column
     private String emojiUnicode;
 
     public MoodEntry() {
     }
 
-    public MoodEntry(Long id, String mood, LocalDateTime dateTime, String emojiUnicode) {
-        this.id = id;
+    public MoodEntry(String mood, LocalDateTime dateTime, String emojiUnicode) {
         this.mood = mood;
         this.dateTime = dateTime;
         this.emojiUnicode = emojiUnicode;

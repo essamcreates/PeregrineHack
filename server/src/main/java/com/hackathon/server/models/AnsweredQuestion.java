@@ -26,8 +26,7 @@ public class AnsweredQuestion {
     public AnsweredQuestion() {
     }
 
-    public AnsweredQuestion(Long id, String chosenOption) {
-        this.id = id;
+    public AnsweredQuestion(String chosenOption) {
         this.chosenOption = chosenOption;
     }
 

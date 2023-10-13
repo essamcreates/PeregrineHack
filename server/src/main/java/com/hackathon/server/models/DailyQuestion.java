@@ -1,26 +1,38 @@
 package com.hackathon.server.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "daily_questions")
 public class DailyQuestion {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column
     private String question;
 
+    @Column
     private String optionOne;
 
+    @Column
     private String optionTwo;
 
+    @Column
     private String optionThree;
 
+    @Column
     private String optionFour;
 
+    @Column
     private String optionFive;
 
     public DailyQuestion() {
     }
 
-    public DailyQuestion(Long id, String question, String optionOne, String optionTwo, String optionThree, String optionFour, String optionFive) {
-        this.id = id;
+    public DailyQuestion(String question, String optionOne, String optionTwo, String optionThree, String optionFour, String optionFive) {
         this.question = question;
         this.optionOne = optionOne;
         this.optionTwo = optionTwo;

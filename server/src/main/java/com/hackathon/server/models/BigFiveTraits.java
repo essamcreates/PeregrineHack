@@ -25,8 +25,7 @@ public class BigFiveTraits {
     public BigFiveTraits() {
     }
 
-    public BigFiveTraits(Long id, double openness, double consientiousness, double extraversion, double agreeableness, double neuroticism) {
-        Id = id;
+    public BigFiveTraits(double openness, double consientiousness, double extraversion, double agreeableness, double neuroticism) {
         this.openness = openness;
         this.consientiousness = consientiousness;
         this.extraversion = extraversion;
