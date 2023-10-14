@@ -23,7 +23,6 @@ public class MentalHealthConditionController {
         return new ResponseEntity<>(mentalHealthConditionService.getAllMentalHealthConditions(), HttpStatus.OK);
     }
 
-
     @GetMapping(value = "/{id}")
     public ResponseEntity<MentalHealthCondition> getMentalHealthConditionById(@PathVariable Long id){
         return new ResponseEntity<>(mentalHealthConditionService.getMentalHealthConditionById(id), HttpStatus.OK);

@@ -1,9 +1,7 @@
 package com.hackathon.server.controllers;
 
 import com.hackathon.server.models.AnsweredQuestion;
-import com.hackathon.server.models.DailyQuestion;
 import com.hackathon.server.models.dtos.AnsweredQuestionDTO;
-import com.hackathon.server.models.dtos.MoodEntryDTO;
 import com.hackathon.server.services.AnsweredQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -18,40 +18,29 @@ public class GoalController {
     @Autowired
     GoalService goalService;
 
-    // GET mapping
     @GetMapping
     public ResponseEntity<List<Goal>> getAllGoals(){
         return new ResponseEntity<>(goalService.getAllGoals(), HttpStatus.OK);
     }
-
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Goal> getGoalById(@PathVariable Long id){
         return new ResponseEntity<>(goalService.getGoalById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping(value = "/user/{userId}")
     public ResponseEntity<Optional<List<Goal>>> getGoalsByUser(@PathVariable Long userId){
         Optional<List<Goal>> userGoals= goalService.getGoalsByUser(userId);
         if(userGoals.isPresent()){
-            return new ResponseEntity<>(goalService.getGoalsByUser(userId), HttpStatus.OK);
+            return new ResponseEntity<>(userGoals, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PostMapping(value = "/user/{userId}")
+    @PostMapping(value = "/{userId}")
     public void createUserGoals(@RequestBody UserGoalDTO userGoalDTO, @PathVariable Long userId){
         goalService.saveUserGoals(userGoalDTO, userId);
     }
 
-
-
-
-
-//    GET getAllGoals
-//GET getGoalById
-//GET getAllGoalsByUser
-//POST createGoal
-//DELETE deleteGoal
 }

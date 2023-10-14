@@ -13,6 +13,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,10 +66,9 @@ public class DataLoader implements ApplicationRunner {
 
         accessNeedRepository.saveAll(accessNeeds);
 
-
         List<User> customers = Arrays.asList(
                 //ADD USER HERE
-                new User()
+                new User("John", LocalDate.of(1989, 07, 13),"password123", "male", "John@gmail")
 
         );
         userRepository.saveAll(customers);

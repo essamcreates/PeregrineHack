@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/users"})
+@RequestMapping({"users"})
 public class UserController {
 
     /*

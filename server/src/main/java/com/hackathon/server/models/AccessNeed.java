@@ -19,7 +19,8 @@ public class AccessNeed {
     private AccessNeedENUM accessNeedENUM;
 
     @ManyToMany(mappedBy = "accessNeeds")
-    @JsonIgnoreProperties({"accessNeeds"})
+    @JsonIgnoreProperties({"accessNeeds","mentalHealthConditions","email","dateOfBirth", "password", "gender",
+            "answeredQuestions", "careerGoals", "moodEntries", "personalityScore"})
     private List<User> users;
 
     public AccessNeed(AccessNeedENUM accessNeedENUM) {

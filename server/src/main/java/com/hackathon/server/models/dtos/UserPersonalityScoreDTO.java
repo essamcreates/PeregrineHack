@@ -1,48 +1,22 @@
-package com.hackathon.server.models;
+package com.hackathon.server.models.dtos;
 
-import jakarta.persistence.*;
+public class UserPersonalityScoreDTO {
 
-@Entity
-@Table(name = "personalityScore")
-public class PersonalityScore {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long Id;
-
-    @Column
     private double openness;
-    @Column
     private double conscientiousness;
-    @Column
     private double extraversion;
-    @Column
     private double agreeableness;
-    @Column
     private double neuroticism;
 
-    @OneToOne
-    private User user;
-
-    public PersonalityScore() {
+    public UserPersonalityScoreDTO() {
     }
 
-    public PersonalityScore(double openness, double conscientiousness, double extraversion, double agreeableness, double neuroticism, User user) {
+    public UserPersonalityScoreDTO(double openness, double conscientiousness, double extraversion, double agreeableness, double neuroticism) {
         this.openness = openness;
         this.conscientiousness = conscientiousness;
         this.extraversion = extraversion;
         this.agreeableness = agreeableness;
         this.neuroticism = neuroticism;
-        this.user = user;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
     }
 
     public double getOpenness() {
@@ -83,13 +57,5 @@ public class PersonalityScore {
 
     public void setNeuroticism(double neuroticism) {
         this.neuroticism = neuroticism;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

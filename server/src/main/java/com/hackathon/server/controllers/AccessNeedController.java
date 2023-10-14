@@ -1,14 +1,8 @@
 package com.hackathon.server.controllers;
 
-import com.hackathon.server.authentication.LoginForm;
 import com.hackathon.server.models.AccessNeed;
-import com.hackathon.server.models.MentalHealthCondition;
-import com.hackathon.server.models.User;
-import com.hackathon.server.models.UserDTO;
 import com.hackathon.server.models.dtos.UserAccessNeedDTO;
-import com.hackathon.server.models.dtos.UserMentalHealthConditionDTO;
 import com.hackathon.server.services.AccessNeedService;
-import com.hackathon.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +14,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping({"accessNeeds"})
 public class AccessNeedController {
-
-// <<<<<<< tarek_test
-// }
-// =======
-//     /*
-//     * TODO:
-//     *   GET getAllAccessNeeds
-//         GET getAccessNeedById
-//         POST createAccessNeed (maybe)
-//         DELETE deleteAccessNeed (maybe)
-// */
 
          @Autowired
          AccessNeedService accessNeedService;
@@ -61,6 +44,6 @@ public class AccessNeedController {
             accessNeedService.saveUserAccessNeeds(userAccessNeedDTO, userId);
         }
 
-     }
+}
 
-// >>>>>>> develop
+
