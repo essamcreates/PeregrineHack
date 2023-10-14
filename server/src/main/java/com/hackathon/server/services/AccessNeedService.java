@@ -1,12 +1,8 @@
 package com.hackathon.server.services;
 
 import com.hackathon.server.models.AccessNeed;
-import com.hackathon.server.models.MentalHealthCondition;
-import com.hackathon.server.models.MoodEntry;
 import com.hackathon.server.models.User;
-import com.hackathon.server.models.dtos.MoodEntryDTO;
 import com.hackathon.server.models.dtos.UserAccessNeedDTO;
-import com.hackathon.server.models.dtos.UserMentalHealthConditionDTO;
 import com.hackathon.server.repositories.AccessNeedRepository;
 import com.hackathon.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

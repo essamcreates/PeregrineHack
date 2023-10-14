@@ -1,13 +1,10 @@
 package com.hackathon.server.components;
 
-import com.hackathon.server.models.AccessNeed;
-import com.hackathon.server.models.MentalHealthCondition;
-import com.hackathon.server.models.User;
+import com.hackathon.server.models.*;
 import com.hackathon.server.models.enums.AccessNeedENUM;
 import com.hackathon.server.models.enums.MentalHealthConditionENUM;
-import com.hackathon.server.repositories.AccessNeedRepository;
-import com.hackathon.server.repositories.MentalHealthConditionRepository;
-import com.hackathon.server.repositories.UserRepository;
+import com.hackathon.server.repositories.*;
+import com.hackathon.server.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,6 +25,12 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     AccessNeedRepository accessNeedRepository;
+
+    @Autowired
+    DailyQuestionRepository dailyQuestionRepository;
+
+    @Autowired
+    GoalRepository goalRepository;
 
 
     @Override
@@ -66,11 +69,24 @@ public class DataLoader implements ApplicationRunner {
 
         accessNeedRepository.saveAll(accessNeeds);
 
-        List<User> customers = Arrays.asList(
-                //ADD USER HERE
-                new User("John", LocalDate.of(1989, 07, 13),"password123", "male", "John@gmail")
+        List<Goal> goals = Arrays.asList(
+                new Goal("Up-Skill"),
+                new Goal("Technical"),
+                new Goal("Managerial")
+        );
+        goalRepository.saveAll(goals);
 
+        List<User> customers = Arrays.asList(
+                new User("John", LocalDate.of(1989, 07, 13),"password123", "male", "John@gmail"),
+                new User("Sarah", LocalDate.of(1975, 11, 27),"Hello000", "female", "sarah@company")
         );
         userRepository.saveAll(customers);
+
+        List<DailyQuestion> questions = Arrays.asList(
+                new DailyQuestion("How would you describe your day so far?","Excellent", "Terrible", "Average", "Ok",null),
+                new DailyQuestion("What do you enjoy doing in your spare time","Time with family", "Doing sports", "Discovering new places", "Chilling at home","Going out")
+        );
+        dailyQuestionRepository.saveAll(questions);
+
     }
 }

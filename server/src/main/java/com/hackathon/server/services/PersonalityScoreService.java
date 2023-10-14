@@ -31,7 +31,7 @@ public class PersonalityScoreService {
     public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
         User user = userRepository.findById(userId).get();
         PersonalityScore userPersonalityScore= user.getPersonalityScore();
-        if(userPersonalityScore!=null){ // by  the relationship the scores should always be there anyway?
+        if(userPersonalityScore!=null){
             return Optional.of(userPersonalityScore);
         }else{
             return Optional.empty();

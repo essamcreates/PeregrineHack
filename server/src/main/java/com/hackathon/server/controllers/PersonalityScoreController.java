@@ -28,7 +28,7 @@ public class PersonalityScoreController {
         return new ResponseEntity<>(personalityScoreService.getPersonalityScoreById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "user/{userId}")
+    @GetMapping(value = "/user/{userId}")
     public ResponseEntity<Optional<PersonalityScore>> getPersonalityScoreByUser(@PathVariable Long userId){
         Optional<PersonalityScore> userPersonalityScore = personalityScoreService.getPersonalityScoreByUser(userId);
         if(userPersonalityScore.isPresent()){

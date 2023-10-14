@@ -2,10 +2,8 @@ package com.hackathon.server.services;
 
 import com.hackathon.server.models.AnsweredQuestion;
 import com.hackathon.server.models.DailyQuestion;
-import com.hackathon.server.models.MoodEntry;
 import com.hackathon.server.models.User;
 import com.hackathon.server.models.dtos.AnsweredQuestionDTO;
-import com.hackathon.server.models.dtos.MoodEntryDTO;
 import com.hackathon.server.repositories.AnsweredQuestionRepository;
 import com.hackathon.server.repositories.DailyQuestionRepository;
 import com.hackathon.server.repositories.UserRepository;

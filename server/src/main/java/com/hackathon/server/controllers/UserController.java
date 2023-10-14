@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping({"users"})
+@RequestMapping("users")
 public class UserController {
 
     /*
@@ -34,7 +34,7 @@ public class UserController {
         return new ResponseEntity<>(this.userService.findAllCustomers(), HttpStatus.FOUND);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user,HttpStatus.FOUND);
