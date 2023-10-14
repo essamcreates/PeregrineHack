@@ -58,9 +58,9 @@ public class User {
     @Column(name = "mood_entries")
     private List<MoodEntry> moodEntries;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn(name = "personality_score_id")
-    private PersonalityScore personalityScore;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "personality_score_id")
+//    private PersonalityScore personalityScore;
 
     @ManyToMany
     @JoinTable(
@@ -154,13 +154,13 @@ public class User {
         this.moodEntries = moodEntries;
     }
 
-    public PersonalityScore getPersonalityScore() {
-        return personalityScore;
-    }
-
-    public void setPersonalityScore(PersonalityScore personalityScore) {
-        this.personalityScore = personalityScore;
-    }
+//    public PersonalityScore getPersonalityScore() {
+//        return personalityScore;
+//    }
+//
+//    public void setPersonalityScore(PersonalityScore personalityScore) {
+//        this.personalityScore = personalityScore;
+//    }
 
     public List<MentalHealthCondition> getMentalHealthConditions() {
         return mentalHealthConditions;

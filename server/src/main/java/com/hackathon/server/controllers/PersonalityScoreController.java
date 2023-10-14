@@ -28,15 +28,15 @@ public class PersonalityScoreController {
         return new ResponseEntity<>(personalityScoreService.getPersonalityScoreById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<Optional<PersonalityScore>> getPersonalityScoreByUser(@PathVariable Long userId){
-        Optional<PersonalityScore> userPersonalityScore = personalityScoreService.getPersonalityScoreByUser(userId);
-        if(userPersonalityScore.isPresent()){
-            return new ResponseEntity<>(userPersonalityScore, HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping(value = "/user/{userId}")
+//    public ResponseEntity<Optional<PersonalityScore>> getPersonalityScoreByUser(@PathVariable Long userId){
+//        Optional<PersonalityScore> userPersonalityScore = personalityScoreService.getPersonalityScoreByUser(userId);
+//        if(userPersonalityScore.isPresent()){
+//            return new ResponseEntity<>(userPersonalityScore, HttpStatus.OK);
+//        }else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
     @PostMapping(value = "/{userId}")
     public void createUserMoodEntry(@RequestBody UserPersonalityScoreDTO userPersonalityScoreDTO, @PathVariable Long userId){

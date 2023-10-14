@@ -28,15 +28,15 @@ public class PersonalityScoreService {
         return personalityScoreRepository.findById(id).get();
     }
 
-    public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
-        User user = userRepository.findById(userId).get();
-        PersonalityScore userPersonalityScore= user.getPersonalityScore();
-        if(userPersonalityScore!=null){
-            return Optional.of(userPersonalityScore);
-        }else{
-            return Optional.empty();
-        }
-    }
+//    public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
+//        User user = userRepository.findById(userId).get();
+//        PersonalityScore userPersonalityScore= user.getPersonalityScore();
+//        if(userPersonalityScore!=null){
+//            return Optional.of(userPersonalityScore);
+//        }else{
+//            return Optional.empty();
+//        }
+//    }
 
     public void saveUserPersonalityScore(UserPersonalityScoreDTO userPersonalityScoreDTO, Long userId){
         User user = userRepository.findById(userId).get();
