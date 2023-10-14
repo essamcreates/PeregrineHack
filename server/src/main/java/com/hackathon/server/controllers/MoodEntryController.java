@@ -35,7 +35,7 @@ public class MoodEntryController {
 
     }
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping(value = "/user/{userId}")
     public ResponseEntity<Optional<List<MoodEntry>>> getMoodEntriesByUser(@PathVariable Long userId){
         Optional<List<MoodEntry>> userMoodEntries= moodEntryService.getMoodEntriesByUser(userId);
         if(userMoodEntries.isPresent()){

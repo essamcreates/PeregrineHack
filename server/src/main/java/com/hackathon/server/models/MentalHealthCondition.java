@@ -19,7 +19,8 @@ public class MentalHealthCondition {
     private MentalHealthConditionENUM mentalHealthConditionENUM;
 
     @ManyToMany(mappedBy = "mentalHealthConditions")
-    @JsonIgnoreProperties({"mentalHealthConditions"})
+    @JsonIgnoreProperties({"mentalHealthConditions", "accessNeeds","email","dateOfBirth", "password", "gender",
+            "answeredQuestions", "careerGoals", "moodEntries", "personalityScore"})
     private List<User> users;
 
     public MentalHealthCondition() {
