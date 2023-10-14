@@ -38,6 +38,18 @@ public class PersonalityScoreService {
 //        }
 //    }
 
+        public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
+        User user = userRepository.findById(userId).get();
+        PersonalityScore userPersonalityScore= personalityScoreRepository.findByUser(user);
+        if(userPersonalityScore!=null){
+            return Optional.of(userPersonalityScore);
+        }else{
+            return Optional.empty();
+        }
+    }
+
+
+
     public void saveUserPersonalityScore(UserPersonalityScoreDTO userPersonalityScoreDTO, Long userId){
         User user = userRepository.findById(userId).get();
 //        PersonalityScore userPersonalityScore = user.getPersonalityScore();
