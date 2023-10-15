@@ -1,4 +1,4 @@
-package com.hackathon.server.models;
+package com.hackathon.server.models.dtos;
 
 import jakarta.persistence.Column;
 
