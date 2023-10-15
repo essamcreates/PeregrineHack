@@ -1,18 +1,12 @@
 package com.hackathon.server.services;
 
  import com.hackathon.server.models.User;
- import com.hackathon.server.models.UserDTO;
+ import com.hackathon.server.models.dtos.UserDTO;
  import com.hackathon.server.repositories.UserRepository;
  import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.beans.factory.annotation.CustomAutowireConfigurer;
  import org.springframework.stereotype.Service;
 
  import java.util.List;
-
-
- import com.hackathon.server.repositories.UserRepository;
- import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
