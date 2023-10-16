@@ -15,10 +15,10 @@ public class UserResponse {
 
     //private USER USER
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String userPrompt;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String responseText;
 
     @Column
