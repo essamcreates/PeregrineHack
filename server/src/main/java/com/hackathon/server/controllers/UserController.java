@@ -2,6 +2,7 @@ package com.hackathon.server.controllers;
 
 import com.hackathon.server.authentication.LoginForm;
 import com.hackathon.server.models.User;
+import com.hackathon.server.models.dtos.UserDTO;
 import com.hackathon.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,17 +39,16 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.FOUND);
     }
 
-//    @PostMapping
-//    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
-//        User addUser = userService.addUser(userDTO);
-//        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
-//    }
-
     @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
+        User addUser = userService.addUser(userDTO);
+        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/authenticate")
     public ResponseEntity<User> authenticateUser(@RequestBody LoginForm loginForm){
         User checkUser = userService.checkCredentials(loginForm.getEmail(),loginForm.getPassword());
          return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
     }
 
     @DeleteMapping("/id")
