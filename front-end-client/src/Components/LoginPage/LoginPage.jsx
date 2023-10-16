@@ -1,8 +1,12 @@
-const LoginPage = () => {
+import LoginForm from "./LoginForm";
+
+const LoginPage = ({authenticateUser}) => {
 
     return (
         <>
-        <p>This is the login page</p>
+        <h1>User Login</h1>
+        <h2> Welcome to your personal development coach</h2>
+        <LoginForm authenticateUser={authenticateUser} />
         </>
     )
 }
