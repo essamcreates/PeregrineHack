@@ -32,6 +32,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     GoalRepository goalRepository;
 
+    @Autowired
+    MotivationMessageRepository motivationMessageRepository;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -49,6 +52,16 @@ public class DataLoader implements ApplicationRunner {
                 new MentalHealthCondition(MentalHealthConditionENUM.Borderline_Personality_Disorder));
 
         mentalHealthConditionRepository.saveAll(conditions);
+
+        List<MotivationMessage> motivationMessages = Arrays.asList(
+                new MotivationMessage("Hello, I hope you had a nice day"),
+                new MotivationMessage("Keep Pushing You Will Get There One Day !!!!!!!"),
+                new MotivationMessage("Never Back Down"),
+                new MotivationMessage("Dont look at yourself through the eyes of the doubters, look from within.")
+        );
+        motivationMessageRepository.saveAll(motivationMessages);
+
+
 
         List<AccessNeed> accessNeeds = Arrays.asList(
                 new AccessNeed(AccessNeedENUM.ADHD),

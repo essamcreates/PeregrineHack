@@ -13,7 +13,8 @@ public class UserResponse {
     @Column
     private Long id;
 
-    //private USER USER
+    @ManyToOne
+    private User user;
 
     @Column(columnDefinition = "TEXT")
     private String userPrompt;
