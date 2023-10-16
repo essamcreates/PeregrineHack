@@ -40,7 +40,11 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.FOUND);
     }
 
-    @PostMapping("/addUser")
+// <<<<<<< developAI
+//     @PostMapping("/addUser")
+// =======
+//     @PostMapping
+// >>>>>>> develop
     public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
         User addUser = userService.addUser(userDTO);
         return new ResponseEntity<>(addUser, HttpStatus.CREATED);
