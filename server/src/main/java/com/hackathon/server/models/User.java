@@ -32,13 +32,6 @@ public class User {
     @Column
     private String gender;
 
-
-//    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_access_needs",joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "access_needs")
-//    private List<AccessNeed> accessNeeds;
-
     @ManyToMany
     @JoinTable(
             name = "users_access_needs",
@@ -65,9 +58,9 @@ public class User {
     @Column(name = "mood_entries")
     private List<MoodEntry> moodEntries;
 
-    @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "big_five_trait_id")
-    private PersonalityScore personalityScore;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "personality_score_id")
+//    private PersonalityScore personalityScore;
 
     @ManyToMany
     @JoinTable(
@@ -76,14 +69,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "mental_health_condition_id")
     )
     private List<MentalHealthCondition> mentalHealthConditions;
-
-//    @ElementCollection(targetClass = MentalHealthCondition.class,fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_mental_health_conditions",joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "mental_health_conditions")
-//    private List<MentalHealthCondition> mentalHealthConditions;
-
-
 
     public User() {
     }
@@ -169,13 +154,13 @@ public class User {
         this.moodEntries = moodEntries;
     }
 
-    public PersonalityScore getPersonalityScore() {
-        return personalityScore;
-    }
-
-    public void setPersonalityScore(PersonalityScore personalityScore) {
-        this.personalityScore = personalityScore;
-    }
+//    public PersonalityScore getPersonalityScore() {
+//        return personalityScore;
+//    }
+//
+//    public void setPersonalityScore(PersonalityScore personalityScore) {
+//        this.personalityScore = personalityScore;
+//    }
 
     public List<MentalHealthCondition> getMentalHealthConditions() {
         return mentalHealthConditions;
@@ -183,5 +168,24 @@ public class User {
 
     public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
         this.mentalHealthConditions = mentalHealthConditions;
+    }
+
+    public void addGoal(Goal goal){
+        this.careerGoals.add(goal);
+    }
+
+    public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition) {
+        this.mentalHealthConditions.add(mentalHealthCondition);
+    }
+    public void addAccessNeed(AccessNeed accessNeed){
+        this.accessNeeds.add(accessNeed);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

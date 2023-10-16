@@ -1,4 +1,4 @@
-package com.hackathon.server.models;
+package com.hackathon.server.models.dtos;
 
 import jakarta.persistence.Column;
 
@@ -14,17 +14,19 @@ public class UserDTO {
 
     private String gender;
 
-    private String email;
 
-    public UserDTO() {
-    }
+     private String email;
 
-    public UserDTO(String name, LocalDate dateOfBirth, String password, String gender, String email) {
+     public UserDTO() {
+     }
+
+     public UserDTO(String name, LocalDate dateOfBirth, String password, String gender) {
+
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
-        this.email = email;
+         this.email = email;
     }
 
     public String getName() {
@@ -59,11 +61,13 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+     public String getEmail() {
+         return email;
+     }
+
+     public void setEmail(String email) {
+         this.email = email;
+     }
+
 }

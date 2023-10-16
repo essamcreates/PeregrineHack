@@ -3,7 +3,7 @@ package com.hackathon.server.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "personalityScore")
 public class PersonalityScore {
 
     @Id

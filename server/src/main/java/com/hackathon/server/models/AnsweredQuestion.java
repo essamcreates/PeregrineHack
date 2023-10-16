@@ -21,7 +21,8 @@ public class AnsweredQuestion {
     private DailyQuestion dailyQuestion;
 
     @ManyToOne
-    @JsonIgnoreProperties("answeredQuestion")
+    @JsonIgnoreProperties({"answeredQuestions", "user", "mentalHealthConditions", "accessNeeds","email","dateOfBirth", "password", "gender",
+            "answeredQuestions", "careerGoals", "moodEntries", "personalityScore"})
     private User user;
 
     public AnsweredQuestion() {
