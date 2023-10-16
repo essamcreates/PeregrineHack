@@ -9,23 +9,25 @@ import { useState } from "react";
 
 const Container = () => {
 
-    const[currentUser, setCurrentUser]= useState();
+    // const[currentUser, setCurrentUser]= useState();
 
-    const authenticateUser = async (loginInfo) => {
-        const url = `http://localhost:8080/authenticate`;
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(loginInfo),
-        })
-        const newResponse = await response.json();
-        if(response.status === 202) {
-            setCurrentUser(newResponse)
-            alert("logged in")
-        }else{
-            alert("not found")
-        }
-    } 
+    // const authenticateUser = async (loginInfo) => {
+    //     const url = `http://localhost:8080/users/authenticate`;
+    //     const response = await fetch(url, {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify(loginInfo),
+    //     })
+    //     console.log("posted")
+    //     if(response.status === 200) {
+    //         const newResponse = await response.json();
+    //         setCurrentUser(newResponse)
+    //         alert("logged in")
+    //     }else{
+    //         alert("not found")
+    //     }
+    // } 
+
 
     return (
         <div>
@@ -33,7 +35,7 @@ const Container = () => {
                 <main>
                     <Routes>
                         <Route path="/" element={<HomePage/>}></Route>
-                        <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser}/>}></Route>
+                        <Route path="/LoginPage" element={<LoginPage />}></Route>
                         <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage/>}></Route>
                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>

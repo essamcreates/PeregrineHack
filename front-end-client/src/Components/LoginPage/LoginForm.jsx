@@ -1,19 +1,41 @@
 import { useState } from "react";
 
-const LoginForm = ({authenticateUser}) => {
+const LoginForm = () => {
 
     const[currentEmail, setCurrentEmail]= useState("");
     const[currentPassword, setCurrentPassword]= useState("");
 
-    const handleLoginClick = async() => {
+    const handleLoginClick = async(event) => {
+        event.preventDefault
         let temp = {
                     email: currentEmail,
                     password: currentPassword
             }
+        console.log(temp)
         authenticateUser(temp)
 
         console.log(currentEmail);
     }
+
+
+    const[currentUser, setCurrentUser]= useState();
+
+    const authenticateUser = async (loginInfo) => {
+        const url = `http://localhost:8080/users/authenticate`;
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(loginInfo),
+        })
+        console.log("posted")
+        if(response.status === 200) {
+            const newResponse = await response.json();
+            setCurrentUser(newResponse)
+            alert("logged in")
+        }else{
+            alert("not found")
+        }
+    } 
 
     // const postLogInCustomer = async (tempEmail, tempPassword) => {
     //     let temp = {
@@ -44,7 +66,7 @@ const LoginForm = ({authenticateUser}) => {
                 <br/>
                 <label> Password:</label>
                 <input type="text" onChange={(e)=>{setCurrentPassword(e.target.value)}}/>
-                <input type="submit" value="Login" onClick={()=>{handleLoginClick()}}/>
+                <input type="submit" value="Login" onClick={(event)=>{handleLoginClick(event)}}/>
             </form>
         </div>
     )
