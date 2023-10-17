@@ -48,7 +48,6 @@ const Container = () => {
     return (
         <div>
             <BrowserRouter>
-                <main>
                     <NavDock currentUser={currentUser}/>
                     <Routes>
                         <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
@@ -58,7 +57,6 @@ const Container = () => {
                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
                     </Routes>
-                </main>
             </BrowserRouter>
         </div>
     )
