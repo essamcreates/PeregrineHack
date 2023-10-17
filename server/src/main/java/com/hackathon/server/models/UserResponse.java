@@ -13,12 +13,13 @@ public class UserResponse {
     @Column
     private Long id;
 
-    //private USER USER
+    @ManyToOne
+    private User user;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String userPrompt;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String responseText;
 
     @Column

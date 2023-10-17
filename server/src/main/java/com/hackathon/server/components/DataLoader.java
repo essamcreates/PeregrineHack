@@ -2,6 +2,7 @@ package com.hackathon.server.components;
 
 import com.hackathon.server.models.*;
 import com.hackathon.server.models.enums.AccessNeedENUM;
+import com.hackathon.server.models.enums.GoalENUM;
 import com.hackathon.server.models.enums.MentalHealthConditionENUM;
 import com.hackathon.server.repositories.*;
 import com.hackathon.server.services.GoalService;
@@ -32,6 +33,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     GoalRepository goalRepository;
 
+    @Autowired
+    MotivationMessageRepository motivationMessageRepository;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -49,6 +53,16 @@ public class DataLoader implements ApplicationRunner {
                 new MentalHealthCondition(MentalHealthConditionENUM.Borderline_Personality_Disorder));
 
         mentalHealthConditionRepository.saveAll(conditions);
+
+        List<MotivationMessage> motivationMessages = Arrays.asList(
+                new MotivationMessage("Hello, I hope you had a nice day"),
+                new MotivationMessage("Keep Pushing You Will Get There One Day !!!!!!!"),
+                new MotivationMessage("Never Back Down"),
+                new MotivationMessage("Dont look at yourself through the eyes of the doubters, look from within.")
+        );
+        motivationMessageRepository.saveAll(motivationMessages);
+
+
 
         List<AccessNeed> accessNeeds = Arrays.asList(
                 new AccessNeed(AccessNeedENUM.ADHD),
@@ -70,9 +84,13 @@ public class DataLoader implements ApplicationRunner {
         accessNeedRepository.saveAll(accessNeeds);
 
         List<Goal> goals = Arrays.asList(
-                new Goal("Up-Skill"),
-                new Goal("Technical"),
-                new Goal("Managerial")
+                new Goal(GoalENUM.UPSKILL),
+                new Goal(GoalENUM.MANAGERIAL),
+                new Goal(GoalENUM.TECHNICAL),
+                new Goal(GoalENUM.PERSONAL),
+                new Goal(GoalENUM.RESKILL),
+                new Goal(GoalENUM.HIGHER_EDUCATION),
+                new Goal(GoalENUM.LEADERSHIP)
         );
         goalRepository.saveAll(goals);
 

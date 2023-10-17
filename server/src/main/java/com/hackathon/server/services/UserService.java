@@ -6,6 +6,7 @@ package com.hackathon.server.services;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Service;
 
+ import java.time.LocalDate;
  import java.util.List;
 
 @Service
@@ -44,18 +45,23 @@ public class UserService {
 
      }
 
-     public User updateUser(Long id) {
+     public User updateUser(Long id, String name, LocalDate dob,String password, String gender, String email) {
+
          User user = userRepository.findById(id).get();
 
-         // on the endpoint make the pathvariables optional then do if statements here and finish it off TAREK.
- //
- //        user.setName();
- //        user.setDateOfBirth();
- //        user.setPassword();
- //        user.setGender();
- //        user.setEmail();
-         return null;
+         if(name != null){
+             user.setName(name);
+         }else if (dob != null) {
+             user.setDateOfBirth(dob);
+         }else if(password != null){
+             user.setPassword(password);
+         }else if (gender != null){
+             user.setGender(gender);
+         } else if (email != null) {
+             user.setEmail(email);
+         }
 
+         return userRepository.save(user);
      }
 
 }
