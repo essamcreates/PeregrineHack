@@ -61,6 +61,17 @@ const Container = () => {
         }
     }
 
+    const addUserInfo = async (userInfo) => {
+        const url = `http://localhost:8080/users/` + currentUser.id;
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
+        setCurrentUser(response);
+        console.log("fetch");
+    }
+
     return (
         <div>
             <BrowserRouter>
@@ -69,7 +80,7 @@ const Container = () => {
                         <Route path="/" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
                         <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage signupUser={signupUser}/>}></Route>
-                        <Route path="/ProfileCreationPage" element={<ProfileCreationPage/>}></Route>
+                        <Route path="/ProfileCreationPage" element={<ProfileCreationPage addUserInfo={addUserInfo} currentUser={currentUser}/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
                     </Routes>
