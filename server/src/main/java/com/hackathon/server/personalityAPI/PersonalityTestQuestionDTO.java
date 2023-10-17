@@ -15,6 +15,19 @@ public class PersonalityTestQuestionDTO{
         this.personalityTestQuestionId = personalityTestQuestionId;
     }
 
+    @Override
+    public String toString() {
+        return "PersonalityTestQuestionDTO{" +
+                "personalityTestId=" + personalityTestId +
+                ", question='" + question + '\'' +
+                ", personalityTestQuestionId=" + personalityTestQuestionId +
+                '}';
+    }
+
+    public PersonalityTestQuestionDTO() {
+
+    }
+
     public int getPersonalityTestId() {
         return personalityTestId;
     }
