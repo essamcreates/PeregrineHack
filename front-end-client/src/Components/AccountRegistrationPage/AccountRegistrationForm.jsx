@@ -30,7 +30,7 @@ const AccountRegistrationForm = ({signupUser}) => {
             }
         let signupAccepted = await signupUser(temp)
         if (signupAccepted) {
-            navigate("/")
+            navigate("/HomePage")
         } else {
             setInputErrorMessage("email already in use")
             setInputError(true)
@@ -53,6 +53,7 @@ const AccountRegistrationForm = ({signupUser}) => {
                 <input className="input-box" type="text" value={enteredEmail} onChange={(e)=>{setEnteredEmail(e.target.value)}}/>
                 <br/>
                 <br/>
+                {/* change the type="text" to ="password" after testing etc*/}
                 <label> Password:</label>
                 <input className="input-box" type="text" value={enteredPassword} onChange={(e)=>{setEnteredPassword(e.target.value)}}/>
                 <br>
@@ -61,6 +62,12 @@ const AccountRegistrationForm = ({signupUser}) => {
                 <input className="input-box" type="text" value={enteredConfirmedPassword} onChange={(e)=>{setConfirmedPassword(e.target.value)}}/>
                 <input type="submit" value="Sign up"/>
             </form>
+
+            {inputError && (<div>
+                <p> {inputErrorMessage}</p>
+            </div>)}
+
+            <button onClick={()=>{navigate("/LoginPage")}}>Already have an account, Login</button>
         </div>
     )
 }
