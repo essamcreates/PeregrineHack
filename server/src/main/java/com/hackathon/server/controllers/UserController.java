@@ -47,7 +47,7 @@ public class UserController {
 // >>>>>>> develop
     public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
         User addUser = userService.addUser(userDTO);
-        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
+        return addUser != null ? new ResponseEntity<>(addUser, HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @PostMapping("/authenticate")
