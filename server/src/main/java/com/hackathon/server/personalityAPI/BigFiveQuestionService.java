@@ -68,4 +68,8 @@ public class BigFiveQuestionService {
 
         return personalityTestQuestions;
     }
+
+    public List<BigFiveQuestion> getAllQuestions() {
+        return bigFiveQuestionRepository.findAll();
+    }
 }

@@ -11,28 +11,24 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping({"sentino"})
+@RequestMapping({"personalityQuestionnaire"})
 public class BigFiveQuestionController {
 
-    // TODO :
-    // GET request to Sentino API on RapidAPI.com to get 30 questions for questionnaire
-    // Store 30 questions on our database
 
     @Autowired
     BigFiveQuestionService bigFiveQuestionService;
 
-    @GetMapping("/retrieveQuestions")
+    @GetMapping("/retrieveQuestionsFromAPI")
     public ResponseEntity<List<BigFiveQuestion>> getQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
         return new ResponseEntity<>(bigFiveQuestionService.retrieveQuestionsFromPersonalityQuestAPI(), HttpStatus.FOUND);
     }
 
+    //TODO: Add in error handling around the response entity and optionals
+    @GetMapping()
+    public ResponseEntity<List<BigFiveQuestion>> getPersonalityQuestionnaire() {
+        return new ResponseEntity<>(bigFiveQuestionService.getAllQuestions(), HttpStatus.FOUND);
+    }
 
-    // TODO:
-    // Table in the database so repository is needed
-    // Question model
-        // QuestionId
-        // Question
-    // List<Question> Questions
 
 
     // REST GET Mapping available to FE
