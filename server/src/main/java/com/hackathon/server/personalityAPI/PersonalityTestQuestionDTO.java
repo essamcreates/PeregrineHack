@@ -1,8 +1,12 @@
 package com.hackathon.server.personalityAPI;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PersonalityTestQuestionDTO{
+    @JsonProperty("personality_test_id")
     private int personalityTestId;
     private String question;
+    @JsonProperty("personality_test_question_id")
     private int personalityTestQuestionId;
 
     public PersonalityTestQuestionDTO(int personalityTestId, String question, int personalityTestQuestionId) {

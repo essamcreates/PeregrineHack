@@ -1,28 +1,39 @@
 package com.hackathon.server.personalityAPI;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class PersonalityTestDTO {
 
+    @JsonProperty("personality_test_id")
     private int personalityTestId;
     private String title;
     private String description;
+    @JsonProperty("lowest_range")
     private int lowestRange;
-    private int heighestRange;
+    @JsonProperty("heighest_range")
+    private int highestRange;
+    @JsonProperty("lowest_range_name")
     private String lowestRangeName;
-    private String heighestRangeName;
+    @JsonProperty("heighest_range_name")
+    private String highestRangeName;
+    @JsonProperty("personality_test_type")
     private String personalityTestType;
+    @JsonProperty("created_at")
     private String createdAt;
+    @JsonProperty("updated_at")
     private String updatedAt;
+    @JsonProperty("personality_test_questions")
     private List<PersonalityTestQuestionDTO> personalityTestQuestions;
 
     public PersonalityTestDTO(int personalityTestId,
                               String title,
                               String description,
                               int lowestRange,
-                              int heighestRange,
+                              int highestRange,
                               String lowestRangeName,
-                              String heighestRangeName,
+                              String highestRangeName,
                               String personalityTestType,
                               String createdAt,
                               String updatedAt,
@@ -31,9 +42,9 @@ public class PersonalityTestDTO {
         this.title = title;
         this.description = description;
         this.lowestRange = lowestRange;
-        this.heighestRange = heighestRange;
+        this.highestRange = highestRange;
         this.lowestRangeName = lowestRangeName;
-        this.heighestRangeName = heighestRangeName;
+        this.highestRangeName = highestRangeName;
         this.personalityTestType = personalityTestType;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -72,12 +83,12 @@ public class PersonalityTestDTO {
         this.lowestRange = lowestRange;
     }
 
-    public int getHeighestRange() {
-        return heighestRange;
+    public int getHighestRange() {
+        return highestRange;
     }
 
-    public void setHeighestRange(int heighestRange) {
-        this.heighestRange = heighestRange;
+    public void setHighestRange(int highestRange) {
+        this.highestRange = highestRange;
     }
 
     public String getLowestRangeName() {
@@ -88,12 +99,12 @@ public class PersonalityTestDTO {
         this.lowestRangeName = lowestRangeName;
     }
 
-    public String getHeighestRangeName() {
-        return heighestRangeName;
+    public String getHighestRangeName() {
+        return highestRangeName;
     }
 
-    public void setHeighestRangeName(String heighestRangeName) {
-        this.heighestRangeName = heighestRangeName;
+    public void setHighestRangeName(String highestRangeName) {
+        this.highestRangeName = highestRangeName;
     }
 
     public String getPersonalityTestType() {
