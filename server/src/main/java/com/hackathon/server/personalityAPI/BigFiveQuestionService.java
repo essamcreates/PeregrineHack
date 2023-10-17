@@ -24,19 +24,6 @@ public class BigFiveQuestionService {
     @Value("${personality_quest.api_key}")
     private String personalityApiKey;
 
-//    public String getAllQuestionsFromSentinoApi() throws IOException, InterruptedException {
-//        // findAll questions in database
-//        // if database is empty call Sentino API
-//
-////        List<BigFiveQuestion> questions = bigFiveQuestionRepository.findAll();
-////
-////        if (questions.isEmpty()){
-////            retrieveQuestionsFromPersonalityQuestAPI();
-////        }
-////
-////        return questions;
-//    }
-
     public List<BigFiveQuestion> retrieveQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -71,7 +58,6 @@ public class BigFiveQuestionService {
         }
 
         bigFiveQuestionRepository.saveAll(personalityTestQuestions);
-
 
         return personalityTestQuestions;
     }
