@@ -1,4 +1,4 @@
-package com.hackathon.server.sentinoAPI;
+package com.hackathon.server.personalityAPI;
 
 import jakarta.persistence.*;
 
