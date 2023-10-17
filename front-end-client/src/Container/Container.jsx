@@ -45,6 +45,21 @@ const Container = () => {
         }
     } 
 
+    const signupUser = async (userInfo) => {
+        const url = `http://localhost:8080/users/addUser`;
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
+        if (response !== null) { 
+            console.log("true");
+            return true
+        } else {
+            return false
+        }
+    }
+
     return (
         <div>
             <BrowserRouter>
@@ -52,7 +67,7 @@ const Container = () => {
                     <Routes>
                         <Route path="/" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
-                        <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage/>}></Route>
+                        <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage signupUser={signupUser}/>}></Route>
                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
