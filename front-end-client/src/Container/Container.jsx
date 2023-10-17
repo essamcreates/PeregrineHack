@@ -53,8 +53,9 @@ const Container = () => {
           body: JSON.stringify(userInfo),
         }) 
         console.log(response);
-        if (response.status === 201) { 
-            console.log("true");
+        if (response.status === 201) {
+            const newUser = await response.json();
+            setCurrentUser(newUser)
             return true
         } else {
             return false
