@@ -18,15 +18,15 @@ public class BigFiveQuestionController {
     @Autowired
     BigFiveQuestionService bigFiveQuestionService;
 
-    @GetMapping("/retrieveQuestionsFromAPI")
-    public ResponseEntity<List<BigFiveQuestion>> getQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
-        return new ResponseEntity<>(bigFiveQuestionService.retrieveQuestionsFromPersonalityQuestAPI(), HttpStatus.FOUND);
-    }
-
     //TODO: Add in error handling around the response entity and optionals
     @GetMapping()
     public ResponseEntity<List<BigFiveQuestion>> getPersonalityQuestionnaire() {
         return new ResponseEntity<>(bigFiveQuestionService.getAllQuestions(), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/retrieveQuestionsFromAPI")
+    public ResponseEntity<List<BigFiveQuestion>> getQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
+        return new ResponseEntity<>(bigFiveQuestionService.retrieveQuestionsFromPersonalityQuestAPI(), HttpStatus.FOUND);
     }
 
 
