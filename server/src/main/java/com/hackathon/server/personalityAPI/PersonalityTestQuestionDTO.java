@@ -44,7 +44,7 @@ public class PersonalityTestQuestionDTO{
         this.question = question;
     }
 
-    public int getPersonalityTestQuestionId() {
+    public long getPersonalityTestQuestionId() {
         return personalityTestQuestionId;
     }
 

@@ -26,6 +26,8 @@ public class BigFiveQuestionService {
 
     public List<BigFiveQuestion> retrieveQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
 
+        bigFiveQuestionRepository.deleteAll();
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://personality-quest.p.rapidapi.com/big_five_personality_test/start_guest_test"))
                 .header("X-RapidAPI-Key", "" + personalityApiKey)
@@ -43,21 +45,26 @@ public class BigFiveQuestionService {
 
     public List<BigFiveQuestion> mapQuestionsFromApiToModel(String responseBody) throws JsonProcessingException {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<PersonalityTestDTO> personalityTests = objectMapper.readValue(responseBody, new TypeReference<List<PersonalityTestDTO>>(){});
-        System.out.println(personalityTests);
-
-        PersonalityTestDTO personalityTestDTO = personalityTests.get(0);
-
         ArrayList<BigFiveQuestion> personalityTestQuestions = new ArrayList<>();
 
-        for(int i = 0; i < personalityTestDTO.getPersonalityTestQuestions().size(); i++){
-            PersonalityTestQuestionDTO personalityQuestion = personalityTestDTO.getPersonalityTestQuestions().get(i);
-            BigFiveQuestion bigFiveQuestion = new BigFiveQuestion(personalityQuestion.getQuestion());
-            personalityTestQuestions.add(bigFiveQuestion);
-        }
+        if (bigFiveQuestionRepository.count() == 0) {
 
-        bigFiveQuestionRepository.saveAll(personalityTestQuestions);
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<PersonalityTestDTO> personalityTests = objectMapper.readValue(responseBody, new TypeReference<List<PersonalityTestDTO>>() {
+            });
+
+            PersonalityTestDTO personalityTestDTO = personalityTests.get(0);
+
+            for (int i = 0; i < personalityTestDTO.getPersonalityTestQuestions().size(); i++) {
+                PersonalityTestQuestionDTO personalityQuestion = personalityTestDTO.getPersonalityTestQuestions().get(i);
+
+                BigFiveQuestion bigFiveQuestion = new BigFiveQuestion(personalityQuestion.getPersonalityTestQuestionId(), personalityQuestion.getQuestion());
+                personalityTestQuestions.add(bigFiveQuestion);
+            }
+
+            bigFiveQuestionRepository.saveAll(personalityTestQuestions);
+
+        }
 
         return personalityTestQuestions;
     }

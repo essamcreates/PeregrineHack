@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class BigFiveQuestion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -16,7 +15,8 @@ public class BigFiveQuestion {
     public BigFiveQuestion(){
     }
 
-    public BigFiveQuestion(String question) {
+    public BigFiveQuestion(Long id, String question) {
+        this.id = id;
         this.question = question;
     }
 
