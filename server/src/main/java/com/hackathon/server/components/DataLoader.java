@@ -2,6 +2,7 @@ package com.hackathon.server.components;
 
 import com.hackathon.server.models.*;
 import com.hackathon.server.models.enums.AccessNeedENUM;
+import com.hackathon.server.models.enums.GoalENUM;
 import com.hackathon.server.models.enums.MentalHealthConditionENUM;
 import com.hackathon.server.repositories.*;
 import com.hackathon.server.services.GoalService;
@@ -83,9 +84,13 @@ public class DataLoader implements ApplicationRunner {
         accessNeedRepository.saveAll(accessNeeds);
 
         List<Goal> goals = Arrays.asList(
-                new Goal("Up-Skill"),
-                new Goal("Technical"),
-                new Goal("Managerial")
+                new Goal(GoalENUM.UPSKILL),
+                new Goal(GoalENUM.MANAGERIAL),
+                new Goal(GoalENUM.TECHNICAL),
+                new Goal(GoalENUM.PERSONAL),
+                new Goal(GoalENUM.RESKILL),
+                new Goal(GoalENUM.HIGHER_EDUCATION),
+                new Goal(GoalENUM.LEADERSHIP)
         );
         goalRepository.saveAll(goals);
 
