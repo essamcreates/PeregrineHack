@@ -1,0 +1,26 @@
+.login-box {
+    margin: 35%;
+    margin-top: 20%;
+    border: 3px solid black;
+    border-radius: 8px;
+    color: rgb(155, 43, 123);
+    width: 30%;
+    padding: 4%;
+    padding-top: 2%;
+    background-color: antiquewhite;
+}
+
+.login-box h1{
+    color: darkcyan;
+    margin-left: 30%;
+}
+
+.login-form {
+    font-size :x-large;
+}
+
+.input-box {
+    padding: 1%;
+    width:40%;
+}
+

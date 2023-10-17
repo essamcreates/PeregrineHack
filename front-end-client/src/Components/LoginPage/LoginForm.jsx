@@ -1,5 +1,6 @@
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
+import './LoginPage.css';
 
 const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
 
@@ -15,7 +16,6 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
                     email: currentEmail,
                     password: currentPassword
             }
-        console.log(temp)
         let correctUser = await authenticateUser(temp)
         console.log(correctUser)
         if(!correctUser){
@@ -26,18 +26,17 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
             setFailedLogin(false)
             navigate("/");
         }
-        console.log(currentEmail);
     }
 
     return (
         <div>
-            {!currentUser && (<form onSubmit={(event)=>{handleLoginClick(event)}}>
+            {!currentUser && (<form className="login-form" onSubmit={(event)=>{handleLoginClick(event)}}>
                 <label> Email:</label>
-                <input type="text" value={currentEmail} onChange={(e)=>{setCurrentEmail(e.target.value)}}/>
+                <input className="input-box" type="text" value={currentEmail} onChange={(e)=>{setCurrentEmail(e.target.value)}}/>
                 <br/>
                 <br/>
                 <label> Password:</label>
-                <input type="text" value={currentPassword} onChange={(e)=>{setCurrentPassword(e.target.value)}}/>
+                <input className="input-box" type="text" value={currentPassword} onChange={(e)=>{setCurrentPassword(e.target.value)}}/>
                 <input type="submit" value="Login"/>
             </form>)}
             {failedLogin && (<><p>Warning: incorrect email or password. Please try again</p></>)}
