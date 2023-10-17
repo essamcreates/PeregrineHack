@@ -1,9 +1,11 @@
 package com.hackathon.server.personalityAPI;
 
+import com.hackathon.server.models.PersonalityScore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,13 +32,15 @@ public class BigFiveQuestionController {
     }
 
 
+    @PostMapping("/personalityQuestionnaireSubmission")
+    public ResponseEntity<PersonalityScore> submitPersonalityScoreForCalculation(){
+        return new ResponseEntity<>(bigFiveQuestionService.submitPersonalityScoreForCalculation(), HttpStatus.ACCEPTED);
+    }
 
-    // REST GET Mapping available to FE
-    // Display questions
-
+    // TODO: Create POST Mapping to send to API to calculate user score
     // When getting user score
     // Use the data supplied from FE which will be in form of "Strongly Agree" or "1"
-    // Construct the URL to send to Sentino API
+    // Construct the URL to send to API
     // Getting all questions from database
     // mapping each user answer to given question
 }
