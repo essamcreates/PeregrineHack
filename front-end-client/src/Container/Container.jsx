@@ -52,7 +52,8 @@ const Container = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userInfo),
         }) 
-        if (response !== null) { 
+        console.log(response);
+        if (response.status === 201) { 
             console.log("true");
             return true
         } else {
