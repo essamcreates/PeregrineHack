@@ -22,7 +22,7 @@ public class BigFiveQuestionController {
     BigFiveQuestionService bigFiveQuestionService;
 
     @GetMapping("/retrieveQuestions")
-    public ResponseEntity<String> getQuestionsFromSentinoAPI() throws IOException, InterruptedException {
+    public ResponseEntity<List<BigFiveQuestion>> getQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
         return new ResponseEntity<>(bigFiveQuestionService.retrieveQuestionsFromPersonalityQuestAPI(), HttpStatus.FOUND);
     }
 

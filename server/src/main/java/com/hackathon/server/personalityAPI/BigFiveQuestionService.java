@@ -37,7 +37,7 @@ public class BigFiveQuestionService {
 ////        return questions;
 //    }
 
-    public String retrieveQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
+    public List<BigFiveQuestion> retrieveQuestionsFromPersonalityQuestAPI() throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://personality-quest.p.rapidapi.com/big_five_personality_test/start_guest_test"))
@@ -51,7 +51,7 @@ public class BigFiveQuestionService {
 
         List<BigFiveQuestion> bigFiveQuestions = mapQuestionsFromApiToModel(responseBody);
 
-        return response.body();
+        return bigFiveQuestions;
     }
 
     public List<BigFiveQuestion> mapQuestionsFromApiToModel(String responseBody) throws JsonProcessingException {
@@ -60,12 +60,19 @@ public class BigFiveQuestionService {
         List<PersonalityTestDTO> personalityTests = objectMapper.readValue(responseBody, new TypeReference<List<PersonalityTestDTO>>(){});
         System.out.println(personalityTests);
 
-//        PersonalityTestDTO personalityTestDTO = personalityTests.get(0);
-//
-//        ArrayList<BigFiveQuestion>
+        PersonalityTestDTO personalityTestDTO = personalityTests.get(0);
+
+        ArrayList<BigFiveQuestion> personalityTestQuestions = new ArrayList<>();
+
+        for(int i = 0; i < personalityTestDTO.getPersonalityTestQuestions().size(); i++){
+            PersonalityTestQuestionDTO personalityQuestion = personalityTestDTO.getPersonalityTestQuestions().get(i);
+            BigFiveQuestion bigFiveQuestion = new BigFiveQuestion(personalityQuestion.getQuestion());
+            personalityTestQuestions.add(bigFiveQuestion);
+        }
+
+        bigFiveQuestionRepository.saveAll(personalityTestQuestions);
 
 
-
-        return null;
+        return personalityTestQuestions;
     }
 }
