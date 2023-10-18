@@ -66,7 +66,7 @@ public class PersonalityScoreService {
         userRepository.save(user);
     }
 
-    public PersonalityScore calculateAndSavePersonalityScore(UserScoreRequestDTO userScoreRequestDTO) {
+    public PersonalityScore calculateAndSavePersonalityScore() {
 
 /*  TODO:
      Validation of User
@@ -78,7 +78,7 @@ public class PersonalityScoreService {
      Save the personality score to the database
    */
 
-        String jsonResponseBody = formatPersonalityAPIRequest(userScoreRequestDTO);
+        String jsonResponseBody = formatPersonalityAPIRequest(createSampleRequest());
 //        ResponseEntity<>
 
         return null;
@@ -105,6 +105,7 @@ public class PersonalityScoreService {
 
             //Serialise the JSON
             String jsonRequestBody = objectMapper.writeValueAsString(requestBody);
+            System.out.println(jsonRequestBody);
             return jsonRequestBody;
         } catch (Exception e) {
             e.printStackTrace();
