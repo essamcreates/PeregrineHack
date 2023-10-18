@@ -45,30 +45,6 @@ const Container = () => {
         }
     }
 
-// <<<<<<< develop
-//     // const addUserInfo = async (userInfo) => {
-//     //     const url = `http://localhost:8080/users/` + currentUser.id;
-//     //     const response = await fetch(url, {
-//     //       method: "PUT",
-//     //       headers: { "Content-Type": "application/json" },
-//     //       body: JSON.stringify(userInfo),
-//     //     }) 
-//     //     setCurrentUser(response);
-//     //     console.log("fetch");
-//     // }
-// =======
-
-//     const addUserInfo = async (userInfo) => {
-//         const url = `http://localhost:8080/users/` + currentUser.id;
-//         const response = await fetch(url, {
-//           method: "PUT",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify(userInfo),
-//         }) 
-//         setCurrentUser(response);
-//         console.log("fetch");
-//     }
-// >>>>>>> tarek_frontend_playground
 
 
     return (
@@ -79,13 +55,8 @@ const Container = () => {
                         <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
                         <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage signupUser={signupUser}/>}></Route>
-// <<<<<<< develop
-//                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage currentUser={currentUser}/>}></Route>
-//                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>
-// =======
-//                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage addUserInfo={addUserInfo} currentUser={currentUser}/>}></Route>
-//                         <Route path="/ProfilePage" element={<ProfilePage currentUser={currentUser}/>}></Route>
-// >>>>>>> tarek_frontend_playground
+                        <Route path="/ProfileCreationPage" element={<ProfileCreationPage currentUser={currentUser}/>}></Route>
+                        <Route path="/ProfilePage" element={<ProfilePage currentUser={currentUser}/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
                     </Routes>
             </BrowserRouter>
