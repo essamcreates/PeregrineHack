@@ -20,11 +20,11 @@ const ProfilePage = ({currentUser}) => {
             <div>
                 <p>Your Big Five:</p>
 
-                {userScore && (<p>Openness: {userScore.openness}</p>)}
-                {userScore && (<p>Conscientiousness: {userScore.conscientiousness}</p>)}
-                {userScore && (<p>Extraversion: {userScore.extraversion}</p>)}
-                {userScore && (<p>Agreeableness: {userScore.agreeableness}</p>)}
-                {userScore && (<p>Neuroticism: {userScore.neuroticism}</p>)}
+                {currentUser && userScore && (<p>Openness: {userScore.openness}</p>)}
+                {currentUser && userScore && (<p>Conscientiousness: {userScore.conscientiousness}</p>)}
+                {currentUser && userScore && (<p>Extraversion: {userScore.extraversion}</p>)}
+                {currentUser && userScore && (<p>Agreeableness: {userScore.agreeableness}</p>)}
+                {currentUser && userScore && (<p>Neuroticism: {userScore.neuroticism}</p>)}
 
             </div>
             <div>
