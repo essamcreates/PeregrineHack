@@ -1,15 +1,16 @@
 package com.hackathon.server.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackathon.server.models.PersonalityScore;
 import com.hackathon.server.models.User;
 import com.hackathon.server.models.dtos.UserPersonalityScoreDTO;
+import com.hackathon.server.personalityAPI.UserScoreRequestDTO;
 import com.hackathon.server.repositories.PersonalityScoreRepository;
 import com.hackathon.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PersonalityScoreService {
@@ -65,4 +66,48 @@ public class PersonalityScoreService {
         userRepository.save(user);
     }
 
+    public PersonalityScore calculateAndSavePersonalityScore(UserScoreRequestDTO userScoreRequestDTO) {
+
+/*  TODO:
+     Validation of User
+     Format request body for PersonalityAPI
+     Send request to PersonalityAPI
+     Check ResponseCode
+     HandleAPI errors
+     Process the PersonalityAPI response
+     Save the personality score to the database
+   */
+
+        String jsonResponseBody = formatPersonalityAPIRequest(userScoreRequestDTO);
+
+        return null;
+    }
+
+    private String formatPersonalityAPIRequest(UserScoreRequestDTO userScoreRequestDTO){
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            //Construct the JSON body structure
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("personality_test_id", 3);
+
+            List<Map<String, Object>> questionAnswers = new ArrayList<>();
+            for (Map<Long, Integer> questionAnswer : userScoreRequestDTO.getQuestionAnswers()) {
+                for(Map.Entry<Long,Integer> entry : questionAnswer.entrySet()){
+                    Map<String, Object> answer = new HashMap<>();
+                    answer.put("personality_test_question_id", entry.getKey());
+                    answer.put("points", entry.getValue());
+                    questionAnswers.add(answer);
+                }
+            }
+            requestBody.put("personality_test_questions", questionAnswers);
+
+            //Serialise the JSON
+            String jsonRequestBody = objectMapper.writeValueAsString(requestBody);
+            return jsonRequestBody;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
