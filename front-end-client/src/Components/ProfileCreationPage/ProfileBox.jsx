@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileBox = ({currentUser}) => {
 
@@ -13,6 +14,7 @@ const ProfileBox = ({currentUser}) => {
     const [careerGoals, setCareerGoals] = useState()
     const [mentalHealthConditions, setMentalHealthConditions] = useState()
     const [accessNeeds, setAccessNeeds] = useState()
+    const navigate = useNavigate()
 
     // need to fetch data; data, accessneeds and mental health conditions
     // have the user be able to choose multiple needs and conditions if they so wish
@@ -56,12 +58,13 @@ const ProfileBox = ({currentUser}) => {
             alert("Please enter all fields")
             // highlight fields that are left empty
         } else {
-            let tempUser = {
-                // dateOfBirth:enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay,
-                gender: enteredGender,
+            let tempDoB = {
+                dateOfBirth:enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay,
+                
                 // String name, LocalDate dateOfBirth, String password, String gender, String email
                 // do we only need the above two as they will be the ones that need to be added to the database?
             }
+            let tempGender={gender: enteredGender,}
             let tempGoals = {
                 goalIds: enteredCareerGoals,
             }
@@ -72,11 +75,12 @@ const ProfileBox = ({currentUser}) => {
                 mentalHealthConditionIds: enteredMentalHealthConditions
             }
             // send info on gender and DOB
-            addUserInfo(tempUser)
+            addUserInfo(tempDoB)
+            addUserInfo(tempGender)
             addUserData(tempGoals, "careerGoals")
             addUserData(tempNeeds, "accessNeeds")
             addUserData(tempConditions, "mentalHealthConditions")
-
+            navigate("/HomePage")
          } console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
 
     }
@@ -104,9 +108,14 @@ const ProfileBox = ({currentUser}) => {
     const loopNumber = (start, end) =>{
         let options = []
         for(let i=start ; i<=end ; i++){
+            if(i<10){
+                options.push(
+                    <option key={i+start} value={"0"+i} >{i}</option>
+                    )
+            }else{
             options.push(
                 <option key={i+start} value={i} >{i}</option>
-                )
+                )}
         }
         return options;
     }
@@ -169,15 +178,15 @@ const ProfileBox = ({currentUser}) => {
                     {loopNumber(1,31)}
                 </select>
                 <select id="select-month" value={enteredDOBMonth}onChange={(e)=>{setEnteredDOBMonth(e.target.value)}}>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12">December</option>
