@@ -70,6 +70,11 @@ public class User {
     )
     private List<MentalHealthCondition> mentalHealthConditions;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @Column(name = "user_responses")
+    private List<UserResponse> userResponses;
+
     public User() {
     }
 
@@ -187,5 +192,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<UserResponse> getUserResponses() {
+        return userResponses;
+    }
+
+    public void setUserResponses(List<UserResponse> userResponses) {
+        this.userResponses = userResponses;
     }
 }

@@ -2,15 +2,18 @@ package com.hackathon.server.components;
 
 import com.hackathon.server.models.*;
 import com.hackathon.server.models.enums.AccessNeedENUM;
+import com.hackathon.server.models.enums.GoalENUM;
 import com.hackathon.server.models.enums.MentalHealthConditionENUM;
+import com.hackathon.server.personalityAPI.BigFiveQuestion;
+import com.hackathon.server.personalityAPI.BigFiveQuestionRepository;
 import com.hackathon.server.repositories.*;
-import com.hackathon.server.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,61 +35,150 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     GoalRepository goalRepository;
 
+    @Autowired
+    MotivationMessageRepository motivationMessageRepository;
+
+    @Autowired
+    BigFiveQuestionRepository bigFiveQuestionRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        List<MentalHealthCondition> conditions = Arrays.asList(
-                new MentalHealthCondition(MentalHealthConditionENUM.Depression),
-                new MentalHealthCondition(MentalHealthConditionENUM.Generalized_Anxiety_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Bipolar_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Schizophrenia),
-                new MentalHealthCondition(MentalHealthConditionENUM.Obsessive_Compulsive_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Post_Traumatic_Stress_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Panic_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Social_Anxiety_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Attention_Deficit_Hyperactivity_Disorder),
-                new MentalHealthCondition(MentalHealthConditionENUM.Borderline_Personality_Disorder));
+        if (mentalHealthConditionRepository.count() == 0) {
 
-        mentalHealthConditionRepository.saveAll(conditions);
+            List<MentalHealthCondition> conditions = Arrays.asList(
+                    new MentalHealthCondition(MentalHealthConditionENUM.Depression),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Generalized_Anxiety_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Bipolar_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Schizophrenia),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Obsessive_Compulsive_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Post_Traumatic_Stress_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Panic_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Social_Anxiety_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Attention_Deficit_Hyperactivity_Disorder),
+                    new MentalHealthCondition(MentalHealthConditionENUM.Borderline_Personality_Disorder));
 
-        List<AccessNeed> accessNeeds = Arrays.asList(
-                new AccessNeed(AccessNeedENUM.ADHD),
-                new AccessNeed(AccessNeedENUM.DYSLEXIA),
-                new AccessNeed(AccessNeedENUM.ASD),
-                new AccessNeed(AccessNeedENUM.ALZHEIMERS),
-                new AccessNeed(AccessNeedENUM.EPILEPSY),
-                new AccessNeed(AccessNeedENUM.BLINDNESS),
-                new AccessNeed(AccessNeedENUM.LOW_VISION),
-                new AccessNeed(AccessNeedENUM.COLOUR_BLINDNESS),
-                new AccessNeed(AccessNeedENUM.TUNNEL_VISION),
-                new AccessNeed(AccessNeedENUM.MACULAR_DEGENERATION),
-                new AccessNeed(AccessNeedENUM.RETINITIS_PIGMENTOSA),
-                new AccessNeed(AccessNeedENUM.DEAFNESS),
-                new AccessNeed(AccessNeedENUM.HARD_OF_HEARING),
-                new AccessNeed(AccessNeedENUM.AUDITORY_PROCESSING),
-                new AccessNeed(AccessNeedENUM.MOBILITY));
+            mentalHealthConditionRepository.saveAll(conditions);
+        }
 
-        accessNeedRepository.saveAll(accessNeeds);
+        if (motivationMessageRepository.count() == 0) {
+            List<MotivationMessage> motivationMessages = Arrays.asList(
+                    new MotivationMessage("Hello, I hope you had a nice day"),
+                    new MotivationMessage("Keep Pushing You Will Get There One Day !!!!!!!"),
+                    new MotivationMessage("Never Back Down"),
+                    new MotivationMessage("Dont look at yourself through the eyes of the doubters, look from within.")
+            );
+            motivationMessageRepository.saveAll(motivationMessages);
+        }
 
-        List<Goal> goals = Arrays.asList(
-                new Goal("Up-Skill"),
-                new Goal("Technical"),
-                new Goal("Managerial")
-        );
-        goalRepository.saveAll(goals);
+        if (accessNeedRepository.count() == 0) {
+            List<AccessNeed> accessNeeds = Arrays.asList(
+                    new AccessNeed(AccessNeedENUM.ADHD),
+                    new AccessNeed(AccessNeedENUM.DYSLEXIA),
+                    new AccessNeed(AccessNeedENUM.ASD),
+                    new AccessNeed(AccessNeedENUM.ALZHEIMERS),
+                    new AccessNeed(AccessNeedENUM.EPILEPSY),
+                    new AccessNeed(AccessNeedENUM.BLINDNESS),
+                    new AccessNeed(AccessNeedENUM.LOW_VISION),
+                    new AccessNeed(AccessNeedENUM.COLOUR_BLINDNESS),
+                    new AccessNeed(AccessNeedENUM.TUNNEL_VISION),
+                    new AccessNeed(AccessNeedENUM.MACULAR_DEGENERATION),
+                    new AccessNeed(AccessNeedENUM.RETINITIS_PIGMENTOSA),
+                    new AccessNeed(AccessNeedENUM.DEAFNESS),
+                    new AccessNeed(AccessNeedENUM.HARD_OF_HEARING),
+                    new AccessNeed(AccessNeedENUM.AUDITORY_PROCESSING),
+                    new AccessNeed(AccessNeedENUM.MOBILITY));
 
-        List<User> customers = Arrays.asList(
-                new User("John", LocalDate.of(1989, 07, 13),"password123", "male", "John@gmail"),
-                new User("Sarah", LocalDate.of(1975, 11, 27),"Hello000", "female", "sarah@company")
-        );
-        userRepository.saveAll(customers);
+            accessNeedRepository.saveAll(accessNeeds);
+        }
 
-        List<DailyQuestion> questions = Arrays.asList(
-                new DailyQuestion("How would you describe your day so far?","Excellent", "Terrible", "Average", "Ok",null),
-                new DailyQuestion("What do you enjoy doing in your spare time","Time with family", "Doing sports", "Discovering new places", "Chilling at home","Going out")
-        );
-        dailyQuestionRepository.saveAll(questions);
+        if (goalRepository.count() == 0) {
+            List<Goal> goals = Arrays.asList(
+                    new Goal(GoalENUM.UPSKILL),
+                    new Goal(GoalENUM.MANAGERIAL),
+                    new Goal(GoalENUM.TECHNICAL),
+                    new Goal(GoalENUM.PERSONAL),
+                    new Goal(GoalENUM.RESKILL),
+                    new Goal(GoalENUM.HIGHER_EDUCATION),
+                    new Goal(GoalENUM.LEADERSHIP)
+            );
+            goalRepository.saveAll(goals);
+        }
 
+        if (userRepository.count() == 0) {
+            List<User> users = Arrays.asList(
+                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail"),
+                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company")
+            );
+            userRepository.saveAll(users);
+        }
+
+        if (dailyQuestionRepository.count() == 0) {
+            List<DailyQuestion> dailyQuestions = Arrays.asList(
+                    new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
+                    new DailyQuestion("What do you enjoy doing in your spare time", "Time with family", "Doing sports", "Discovering new places", "Chilling at home", "Going out")
+            );
+            dailyQuestionRepository.saveAll(dailyQuestions);
+        }
+
+        if (bigFiveQuestionRepository.count() == 0) {
+            List<BigFiveQuestion> bigFiveQuestions = new ArrayList<>();
+
+            String csvData = "42,\"I see myself as someone who is original, unique, and comes up with new ideas.\"\n" +
+                    "43,\"I see myself as someone who is sophisticated in art, music, or literature.\"\n" +
+                    "44,\"I see myself as someone who has a lot of artistic interests.\"\n" +
+                    "45,\"I see myself as someone who has an active imagination.\"\n" +
+                    "46,\"I see myself as someone who values artistic and creative experiences.\"\n" +
+                    "47,\"I see myself as someone who is inventive.\"\n" +
+                    "48,\"I see myself as someone who does a thorough job.\"\n" +
+                    "49,\"I see myself as someone who is extremely careful.\"\n" +
+                    "50,\"I see myself as someone who is a reliable worker.\"\n" +
+                    "51,\"I see myself as someone who tends to be organized.\"\n" +
+                    "52,\"I see myself as someone who tends to be diligent.\"\n" +
+                    "53,\"I see myself as someone who perseveres until the task is finished.\"\n" +
+                    "54,\"I see myself as someone who does things efficiently.\"\n" +
+                    "55,\"I see myself as someone who prefers work that is routine.\"\n" +
+                    "56,\"I see myself as someone who is cerebral and enjoys thinking deeply.\"\n" +
+                    "57,\"I see myself as someone who makes plans and follows through with them.\"\n" +
+                    "58,\"I see myself as someone who is not easily distracted.\"\n" +
+                    "59,\"I see myself as someone who is outgoing.\"\n" +
+                    "60,\"I see myself as someone who is full of energy.\"\n" +
+                    "61,\"I see myself as someone who generates a lot of enthusiasm.\"\n" +
+                    "62,\"I see myself as someone who tends to be loud.\"\n" +
+                    "63,\"I see myself as someone who has an assertive personality.\"\n" +
+                    "64,\"I see myself as someone who can be warm and friendly.\"\n" +
+                    "65,\"I see myself as someone who likes to reflect and ponder different ideas.\"\n" +
+                    "66,\"I see myself as someone who is outgoing and sociable.\"\n" +
+                    "67,\"I see myself as someone who is talkative.\"\n" +
+                    "68,\"I see myself as someone who is helpful and unselfish when it comes to others.\"\n" +
+                    "69,\"I see myself as someone who avoids arguments with others.\"\n" +
+                    "70,\"I see myself as someone who has a forgiving nature.\"\n" +
+                    "71,\"I see myself as someone who is considerate and kind to almost everyone.\"\n" +
+                    "72,\"I see myself as someone who likes to cooperate with others.\"\n" +
+                    "73,\"I see myself as someone who is rarely rude to others.\"\n" +
+                    "74,\"I see myself as someone who is generally trusting.\"\n" +
+                    "75,\"I see myself as someone who does not look for fault in others.\"\n" +
+                    "76,\"I see myself as someone who is depressed.\"\n" +
+                    "77,\"I see myself as someone who can be tense.\"\n" +
+                    "78,\"I see myself as someone who worries a lot.\"\n" +
+                    "79,\"I see myself as someone who is emotionally stable and doesn't get upset easily.\"\n" +
+                    "80,\"I see myself as someone who can be moody.\"\n" +
+                    "81,\"I see myself as someone who is sometimes shy and inhibited.\"\n" +
+                    "82,\"I see myself as someone who gets nervous easily.\"\n" +
+                    "83,\"I see myself as someone who does not remain calm in high-pressure situations.\"\n" +
+                    "84,\"I see myself as someone who does not remain calm in tense situations.\"";
+
+            String[] lines = csvData.split("\n");
+
+            for (String line : lines) {
+                String[] parts = line.split(",");
+                Long id = Long.parseLong(parts[0]);
+                String question = parts[1].replaceAll("\"", "");
+                BigFiveQuestion bigFiveQuestion = new BigFiveQuestion(id, question);
+                bigFiveQuestions.add(bigFiveQuestion);
+
+            }
+            bigFiveQuestionRepository.saveAll(bigFiveQuestions);
+        }
     }
 }

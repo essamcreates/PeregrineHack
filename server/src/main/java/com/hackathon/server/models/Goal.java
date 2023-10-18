@@ -1,6 +1,7 @@
 package com.hackathon.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hackathon.server.models.enums.GoalENUM;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class Goal {
     private Long id;
 
     @Column
-    private String goal;
+    @Enumerated(EnumType.STRING)
+    private GoalENUM goal;
 
     @ManyToMany(mappedBy = "careerGoals")
     @JsonIgnoreProperties({"goal"})
@@ -24,7 +26,7 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(String goal) {
+    public Goal(GoalENUM goal) {
         this.goal = goal;
     }
 
@@ -36,11 +38,11 @@ public class Goal {
         this.id = id;
     }
 
-    public String getGoal() {
+    public GoalENUM getGoal() {
         return goal;
     }
 
-    public void setGoal(String goal) {
+    public void setGoal(GoalENUM goal) {
         this.goal = goal;
     }
 
