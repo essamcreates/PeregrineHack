@@ -8,6 +8,7 @@ import com.hackathon.server.personalityAPI.UserScoreRequestDTO;
 import com.hackathon.server.repositories.PersonalityScoreRepository;
 import com.hackathon.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -39,19 +40,18 @@ public class PersonalityScoreService {
 //        }
 //    }
 
-        public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
+    public Optional<PersonalityScore> getPersonalityScoreByUser(Long userId) {
         User user = userRepository.findById(userId).get();
-        PersonalityScore userPersonalityScore= personalityScoreRepository.findByUser(user);
-        if(userPersonalityScore!=null){
+        PersonalityScore userPersonalityScore = personalityScoreRepository.findByUser(user);
+        if (userPersonalityScore != null) {
             return Optional.of(userPersonalityScore);
-        }else{
+        } else {
             return Optional.empty();
         }
     }
 
 
-
-    public void saveUserPersonalityScore(UserPersonalityScoreDTO userPersonalityScoreDTO, Long userId){
+    public void saveUserPersonalityScore(UserPersonalityScoreDTO userPersonalityScoreDTO, Long userId) {
         User user = userRepository.findById(userId).get();
 //        PersonalityScore userPersonalityScore = user.getPersonalityScore();
 //        userPersonalityScore.setOpenness(userPersonalityScoreDTO.getOpenness());
@@ -60,8 +60,8 @@ public class PersonalityScoreService {
 //        userPersonalityScore.setAgreeableness(userPersonalityScoreDTO.getAgreeableness());
 //        userPersonalityScore.setNeuroticism(userPersonalityScoreDTO.getNeuroticism());
         PersonalityScore userPersonalityScore = new PersonalityScore(
-                userPersonalityScoreDTO.getOpenness(),userPersonalityScoreDTO.getConscientiousness(), userPersonalityScoreDTO.getExtraversion(),
-                userPersonalityScoreDTO.getAgreeableness(), userPersonalityScoreDTO.getNeuroticism() ,user);
+                userPersonalityScoreDTO.getOpenness(), userPersonalityScoreDTO.getConscientiousness(), userPersonalityScoreDTO.getExtraversion(),
+                userPersonalityScoreDTO.getAgreeableness(), userPersonalityScoreDTO.getNeuroticism(), user);
         personalityScoreRepository.save(userPersonalityScore);
         userRepository.save(user);
     }
@@ -79,11 +79,12 @@ public class PersonalityScoreService {
    */
 
         String jsonResponseBody = formatPersonalityAPIRequest(userScoreRequestDTO);
+//        ResponseEntity<>
 
         return null;
     }
 
-    private String formatPersonalityAPIRequest(UserScoreRequestDTO userScoreRequestDTO){
+    private String formatPersonalityAPIRequest(UserScoreRequestDTO userScoreRequestDTO) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
@@ -93,7 +94,7 @@ public class PersonalityScoreService {
 
             List<Map<String, Object>> questionAnswers = new ArrayList<>();
             for (Map<Long, Integer> questionAnswer : userScoreRequestDTO.getQuestionAnswers()) {
-                for(Map.Entry<Long,Integer> entry : questionAnswer.entrySet()){
+                for (Map.Entry<Long, Integer> entry : questionAnswer.entrySet()) {
                     Map<String, Object> answer = new HashMap<>();
                     answer.put("personality_test_question_id", entry.getKey());
                     answer.put("points", entry.getValue());
@@ -110,4 +111,19 @@ public class PersonalityScoreService {
             return null;
         }
     }
+
+    public static UserScoreRequestDTO createSampleRequest() {
+        int userId = 1;
+        List<Map<Long, Integer>> questionAnswers = new ArrayList<>();
+
+        // Create questionAnswers ranging from 42 to 84 with values from 1 to 5
+        for (long questionId = 42; questionId <= 84; questionId++) {
+            Map<Long, Integer> questionAnswer = new HashMap<>();
+            questionAnswer.put(questionId, (int) (Math.random() * 5) + 1); // Random value between 1 and 5
+            questionAnswers.add(questionAnswer);
+        }
+
+        return new UserScoreRequestDTO((long) userId, questionAnswers);
+    }
 }
+
