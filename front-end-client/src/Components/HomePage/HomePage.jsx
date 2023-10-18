@@ -7,6 +7,7 @@ const HomePage = ({currentUser}) => {
         <p>hello</p>
         <Link to="/LoginPage">Click to see Login Page</Link>
         {currentUser && (<p>Hello {currentUser.name}</p>)}
+            <Link to="/ProfilePage">Click to see Profile Page</Link>
         </>
     )
 }
