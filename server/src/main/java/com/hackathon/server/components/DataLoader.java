@@ -169,15 +169,9 @@ public class DataLoader implements ApplicationRunner {
                     "84,\"I see myself as someone who does not remain calm in tense situations.\"";
 
             String[] lines = csvData.split("\n");
-            for (String line : lines) {
-                System.out.println(line);
-            }
 
             for (String line : lines) {
                 String[] parts = line.split(",");
-                for (String part : parts) {
-                    System.out.println(part);
-                }
                 Long id = Long.parseLong(parts[0]);
                 String question = parts[1].replaceAll("\"", "");
                 BigFiveQuestion bigFiveQuestion = new BigFiveQuestion(id, question);

@@ -21,6 +21,9 @@ public class BigFiveQuestionController {
     @Autowired
     PersonalityScoreService personalityScoreService;
 
+//    @Autowired
+//    UserScoreRequestDTO userScoreRequestDTO;
+
     //TODO: Add in error handling around the response entity and optionals
     @GetMapping()
     public ResponseEntity<List<BigFiveQuestion>> getPersonalityQuestionnaire() {
@@ -33,17 +36,17 @@ public class BigFiveQuestionController {
     }
 
 
-    @PostMapping("/calculate-personality-score")
-    public ResponseEntity<String> calculatePersonalityScore(@RequestBody UserScoreRequest userScoreRequest){
-        try{
-            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore(userScoreRequest);
-            return ResponseEntity.ok("Personality score calculated and saved");
-        } catch (IllegalAccessException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
+//    @PostMapping("/calculate-personality-score")
+//    public ResponseEntity<String> calculatePersonalityScore(@RequestBody UserScoreRequestDTO userScoreRequestDTO){
+//        try{
+//            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore(userScoreRequestDTO);
+//            return ResponseEntity.ok("Personality score calculated and saved");
+//        } catch (IllegalAccessException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//        }
+//    }
 
     // TODO: Create POST Mapping to send to API to calculate user score
     // Pseudo code 1
