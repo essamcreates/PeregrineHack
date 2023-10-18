@@ -2,6 +2,18 @@
   position: relative; 
 }
 
+.nav-open-menu-button,
+.nav-close-menu-button {
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: white;
+  z-index: 3;
+  bottom: 10px;
+  position: fixed;
+  font-size: x-large;
+}
+
 .nav-icon-button::before {
   content: attr(data-id);
   opacity: 0;
@@ -25,12 +37,12 @@
 
 .nav-dock-modal {
     position: fixed;
-    width: 11%;
-    height: 20%;
-    margin-left: 3%;
-    margin-top: 0%;
-    z-index: 999;
-    clip-path: circle(100%); /*makes into a circle , can also use border-radius (at 50%) instead of this*/
+    width: 250px; /*size of circle, height==width*/
+    height: 250px;
+    left:5%;
+    bottom: 4%;
+    z-index:3;
+    clip-path: circle(200px); /*makes into a circle , can also use border-radius (at 50%) instead of this*/
   } 
   
 .nav-dock-modal-content {
@@ -46,13 +58,14 @@
 } 
 
 .nav-dock-modal-content button {
-  font-size: x-large;
-  background-color: rgba(0, 0, 0, 0.6); 
-  width:70%;
-  height: 30%;
+  font-size: xx-large;
+  background-color: rgba(0, 0, 0, 0.4); 
+  width:60%;
+  height: 24%;
   border-radius: 10px;
-  margin-top: 70%;
-  margin-left: 15%;
+  position: relative;
+  left:20%;
+  top: 38%;
 }
 
 
