@@ -34,7 +34,7 @@ const Container = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userInfo),
-        }) 
+        })
         console.log(response);
         if (response.status === 201) {
             const newUser = await response.json();
@@ -44,6 +44,7 @@ const Container = () => {
             return false
         }
     }
+
 
     const addUserInfo = async (userInfo) => {
         const url = `http://localhost:8080/users/` + currentUser.id;
@@ -55,6 +56,7 @@ const Container = () => {
         setCurrentUser(response);
         console.log("fetch");
     }
+
 
     return (
         <div>
