@@ -5,7 +5,7 @@ const ProfilePage = ({currentUser}) => {
 
     const [userScore, setUserScore] = useState([]);
     const fetchUserScore = async () =>{
-        const response = await fetch('https://localhost:8080/personalityScores/user/'+currentUser.id);
+        const response = await fetch('http://localhost:8080/personalityScores/user/'+ currentUser.id);
         const data = await response.json();
         setUserScore(data);
     }
@@ -20,11 +20,11 @@ const ProfilePage = ({currentUser}) => {
             <div>
                 <p>Your Big Five:</p>
 
-                {/*userScore && (<p>Openness: {userScore.openness}</p>)*/}
-                {/*userScore && (<p>Conscientiousness: {userScore.conscientiousness}</p>)*/}
-                {/*userScore && (<p>Extraversion: {userScore.extraversion}</p>)*/}
-                {/*userScore && (<p>Agreeableness: {userScore.agreeableness}</p>)*/}
-                {/*userScore && (<p>Neuroticism: {userScore.neuroticism}</p>)*/}
+                {userScore && (<p>Openness: {userScore.openness}</p>)}
+                {userScore && (<p>Conscientiousness: {userScore.conscientiousness}</p>)}
+                {userScore && (<p>Extraversion: {userScore.extraversion}</p>)}
+                {userScore && (<p>Agreeableness: {userScore.agreeableness}</p>)}
+                {userScore && (<p>Neuroticism: {userScore.neuroticism}</p>)}
 
             </div>
             <div>
