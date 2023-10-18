@@ -24,12 +24,11 @@ public class UserService {
      }
 
      public User addUser(UserDTO userDTO) {
-         if(userRepository.findByEmail(userDTO.getEmail()) !=null){
-             return null;
-
+         if(userRepository.findByEmail(userDTO.getEmail()) == null){
+             User user = new User(userDTO.getName(),userDTO.getDateOfBirth(),userDTO.getPassword(),userDTO.getGender(),userDTO.getEmail());
+             return this.userRepository.save(user);
          }
-         User user = new User(userDTO.getName(),userDTO.getDateOfBirth(),userDTO.getPassword(),userDTO.getGender(),userDTO.getEmail());
-         return this.userRepository.save(user);
+         return null;
      }
 
      public User checkCredentials(String email, String password) {

@@ -6,26 +6,9 @@ import AccountRegistrationPage from "../Components/AccountRegistrationPage/Accou
 import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreationPage";
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
+import NavDock from "../Components/NavDock/NavDock";
 
 const Container = () => {
-    // const[currentUser, setCurrentUser]= useState();
-
-    // const authenticateUser = async (loginInfo) => {
-    //     const url = `http://localhost:8080/users/authenticate`;
-    //     const response = await fetch(url, {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify(loginInfo),
-    //     })
-    //     console.log("posted")
-    //     if(response.status === 200) {
-    //         const newResponse = await response.json();
-    //         setCurrentUser(newResponse)
-    //         alert("logged in")
-    //     }else{
-    //         alert("not found")
-    //     }
-    // } 
 
     const[currentUser, setCurrentUser]= useState();
 
@@ -45,19 +28,46 @@ const Container = () => {
         }
     } 
 
+    const signupUser = async (userInfo) => {
+        const url = `http://localhost:8080/users/addUser`;
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
+        console.log(response);
+        if (response.status === 201) {
+            const newUser = await response.json();
+            setCurrentUser(newUser)
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const addUserInfo = async (userInfo) => {
+        const url = `http://localhost:8080/users/` + currentUser.id;
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
+        setCurrentUser(response);
+        console.log("fetch");
+    }
+
     return (
         <div>
             <BrowserRouter>
-                <main>
+                    <NavDock currentUser={currentUser}/>
                     <Routes>
-                        <Route path="/" element={<HomePage currentUser={currentUser}/>}></Route>
+                        <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
-                        <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage/>}></Route>
-                        <Route path="/ProfileCreationPage" element={<ProfileCreationPage/>}></Route>
+                        <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage signupUser={signupUser}/>}></Route>
+                        <Route path="/ProfileCreationPage" element={<ProfileCreationPage addUserInfo={addUserInfo} currentUser={currentUser}/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
                     </Routes>
-                </main>
             </BrowserRouter>
         </div>
     )

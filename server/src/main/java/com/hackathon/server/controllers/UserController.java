@@ -40,14 +40,10 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.FOUND);
     }
 
-// <<<<<<< developAI
-//     @PostMapping("/addUser")
-// =======
-//     @PostMapping
-// >>>>>>> develop
+    @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){
         User addUser = userService.addUser(userDTO);
-        return new ResponseEntity<>(addUser, HttpStatus.CREATED);
+        return addUser != null ? new ResponseEntity<>(addUser, HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @PostMapping("/authenticate")
