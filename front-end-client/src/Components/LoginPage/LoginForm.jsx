@@ -24,7 +24,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
             setFailedLogin(true);
         }else{
             setFailedLogin(false)
-            navigate("/");
+            navigate("/HomePage");
         }
     }
 
@@ -36,6 +36,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
                 <br/>
                 <br/>
                 <label> Password:</label>
+                {/* change the type="text" to ="password" after testing etc*/}
                 <input className="input-box" type="text" value={currentPassword} onChange={(e)=>{setCurrentPassword(e.target.value)}}/>
                 <input type="submit" value="Login"/>
             </form>)}

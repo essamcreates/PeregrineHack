@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const AccountRegistrationForm = ({signupUser}) => {
 
@@ -6,15 +7,20 @@ const AccountRegistrationForm = ({signupUser}) => {
     const [enteredPassword, setEnteredPassword] = useState ("")
     const [enteredName, setEnteredName] = useState ("")
     const [enteredConfirmedPassword, setConfirmedPassword] = useState ("")
+    const [inputError, setInputError] = useState(false)
+    const [inputErrorMessage, setInputErrorMessage] = useState("")
+    const navigate = useNavigate()
     
     const handleSignupClick = async(event) => {
         event.preventDefault();
         if (enteredPassword !== enteredConfirmedPassword) {
-            alert("Password doesn't match")
+            setInputErrorMessage("Password doesn't match")
+            setInputError(true)
             setEnteredPassword("")
             setConfirmedPassword("")
         } else if(!enteredEmail || !enteredPassword || !enteredName) {
-            alert("Please enter all fields")
+            setInputErrorMessage("Please enter all fields")
+            setInputError(true)
             // Look to higlight fields that are left empty
         } else {
         let temp = {
@@ -24,9 +30,10 @@ const AccountRegistrationForm = ({signupUser}) => {
             }
         let signupAccepted = await signupUser(temp)
         if (signupAccepted) {
-            alert("signup worked")
+            navigate("/HomePage")
         } else {
-            alert("email already in use")
+            setInputErrorMessage("email already in use")
+            setInputError(true)
             setEnteredPassword("")
             setConfirmedPassword("")
             setEnteredName("")
@@ -46,6 +53,7 @@ const AccountRegistrationForm = ({signupUser}) => {
                 <input className="input-box" type="text" value={enteredEmail} onChange={(e)=>{setEnteredEmail(e.target.value)}}/>
                 <br/>
                 <br/>
+                {/* change the type="text" to ="password" after testing etc*/}
                 <label> Password:</label>
                 <input className="input-box" type="text" value={enteredPassword} onChange={(e)=>{setEnteredPassword(e.target.value)}}/>
                 <br>
@@ -54,6 +62,12 @@ const AccountRegistrationForm = ({signupUser}) => {
                 <input className="input-box" type="text" value={enteredConfirmedPassword} onChange={(e)=>{setConfirmedPassword(e.target.value)}}/>
                 <input type="submit" value="Sign up"/>
             </form>
+
+            {inputError && (<div>
+                <p> {inputErrorMessage}</p>
+            </div>)}
+
+            <button onClick={()=>{navigate("/LoginPage")}}>Already have an account, Login</button>
         </div>
     )
 }
