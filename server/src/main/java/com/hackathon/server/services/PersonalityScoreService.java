@@ -8,13 +8,22 @@ import com.hackathon.server.personalityAPI.UserScoreRequestDTO;
 import com.hackathon.server.repositories.PersonalityScoreRepository;
 import com.hackathon.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.*;
 
 @Service
 public class PersonalityScoreService {
+
+    @Value("${personality_quest.api_key}")
+    private String personalityApiKey;
 
     @Autowired
     PersonalityScoreRepository personalityScoreRepository;
@@ -70,7 +79,7 @@ public class PersonalityScoreService {
 
 /*  TODO:
      Validation of User
-     Format request body for PersonalityAPI
+     Format request body for PersonalityAPI - DONE
      Send request to PersonalityAPI
      Check ResponseCode
      HandleAPI errors
@@ -78,8 +87,10 @@ public class PersonalityScoreService {
      Save the personality score to the database
    */
 
-        String jsonResponseBody = formatPersonalityAPIRequest(createSampleRequest());
-//        ResponseEntity<>
+        String jsonRequestBody = formatPersonalityAPIRequest(createSampleRequest());
+
+        String jsonResponseBody = sendRequestToApi(jsonRequestBody);
+
 
         return null;
     }
@@ -111,6 +122,28 @@ public class PersonalityScoreService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String sendRequestToApi(String jsonRequestBody){
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://personality-quest.p.rapidapi.com/big_five_personality_test/submit_guest_test"))
+                .header("X-RapidAPI-Key", "" + personalityApiKey)
+                .header("X-RapidAPI-Host", "personality-quest.p.rapidapi.com")
+                .method("POST", HttpRequest.BodyPublishers.ofString(jsonRequestBody))
+                .build();
+
+        HttpResponse<String> response;
+
+        try {
+            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        String responseBody = response.body();
+
+        return responseBody;
     }
 
     public static UserScoreRequestDTO createSampleRequest() {
