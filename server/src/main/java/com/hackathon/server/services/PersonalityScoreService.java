@@ -81,7 +81,7 @@ public class PersonalityScoreService {
         userRepository.save(user);
     }
 
-    public PersonalityScore calculateAndSavePersonalityScore(/*UserScoreRequestDTO userScoreRequestDTO*/) throws JsonProcessingException {
+    public PersonalityScore calculateAndSavePersonalityScore(UserScoreRequestDTO userScoreRequestDTO) throws JsonProcessingException {
 
 /*  TODO:
      Validation of User
@@ -95,7 +95,7 @@ public class PersonalityScoreService {
 
         long userId = 1;
 
-        String jsonRequestBody = formatPersonalityAPIRequest(createSampleRequest());
+        String jsonRequestBody = formatPersonalityAPIRequest(userScoreRequestDTO);
 
         String jsonResponseBody = submitPersonalityAPIResponse(jsonRequestBody);
 
@@ -105,8 +105,11 @@ public class PersonalityScoreService {
     }
 
     private String formatPersonalityAPIRequest(UserScoreRequestDTO userScoreRequestDTO) {
+
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+
+            // System.out.println("The sample request body looks like this " + objectMapper.writeValueAsString(userScoreRequestDTO));
 
             //Construct the JSON body structure
             Map<String, Object> requestBody = new HashMap<>();
@@ -125,7 +128,7 @@ public class PersonalityScoreService {
 
             //Serialise the JSON
             String jsonRequestBody = objectMapper.writeValueAsString(requestBody);
-            System.out.println(jsonRequestBody);
+            System.out.println("The jsonRequestBody looks like this " + jsonRequestBody);
             return jsonRequestBody;
         } catch (Exception e) {
             e.printStackTrace();
@@ -193,7 +196,6 @@ public class PersonalityScoreService {
             questionAnswer.put(questionId, (int) (Math.random() * 5) + 1); // Random value between 1 and 5
             questionAnswers.add(questionAnswer);
         }
-
         return new UserScoreRequestDTO((long) userId, questionAnswers);
     }
 }

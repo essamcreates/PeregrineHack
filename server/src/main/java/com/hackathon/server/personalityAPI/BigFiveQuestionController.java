@@ -38,9 +38,9 @@ public class BigFiveQuestionController {
 
 
     @PostMapping("/calculate-personality-score")
-    public ResponseEntity<Object> calculatePersonalityScore(/*@RequestBody UserScoreRequestDTO userScoreRequestDTO*/){
+    public ResponseEntity<Object> calculatePersonalityScore(@RequestBody UserScoreRequestDTO userScoreRequestDTO){
         try{
-            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore();
+            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore(userScoreRequestDTO);
             return new ResponseEntity<>(personalityScore, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
