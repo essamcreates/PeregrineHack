@@ -80,16 +80,18 @@ public class PersonalityScoreService {
 /*  TODO:
      Validation of User
      Format request body for PersonalityAPI - DONE
-     Send request to PersonalityAPI
-     Check ResponseCode
-     HandleAPI errors
+     Send request to PersonalityAPI - DONE
+     Check ResponseCode -
+     HandleAPI errors -
      Process the PersonalityAPI response
      Save the personality score to the database
    */
 
         String jsonRequestBody = formatPersonalityAPIRequest(createSampleRequest());
 
-        String jsonResponseBody = processPersonalityAPIResponse(jsonRequestBody);
+        String jsonResponseBody = submitPersonalityAPIResponse(jsonRequestBody);
+
+        PersonalityScore personalityScore = processPersonalityScore(jsonResponseBody);
 
 
         return null;
@@ -124,7 +126,7 @@ public class PersonalityScoreService {
         }
     }
 
-    private String processPersonalityAPIResponse(String jsonRequestBody){
+    private String submitPersonalityAPIResponse(String jsonRequestBody) {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://personality-quest.p.rapidapi.com/big_five_personality_test/submit_guest_test"))
@@ -134,10 +136,17 @@ public class PersonalityScoreService {
                 .method("POST", HttpRequest.BodyPublishers.ofString(jsonRequestBody))
                 .build();
 
+
         HttpResponse<String> response;
 
         try {
+            // API request
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+//            Checks for Success status code
+            if (!(response.statusCode() >= 200 && response.statusCode() < 300)){
+                throw new RuntimeException("Personality API request failed with status code " + response.statusCode() + response.body());
+            }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -146,6 +155,12 @@ public class PersonalityScoreService {
         System.out.println(responseBody);
 
         return responseBody;
+    }
+
+    private PersonalityScore processPersonalityScore(String jsonResponseBody){
+
+
+        return null;
     }
 
     public static UserScoreRequestDTO createSampleRequest() {
