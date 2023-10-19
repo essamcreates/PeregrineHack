@@ -41,6 +41,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     BigFiveQuestionRepository bigFiveQuestionRepository;
 
+    @Autowired
+    PersonalityScoreRepository personalityScoreRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -107,8 +110,8 @@ public class DataLoader implements ApplicationRunner {
 
         if (userRepository.count() == 0) {
             List<User> users = Arrays.asList(
-                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail"),
-                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company")
+                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail","/images/johnpfp.jpeg"),
+                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company","/images/johnpfp.jpeg")
             );
             userRepository.saveAll(users);
         }
@@ -179,6 +182,15 @@ public class DataLoader implements ApplicationRunner {
 
             }
             bigFiveQuestionRepository.saveAll(bigFiveQuestions);
+        }
+
+        //double openness, double conscientiousness, double extraversion, double agreeableness, double neuroticism, User user
+        if (personalityScoreRepository.count() == 0) {
+            List<PersonalityScore> userScore = Arrays.asList(
+                    new PersonalityScore(1.0,2.0,3.0,4.0,5.0,userRepository.findById(1L).get()),
+                    new PersonalityScore(2.0,4.0,6.0,8.0,10.0,userRepository.findById(2L).get())
+            );
+            personalityScoreRepository.saveAll(userScore);
         }
     }
 }
