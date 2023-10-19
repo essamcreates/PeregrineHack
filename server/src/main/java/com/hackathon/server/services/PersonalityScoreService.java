@@ -89,7 +89,7 @@ public class PersonalityScoreService {
 
         String jsonRequestBody = formatPersonalityAPIRequest(createSampleRequest());
 
-        String jsonResponseBody = sendRequestToApi(jsonRequestBody);
+        String jsonResponseBody = processPersonalityAPIResponse(jsonRequestBody);
 
 
         return null;
@@ -124,10 +124,11 @@ public class PersonalityScoreService {
         }
     }
 
-    private String sendRequestToApi(String jsonRequestBody){
+    private String processPersonalityAPIResponse(String jsonRequestBody){
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://personality-quest.p.rapidapi.com/big_five_personality_test/submit_guest_test"))
+                .header("Content-Type", "application/json")
                 .header("X-RapidAPI-Key", "" + personalityApiKey)
                 .header("X-RapidAPI-Host", "personality-quest.p.rapidapi.com")
                 .method("POST", HttpRequest.BodyPublishers.ofString(jsonRequestBody))
@@ -142,6 +143,7 @@ public class PersonalityScoreService {
         }
 
         String responseBody = response.body();
+        System.out.println(responseBody);
 
         return responseBody;
     }
