@@ -93,7 +93,7 @@ public class PersonalityScoreService {
      Save the personality score to the database - DONE
    */
 
-        long userId = 1;
+        long userId = userScoreRequestDTO.getUserId();
 
         String jsonRequestBody = formatPersonalityAPIRequest(userScoreRequestDTO);
 
