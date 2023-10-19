@@ -49,7 +49,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
             />
             <div class="w-full flex justify-end">
             <button
-              class="bg-teal-500 text-white py-2 px-5 rounded mt-2"
+              class="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-4"
               type="submit"
             >
               Login

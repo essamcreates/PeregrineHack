@@ -24,9 +24,9 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
       </>
     )}
 
-    <div class="w-full flex justify-end">
+    <div class="w-full flex justify-center">
     {!currentUser && (
-      <button onClick={() => {navigate("/AccountRegistrationPage")}}>New user? Create an account</button>
+      <button onClick={() => {navigate("/AccountRegistrationPage")}}>Don't have an account? Sign up</button>
     )}
     </div>
   </div>
