@@ -10,8 +10,6 @@ const NavDock = ({currentUser}) => {
 
     // have shown in numerous pages like HomePage, Profile page etc - done NOTE: may want a user creation page link or to quiz.
     // import icons
-    // move to bottom left
-    // apply css to button  nav-open-menu-button and nav-close-menu-button
 
     return (
         <div className="nav-dock">

@@ -103,3 +103,10 @@
     top: -1%;
 }
 /* end of grid 2 */
+
+/* css for daily message */
+.message {
+    font-size: xx-large;
+    text-align: center;
+}
+/*  */
