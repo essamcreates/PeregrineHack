@@ -1,5 +1,6 @@
 package com.hackathon.server.personalityAPI;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hackathon.server.models.PersonalityScore;
 import com.hackathon.server.services.PersonalityScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class BigFiveQuestionController {
             return ResponseEntity.ok("Personality score calculated and saved");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (RuntimeException e) {
+        } catch (RuntimeException | JsonProcessingException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
