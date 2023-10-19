@@ -9,7 +9,7 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
 
     return (
         <div class="min-h-screen flex items-center justify-center bg-stone-100">
-  <div class="bg-white shadow-lg rounded-lg h-80 p-10">
+  <div class="bg-white shadow-lg rounded-lg h-85 p-10">
     {!currentUser && (
       <>
         {/* <h1>User Login</h1> */}
@@ -26,7 +26,7 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
 
     <div class="w-full flex justify-center">
     {!currentUser && (
-      <button onClick={() => {navigate("/AccountRegistrationPage")}}>Don't have an account? Sign up</button>
+      <button class="mb--3" onClick={() => {navigate("/AccountRegistrationPage")}}>Don't have an account? Sign up</button>
     )}
     </div>
   </div>
