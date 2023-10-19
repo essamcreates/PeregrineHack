@@ -50,7 +50,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
             <a href="#" class="underline w-full flex justify-end">Forgotten Password?</a>
             <div class="w-full flex justify-end">
             <button
-              class="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6"
+              class="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
               type="submit"
             >
               Login
