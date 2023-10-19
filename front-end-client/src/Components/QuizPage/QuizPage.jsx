@@ -1,12 +1,14 @@
 import {Link} from "react-router-dom";
-import Option from "./Option";
+import Questions from "./Questions";
+import "./QuizPage.css"
 
 const QuizPage = () => {
 
     return (
         <div>
-            <div>
-                <Option/>
+            <h1>Personality Questionnaire</h1>
+            <div className="question-box">
+                <Questions/>
             </div>
         </div>
     )

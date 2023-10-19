@@ -35,6 +35,9 @@ const NavDock = ({currentUser}) => {
                         {location.pathname!=="/LoginPage" && (<div>
                             <button className="nav-icon-button" data-id="Signout" onClick={()=>{setNavOpen(false);navigate("/LoginPage")}}>👋🏼</button>
                         </div>)}
+                        {location.pathname!=="/QuizPage" && (<div>
+                            <button className="nav-icon-button" data-id="Quiz" onClick={()=>{setNavOpen(false);navigate("/QuizPage")}}>Q</button>
+                        </div>)}
                     </div>
                     </div>)}
                 </div>)}
