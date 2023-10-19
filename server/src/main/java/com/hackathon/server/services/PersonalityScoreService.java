@@ -1,9 +1,12 @@
 package com.hackathon.server.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackathon.server.models.PersonalityScore;
 import com.hackathon.server.models.User;
 import com.hackathon.server.models.dtos.UserPersonalityScoreDTO;
+import com.hackathon.server.personalityAPI.PersonalityReport;
+import com.hackathon.server.personalityAPI.PersonalityTrait;
 import com.hackathon.server.personalityAPI.UserScoreRequestDTO;
 import com.hackathon.server.repositories.PersonalityScoreRepository;
 import com.hackathon.server.repositories.UserRepository;
@@ -25,6 +28,9 @@ public class PersonalityScoreService {
     @Value("${personality_quest.api_key}")
     private String personalityApiKey;
 
+    @Autowired
+    UserService userService;
+    
     @Autowired
     PersonalityScoreRepository personalityScoreRepository;
 
@@ -75,7 +81,7 @@ public class PersonalityScoreService {
         userRepository.save(user);
     }
 
-    public PersonalityScore calculateAndSavePersonalityScore() {
+    public PersonalityScore calculateAndSavePersonalityScore(/*UserScoreRequestDTO userScoreRequestDTO*/) throws JsonProcessingException {
 
 /*  TODO:
      Validation of User
@@ -83,18 +89,19 @@ public class PersonalityScoreService {
      Send request to PersonalityAPI - DONE
      Check ResponseCode -
      HandleAPI errors -
-     Process the PersonalityAPI response
-     Save the personality score to the database
+     Process the PersonalityAPI response - DONE
+     Save the personality score to the database - DONE
    */
+
+        long userId = 1;
 
         String jsonRequestBody = formatPersonalityAPIRequest(createSampleRequest());
 
         String jsonResponseBody = submitPersonalityAPIResponse(jsonRequestBody);
 
-        PersonalityScore personalityScore = processPersonalityScore(jsonResponseBody);
+        PersonalityScore personalityScore = processPersonalityScore(userId,jsonResponseBody);
 
-
-        return null;
+        return personalityScoreRepository.save(personalityScore);
     }
 
     private String formatPersonalityAPIRequest(UserScoreRequestDTO userScoreRequestDTO) {
@@ -157,10 +164,23 @@ public class PersonalityScoreService {
         return responseBody;
     }
 
-    private PersonalityScore processPersonalityScore(String jsonResponseBody){
+    private PersonalityScore processPersonalityScore(long userId, String jsonResponseBody) throws JsonProcessingException {
 
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        return null;
+        PersonalityReport personalityReport = objectMapper.readValue(jsonResponseBody, PersonalityReport.class);
+
+        User user = userService.getUserById(userId);
+        
+        double opennessScore = personalityReport.getOpenness().getPercentage();
+        double conscientiousnessScore = personalityReport.getConscientiousness().getPercentage();
+        double extroversionScore = personalityReport.getExtroversion().getPercentage();
+        double agreeablenessScore = personalityReport.getAgreeableness().getPercentage();
+        double neuroticismScore = personalityReport.getNeuroticism().getPercentage();
+        
+        PersonalityScore personalityScore = new PersonalityScore(opennessScore, conscientiousnessScore, extroversionScore, agreeablenessScore, neuroticismScore, user);
+
+        return personalityScore;
     }
 
     public static UserScoreRequestDTO createSampleRequest() {
