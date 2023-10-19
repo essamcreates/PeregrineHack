@@ -29,8 +29,9 @@ const Questions = () => {
 
 
     // display first question
-
-    const mappedQuestions = questions.map((question) => {
+    // dont map question have current question and then when option is clicked move on to next question (storing answer for prev also)
+      
+    const mappedQuestions = questions.map((question) => {  
       return (<div key={question.id}><Question question={question}/></div>)})
   
     return (
