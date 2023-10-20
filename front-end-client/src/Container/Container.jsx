@@ -59,7 +59,7 @@ const Container = () => {
                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage currentUser={currentUser}/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage currentUser={currentUser}/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
-                        <Route path="/UploadProfilePhoto" element={<UploadProfilePhoto/>}></Route>
+                        <Route path="/UploadProfilePhoto" element={<UploadProfilePhoto currentUser={currentUser}/>}></Route>
 
 
                     </Routes>
