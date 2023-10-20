@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import BigFiveDisplay from "./BigFiveDisplay.jsx";
 
-const ProfilePage = ({currentUser}) => {
-
+const ProfilePage = ({imageName,currentUser}) => {
+    console.log(imageName)
 
     return (
         <div>
@@ -10,7 +10,9 @@ const ProfilePage = ({currentUser}) => {
                 <BigFiveDisplay currentUser={currentUser}/>
             </div>
             <div>
-                <img src={`http://localhost:8080${currentUser.profilePictureURL}`} alt="User Profile Picture" />
+                {/*<img src={`http://localhost:8080${currentUser.profilePictureURL}`} alt="User Profile Picture" />*/}
+                <img src={`http://localhost:8080/profilePhoto/${imageName}`} alt="User Profile Picture" />
+
                 {currentUser && (<p>Hello {currentUser.name}</p>)}
             </div>
             <div>
