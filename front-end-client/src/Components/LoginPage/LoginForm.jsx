@@ -33,7 +33,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
         {!currentUser && (
           <form onSubmit={(event) => handleLoginClick(event)}>
             {/* <label class="text-gray-700 p-4">Email: </label> */}
-            <input class="border border-gray-300 rounded p-2 w-full mb-4"
+            <input class="border border-gray-300 rounded p-2 w-full mb-5"
               type="text"
               value={currentEmail}
               onChange={(e) => setCurrentEmail(e.target.value)}
@@ -41,7 +41,7 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
             />
             <br />
             {/* <label class="text-gray-700 p-4">Password: </label> */}
-            <input class="border border-gray-300 rounded p-2 w-full"
+            <input class="border border-gray-300 rounded p-2 w-full mb-5"
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
