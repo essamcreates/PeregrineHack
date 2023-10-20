@@ -4,13 +4,16 @@ import com.hackathon.server.authentication.LoginForm;
 import com.hackathon.server.models.User;
 import com.hackathon.server.models.dtos.UserDTO;
 import com.hackathon.server.services.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -91,6 +94,66 @@ public class UserController {
             return ResponseEntity.ok("Profile picture uploaded successfully.");
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload profile picture.");
+        }
+    }
+
+    //--------------------------
+
+    //private static final String UPLOAD_PATH = "/Users/tarekahmed/Documents/bnta_work/PeregrineHack/server/src/main/resources/static/images/";
+//    @PostMapping("/upload")
+//    @CrossOrigin
+//    public ResponseEntity<String> handleFileUpload(@RequestParam("image") MultipartFile file) {
+//
+//        String fileName = file.getOriginalFilename();
+//        System.out.println(fileName);
+//        try {
+//            file.transferTo(new File(UPLOAD_PATH + fileName));
+//
+//            // do the database user link here
+//
+//
+//            return ResponseEntity.ok("File uploaded successfully.");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
+
+    private static final String UPLOAD_PATH = "profilePhoto/";
+
+    @PostConstruct
+    public void init() {
+        File uploadDirectory = new File(UPLOAD_PATH);
+        if (!uploadDirectory.exists()) {
+            if (uploadDirectory.mkdirs()) {
+                System.out.println("Directory created successfully");
+            } else {
+                System.err.println("Failed to create directory");
+            }
+        }
+    }
+
+    private String getUploadDirectory() {
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        return currentWorkingDirectory + File.separator + UPLOAD_PATH;
+    }
+
+    @PostMapping("/upload")
+    @CrossOrigin
+    public ResponseEntity<String> handleFileUpload(@RequestParam("image") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        try {
+            File destination = new File(getUploadDirectory() + fileName);
+            file.transferTo(destination);
+            System.out.println(destination);
+
+            // do the database user link here
+
+            return ResponseEntity.ok("File uploaded successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
