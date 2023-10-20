@@ -41,26 +41,25 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
     {/* column two */}
     <div class="flex justify-center items-center pr-20"> 
     {/* <div class="absolute top-10 bottom-5 right-7"> */}
-        <h1 className="flex-items-center text-6xl font-medium text-neutral-400">
-  Dive Into
-  <span className="relative ml-3 h-[1em] w-36 overflow-hidden">
+        <h1 class="flex-items-center text-6xl font-medium text-neutral-400">
+  Dive Into</h1>
+  <span class="relative ml-3 h-[1em] w-36  text-6xl overflow-hidden">
     <span
-      className="absolute h-full w-full -translate-y-full animate-slide leading-none text-white"
+      class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white "
     >
-      Ideas
+      <p>Ideas</p>
     </span>
     <span
-      className="absolute h-full w-full -translate-y-full animate-slide leading-none text-white [animation-delay:0.83s]"
+      class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white [animation-delay:0.8s]"
     >
-      Tech
+      <p>Tech</p>
     </span>
     <span
-      className="absolute h-full w-full -translate-y-full animate-slide leading-none text-white [animation-delay:1.83s]"
+      class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white  [animation-delay:1.6s]"
     >
-      Art
+      <p>Art</p>
     </span>
   </span>
-</h1>
 </div>
 
    
