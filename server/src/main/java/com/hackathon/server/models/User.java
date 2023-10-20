@@ -32,6 +32,8 @@ public class User {
     @Column
     private String gender;
 
+    @Column String profilePictureURL;
+
     @ManyToMany
     @JoinTable(
             name = "users_access_needs",
@@ -78,12 +80,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender, String email) {
+    public User(String name, LocalDate dateOfBirth, String password, String gender, String email, String profilePictureURL) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
         this.email = email;
+        this.profilePictureURL = profilePictureURL;
     }
 
     public Long getId() {
@@ -200,5 +203,13 @@ public class User {
 
     public void setUserResponses(List<UserResponse> userResponses) {
         this.userResponses = userResponses;
+    }
+
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
     }
 }

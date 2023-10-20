@@ -1,50 +1,174 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ProfileBox = ({addUserInfo}) => {
+const ProfileBox = ({currentUser}) => {
 
-    const [enteredJobRole, setEnteredJobRole] = useState ("")
-    const [enteredCareerGoals, setEnteredCareerGoals] = useState ("")
+    // const [enteredJobRole, setEnteredJobRole] = useState ("")
+    const [enteredCareerGoals, setEnteredCareerGoals] = useState ([])
     const [enteredDOBDay, setEnteredDOBDay] = useState ()
     const [enteredDOBMonth, setEnteredDOBMonth] = useState ()
     const [enteredDOBYear, setEnteredDOBYear] = useState ()
     const [enteredGender, setEnteredGender] = useState ("")
-    const [enteredAccessNeeds, setEnteredAccessNeeds] = useState ("")
+    const [enteredAccessNeeds, setEnteredAccessNeeds] = useState ([])
+    const [enteredMentalHealthConditions, setEnteredMentalHealthConditions] = useState([])
+    const [careerGoals, setCareerGoals] = useState()
+    const [mentalHealthConditions, setMentalHealthConditions] = useState()
+    const [accessNeeds, setAccessNeeds] = useState()
+    const navigate = useNavigate()
 
-    const handleSignupClick = async(event) => {
+    // need to fetch data; data, accessneeds and mental health conditions
+    // have the user be able to choose multiple needs and conditions if they so wish
+    // have the user rank their top three career goals
+
+    const fetchCareerGoals = async() => {
+        const response = await fetch("http://localhost:8080/careerGoals");
+        const data = await response.json();
+        setCareerGoals(data);
+        console.log(data)
+    }
+    useEffect (()=>{
+        fetchCareerGoals();
+    },[])
+
+    const fetchMentalHealthConditions = async() => {
+        const response = await fetch("http://localhost:8080/mentalHealthConditions");
+        const data = await response.json();
+        setMentalHealthConditions(data);
+        console.log(data)
+    }
+
+    useEffect (()=>{
+        fetchMentalHealthConditions();
+    },[])
+
+    const fetchAccessNeeds = async() => {
+        const response = await fetch("http://localhost:8080/accessNeeds");
+        const data = await response.json();
+        setAccessNeeds(data);
+        console.log(data)
+    }
+
+    useEffect (()=>{
+        fetchAccessNeeds();
+    },[])
+
+    const handleCreationClick = async(event) => {
         event.preventDefault();
-        if (!enteredJobRole, !enteredCareerGoals, !enteredGender, !enteredAccessNeeds) {
+        if (!enteredGender, !enteredDOBDay, !enteredDOBMonth, !enteredDOBYear) {
             alert("Please enter all fields")
             // highlight fields that are left empty
         } else {
-            let temp = {
-                DoB:enteredDOBYear + "/" + enteredDOBMonth + "/" + enteredDOBDay,
-                Gender: enteredGender,
-                // do we only need the above two as they will be the ones that need to be added to the database?
+            let tempDoB = {
+                dateOfBirth:enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay,
             }
-            addUserInfo(temp)
-        } console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
+            let tempGender={
+                gender: enteredGender,
+            }
+            let tempGoals = {
+                goalIds: enteredCareerGoals,
+            }
+            let tempNeeds = {
+                accessNeedIds : enteredAccessNeeds
+            }
+            let tempConditions = {
+                mentalHealthConditionIds: enteredMentalHealthConditions
+            }
+            // send info on gender and DOB
+            addUserInfo(tempDoB)
+            addUserInfo(tempGender)
+            addUserData(tempGoals, "careerGoals")
+            addUserData(tempNeeds, "accessNeeds")
+            addUserData(tempConditions, "mentalHealthConditions")
+            navigate("/HomePage")
+         } console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
 
+    }
+
+    const addUserInfo = async (userInfo) => {
+        const url = `http://localhost:8080/users/` + currentUser.id;
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
+        console.log(response.json())
+    }
+
+    const addUserData = async (userInfo, path) => {
+        const url = `http://localhost:8080/`+ path +`/` + currentUser.id;
+        console.log(url)
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInfo),
+        }) 
     }
 
     const loopNumber = (start, end) =>{
         let options = []
         for(let i=start ; i<=end ; i++){
+            if(i<10){
+                options.push(
+                    <option key={i+start} value={"0"+i} >{i}</option>
+                    )
+            }else{
             options.push(
                 <option key={i+start} value={i} >{i}</option>
-                )
+                )}
         }
         return options;
     }
 
+    const loopCareerGoals = () => {
+        return careerGoals.map ((careerGoal)=>(
+            <option key={careerGoal.id} value={careerGoal.id}>
+                {careerGoal.goal}
+                </option>
+        ));
+    }
+
+    const loopAccessNeeds = () => {
+        return accessNeeds.map ((accessNeed)=>(
+            <option key={accessNeed.id} value={accessNeed.id}>
+                {accessNeed.accessNeedENUM}
+                </option>
+        ));
+    }
+
+    const loopMentalHealthConditions = () => {
+        return mentalHealthConditions.map ((mentalHealthCondition)=>(
+            <option key={mentalHealthCondition.id} value={mentalHealthCondition.id}>
+                {mentalHealthCondition.mentalHealthCondition}
+                </option>
+        ));
+    }
+      
+
     return (
         <div>
-            <form className="profileCreation" onSubmit={(event)=> {handleSignupClick(event)}}>
-            <label> Job Role/Title:</label>
+            {currentUser.name}
+            {currentUser.id}
+            <form className="profileCreation" onSubmit={(event)=> {handleCreationClick(event)}}>
+            {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
-                <br>
-                </br>
+                <br> */}
                 <label> Career Goals:</label>
-                <input className="input-box" type="text" value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(e.target.value)}}/>
+                {/* <input className="input-box" type="text" value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(e.target.value)}}/> */}
+                {careerGoals && (<select className="select-multiple-goals" name="goals" multiple size={3} value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(Array.from(e.target.selectedOptions, (option) => option.value));}}  >
+                    {loopCareerGoals()}
+                </select>)}
+                <br/>
+                <br/>
+                <label> AccessNeeds:</label>
+                {accessNeeds && (<select className="select-multiple-needs" name="accessNeeds" multiple size={3} value={enteredAccessNeeds} onChange={(e)=>{setEnteredAccessNeeds(Array.from(e.target.selectedOptions, (option) => option.value));}} >
+                    {loopAccessNeeds()}
+                </select>)}
+                <br/>
+                <br/>
+                <label> MentalHealthConditions:</label>
+                {mentalHealthConditions && (<select className="select-multiple-conditions" name="mentalHealthConditions" multiple size={3} value={enteredMentalHealthConditions} onChange={(e)=>{setEnteredMentalHealthConditions(Array.from(e.target.selectedOptions, (option) => option.value));}} >
+                    {loopMentalHealthConditions()}
+                    </select>)}
                 <br/>
                 <br/>
                 <label> Date of Birth:</label>
@@ -53,15 +177,15 @@ const ProfileBox = ({addUserInfo}) => {
                     {loopNumber(1,31)}
                 </select>
                 <select id="select-month" value={enteredDOBMonth}onChange={(e)=>{setEnteredDOBMonth(e.target.value)}}>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12">December</option>
