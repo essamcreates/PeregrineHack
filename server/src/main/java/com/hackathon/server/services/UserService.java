@@ -10,6 +10,8 @@ package com.hackathon.server.services;
  import java.io.File;
  import java.time.LocalDate;
  import java.util.List;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -61,6 +63,25 @@ public class UserService {
          } else if (email != null) {
              user.setEmail(email);
          }
+
+         return userRepository.save(user);
+     }
+
+     public User updateProfilePhoto(String profilePhotoName){
+
+//         // Define a regular expression pattern to match numbers
+//         Pattern pattern = Pattern.compile("\\d+");
+//         // Create a matcher to find the number in the filename
+//         Matcher matcher = pattern.matcher(profilePhotoName);
+//
+//         String numberStr = matcher.group();
+//         // Parse the extracted number as an integer
+//         int number = Integer.parseInt(numberStr);
+
+
+
+         User user = userRepository.findById(1L).get();
+         user.setProfilePictureURL(PropertiesConfig.getRelativePath()+profilePhotoName);
 
          return userRepository.save(user);
      }
