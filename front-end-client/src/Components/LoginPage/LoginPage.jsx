@@ -9,9 +9,10 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
 
     return (
      <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
-        <h1 class="flex justify-center font-bold text-6xl pt-10">Rise and shine, it's time to grind!</h1>
+        <h1 class="flex justify-center font-bold text-6xl pt-10 opacity-40 line-through">Log In</h1>
+        <h1 class="flex justify-center font-bold text-6xl pt-10 opacity-40">Clock In.</h1>
         <div class="min-h-screen flex items-center justify-center">
-   <div class="bg-white shadow-lg rounded-lg h-90 p-10">
+   <div class="bg-white shadow-lg rounded-lg w-96 h-96 p-10">
     {!currentUser && (
       <>
         {/* <h1>User Login</h1> */}
