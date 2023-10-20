@@ -5,12 +5,19 @@ import com.hackathon.server.models.User;
 import com.hackathon.server.models.dtos.UserDTO;
 import com.hackathon.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("users")
@@ -67,4 +74,23 @@ public class UserController {
     // post and put will be needed for sending profile picture from front end one for create new user and one for update user
     // get will be needed for sending profile picture to the front end
 
+    @Value("${upload.path}") // Configure the path to save files in your application.properties
+    private String uploadPath;
+
+    @PostMapping("/upload-profile-picture")
+    public ResponseEntity<String> uploadProfilePicture(@RequestParam("profilePicture") MultipartFile file) {
+        try {
+            // Generate a unique filename for the uploaded image to avoid conflicts
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+
+            // Save the file to the specified upload path
+            Files.copy(file.getInputStream(), Paths.get(uploadPath, fileName), StandardCopyOption.REPLACE_EXISTING);
+
+            // do the database user link here
+
+            return ResponseEntity.ok("Profile picture uploaded successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload profile picture.");
+        }
+    }
 }
