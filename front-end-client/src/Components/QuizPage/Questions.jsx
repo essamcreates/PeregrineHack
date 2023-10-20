@@ -4,6 +4,9 @@ import Question from "./Question";
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
+    const [currentQuestionId, setCurrentQuestionId] = useState(42)
+
+
     const fetchUserScore = async () => {
       try {
         const response = await fetch("http://localhost:8080/personalityQuestionnaire", {
@@ -33,10 +36,37 @@ const Questions = () => {
       
     const mappedQuestions = questions.map((question) => {  
       return (<div key={question.id}><Question question={question}/></div>)})
+
+    const displayQuestion = () => {
+      //  finds the question from its id
+      const currentQuestion= questions.find((step) => step.id === currentQuestionId)
+      console.log(currentQuestion)
+      const options= ["strongly disagree", "disagree", "neutral" , "agree", "strongly agree" ]
+      const choices = []
+      options.map((option, index)=>{
+        choices.push(<div key={index}><button value={index+1} onClick={()=>{setCurrentQuestionId(currentQuestion.id+1)}}>{option}</button></div>)
+      })
+      return (<div>
+        <p>Question : {currentQuestion.question}</p>
+        <div>{choices}</div>
+      </div>)
+
+
+      // const choices =[]
+      // currentLevel.options.map((option, index)=>{
+      //     choices.push(<div key={index}><button onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
+      // })
+      // return (<div  className="chat-bot-message">
+      //     <div className="message"><p>{currentLevel.message}</p></div>
+      //     <div>{choices}</div>
+      // </div>)
+
+    }
   
     return (
       <div>
-         {mappedQuestions}
+         {questions && (<div>{displayQuestion()}</div>)}
+         {/* {mappedQuestions} */}
 
       </div>
     );

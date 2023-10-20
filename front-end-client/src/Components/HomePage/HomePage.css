@@ -121,3 +121,9 @@
     position: relative;
     left: 10%;
 }
+
+.convo-box {
+    height:70%;
+    width:90%;
+    overflow-y: auto;
+}

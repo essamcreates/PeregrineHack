@@ -5,9 +5,35 @@ const ChatBot = () => {
     const [usingChatBot, setUsingChatBot] = useState(false);
     const [requestString, setRequestString] = useState("");  // message that will be sent to openapi
     const [currentStep, setCurrentStep] = useState(1);
+    const [response, setResponse] = useState("");
+    const [previousSteps, setPreviousSteps] = useState([]);
 
     // will have a conversation (with directed points) , these directed points/ options will be sent to api
     // chat bot will display the question & options and the user will click the button (choosing thier desired option) then the next question will come up
+
+    const chatBotRequest=async(input)=>{
+        try {
+            const url = `http://localhost:8080/openAI`;
+            const response = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "text/plain" },
+              body: input + "reponse in less than 70 words",
+            });
+        
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+        
+            const data = await response.text();
+        
+            // Set the response data in the component's state
+            setResponse(data);
+            console.log(data)
+          } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+          }
+       
+    }
 
     // next : 0 , 0 indicates send
     const conversationFlow = [
@@ -15,8 +41,8 @@ const ChatBot = () => {
             id: 1,
             message: "Would you like to chat about..",
             options: [
-                { displayText: "Wellness", sendText: "Regarding wellness at work ", next: 2 },
-                { displayText: "Career", sendText: "In terms of my career ", next: 6 },
+                { displayText: "Wellness", sendText: "Question : Regarding my wellness at work ", next: 2 },
+                { displayText: "Career", sendText: "Question : In terms of my career ", next: 6 },
             ],
         },
         {
@@ -24,7 +50,7 @@ const ChatBot = () => {
             message: null,
             options: [
                 { displayText: "Looking for advice", sendText: "I am looking for advice on ", next: 4 },
-                { displayText: "Want to de-stress", sendText: "I am looking to take some time to de-stress ", next: 5 },
+                { displayText: "Want to de-stress", sendText: "how should I de-stress in ", next: 5 },
             ],
         },
         {
@@ -51,35 +77,35 @@ const ChatBot = () => {
             id: 6,
             message: "Please choose a skill you would like to improve",
             options: [
-                { displayText: "Leadership", sendText: "Like to improve leadership skills", next: 0 },
-                { displayText: "Teamwork", sendText: "Like to improve teamwork skills", next: 0 },
-                { displayText: "Time Management", sendText: "Like to improve time management skills", next: 0 },
-                { displayText: "Presentation", sendText: "Like to improve presentation skills", next: 0 },
+                { displayText: "Leadership", sendText: "how should I improve leadership skills", next: 0 },
+                { displayText: "Teamwork", sendText: "how should I improve teamwork skills", next: 0 },
+                { displayText: "Time Management", sendText: "how should I improve time management skills", next: 0 },
+                { displayText: "Presentation", sendText: "how should I improve presentation skills", next: 0 },
             ],
         },
     ];
 
-    const handleOptionClick = (text , nextStep) => {
+    const handleOptionClick = async(text , nextStep) => {
+        setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
+        setRequestString(requestString+text)
         if(nextStep!==0){
-            setRequestString(requestString+text)
             setCurrentStep(nextStep)
             chatBotText();
         }else {
-            setRequestString(requestString+text)
-            alert("should send" + requestString +text)
-            console.log(requestString)
-            
+            await chatBotRequest(requestString+text)
+            console.log(previousSteps)
         }
         
     }
 
     const chatBotText = () => {
-        console.log(conversationFlow[currentStep])
+        if(currentStep === 0) {return}
+        // console.log(conversationFlow[currentStep])
         const currentLevel= conversationFlow.find((step) => step.id === currentStep)
         // load choices into array
         const choices =[]
         currentLevel.options.map((option, index)=>{
-            choices.push(<div key={index}><button onClick={()=>handleOptionClick(option.sendText,option.next)}>{option.displayText}</button></div>)
+            choices.push(<div key={index}><button onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
         })
         return (<div  className="chat-bot-message">
             <div className="message"><p>{currentLevel.message}</p></div>
@@ -87,12 +113,36 @@ const ChatBot = () => {
         </div>)
     }
 
+    const prevChatBotText = () => {
+        return previousSteps.map((stepId)=>{
+            const prevText = conversationFlow.find((step) => step.id === stepId)
+            const choices =[]
+            prevText.options.map((option, index)=>{
+                choices.push(<div key={index}><button disabled>{option.displayText}</button></div>)
+            })
+            return (<div  className="chat-bot-message">
+            <div className="message"><p>{prevText.message}</p></div>
+            <div>{choices}</div>
+        </div>)
+
+        })
+    }
+
+    useEffect(()=>{
+        prevChatBotText();
+    }, [previousSteps])
+
     return (
         <>
         <h2>ChatBot</h2>
         {!usingChatBot && (<div><button className="start-chat-button" onClick={()=>setUsingChatBot(true)}>Click to speak to Bob!</button></div>)}
-        {usingChatBot && (<div><p>you have requested to speak to Bob</p>
-        {chatBotText()}</div>)}
+        {usingChatBot && (<div className="convo-box">
+           {previousSteps && (<p>{prevChatBotText()}</p>)}
+            <div> {!response &&<p>
+        {chatBotText()}</p>}</div>
+        <div>{response && (<h2>Bob:</h2>)}
+        <p>{response}</p> </div></div>)}
+        
         </>
     )
 }
