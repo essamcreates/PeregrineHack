@@ -125,6 +125,8 @@ public class UserController {
             File destination = new File(userService.getUploadDirectory() + fileName);
             file.transferTo(destination);
             System.out.println(destination);
+           // System.out.println(PropertiesConfig.getResourceHandlerUrl());
+
 
             // Use CompletableFuture to execute the updateProfilePhoto method asynchronously
             CompletableFuture<Void> uploadAndProcess = CompletableFuture.runAsync(() -> {

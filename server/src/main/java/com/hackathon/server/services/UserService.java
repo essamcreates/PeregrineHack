@@ -8,6 +8,8 @@ package com.hackathon.server.services;
  import org.springframework.stereotype.Service;
 
  import java.io.File;
+ import java.nio.file.Path;
+ import java.nio.file.Paths;
  import java.time.LocalDate;
  import java.util.List;
  import java.util.regex.Matcher;
@@ -81,14 +83,18 @@ public class UserService {
 
 
          User user = userRepository.findById(1L).get();
-         user.setProfilePictureURL(PropertiesConfig.getRelativePath()+profilePhotoName);
+         user.setProfilePictureURL(PropertiesConfig.getUploadPath()+profilePhotoName);
 
          return userRepository.save(user);
      }
 
     public String getUploadDirectory() {
+
         String currentWorkingDirectory = System.getProperty("user.dir");
-        return currentWorkingDirectory + File.separator + PropertiesConfig.getUploadPath();
+        Path currentDirectory = Paths.get(currentWorkingDirectory);
+        Path parentDirectory = currentDirectory.getParent();
+
+        return parentDirectory + File.separator + PropertiesConfig.getUploadPath();
     }
 
 }
