@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Question from "./Question";
+// import Question from "./Question";
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionId, setCurrentQuestionId] = useState(42)
 
+    const [request, setRequest] = useState(
+          {
+            "userId":2,
+            "questionAnswers":[
+              {"42":null},{"43":null},{"44":null},{"45":null},{"46":null},{"47":null},{"48":null},{"49":null},{"50":null},
+              {"51":null},{"52":null},{"53":null},{"54":null},{"55":null},{"56":null},{"57":null},{"58":null},{"59":null},
+              {"60":null},{"61":null},{"62":null},{"63":null},{"64":null},{"65":null},{"66":null},{"67":null},{"68":null},
+              {"69":null},{"70":null},{"71":null},{"72":null},{"73":null},{"74":null},{"75":null},{"76":null},{"77":null},
+              {"78":null},{"79":null},{"80":null},{"81":null},{"82":null},{"83":null},{"84": null}
+          ]
+        })
 
+//  fetches all questions
     const fetchUserScore = async () => {
       try {
         const response = await fetch("http://localhost:8080/personalityQuestionnaire", {
@@ -23,51 +35,76 @@ const Questions = () => {
         console.error("Error while fetching data:", error);
       }
     };
-  
+//  useEffect means that all questions fetched on page load
     useEffect(() => {
       fetchUserScore();
     }, []);
 
-    // have fetched all questions, now display one at a time.
+
+    // /calculate-personality-score
+    const calculateScore = async () => {
+      const url = `http://localhost:8080/personalityQuestionnaire/calculate-personality-score`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body:JSON.stringify(request),
+      })
+      console.log(response);
+      // if (response.status === 201) {
+      //     const newUser = await response.json();
+      //     setCurrentUser(newUser)
+      //     return true
+      // } else {
+      //     return false
+      // }
+  }
 
 
-    // display first question
-    // dont map question have current question and then when option is clicked move on to next question (storing answer for prev also)
-      
-    const mappedQuestions = questions.map((question) => {  
-      return (<div key={question.id}><Question question={question}/></div>)})
+    const handleAnswer = (chosenAnswer) =>{
+      // want to push their answer to json
+      // request.questionAnswers[currentQuestionId-42] = choosenAnswer
+      // setCurrentQuestionId(currentQuestionId+1)
+      // console.log(request)
+      const chosenAnswerInt = parseInt(chosenAnswer, 10);
+      const updatedRequest = { ...request };
+
+      // Update the copy with the user's chosen answer
+      updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
+    
+      // Update the currentQuestionId to move to the next question
+      setCurrentQuestionId(currentQuestionId + 1);
+    
+      // Set the updated copy as the new state
+      setRequest(updatedRequest)
+    
+      console.log(request);
+    }
+
 
     const displayQuestion = () => {
       //  finds the question from its id
+      if (questions && questions.length > 0) {
       const currentQuestion= questions.find((step) => step.id === currentQuestionId)
       console.log(currentQuestion)
       const options= ["strongly disagree", "disagree", "neutral" , "agree", "strongly agree" ]
       const choices = []
       options.map((option, index)=>{
-        choices.push(<div key={index}><button value={index+1} onClick={()=>{setCurrentQuestionId(currentQuestion.id+1)}}>{option}</button></div>)
+        choices.push(<div key={index}><button value={index+1} onClick={(e)=>{handleAnswer(e.target.value) }}>{option}</button></div>)
       })
       return (<div>
         <p>Question : {currentQuestion.question}</p>
         <div>{choices}</div>
       </div>)
-
-
-      // const choices =[]
-      // currentLevel.options.map((option, index)=>{
-      //     choices.push(<div key={index}><button onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
-      // })
-      // return (<div  className="chat-bot-message">
-      //     <div className="message"><p>{currentLevel.message}</p></div>
-      //     <div>{choices}</div>
-      // </div>)
-
+    }else{
+      return <div><p>Loading question</p></div>
     }
+  }
   
     return (
       <div>
-         {questions && (<div>{displayQuestion()}</div>)}
+         {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
          {/* {mappedQuestions} */}
-
+         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Send to API</button>)}
       </div>
     );
 }
