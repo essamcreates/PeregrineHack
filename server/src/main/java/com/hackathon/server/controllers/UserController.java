@@ -97,27 +97,7 @@ public class UserController {
         }
     }
 
-    //--------------------------
-
-    //private static final String UPLOAD_PATH = "/Users/tarekahmed/Documents/bnta_work/PeregrineHack/server/src/main/resources/static/images/";
-//    @PostMapping("/upload")
-//    @CrossOrigin
-//    public ResponseEntity<String> handleFileUpload(@RequestParam("image") MultipartFile file) {
-//
-//        String fileName = file.getOriginalFilename();
-//        System.out.println(fileName);
-//        try {
-//            file.transferTo(new File(UPLOAD_PATH + fileName));
-//
-//            // do the database user link here
-//
-//
-//            return ResponseEntity.ok("File uploaded successfully.");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//    }
+//-----------------------------------------------------------------------------------------------------------------------------
 
     private static final String UPLOAD_PATH = "profilePhoto/";
 
@@ -133,10 +113,10 @@ public class UserController {
         }
     }
 
-    private String getUploadDirectory() {
-        String currentWorkingDirectory = System.getProperty("user.dir");
-        return currentWorkingDirectory + File.separator + UPLOAD_PATH;
-    }
+//    private String getUploadDirectory() {
+//        String currentWorkingDirectory = System.getProperty("user.dir");
+//        return currentWorkingDirectory + File.separator + UPLOAD_PATH;
+//    }
 
     @PostMapping("/upload")
     @CrossOrigin
@@ -144,7 +124,7 @@ public class UserController {
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
         try {
-            File destination = new File(getUploadDirectory() + fileName);
+            File destination = new File(userService.getUploadDirectory() + fileName);
             file.transferTo(destination);
             System.out.println(destination);
 

@@ -1,11 +1,13 @@
 package com.hackathon.server.services;
 
+ import com.hackathon.server.configurations.PropertiesConfig;
  import com.hackathon.server.models.User;
  import com.hackathon.server.models.dtos.UserDTO;
  import com.hackathon.server.repositories.UserRepository;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Service;
 
+ import java.io.File;
  import java.time.LocalDate;
  import java.util.List;
 
@@ -62,5 +64,10 @@ public class UserService {
 
          return userRepository.save(user);
      }
+
+    public String getUploadDirectory() {
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        return currentWorkingDirectory + File.separator + PropertiesConfig.getUploadPath();
+    }
 
 }
