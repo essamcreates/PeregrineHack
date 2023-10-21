@@ -43,31 +43,31 @@ const AccountRegistrationForm = ({signupUser}) => {
         }
     
     return (
-        <div>
+        <div className="w-90">
              <form className="signup-form" onSubmit={(event)=>{handleSignupClick(event)}}>
              <label> First Name:</label>
-                <input className="input-box" type="text" value={enteredName} onChange={(e)=>{setEnteredName(e.target.value)}}/>
-                <br>
-                </br>
+                <input class="border border-gray-300 rounded p-2 w-full mb-4" type="text" value={enteredName} onChange={(e)=>{setEnteredName(e.target.value)}} placeholder="First Name"/>
+                <br/>
                 <label> Email:</label>
-                <input className="input-box" type="text" value={enteredEmail} onChange={(e)=>{setEnteredEmail(e.target.value)}}/>
+                <input class="border border-gray-300 rounded p-2 w-full mb-4" type="text" value={enteredEmail} onChange={(e)=>{setEnteredEmail(e.target.value)}} placeholder="Email"/>
                 <br/>
-                <br/>
-                {/* change the type="text" to ="password" after testing etc*/}
                 <label> Password:</label>
-                <input className="input-box" type="text" value={enteredPassword} onChange={(e)=>{setEnteredPassword(e.target.value)}}/>
-                <br>
-                </br>
+                <input class="border border-gray-300 rounded p-2 w-full mb-4" type="password" value={enteredPassword} onChange={(e)=>{setEnteredPassword(e.target.value)}} placeholder="Password"/>
+                <br/>
                 <label> Confirm Password:</label>
-                <input className="input-box" type="text" value={enteredConfirmedPassword} onChange={(e)=>{setConfirmedPassword(e.target.value)}}/>
-                <input type="submit" value="Sign up"/>
+                <input class="border border-gray-300 rounded p-2 w-full mb-4" type="password" value={enteredConfirmedPassword} onChange={(e)=>{setConfirmedPassword(e.target.value)}} placeholder="Confirm Password"/>
+                {inputError && (<div>
+                <p class="text-red-500" > {inputErrorMessage}</p>
+                </div>)}
+                <div class="w-full flex justify-center">
+                <input class="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800" type="submit" value="Sign up"/>
+                </div>
             </form>
 
-            {inputError && (<div>
-                <p> {inputErrorMessage}</p>
-            </div>)}
-
-            <button onClick={()=>{navigate("/LoginPage")}}>Already have an account, Login</button>
+            
+            <div class="w-full flex justify-center">
+            <button  onClick={()=>{navigate("/LoginPage")}}>Already have an account,  <span class="underline">Login</span></button>
+            </div>
         </div>
     )
 }
