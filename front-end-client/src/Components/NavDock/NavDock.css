@@ -4,9 +4,8 @@
 
 .nav-open-menu-button,
 .nav-close-menu-button {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(0, 0, 0, 0.9);
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   color: white;
   z-index: 3;
@@ -20,14 +19,12 @@
   opacity: 0;
   font-size: small;
   position: absolute;
-  width:max-content;
-  bottom: -35%; /* puts it below icon button */ 
+  bottom: -50%; /* puts it below icon button */ 
   left: 50%; 
   transform: translateX(-50%);  /* centering */
-  background-color: rgba(0, 0, 0, 1);
-  z-index:4;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 3px;
+  padding: 5px;
   border-radius: 5px;
   transition: opacity 0.35s; /* adds smooth transition*/
   transition-delay: 0.4s; /* time taken to remove label (no longer hovering)*/
@@ -42,8 +39,8 @@
     position: fixed;
     width: 250px; /*size of circle, height==width*/
     height: 250px;
-    left:3%;
-    bottom: 3%;
+    left:5%;
+    bottom: 4%;
     z-index:3;
     clip-path: circle(200px); /*makes into a circle , can also use border-radius (at 50%) instead of this*/
   } 
@@ -56,35 +53,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   display: grid;
-  grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 15% 35% 35% 15%;
-  justify-items: center; 
-  align-items: center;
-} 
+  grid-template-columns: 1fr 1fr;
 
-.empty-cell-1 {
-  grid-row: 1 ;
-  grid-column: 1/ span 4;
-}
-.empty-cell-2 {
-  grid-row: 4 ;
-  grid-column: 1/ span 4;
-}
-.empty-cell-3 {
-  grid-row: 2/ span 2;
-  grid-column: 1;
-}
-.empty-cell-4 {
-  grid-row: 2/ span 2;
-  grid-column: 4;
-}
+} 
 
 .nav-dock-modal-content button {
   font-size: xx-large;
   background-color: rgba(0, 0, 0, 0.4); 
-  width: 70px;
-  height: 70px;
+  width:60%;
+  height: 24%;
   border-radius: 10px;
+  position: relative;
+  left:20%;
+  top: 38%;
 }
 
 

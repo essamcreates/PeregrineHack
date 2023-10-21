@@ -1,8 +1,9 @@
-/**  @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html", 
-    "./src//*.{js,ts,jsx,tsx}"
+    './src/**/*.html',
+    './src/**/*.vue',
+    './src/**/*.jsx',
+    // Add any other file types or paths you want to include.
   ],
   theme: {
     extend: {},

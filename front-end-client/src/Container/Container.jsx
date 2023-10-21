@@ -6,11 +6,17 @@ import AccountRegistrationPage from "../Components/AccountRegistrationPage/Accou
 import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreationPage";
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
+
 import NavDock from "../Components/NavDock/NavDock";
+import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
+
+// import NavDock from "../Components/NavDock/NavDock";
+
 
 const Container = () => {
 
     const[currentUser, setCurrentUser]= useState();
+    const [imageName, setImageName] = useState("");
 
     const authenticateUser = async (loginInfo) => {
         const url = `http://localhost:8080/users/authenticate`;
@@ -50,14 +56,17 @@ const Container = () => {
     return (
         <div>
             <BrowserRouter>
-                    <NavDock currentUser={currentUser}/>
+                     <NavDock currentUser={currentUser}/>
                     <Routes>
                         <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
                         <Route path="/AccountRegistrationPage" element={<AccountRegistrationPage signupUser={signupUser}/>}></Route>
                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage currentUser={currentUser}/>}></Route>
-                        <Route path="/ProfilePage" element={<ProfilePage currentUser={currentUser}/>}></Route>
+                        <Route path="/ProfilePage" element={<ProfilePage imageName={imageName} currentUser={currentUser}/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
+                        <Route path="/UploadProfilePhoto" element={<UploadProfilePhoto setImageName ={setImageName} currentUser={currentUser}/>}></Route>
+
+
                     </Routes>
             </BrowserRouter>
         </div>
