@@ -7,21 +7,13 @@ import com.hackathon.server.models.dtos.UserDTO;
 import com.hackathon.server.services.UserService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -43,7 +35,7 @@ public class UserController {
 
     @PostConstruct
     public void init() {
-        File uploadDirectory = new File(PropertiesConfig.getUploadPath());
+        File uploadDirectory = new File(PropertiesConfig.getParentDirectory());
         if (!uploadDirectory.exists()) {
             if (uploadDirectory.mkdirs()) {
                 System.out.println("Directory created successfully");
@@ -92,32 +84,9 @@ public class UserController {
     // get will be needed for sending profile picture to the front end
 
 
-//-----------------------------------------------------------------------------------------------------------------------------
-
-//    @PostMapping("/upload")
-//    @CrossOrigin
-//    public ResponseEntity<String> handleFileUpload(@RequestParam("image") MultipartFile file) {
-//        String fileName = file.getOriginalFilename();
-//        System.out.println(fileName);
-//        try {
-//            File destination = new File(userService.getUploadDirectory() + fileName);
-//            file.transferTo(destination);
-//            System.out.println(destination);
-//
-//            // do the database user link here --
-//
-//            userService.updateProfilePhoto(fileName);
-//
-//            return ResponseEntity.ok("File uploaded successfully.");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//    }
-
     @PostMapping("/upload")
     @CrossOrigin
-    public ResponseEntity<String> handleFileUpload(@RequestParam("image") MultipartFile file) {
+    public ResponseEntity<String> handleProfilePhotoUpload(@RequestParam("image") MultipartFile file) {
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
 

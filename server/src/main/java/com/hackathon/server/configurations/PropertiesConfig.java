@@ -30,5 +30,9 @@ public class PropertiesConfig  {
         return RESOURCE_HANDLER_URL;
     }
 
+    public static String getParentDirectory() {
+        return (parentDirectory.toString()+File.separator+UPLOAD_PATH);
+    }
+
 
 }
