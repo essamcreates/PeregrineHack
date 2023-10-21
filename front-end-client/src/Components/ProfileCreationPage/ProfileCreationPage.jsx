@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import ProfileBox from "./ProfileBox";
-import './ProfileCreationPage.css'
 import ProfileCreationBar from "./ProfileCreationBar";
 
 const ProfileCreationPage = ({ currentUser}) => {
@@ -12,9 +11,9 @@ const ProfileCreationPage = ({ currentUser}) => {
                     <label>Progress Bar</label>
                     <ProfileCreationBar currentUser={currentUser} />
                 </div>
-                <div>
-                    <div class="bg-white shadow-lg rounded-lg box-content h-400 p-8 sm:w-7/8 sm:p-20  md:w-1/3  lg:w-1/3" >
-                        <h1 class="text-2xl text-blue-400" >{currentUser.name}! We'd Love To Know More About you</h1>
+                <div>                
+                    <div class="bg-white shadow-lg rounded-lg p-20" >
+                        <h1 class="text-4xl text-blue-400" >{currentUser.name}! We'd Love To Know More About you</h1>
                         <ProfileBox currentUser={currentUser} />
                     </div>
                 </div>

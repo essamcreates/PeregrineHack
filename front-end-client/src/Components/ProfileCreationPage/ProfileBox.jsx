@@ -145,13 +145,9 @@ const ProfileBox = ({currentUser}) => {
       
 
     return (
-        <div>
+        <div class="">
             <form className="profileCreation" onSubmit={(event)=> {handleCreationClick(event)}}>
-            {/* <label> Job Role/Title:</label>
-                <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
-                <br> */}
                 <label> Career Goals:</label>
-                {/* <input className="input-box" type="text" value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(e.target.value)}}/> */}
                 {careerGoals && (<select className="select-multiple-goals" name="goals" multiple size={3} value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(Array.from(e.target.selectedOptions, (option) => option.value));}}  >
                     {loopCareerGoals()}
                 </select>)}
