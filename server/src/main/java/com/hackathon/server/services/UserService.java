@@ -31,7 +31,7 @@ public class UserService {
 
      public User addUser(UserDTO userDTO) {
          if(userRepository.findByEmail(userDTO.getEmail()) == null){
-             User user = new User(userDTO.getName(),userDTO.getDateOfBirth(),userDTO.getPassword(),userDTO.getGender(),userDTO.getEmail(),"/images/johnpfp.jpg");
+             User user = new User(userDTO.getName(),userDTO.getDateOfBirth(),userDTO.getPassword(),userDTO.getGender(),userDTO.getEmail(),PropertiesConfig.getDefaultProfilePhoto());
              return this.userRepository.save(user);
          }
          return null;

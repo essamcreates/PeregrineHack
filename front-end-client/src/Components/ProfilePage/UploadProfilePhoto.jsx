@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDropzone} from "react-dropzone";
 
-const UploadProfilePhoto = ({setImageName,currentUser}) => {
+const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser}) => {
 
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
@@ -52,6 +52,19 @@ const UploadProfilePhoto = ({setImageName,currentUser}) => {
                 }
             });
     }
+
+    // if imageName changes fetch the user by its id to get the most up-to-date version use a useEffect
+    const fetchUpdatedUser = async () =>{
+        const response = await fetch('http://localhost:8080/users/'+ currentUser.id);
+        const data = await response.json();
+        setCurrentUser(data);
+    }
+
+    useEffect(()=>{
+        fetchUpdatedUser();
+
+    },[imageName]);
+    //--------------------------------------------------------------------------------------------------
 
 
     return (

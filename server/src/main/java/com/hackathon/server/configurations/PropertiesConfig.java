@@ -11,6 +11,8 @@ public class PropertiesConfig  {
    private static final Path parentDirectory = currentDirectory.getParent();
    private static final String RESOURCE_HANDLER_URL = "file:" + parentDirectory + File.separator + UPLOAD_PATH;
 
+    private static final String DEFAULT_PROFILE_PHOTO = "images/stockUser.jpeg";
+
     public static String getUploadPath() {
         return UPLOAD_PATH;
     }
@@ -21,6 +23,10 @@ public class PropertiesConfig  {
 
     public static String getParentDirectory() {
         return (parentDirectory.toString()+File.separator+UPLOAD_PATH);
+    }
+
+    public static String getDefaultProfilePhoto() {
+        return DEFAULT_PROFILE_PHOTO;
     }
 
 }
