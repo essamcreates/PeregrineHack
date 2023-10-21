@@ -110,3 +110,20 @@
     text-align: center;
 }
 /*  */
+
+/* css for chat bot */
+.start-chat-button {
+    border: 2px black solid;
+    border-radius: 4px ;
+    width: 80%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    position: relative;
+    left: 10%;
+}
+
+.convo-box {
+    height:70%;
+    width:90%;
+    overflow-y: auto;
+}
