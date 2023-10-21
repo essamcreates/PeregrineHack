@@ -71,6 +71,7 @@ public class UserService {
 
      public void updateProfilePhoto(String profilePhotoName){
 
+         //extract the userid from the image name since its passed down with the filename of the profile pic
          int extractUserId = Integer.parseInt(extractUserId(profilePhotoName).trim());
 
          User user = userRepository.findById((long) extractUserId).get();

@@ -6,8 +6,12 @@ import AccountRegistrationPage from "../Components/AccountRegistrationPage/Accou
 import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreationPage";
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
+
 import NavDock from "../Components/NavDock/NavDock";
 import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
+
+// import NavDock from "../Components/NavDock/NavDock";
+
 
 const Container = () => {
 
@@ -52,7 +56,7 @@ const Container = () => {
     return (
         <div>
             <BrowserRouter>
-                    <NavDock currentUser={currentUser}/>
+                    {/* <NavDock currentUser={currentUser}/> */}
                     <Routes>
                         <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>

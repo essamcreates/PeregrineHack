@@ -1,7 +1,7 @@
-const Question = () => {
+const Question = ({question}) => {
 
-    return (
-        <></>
-    )
+    return (<div>
+        {question.question}
+    </div>)
 }
 export default Question;
