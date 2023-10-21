@@ -56,7 +56,7 @@ const Container = () => {
     return (
         <div>
             <BrowserRouter>
-                    {/* <NavDock currentUser={currentUser}/> */}
+                     <NavDock currentUser={currentUser}/>
                     <Routes>
                         <Route path="/HomePage" element={<HomePage currentUser={currentUser}/>}></Route>
                         <Route path="/LoginPage" element={<LoginPage authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}></Route>
