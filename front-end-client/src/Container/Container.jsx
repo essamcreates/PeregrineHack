@@ -7,9 +7,7 @@ import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreati
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
 import NavDock from "../Components/NavDock/NavDock";
-
-import NavDock from "../Components/NavDock/NavDock";
-import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
+// import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
 
 
 const Container = () => {
@@ -64,7 +62,7 @@ const Container = () => {
                         <Route path="/ProfileCreationPage" element={<ProfileCreationPage currentUser={currentUser}/>}></Route>
                         <Route path="/ProfilePage" element={<ProfilePage imageName={imageName} currentUser={currentUser}/>}></Route>
                         <Route path="/QuizPage" element={<QuizPage/>}></Route>
-                        <Route path="/UploadProfilePhoto" element={<UploadProfilePhoto setImageName ={setImageName} currentUser={currentUser}/>}></Route>
+                        {/* <Route path="/UploadProfilePhoto" element={<UploadProfilePhoto setImageName ={setImageName} currentUser={currentUser}/>}></Route> */}
 
 
                     </Routes>
