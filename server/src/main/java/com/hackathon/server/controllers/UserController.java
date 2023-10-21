@@ -43,6 +43,7 @@ public class UserController {
                 System.err.println("Failed to create directory");
             }
         }
+        System.out.println("UserController-line46:"+ PropertiesConfig.getResourceHandlerUrl());
     }
 
     @GetMapping

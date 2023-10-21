@@ -24,7 +24,8 @@ public class SpringGlobalConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/profilePhoto/**")
-                .addResourceLocations("file:/Users/tarekahmed/Documents/bnta_work/PeregrineHack/profilePhoto/")
+                .addResourceLocations(PropertiesConfig.getResourceHandlerUrl())
+//                .addResourceLocations("file:/Users/tarekahmed/Documents/bnta_work/PeregrineHack/profilePhoto/")
                 .setCachePeriod(0);
     }
 }
