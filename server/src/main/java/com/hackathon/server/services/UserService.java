@@ -69,23 +69,14 @@ public class UserService {
          return userRepository.save(user);
      }
 
-     public User updateProfilePhoto(String profilePhotoName){
+     public void updateProfilePhoto(String profilePhotoName){
 
-//         // Define a regular expression pattern to match numbers
-//         Pattern pattern = Pattern.compile("\\d+");
-//         // Create a matcher to find the number in the filename
-//         Matcher matcher = pattern.matcher(profilePhotoName);
-//
-//         String numberStr = matcher.group();
-//         // Parse the extracted number as an integer
-//         int number = Integer.parseInt(numberStr);
+         int extractUserId = Integer.parseInt(extractUserId(profilePhotoName).trim());
 
-
-
-         User user = userRepository.findById(1L).get();
+         User user = userRepository.findById((long) extractUserId).get();
          user.setProfilePictureURL(PropertiesConfig.getUploadPath()+profilePhotoName);
 
-         return userRepository.save(user);
+         userRepository.save(user);
      }
 
     public String getUploadDirectory() {
@@ -95,6 +86,22 @@ public class UserService {
         Path parentDirectory = currentDirectory.getParent();
 
         return parentDirectory + File.separator + PropertiesConfig.getUploadPath();
+    }
+
+    public String extractUserId(String str)
+    {
+        // Replacing every non-digit number
+        // with a space(" ")
+        str = str.replaceAll("[^0-9]", " "); // regular expression
+
+        // Replace all the consecutive white
+        // spaces with a single space
+        str = str.replaceAll(" +", " ");
+
+        if (str.equals(""))
+            return "-1";
+
+        return str;
     }
 
 }

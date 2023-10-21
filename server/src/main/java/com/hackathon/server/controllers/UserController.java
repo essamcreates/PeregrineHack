@@ -90,6 +90,7 @@ public class UserController {
     public ResponseEntity<String> handleProfilePhotoUpload(@RequestParam("image") MultipartFile file) {
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
+        System.out.println("UserController-line106: retrieve UserId" + userService.extractUserId(fileName));
 
         try {
             File destination = new File(userService.getUploadDirectory() + fileName);
