@@ -29,4 +29,6 @@ public class PropertiesConfig  {
         return DEFAULT_PROFILE_PHOTO;
     }
 
+    //Completed profilePicture version
+
 }
