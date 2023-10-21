@@ -89,20 +89,17 @@ public class UserService {
         return parentDirectory + File.separator + PropertiesConfig.getUploadPath();
     }
 
-    public String extractUserId(String str)
-    {
-        // Replacing every non-digit number
-        // with a space(" ")
-        str = str.replaceAll("[^0-9]", " "); // regular expression
+    public String extractUserId(String profilePhotoName) {
+        // Replace every non-digit number with a space(" ")
+        profilePhotoName = profilePhotoName.replaceAll("[^0-9]", " "); // regular expression
 
-        // Replace all the consecutive white
-        // spaces with a single space
-        str = str.replaceAll(" +", " ");
+        // Replace all the consecutive whitespaces with a single space
+        profilePhotoName = profilePhotoName.replaceAll(" +", " ");
 
-        if (str.equals(""))
+        if (profilePhotoName.equals(""))
             return "-1";
 
-        return str;
+        return profilePhotoName;
     }
 
 }
