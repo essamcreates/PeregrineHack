@@ -36,7 +36,7 @@ const HomePage = ({currentUser}) => {
         </div>
         <div className="dashboard">
         <div className="daily-message-box"><DailyMessage/></div>
-        <div className="daily-interaction-box"><DailyInteraction/></div>
+        <div className="daily-interaction-box"><DailyInteraction currentUser={currentUser}/></div>
         <div className="chatbot-box"><ChatBot/></div>
         <div className="wellness-box"><WellnessBox/></div>
         <div className="resource-box"><ResourcesBox/></div>
