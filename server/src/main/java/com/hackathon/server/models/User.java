@@ -21,6 +21,9 @@ public class User {
     private String name;
 
     @Column
+    private String email;
+
+    @Column
     private LocalDate dateOfBirth;
 
     @Column
@@ -29,12 +32,7 @@ public class User {
     @Column
     private String gender;
 
-
-//    @ElementCollection(targetClass = AccessNeed.class,fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_access_needs",joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "access_needs")
-//    private List<AccessNeed> accessNeeds;
+    @Column String profilePictureURL;
 
     @ManyToMany
     @JoinTable(
@@ -62,9 +60,9 @@ public class User {
     @Column(name = "mood_entries")
     private List<MoodEntry> moodEntries;
 
-    @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "big_five_trait_id")
-    private PersonalityScore personalityScore;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "personality_score_id")
+//    private PersonalityScore personalityScore;
 
     @ManyToMany
     @JoinTable(
@@ -74,22 +72,21 @@ public class User {
     )
     private List<MentalHealthCondition> mentalHealthConditions;
 
-//    @ElementCollection(targetClass = MentalHealthCondition.class,fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_mental_health_conditions",joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "mental_health_conditions")
-//    private List<MentalHealthCondition> mentalHealthConditions;
-
-
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @Column(name = "user_responses")
+    private List<UserResponse> userResponses;
 
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender) {
+    public User(String name, LocalDate dateOfBirth, String password, String gender, String email, String profilePictureURL) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
+        this.email = email;
+        this.profilePictureURL = profilePictureURL;
     }
 
     public Long getId() {
@@ -132,6 +129,7 @@ public class User {
         this.gender = gender;
     }
 
+
     public List<AccessNeed> getAccessNeeds() {
         return accessNeeds;
     }
@@ -164,13 +162,13 @@ public class User {
         this.moodEntries = moodEntries;
     }
 
-    public PersonalityScore getPersonalityScore() {
-        return personalityScore;
-    }
-
-    public void setPersonalityScore(PersonalityScore personalityScore) {
-        this.personalityScore = personalityScore;
-    }
+//    public PersonalityScore getPersonalityScore() {
+//        return personalityScore;
+//    }
+//
+//    public void setPersonalityScore(PersonalityScore personalityScore) {
+//        this.personalityScore = personalityScore;
+//    }
 
     public List<MentalHealthCondition> getMentalHealthConditions() {
         return mentalHealthConditions;
@@ -178,5 +176,40 @@ public class User {
 
     public void setMentalHealthConditions(List<MentalHealthCondition> mentalHealthConditions) {
         this.mentalHealthConditions = mentalHealthConditions;
+    }
+
+    public void addGoal(Goal goal){
+        this.careerGoals.add(goal);
+    }
+
+    public void addMentalHealthCondition(MentalHealthCondition mentalHealthCondition) {
+        this.mentalHealthConditions.add(mentalHealthCondition);
+    }
+    public void addAccessNeed(AccessNeed accessNeed){
+        this.accessNeeds.add(accessNeed);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<UserResponse> getUserResponses() {
+        return userResponses;
+    }
+
+    public void setUserResponses(List<UserResponse> userResponses) {
+        this.userResponses = userResponses;
+    }
+
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
     }
 }
