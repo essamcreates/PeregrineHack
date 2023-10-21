@@ -64,8 +64,8 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
         fetchUpdatedUser();
 
     },[imageName]);
-    //--------------------------------------------------------------------------------------------------
 
+// completed logic for profile photo image upload
 
     return (
         <>
