@@ -27,7 +27,7 @@ const NavDock = ({currentUser}) => {
                         </div>)}
                         {location.pathname!=="/ProfileCreationPage" && (<div>
                             <button className="nav-icon-button" data-id="Edit Info" onClick={()=>{setNavOpen(false);navigate("/ProfileCreationPage")}}>📝</button>
-                        </div>)}
+                         </div>)}
                         {location.pathname!=="/LoginPage" && (<div>
                             <button className="nav-icon-button" data-id="Signout" onClick={()=>{setNavOpen(false);navigate("/LoginPage")}}>👋🏼</button>
                         </div>)}
@@ -41,3 +41,4 @@ const NavDock = ({currentUser}) => {
     )
 }
 export default NavDock;
+

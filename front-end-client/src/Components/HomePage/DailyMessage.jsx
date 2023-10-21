@@ -20,7 +20,7 @@ const DailyMessage = () => {
 
     return (
         <div>
-        <h2>Daily Message</h2>
+        <h2>Pick Me Up </h2>
         {message && (<p className="message">{message.message}</p>)}
         </div>
     )
