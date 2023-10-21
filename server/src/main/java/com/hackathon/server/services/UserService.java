@@ -1,13 +1,19 @@
 package com.hackathon.server.services;
 
+ import com.hackathon.server.configurations.PropertiesConfig;
  import com.hackathon.server.models.User;
  import com.hackathon.server.models.dtos.UserDTO;
  import com.hackathon.server.repositories.UserRepository;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Service;
 
+ import java.io.File;
+ import java.nio.file.Path;
+ import java.nio.file.Paths;
  import java.time.LocalDate;
  import java.util.List;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -62,5 +68,33 @@ public class UserService {
 
          return userRepository.save(user);
      }
+
+     public User updateProfilePhoto(String profilePhotoName){
+
+//         // Define a regular expression pattern to match numbers
+//         Pattern pattern = Pattern.compile("\\d+");
+//         // Create a matcher to find the number in the filename
+//         Matcher matcher = pattern.matcher(profilePhotoName);
+//
+//         String numberStr = matcher.group();
+//         // Parse the extracted number as an integer
+//         int number = Integer.parseInt(numberStr);
+
+
+
+         User user = userRepository.findById(1L).get();
+         user.setProfilePictureURL(PropertiesConfig.getUploadPath()+profilePhotoName);
+
+         return userRepository.save(user);
+     }
+
+    public String getUploadDirectory() {
+
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        Path currentDirectory = Paths.get(currentWorkingDirectory);
+        Path parentDirectory = currentDirectory.getParent();
+
+        return parentDirectory + File.separator + PropertiesConfig.getUploadPath();
+    }
 
 }
