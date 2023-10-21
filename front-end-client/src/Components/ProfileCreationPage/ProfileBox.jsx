@@ -146,8 +146,6 @@ const ProfileBox = ({currentUser}) => {
 
     return (
         <div>
-            {currentUser.name}
-            {currentUser.id}
             <form className="profileCreation" onSubmit={(event)=> {handleCreationClick(event)}}>
             {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
@@ -173,10 +171,16 @@ const ProfileBox = ({currentUser}) => {
                 <br/>
                 <label> Date of Birth:</label>
                 <div className="select-date">
-                <select id="select-day" value={enteredDOBDay} onChange={(e)=>{setEnteredDOBDay(e.target.value)}}>
+                <select id="select-day" value={enteredDOBDay} onChange={(e)=>{setEnteredDOBDay(e.target.value)}} >
+                    <option value="" disabled selected hidden>
+                        -DD
+                    </option>
                     {loopNumber(1,31)}
                 </select>
-                <select id="select-month" value={enteredDOBMonth}onChange={(e)=>{setEnteredDOBMonth(e.target.value)}}>
+                <select id="select-month" value={enteredDOBMonth}onChange={(e)=>{setEnteredDOBMonth(e.target.value)}} >
+                    <option value="" disabled selected hidden>
+                        -MM
+                    </option>
                     <option value="01">January</option>
                     <option value="02">February</option>
                     <option value="03">March</option>
@@ -190,7 +194,10 @@ const ProfileBox = ({currentUser}) => {
                     <option value="11">November</option>
                     <option value="12">December</option>
                 </select>
-                <select id="select-year"  value={enteredDOBYear} onChange={(e)=>{setEnteredDOBYear(e.target.value)}}>
+                <select id="select-year"  value={enteredDOBYear} onChange={(e)=>{setEnteredDOBYear(e.target.value)}} placeholder="YYYY">
+                    <option value="" disabled selected hidden>
+                        -YYYY
+                    </option>
                     {loopNumber(1935,2023)}
                 </select>
                 </div>
