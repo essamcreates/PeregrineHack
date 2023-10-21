@@ -61,7 +61,7 @@ const UploadProfilePhoto = ({setImageName,currentUser}) => {
                     <input {...getInputProps()} />
                     <p>Click or drag a file to upload</p>
                 </div>
-                {/*{file && <p>Selected file: {file.name}</p>}*/}
+                {file && <p>Selected file: {file.name}</p>}
 
                 <button type="submit" onClick={(e) => handleForm(e)}>
                     Submit
