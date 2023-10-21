@@ -7,9 +7,13 @@ const ChatBot = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [response, setResponse] = useState("");
     const [previousSteps, setPreviousSteps] = useState([]);
+    const [userInput, setUserInput] = useState();
+    const [sent, setSent] = useState(false)
 
     // will have a conversation (with directed points) , these directed points/ options will be sent to api
     // chat bot will display the question & options and the user will click the button (choosing thier desired option) then the next question will come up
+    // need to display users question.
+
 
     const chatBotRequest=async(input)=>{
         try {
@@ -17,8 +21,9 @@ const ChatBot = () => {
             const response = await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "text/plain" },
-              body: input + "reponse in less than 70 words",
+              body: input + "response in less than 70 words",
             });
+            
         
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -43,6 +48,7 @@ const ChatBot = () => {
             options: [
                 { displayText: "Wellness", sendText: "Question : Regarding my wellness at work ", next: 2 },
                 { displayText: "Career", sendText: "Question : In terms of my career ", next: 6 },
+                { displayText : "Or Ask Farai a Question", sendText: "Question", next: 100 } // 100 means user wants to input
             ],
         },
         {
@@ -89,10 +95,12 @@ const ChatBot = () => {
         setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
         setRequestString(requestString+text)
         if(nextStep!==0){
+            
             setCurrentStep(nextStep)
             chatBotText();
         }else {
             await chatBotRequest(requestString+text)
+            setSent(true)
             console.log(previousSteps)
         }
         
@@ -100,9 +108,21 @@ const ChatBot = () => {
 
     const chatBotText = () => {
         if(currentStep === 0) {return}
-        // console.log(conversationFlow[currentStep])
+        if(currentStep=== 100){
+            // meaning user wants to input a question
+            // 
+            return (
+            <div>
+                {!sent && (<div>
+                <input type="text" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
+                <button onClick={()=>{chatBotRequest(userInput); setSent(true)}}>Ask Farai</button></div>)}
+                {sent && response && (<div>
+                    <p> {userInput}</p>
+                </div>)}
+                {/* above doesnt currently display */}
+                </div>)
+        }
         const currentLevel= conversationFlow.find((step) => step.id === currentStep)
-        // load choices into array
         const choices =[]
         currentLevel.options.map((option, index)=>{
             choices.push(<div key={index}><button onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
@@ -124,7 +144,6 @@ const ChatBot = () => {
             <div className="message"><p>{prevText.message}</p></div>
             <div>{choices}</div>
         </div>)
-
         })
     }
 
@@ -135,13 +154,16 @@ const ChatBot = () => {
     return (
         <>
         <h2>ChatBot</h2>
-        {!usingChatBot && (<div><button className="start-chat-button" onClick={()=>setUsingChatBot(true)}>Click to speak to Bob!</button></div>)}
-        {usingChatBot && (<div className="convo-box">
+        {!usingChatBot && (<div><button className="start-chat-button" onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>)}
+        {usingChatBot && (
+        <div className="convo-box">
            {previousSteps && (<p>{prevChatBotText()}</p>)}
-            <div> {!response &&<p>
-        {chatBotText()}</p>}</div>
-        <div>{response && (<h2>Bob:</h2>)}
-        <p>{response}</p> </div></div>)}
+            <div> {!response && !sent &&
+            <p>{chatBotText()}</p>
+            }</div>
+             {sent &&(<div>{response && (<h2>Farai:</h2>)}
+        <p>{response}</p> </div>)}
+        </div>)}
         
         </>
     )

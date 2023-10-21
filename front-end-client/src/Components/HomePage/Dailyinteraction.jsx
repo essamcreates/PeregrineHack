@@ -1,4 +1,6 @@
-const DailyInteraction = () => {
+const DailyInteraction = ({currentUser}) => {
+
+    // fetch daily question
 
     return (
         <>
