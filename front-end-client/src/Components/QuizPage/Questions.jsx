@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import Question from "./Question";
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
@@ -50,13 +49,6 @@ const Questions = () => {
         body:JSON.stringify(request),
       })
       console.log(response);
-      // if (response.status === 201) {
-      //     const newUser = await response.json();
-      //     setCurrentUser(newUser)
-      //     return true
-      // } else {
-      //     return false
-      // }
   }
 
 
@@ -103,7 +95,6 @@ const Questions = () => {
     return (
       <div>
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
-         {/* {mappedQuestions} */}
          {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Send to API</button>)}
       </div>
     );
