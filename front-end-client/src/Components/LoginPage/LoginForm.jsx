@@ -1,6 +1,6 @@
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
-import './LoginPage.css';
+
 
 const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
 
@@ -30,20 +30,43 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
 
     return (
         <div>
-            {!currentUser && (<form className="login-form" onSubmit={(event)=>{handleLoginClick(event)}}>
-                <label> Email:</label>
-                <input className="input-box" type="text" value={currentEmail} onChange={(e)=>{setCurrentEmail(e.target.value)}}/>
-                <br/>
-                <br/>
-                <label> Password:</label>
-                {/* change the type="text" to ="password" after testing etc*/}
-                <input className="input-box" type="text" value={currentPassword} onChange={(e)=>{setCurrentPassword(e.target.value)}}/>
-                <input type="submit" value="Login"/>
-            </form>)}
-            {failedLogin && (<><p>Warning: incorrect email or password. Please try again</p></>)}
-            {/* sign out */}
-            {currentUser && (<button onClick={()=>{setCurrentUser(null)}}>signout</button>)}
-        </div>
+        {!currentUser && (
+          <form onSubmit={(event) => handleLoginClick(event)}>
+            {/* <label class="text-gray-700 p-4">Email: </label> */}
+            <input class="border border-gray-300 rounded p-2 w-full mb-4"
+              type="text"
+              value={currentEmail}
+              onChange={(e) => setCurrentEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
+            <br />
+            {/* <label class="text-gray-700 p-4">Password: </label> */}
+            <input class="border border-gray-300 rounded p-2 w-full"
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+            <a href="#" class="underline w-full flex justify-end">Forgotten Password?</a>
+            <div class="w-full flex justify-end">
+            <button
+              class="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
+              type="submit"
+            >
+              Login
+            </button>
+            </div>
+          </form>
+        )}
+        {failedLogin && (
+          <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
+        )}
+        {currentUser && (
+          <button class="bg-red-500 text-white py-2 px-4 rounded" onClick={() => setCurrentUser(null)}>
+            Signout
+          </button>
+        )}
+      </div>
     )
 }
 export default LoginForm;

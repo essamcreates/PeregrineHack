@@ -60,11 +60,10 @@ const ProfileBox = ({currentUser}) => {
         } else {
             let tempDoB = {
                 dateOfBirth:enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay,
-                
-                // String name, LocalDate dateOfBirth, String password, String gender, String email
-                // do we only need the above two as they will be the ones that need to be added to the database?
             }
-            let tempGender={gender: enteredGender,}
+            let tempGender={
+                gender: enteredGender,
+            }
             let tempGoals = {
                 goalIds: enteredCareerGoals,
             }
