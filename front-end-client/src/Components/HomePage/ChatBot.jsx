@@ -124,10 +124,6 @@ const ChatBot = () => {
                         <button onClick={()=>{chatBotRequest(userInput);setPrevChoices((prevChoices) => [...prevChoices, userInput]) ;setSent(true)}}>Ask Farai</button>
                 </div>
                 </>)}
-                {/* {sent && response && (<div>
-                    <p> {userInput}</p>
-                </div>)} */}
-                {/* above doesnt currently display */}
                 </div>)
         }
         const currentLevel= conversationFlow.find((step) => step.id === currentStep)
@@ -147,7 +143,7 @@ const ChatBot = () => {
     }
 
     const prevChatBotText = () => {
-        return previousSteps.map((stepId, index)=>{
+        const prev = previousSteps.map((stepId, index)=>{
             const prevText = conversationFlow.find((step) => step.id === stepId)
             const choices =[]
             prevText.options.map((option, index)=>{
@@ -168,41 +164,75 @@ const ChatBot = () => {
             </div>
         </div>)
         })
+        if(currentStep===100 && sent){
+            return(<>
+                {prev}
+                <div class="flex justify-end">
+                    <p class="mr-1 mt-2 w-4/5 border-2 border-blue-900 bg-green-100 p-1 text-center rounded-md">{userInput}</p>
+                </div>
+            </>
+            )
+        }else{
+            return (<>
+                {prev}
+            </>)
+        }
     }
 
     useEffect(()=>{
         prevChatBotText();
     }, [previousSteps])
 
+    const handleExit = () =>{
+        setUsingChatBot(false)
+        setCurrentStep(1);
+        setRequestString("")
+        setResponse("");
+        setPreviousSteps([]);
+        setUserInput();
+        setSent(false);
+        setPrevChoices([]);
+    }
+
     return (
         <div class="border-2 border-slate-700 bg-slate-200 h-full rounded-lg p-1 shadow-xl shadow-inner">
+        <div class="grid grid-cols-2">
         <div class="mt-3 m-2 text-3xl">ChatBot</div>
+        {usingChatBot && (<div class="flex justify-end m-2 mt-3">
+            <button onClick={()=>{handleExit()}}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-9">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
+            </button>
+            </div>)}
+        </div>
         {!usingChatBot && (
             <div>
-        <div class=" flex items-center justify-center">
-            <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>
-            <div class=" flex items-center justify-center mt-20 "><img src="src/assets/bird-removebg-preview.png" class="w-1/2 motion-safe:animate-bounce" alt="Image of Farai the bird"/>
-        </div>
-        </div>)}
-        {usingChatBot && (
-            <div class="flex items-center justify-center h-full">
-            <div class="w-11/12 h-5/6 overflow-scroll">
-           {previousSteps && (
-                <p>{prevChatBotText()}</p>
-            )}
-            <div> 
-                {!response && !sent &&
-                <p>{chatBotText()}</p>
-            }
-            </div>
-
-            {sent &&(
-                <div>
-                    {response && (<p class="text-sm ml-1 mb-0">Farai</p>)}
-                    {response ? (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md" >{response}</p>) : (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-2/12 p-2 text-center rounded-md"><span class="animate-ping">...</span></p>)} 
+                <div class=" flex items-center justify-center">
+                    <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>
+                    <div class=" flex items-center justify-center mt-20 "><img src="src/assets/bird-removebg-preview.png" class="w-1/2 " alt="Image of Farai the bird"/>
                 </div>
-        )}</div>
-        </div>
+            </div>
+        )}
+        {usingChatBot && (
+            <div class=" flex items-center justify-center h-full">
+                <div class="w-11/12 h-5/6 overflow-scroll">
+                {previousSteps && (
+                    <p>{prevChatBotText()}</p>
+                )}
+                <div> 
+                    {!response && !sent &&
+                        <p>{chatBotText()}</p>
+                    }
+                </div>
+
+                {sent &&(
+                    <div>
+                        {response && (<p class="text-sm ml-1 mb-0">Farai</p>)}
+                        {response ? (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md" >{response}</p>) : (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-2/12 p-2 text-center rounded-md"><span class="animate-ping">...</span></p>)} 
+                    </div>
+                )}</div>
+            </div>
         )}
         
         </div>
