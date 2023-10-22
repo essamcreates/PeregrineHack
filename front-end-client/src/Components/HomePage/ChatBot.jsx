@@ -92,17 +92,19 @@ const ChatBot = () => {
         },
     ];
 
-    const handleOptionClick = async(text , nextStep) => {
-        setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
+    const handleOptionClick = async(index, text , nextStep) => {
         setRequestString(requestString+text)
+        setPrevChoices((prevChoices) => [...prevChoices, index])
+
         if(nextStep!==0){
-            
+            setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
             setCurrentStep(nextStep)
             chatBotText();
         }else {
             await chatBotRequest(requestString+text)
             setSent(true)
             console.log(previousSteps)
+            setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
         }
         
     }
@@ -126,10 +128,10 @@ const ChatBot = () => {
         const currentLevel= conversationFlow.find((step) => step.id === currentStep)
         const choices =[]
         currentLevel.options.map((option, index)=>{
-            if((index=== currentLevel.options.length -1) && (currentLevel.options.length % 2===1)){
-                choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>) 
+            if((index=== currentLevel.options.length -1) && (index % 2===0)){
+                choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.displayText,option.sendText,option.next)}}>{option.displayText}</button></div>) 
             }else{
-            choices.push(<div class=" flex items-center justify-center" key={index}><button class="my-1 w-10/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
+            choices.push(<div class=" flex items-center justify-center" key={index}><button class="my-1 w-10/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(index,option.sendText,option.next)}}>{option.displayText}</button></div>)
             }
         })
         return (<div class="place-items-start">
@@ -144,7 +146,7 @@ const ChatBot = () => {
             const prevText = conversationFlow.find((step) => step.id === stepId)
             const choices =[]
             prevText.options.map((option, index)=>{
-                if((index=== prevText.options.length -1) && (prevText.options.length % 2===1)){
+                if((index=== prevText.options.length -1) && (index % 2===0)){
                     choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
                 }else{
                 choices.push(<div key={index}><button class="m-1 ml-2 w-10/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
@@ -152,7 +154,7 @@ const ChatBot = () => {
             })
             return (<div>
                 <p class="text-sm ml-2 mb-0">Farai</p>
-            <div><p class="border-2 border-blue-900 bg-blue-100 w-2/3 p-2 text-center rounded-md m-1">{prevText.message}</p></div>
+            {prevText.message && (<div><p class="border-2 border-blue-900 bg-blue-100 w-2/3 p-2 text-center rounded-md m-1">{prevText.message}</p></div>)}
             <div class="grid grid-cols-2 w-2/3 m-1">{choices}</div>
         </div>)
         })
@@ -173,7 +175,8 @@ const ChatBot = () => {
         </div>
         </div>)}
         {usingChatBot && (
-        <div className="convo-box">
+            <div class="flex items-center justify-center h-full">
+            <div class="w-11/12 h-5/6 overflow-scroll">
            {previousSteps && (
                 <p>{prevChatBotText()}</p>
             )}
@@ -188,7 +191,7 @@ const ChatBot = () => {
                     {response && (<h2>Farai:</h2>)}
                     <p>{response}</p> 
                 </div>
-        )}
+        )}</div>
         </div>
         )}
         

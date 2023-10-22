@@ -57,14 +57,20 @@ const DailyInteraction = ({currentUser}) => {
     const displayOptions = () => {
         const options=["optionOne","optionTwo","optionThree","optionFour","optionFive"]
         const choices=[]
-        options.map((option)=> {
+        options.map((option, index)=> {
             const choice = question[option]
             if(choice){
+                if((index === 4) && (index % 2===0)){
                 choices.push(
-                <div class="flex items-center justify-center">
-                    <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                <div key={index}class="col-span-2 flex items-center justify-center">
+                    <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-2/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
                 </div>
-                )
+                )}else{
+                    choices.push(
+                        <div key={index}class="flex items-center justify-center">
+                            <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                        </div>)
+                }
             }
         });
         return choices
