@@ -74,10 +74,10 @@ const ChatBot = () => {
             id: 5,
             message: "When are you planning on trying to de-stress?",
             options: [
-                { displayText: "Short Break (e.g., 15 minutes)", sendText: "(Short break) est 15 minutes ", next: 0 },
+                { displayText: "Short Break", sendText: "(Short break) est 15 minutes ", next: 0 },
                 { displayText: "Take Lunch ", sendText: "(Lunch) est 60 mins or so ", next: 0 },
                 { displayText: "After Work ", sendText: "Evening ", next: 0 },
-                { displayText: "At the Weekend/Days Off", sendText: "The weekend / days off ", next: 0 },
+                { displayText: "At the Weekend", sendText: "The weekend / days off ", next: 0 },
             ],
         },
         {
@@ -92,9 +92,9 @@ const ChatBot = () => {
         },
     ];
 
-    const handleOptionClick = async(index, text , nextStep) => {
+    const handleOptionClick = async(choice, text , nextStep) => {
         setRequestString(requestString+text)
-        setPrevChoices((prevChoices) => [...prevChoices, index])
+        setPrevChoices((prevChoices) => [...prevChoices, choice])
 
         if(nextStep!==0){
             setPreviousSteps((prevSteps) => [...prevSteps, currentStep])
@@ -118,7 +118,7 @@ const ChatBot = () => {
             <div>
                 {!sent && (<div>
                 <input type="text" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
-                <button onClick={()=>{chatBotRequest(userInput); setSent(true)}}>Ask Farai</button></div>)}
+                <button onClick={()=>{chatBotRequest(userInput);setPrevChoices((prevChoices) => [...prevChoices, userInput]) ;setSent(true)}}>Ask Farai</button></div>)}
                 {sent && response && (<div>
                     <p> {userInput}</p>
                 </div>)}
@@ -129,33 +129,38 @@ const ChatBot = () => {
         const choices =[]
         currentLevel.options.map((option, index)=>{
             if((index=== currentLevel.options.length -1) && (index % 2===0)){
-                choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.displayText,option.sendText,option.next)}}>{option.displayText}</button></div>) 
+                choices.push(<div class="col-span-2 flex items-center justify-center m-1" key={index}><button class="w-11/12 h-full mt-3 m-2 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.displayText,option.sendText,option.next)}}>{option.displayText}</button></div>) 
             }else{
-            choices.push(<div class=" flex items-center justify-center" key={index}><button class="my-1 w-10/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(index,option.sendText,option.next)}}>{option.displayText}</button></div>)
+            choices.push(<div class=" flex items-center justify-center m-1" key={index}><button class="w-10/12 h-full m-2 mt-2 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.displayText,option.sendText,option.next)}}>{option.displayText}</button></div>)
             }
         })
         return (<div class="place-items-start">
             <p class="text-sm ml-2 mb-0">Farai</p>
-            {currentLevel.message && (<div><p class="border-2 border-blue-900 bg-blue-200 w-2/3 p-2 text-center rounded-md m-1">{currentLevel.message}</ p></div>)}
-            <div class="grid grid-cols-2 w-2/3 m-1">{choices}</div>
+            {currentLevel.message && (<div><p class="border-2 border-blue-900 bg-blue-200 w-3/4 p-2 text-center rounded-md m-1">{currentLevel.message}</ p></div>)}
+            <div class="grid grid-cols-2 w-3/4 m-1">{choices}</div>
         </div>)
     }
 
     const prevChatBotText = () => {
-        return previousSteps.map((stepId)=>{
+        return previousSteps.map((stepId, index)=>{
             const prevText = conversationFlow.find((step) => step.id === stepId)
             const choices =[]
             prevText.options.map((option, index)=>{
                 if((index=== prevText.options.length -1) && (index % 2===0)){
-                    choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
+                    choices.push(<div class="col-span-2 flex items-center justify-center m-1" key={index}><button class="w-11/12 h-full mt-3 m-2 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
                 }else{
-                choices.push(<div key={index}><button class="m-1 ml-2 w-10/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
+                choices.push(<div class=" flex items-center justify-center m-1" key={index}><button class="ml-1 h-full w-10/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
                 }
             })
             return (<div>
-                <p class="text-sm ml-2 mb-0">Farai</p>
-            {prevText.message && (<div><p class="border-2 border-blue-900 bg-blue-100 w-2/3 p-2 text-center rounded-md m-1">{prevText.message}</p></div>)}
-            <div class="grid grid-cols-2 w-2/3 m-1">{choices}</div>
+                <p class="text-sm ml-1 mb-0">Farai</p>
+            {prevText.message && (<div><p class="ml-1 border-2 border-blue-900 bg-blue-100 w-3/4 p-2 text-center rounded-md ">{prevText.message}</p></div>)}
+            <div class="grid grid-cols-2 w-3/4 m-1">{choices}</div>
+            <div class="flex justify-end">
+                <p class="text-sm mr-1 mb-0">You</p></div>
+            <div class="flex justify-end">
+                <p class="mr-1 w-2/5 border-2 border-blue-900 bg-green-100 p-1 text-center rounded-md">{prevChoices[index]}</p>
+            </div>
         </div>)
         })
     }
@@ -188,8 +193,8 @@ const ChatBot = () => {
 
             {sent &&(
                 <div>
-                    {response && (<h2>Farai:</h2>)}
-                    <p>{response}</p> 
+                    {response && (<p class="text-sm ml-1 mb-0">Farai</p>)}
+                    <p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md" >{response}</p> 
                 </div>
         )}</div>
         </div>
