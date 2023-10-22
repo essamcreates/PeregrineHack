@@ -53,14 +53,14 @@ const NavDock = ({ currentUser }) => {
                     </button>
                   </div>
                 )}
-                {location.pathname !== "/ProfileCreationPage" && (
+                {location.pathname !== "/EditProfile" && (
                   <div>
                     <button
                       className="nav-icon-button"
                       data-id="Edit Info"
                       onClick={() => {
                         setNavOpen(false);
-                        navigate("/ProfileCreationPage");
+                        navigate("/EditProfile");
                       }}
                     >
                       📝
