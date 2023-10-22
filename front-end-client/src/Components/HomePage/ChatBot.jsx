@@ -22,7 +22,7 @@ const ChatBot = () => {
             const response = await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "text/plain" },
-              body: input + "response in less than 70 words",
+              body: input + "(response in less than 70 words)",
             });
             
         
@@ -116,12 +116,17 @@ const ChatBot = () => {
             // 
             return (
             <div>
-                {!sent && (<div>
-                <input type="text" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
-                <button onClick={()=>{chatBotRequest(userInput);setPrevChoices((prevChoices) => [...prevChoices, userInput]) ;setSent(true)}}>Ask Farai</button></div>)}
-                {sent && response && (<div>
+                {!sent && (<>
+                <div class="h-full flex justify-end">
+                    <textarea class="border-2 border-blue-800 bg-green-200 w-3/4 h-20 mt-3 p-1 rounded-lg" placeholder="Ask Farai about career goals, skills, wellness..." type="text" maxlength="150" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
+                </div>
+                <div class="h-full flex justify-end">
+                        <button onClick={()=>{chatBotRequest(userInput);setPrevChoices((prevChoices) => [...prevChoices, userInput]) ;setSent(true)}}>Ask Farai</button>
+                </div>
+                </>)}
+                {/* {sent && response && (<div>
                     <p> {userInput}</p>
-                </div>)}
+                </div>)} */}
                 {/* above doesnt currently display */}
                 </div>)
         }
@@ -171,7 +176,7 @@ const ChatBot = () => {
 
     return (
         <div class="border-2 border-slate-700 bg-slate-200 h-full rounded-lg p-1 shadow-xl shadow-inner">
-        <h2 class="mt-2 text-2xl">ChatBot</h2>
+        <div class="mt-3 m-2 text-3xl">ChatBot</div>
         {!usingChatBot && (
             <div>
         <div class=" flex items-center justify-center">
@@ -194,7 +199,7 @@ const ChatBot = () => {
             {sent &&(
                 <div>
                     {response && (<p class="text-sm ml-1 mb-0">Farai</p>)}
-                    <p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md" >{response}</p> 
+                    {response ? (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md" >{response}</p>) : (<p class="ml-1 border-2 border-blue-900 bg-blue-100 w-2/12 p-2 text-center rounded-md"><span class="animate-ping">...</span></p>)} 
                 </div>
         )}</div>
         </div>
