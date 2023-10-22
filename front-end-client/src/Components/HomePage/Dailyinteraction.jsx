@@ -61,8 +61,8 @@ const DailyInteraction = ({currentUser}) => {
             const choice = question[option]
             if(choice){
                 choices.push(
-                <div>
-                    <button value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                <div class="flex items-center justify-center">
+                    <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
                 </div>
                 )
             }
@@ -71,12 +71,12 @@ const DailyInteraction = ({currentUser}) => {
     }
 
     return (
-        <>
-        <div><h3>Question</h3></div>
+        <div class="border-2 border-slate-700 bg-blue-50 h-full rounded-lg p-1 shadow-xl">
+        <div><h3 class="text-xl ml-2">Question</h3></div>
         {question && !questionAnswered &&(
             <div>
-                {question.question}
-                {displayOptions()}
+                <div class="text-center text-xl mt-1">{question.question}</div>
+                <div class="grid grid-cols-2 " >{displayOptions()}</div>
             </div>
         )}
         {questionAnswered && (
@@ -85,7 +85,7 @@ const DailyInteraction = ({currentUser}) => {
                 <p>Your Answer: {question[userAnswer]}</p>
             </div>
         )}
-        </>
+        </div>
     )
 }
 export default DailyInteraction;
