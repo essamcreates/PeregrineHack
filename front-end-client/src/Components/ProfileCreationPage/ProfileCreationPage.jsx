@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import ProfileCreationBar from "./ProfileCreationBar";
-import "./ProfileCreationPage.css";
 
 const ProfileCreationPage = ({ currentUser }) => {
   const navigate = useNavigate();
