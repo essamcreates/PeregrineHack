@@ -80,9 +80,9 @@ const DailyInteraction = ({currentUser}) => {
             </div>
         )}
         {questionAnswered && (
-            <div>
-                <p>Question: {question.question}</p>
-                <p>Your Answer: {question[userAnswer]}</p>
+            <div >
+                <p class="text-2xl text-center mt-6">{question.question}</p>
+                <p class="text-xl text-center m-5" >{question[userAnswer]}</p>
             </div>
         )}
         </div>

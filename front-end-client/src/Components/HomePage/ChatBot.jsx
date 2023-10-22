@@ -9,6 +9,7 @@ const ChatBot = () => {
     const [previousSteps, setPreviousSteps] = useState([]);
     const [userInput, setUserInput] = useState();
     const [sent, setSent] = useState(false)
+    const [prevChoices, setPrevChoices] = useState([])
 
     // will have a conversation (with directed points) , these directed points/ options will be sent to api
     // chat bot will display the question & options and the user will click the button (choosing thier desired option) then the next question will come up
@@ -125,11 +126,16 @@ const ChatBot = () => {
         const currentLevel= conversationFlow.find((step) => step.id === currentStep)
         const choices =[]
         currentLevel.options.map((option, index)=>{
-            choices.push(<div key={index}><button onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
+            if((index=== currentLevel.options.length -1) && (currentLevel.options.length % 2===1)){
+                choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>) 
+            }else{
+            choices.push(<div class=" flex items-center justify-center" key={index}><button class="my-1 w-10/12 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md"onClick={()=>{handleOptionClick(option.sendText,option.next)}}>{option.displayText}</button></div>)
+            }
         })
-        return (<div  className="chat-bot-message">
-            <div className="message"><p>{currentLevel.message}</p></div>
-            <div>{choices}</div>
+        return (<div class="place-items-start">
+            <p class="text-sm ml-2 mb-0">Farai</p>
+            {currentLevel.message && (<div><p class="border-2 border-blue-900 bg-blue-200 w-2/3 p-2 text-center rounded-md m-1">{currentLevel.message}</ p></div>)}
+            <div class="grid grid-cols-2 w-2/3 m-1">{choices}</div>
         </div>)
     }
 
@@ -138,11 +144,16 @@ const ChatBot = () => {
             const prevText = conversationFlow.find((step) => step.id === stepId)
             const choices =[]
             prevText.options.map((option, index)=>{
-                choices.push(<div key={index}><button disabled>{option.displayText}</button></div>)
+                if((index=== prevText.options.length -1) && (prevText.options.length % 2===1)){
+                    choices.push(<div class="col-span-2 flex items-center justify-center" key={index}><button class="m-1 w-11/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
+                }else{
+                choices.push(<div key={index}><button class="m-1 ml-2 w-10/12 border-2 border-blue-900 bg-red-100 p-1 text-center rounded-md" disabled>{option.displayText}</button></div>)
+                }
             })
-            return (<div  className="chat-bot-message">
-            <div className="message"><p>{prevText.message}</p></div>
-            <div>{choices}</div>
+            return (<div>
+                <p class="text-sm ml-2 mb-0">Farai</p>
+            <div><p class="border-2 border-blue-900 bg-blue-100 w-2/3 p-2 text-center rounded-md m-1">{prevText.message}</p></div>
+            <div class="grid grid-cols-2 w-2/3 m-1">{choices}</div>
         </div>)
         })
     }
@@ -152,20 +163,36 @@ const ChatBot = () => {
     }, [previousSteps])
 
     return (
-        <>
-        <h2>ChatBot</h2>
-        {!usingChatBot && (<div><button className="start-chat-button" onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>)}
+        <div class="border-2 border-slate-700 bg-slate-200 h-full rounded-lg p-1 shadow-xl shadow-inner">
+        <h2 class="mt-2 text-2xl">ChatBot</h2>
+        {!usingChatBot && (
+            <div>
+        <div class=" flex items-center justify-center">
+            <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>
+            <div class=" flex items-center justify-center mt-20 "><img src="src/assets/bird-removebg-preview.png" class="w-1/2 motion-safe:animate-bounce" alt="Image of Farai the bird"/>
+        </div>
+        </div>)}
         {usingChatBot && (
         <div className="convo-box">
-           {previousSteps && (<p>{prevChatBotText()}</p>)}
-            <div> {!response && !sent &&
-            <p>{chatBotText()}</p>
-            }</div>
-             {sent &&(<div>{response && (<h2>Farai:</h2>)}
-        <p>{response}</p> </div>)}
-        </div>)}
+           {previousSteps && (
+                <p>{prevChatBotText()}</p>
+            )}
+            <div> 
+                {!response && !sent &&
+                <p>{chatBotText()}</p>
+            }
+            </div>
+
+            {sent &&(
+                <div>
+                    {response && (<h2>Farai:</h2>)}
+                    <p>{response}</p> 
+                </div>
+        )}
+        </div>
+        )}
         
-        </>
+        </div>
     )
 }
 export default ChatBot;
