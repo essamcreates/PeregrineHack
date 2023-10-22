@@ -33,7 +33,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
       };
       let signupAccepted = await signupUser(temp);
       if (signupAccepted) {
-        navigate("/ProfileCreationPage");
+        navigate("/EditProfile");
       } else {
         setInputErrorMessage("Email already in use");
         setInputError(true);

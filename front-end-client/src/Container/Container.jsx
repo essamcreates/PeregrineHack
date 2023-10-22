@@ -70,7 +70,7 @@ const Container = () => {
             element={<AccountRegistrationPage signupUser={signupUser} />}
           ></Route>
           <Route
-            path="/ProfileCreationPage"
+            path="/EditProfile"
             element={<ProfileCreationPage currentUser={currentUser} />}
           ></Route>
           <Route
