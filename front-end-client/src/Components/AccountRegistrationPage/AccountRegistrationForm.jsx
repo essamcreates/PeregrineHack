@@ -46,10 +46,10 @@ const AccountRegistrationForm = ({ signupUser }) => {
   };
 
   return (
-    <div className="w-full bg-white rounded-lg shadow md:mt-2 sm:max-w-md xl:p-0">
-      <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+    <div className="w-90">
+      <div>
         <form
-          className="signup-form space-y-4 md:space-y-6"
+          name="signup-form"
           onSubmit={(event) => {
             handleSignupClick(event);
           }}
@@ -67,7 +67,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
               type="text"
               name="name"
               id="name"
-              className="input-box bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="border border-gray-300 rounded p-2 w-full mb-4"
               value={enteredName}
               onChange={(e) => {
                 setEnteredName(e.target.value);
@@ -81,7 +81,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
               type="text"
               name="email"
               id="email"
-              className="input-box bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="border border-gray-300 rounded p-2 w-full mb-4"
               value={enteredEmail}
               onChange={(e) => {
                 setEnteredEmail(e.target.value);
@@ -96,7 +96,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
               type="text"
               name="password"
               id="password"
-              className="input-box bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="border border-gray-300 rounded p-2 w-full mb-4"
               value={enteredPassword}
               onChange={(e) => {
                 setEnteredPassword(e.target.value);
@@ -110,7 +110,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
               type="text"
               name="confirm-password"
               id="confirm-password"
-              className="input-box bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="border border-gray-300 rounded p-2 w-full mb-4"
               value={enteredConfirmedPassword}
               onChange={(e) => {
                 setConfirmedPassword(e.target.value);
@@ -120,7 +120,7 @@ const AccountRegistrationForm = ({ signupUser }) => {
           </fieldset>
           <button
             type="submit"
-            className="w-full text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            className="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
           >
             Sign Up
           </button>
@@ -132,19 +132,18 @@ const AccountRegistrationForm = ({ signupUser }) => {
           </div>
         )}
 
-        <div className="login-div">
-          <span>Already have an account? </span>
+        <div class="w-full flex justify-center">
           <button
-            className="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             onClick={() => {
               navigate("/LoginPage");
             }}
           >
-            Login
+            Already have an account, <span class="underline">Login</span>
           </button>
         </div>
       </div>
     </div>
   );
 };
+
 export default AccountRegistrationForm;
