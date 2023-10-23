@@ -260,7 +260,6 @@ const ChatBot = () => {
         {currentLevel.message && (
           <div>
             <p class="rounded-lg bg-teal-400 text-white py-4 px-5 mt-4 mb-6">
-              {/* border-2 border-blue-900 bg-blue-200 w-3/4 p-2 text-center rounded-md m-1 */}
               {currentLevel.message}
             </p>
           </div>
