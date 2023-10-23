@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DateOfBirthListbox from "./DateOfBirthListbox";
 
-const ProfileBox = ({ currentUser }) => {
+const ProfileForm = ({ currentUser }) => {
   // Add in validation when no current user that they need to login first
 
   // const [enteredJobRole, setEnteredJobRole] = useState ("")
   const [enteredCareerGoals, setEnteredCareerGoals] = useState([]);
-  const [enteredDOBDay, setEnteredDOBDay] = useState();
-  const [enteredDOBMonth, setEnteredDOBMonth] = useState();
-  const [enteredDOBYear, setEnteredDOBYear] = useState();
+  const [dateOfBirth, setDateOfBirth] = useState({
+    day: "DD",
+    month: "MM",
+    year: "YYYY"
+  });
   const [enteredGender, setEnteredGender] = useState("");
   const [enteredAccessNeeds, setEnteredAccessNeeds] = useState([]);
   const [enteredMentalHealthConditions, setEnteredMentalHealthConditions] = useState([]);
@@ -55,12 +58,17 @@ const ProfileBox = ({ currentUser }) => {
 
   const handleCreationClick = async (event) => {
     event.preventDefault();
-    if ((!enteredGender, !enteredDOBDay, !enteredDOBMonth, !enteredDOBYear)) {
+    if (
+      !enteredGender ||
+      dateOfBirth.day === "DD" ||
+      dateOfBirth.month === "MM" ||
+      dateOfBirth.year === "YYYY"
+    ) {
       alert("Please enter all fields");
       // highlight fields that are left empty
     } else {
       let tempDoB = {
-        dateOfBirth: enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay
+        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day
       };
       let tempGender = {
         gender: enteredGender
@@ -117,10 +125,11 @@ const ProfileBox = ({ currentUser }) => {
   const loopCareerGoals = () => {
     return careerGoals.map((careerGoal) => (
       <label
+        id="career-goal"
         key={careerGoal.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
-      ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
-      hover:bg-blue-300 hover:text-white
+      ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-teal-500 text-white" : "bg-gray-200"}
+  hover:bg-teal-600 hover:text-white
     `}
       >
         <input
@@ -151,10 +160,11 @@ const ProfileBox = ({ currentUser }) => {
   const loopAccessNeeds = () => {
     return accessNeeds.map((accessNeed) => (
       <label
+        id="access-need"
         key={accessNeed.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
-    ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
-    hover:bg-blue-300 hover:text-white
+    ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-teal-500 text-white" : "bg-gray-200"}
+hover:bg-teal-600 hover:text-white
   `}
       >
         <input
@@ -188,16 +198,18 @@ const ProfileBox = ({ currentUser }) => {
     return mentalHealthConditions.map((mentalHealthCondition) => (
       <label
         key={mentalHealthCondition.id}
+        // "block bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
     ${
       enteredMentalHealthConditions.includes(`${mentalHealthCondition.id}`)
-        ? "bg-blue-500 text-white"
+        ? "bg-teal-500 text-white"
         : "bg-gray-200"
     }
-    hover:bg-blue-300 hover:text-white
+    hover:bg-teal-600 hover:text-white
   `}
       >
         <input
+          id="mental-health-condition"
           type="checkbox"
           name="mentalHealthCondition"
           key={mentalHealthCondition.id}
@@ -213,32 +225,10 @@ const ProfileBox = ({ currentUser }) => {
     ));
   };
 
-  const loopNumber = (start, end) => {
-    let options = [];
-    for (let i = start; i <= end; i++) {
-      if (i < 10) {
-        options.push(
-          <option key={i + start} value={"0" + i}>
-            {i}
-          </option>
-        );
-      } else {
-        options.push(
-          <option key={i + start} value={i}>
-            {i}
-          </option>
-        );
-      }
-    }
-    return options;
-  };
-
   return (
     <div>
       {currentUser && (
         <>
-          {currentUser.name}
-          {currentUser.id}
           <form
             className="profileCreation"
             onSubmit={(event) => {
@@ -248,84 +238,53 @@ const ProfileBox = ({ currentUser }) => {
             {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
                 <br> */}
-            <label> Career Goals:</label>
-            {careerGoals && <>{loopCareerGoals()}</>}
-            <br />
-            <br />
-            <label> AccessNeeds:</label>
-            {accessNeeds && <>{loopAccessNeeds()}</>}
-            <br />
-            <br />
-            <label> MentalHealthConditions:</label>
-            {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
-            <br />
-            <br />
-            <label> Date of Birth:</label>
-            <div className="select-date">
-              <select
-                id="select-day"
-                value={enteredDOBDay}
-                onChange={(e) => {
-                  setEnteredDOBDay(e.target.value);
-                }}
-              >
-                <option value="" disabled selected hidden>
-                  -DD
-                </option>
-                {loopNumber(1, 31)}
-              </select>
-              <select
-                id="select-month"
-                value={enteredDOBMonth}
-                onChange={(e) => {
-                  setEnteredDOBMonth(e.target.value);
-                }}
-              >
-                <option value="" disabled selected hidden>
-                  -MM
-                </option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-              <select
-                id="select-year"
-                value={enteredDOBYear}
-                onChange={(e) => {
-                  setEnteredDOBYear(e.target.value);
-                }}
-                placeholder="YYYY"
-              >
-                <option value="" disabled selected hidden>
-                  -YYYY
-                </option>
-                {loopNumber(1935, 2023)}
-              </select>
+            <div className="my-4">
+              <label htmlFor="career-goals" className="block font-bold">
+                Career Goals
+              </label>
+              {careerGoals && <>{loopCareerGoals()}</>}
             </div>
-            <br></br>
-            <label> Gender:</label>
-            <input
-              className="input-box"
-              type="text"
-              value={enteredGender}
-              onChange={(e) => {
-                setEnteredGender(e.target.value);
-              }}
-            />
-            <input type="submit" value="Add" />
+            <div className="my-4">
+              <label htmlFor="access-needs" className="block font-bold">
+                Access Needs
+              </label>
+              {accessNeeds && <>{loopAccessNeeds()}</>}
+            </div>
+            <div className="my-4">
+              <label htmlFor="mental-health-conditions" className="block font-bold">
+                Mental Health Conditions
+              </label>
+              {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
+            </div>
+            <div className="my-4">
+              <span className="block font-bold">Date Of Birth</span>
+              <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
+            </div>
+            <div className="my-4">
+              <label htmlFor="gender" className="block font-bold">
+                Gender
+              </label>
+              <input
+                type="text"
+                id="gender"
+                className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
+                value={enteredGender}
+                onChange={(e) => {
+                  setEnteredGender(e.target.value);
+                }}
+              />
+            </div>
+            <button
+              className="block bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
+              type="submit"
+              name="submit-button"
+            >
+              Save
+            </button>
           </form>
         </>
       )}
     </div>
   );
 };
-export default ProfileBox;
+export default ProfileForm;

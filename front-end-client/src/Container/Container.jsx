@@ -3,7 +3,7 @@ import HomePage from "../Components/HomePage/HomePage";
 import LoginPage from "../Components/LoginPage/LoginPage";
 import QuizPage from "../Components/QuizPage/QuizPage";
 import AccountRegistrationPage from "../Components/AccountRegistrationPage/AccountRegistrationPage";
-import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreationPage";
+import EditProfilePage from "../Components/EditProfilePage/EditProfilePage";
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
 import NavDock from "../Components/NavDock/NavDock";
@@ -68,7 +68,7 @@ const Container = () => {
           ></Route>
           <Route
             path="/EditProfile"
-            element={<ProfileCreationPage currentUser={currentUser} />}
+            element={<EditProfilePage currentUser={currentUser} />}
           ></Route>
           <Route
             path="/ProfilePage"
