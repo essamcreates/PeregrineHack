@@ -181,7 +181,7 @@ const ChatBot = () => {
             <>
               <div class="h-full flex justify-end">
                 <textarea
-                  class="border-2 border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
+                  class="border-2 outline-none border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
                   placeholder="Ask Farai about career goals, skills, wellness..."
                   type="text"
                   maxlength="150"
@@ -191,7 +191,7 @@ const ChatBot = () => {
               </div>
               <div class="h-full flex justify-end">
                 <button
-                  class="w-1/5 h-full mt-1 border-2 border-black bg-teal-200 p-1 text-center rounded-md transition-transform transform hover:bg-teal-300"
+                  class="w-1/4 h-full mt-1 shadow-lg bg-teal-500 text-white p-1 text-center rounded-md transition-transform transform text-sm hover:bg-slate-500 hover:text-white"
                   onClick={() => {
                     chatBotRequest(userInput);
                     setPrevChoices((prevChoices) => [
@@ -282,7 +282,7 @@ const ChatBot = () => {
               key={index}
             >
               <button
-                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-md"
+                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg"
                 disabled
               >
                 {option.displayText}
@@ -293,7 +293,7 @@ const ChatBot = () => {
           choices.push(
             <div class=" flex items-center justify-center m-1" key={index}>
               <button
-                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-md"
+                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg"
                 disabled
               >
                 {option.displayText}
@@ -304,20 +304,20 @@ const ChatBot = () => {
       });
       return (
         <div>
-          <p class="text-sm ml-1 mb-0">Farai</p>
+          <p class="text-sm ml-1 mb-0 font-semibold">Farai</p>
           {prevText.message && (
             <div>
-              <p class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-md">
+              <p class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg">
                 {prevText.message}
               </p>
             </div>
           )}
           <div class="grid grid-cols-2 w-3/4 m-1">{choices}</div>
           <div class="flex justify-end">
-            <p class="text-sm mr-1 mb-0">You</p>
+            <p class="text-sm mr-1 mb-0 font-semibold">You</p>
           </div>
           <div class="flex justify-end">
-            <p class="bg-teal-500 text-white py-2 px-5 rounded mb-2 shadow-md">
+            <p class="bg-teal-500 text-white py-2 px-5 rounded mb-2 shadow-lg">
               {prevChoices[index]}
             </p>
           </div>
@@ -329,7 +329,7 @@ const ChatBot = () => {
         <>
           {prev}
           <div class="flex justify-end">
-            <p class="mr-1 mt-2 w-4/5 border-2 border-blue-900 bg-green-100 p-1 text-center rounded-md">
+            <p class="mr-1 mt-2 w-4/5 border-2 bg-teal-100 p-1 text-center rounded-md">
               {userInput}
             </p>
           </div>
@@ -356,7 +356,7 @@ const ChatBot = () => {
   };
 
   return (
-    <div class="border-2 border-black backdrop-blur-2xl  h-full rounded-lg p-1 shadow-inner">
+    <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
       <div class="grid grid-cols-2">
         <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div>
         {usingChatBot && (
