@@ -10,12 +10,9 @@ const DailyInteraction = ({ currentUser }) => {
 
   const fetchQuestion = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/dailyQuestions/` + id,
-        {
-          method: "GET"
-        }
-      );
+      const response = await fetch(`http://localhost:8080/dailyQuestions/` + id, {
+        method: "GET"
+      });
       if (response.status === 302) {
         const data = await response.json();
         setQuestion(data);
@@ -55,25 +52,19 @@ const DailyInteraction = ({ currentUser }) => {
   };
 
   const displayOptions = () => {
-    const options = [
-      "optionOne",
-      "optionTwo",
-      "optionThree",
-      "optionFour",
-      "optionFive"
-    ];
+    const options = ["optionOne", "optionTwo", "optionThree", "optionFour", "optionFive"];
     const choices = [];
     options.map((option, index) => {
       const choice = question[option];
       if (choice) {
         if (index === 4 && index % 2 === 0) {
           choices.push(
-            <div
-              key={index}
-              class="col-span-2 flex items-center justify-center"
-            >
+            <div key={index} class="col-span-2 flex items-center justify-center">
               <button
-                class="text-lg bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-2/5 rounded-lg shadow-lg"
+                class="text-lg bg-emerald-200 m-2 p-1 w-2/5 rounded-lg shadow-lg transition-colors duration-500 transform inline
+                hover:bg-yellow-200
+                 hover:shadow-md
+                 hover:scale-110"
                 value={option}
                 onClick={(e) => {
                   handleQuestionSubmit(e.target.value);
