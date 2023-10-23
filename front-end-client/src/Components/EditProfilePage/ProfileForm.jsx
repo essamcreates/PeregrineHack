@@ -229,8 +229,6 @@ hover:bg-teal-600 hover:text-white
     <div>
       {currentUser && (
         <>
-          {currentUser.name}
-          {currentUser.id}
           <form
             className="profileCreation"
             onSubmit={(event) => {
@@ -240,36 +238,42 @@ hover:bg-teal-600 hover:text-white
             {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
                 <br> */}
-            <label htmlFor="career-goals" className="block font-bold">
-              {" "}
-              Career Goals
-            </label>
-            {careerGoals && <>{loopCareerGoals()}</>}
-            <label htmlFor="access-needs" className="block font-bold">
-              {" "}
-              Access Needs
-            </label>
-            {accessNeeds && <>{loopAccessNeeds()}</>}
-            <label htmlFor="mental-health-conditions" className="block font-bold">
-              {" "}
-              Mental Health Conditions
-            </label>
-            {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
-            <span className="block font-bold">Date Of Birth</span>
-            <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
-            <label htmlFor="gender" className="block font-bold">
-              {" "}
-              Gender
-            </label>
-            <input
-              type="text"
-              id="gender"
-              className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
-              value={enteredGender}
-              onChange={(e) => {
-                setEnteredGender(e.target.value);
-              }}
-            />
+            <div className="my-4">
+              <label htmlFor="career-goals" className="block font-bold">
+                Career Goals
+              </label>
+              {careerGoals && <>{loopCareerGoals()}</>}
+            </div>
+            <div className="my-4">
+              <label htmlFor="access-needs" className="block font-bold">
+                Access Needs
+              </label>
+              {accessNeeds && <>{loopAccessNeeds()}</>}
+            </div>
+            <div className="my-4">
+              <label htmlFor="mental-health-conditions" className="block font-bold">
+                Mental Health Conditions
+              </label>
+              {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
+            </div>
+            <div className="my-4">
+              <span className="block font-bold">Date Of Birth</span>
+              <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
+            </div>
+            <div className="my-4">
+              <label htmlFor="gender" className="block font-bold">
+                Gender
+              </label>
+              <input
+                type="text"
+                id="gender"
+                className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
+                value={enteredGender}
+                onChange={(e) => {
+                  setEnteredGender(e.target.value);
+                }}
+              />
+            </div>
             <button
               className="block bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
               type="submit"
