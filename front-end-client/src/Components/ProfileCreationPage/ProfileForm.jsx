@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DateOfBirthListbox from "./DateOfBirthListbox";
 
 const ProfileBox = ({ currentUser }) => {
   // Add in validation when no current user that they need to login first
 
   // const [enteredJobRole, setEnteredJobRole] = useState ("")
   const [enteredCareerGoals, setEnteredCareerGoals] = useState([]);
+  const [dateOfBirth, setDateOfBirth] = useState({
+    day: "DD",
+    month: "MM",
+    year: "YYYY"
+  });
   const [enteredDOBDay, setEnteredDOBDay] = useState();
   const [enteredDOBMonth, setEnteredDOBMonth] = useState();
   const [enteredDOBYear, setEnteredDOBYear] = useState();
@@ -55,12 +61,17 @@ const ProfileBox = ({ currentUser }) => {
 
   const handleCreationClick = async (event) => {
     event.preventDefault();
-    if ((!enteredGender, !enteredDOBDay, !enteredDOBMonth, !enteredDOBYear)) {
+    if (
+      !enteredGender ||
+      dateOfBirth.day === "DD" ||
+      dateOfBirth.month === "MM" ||
+      dateOfBirth.year === "YYYY"
+    ) {
       alert("Please enter all fields");
       // highlight fields that are left empty
     } else {
       let tempDoB = {
-        dateOfBirth: enteredDOBYear + "-" + enteredDOBMonth + "-" + enteredDOBDay
+        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day
       };
       let tempGender = {
         gender: enteredGender
@@ -213,26 +224,6 @@ const ProfileBox = ({ currentUser }) => {
     ));
   };
 
-  const loopNumber = (start, end) => {
-    let options = [];
-    for (let i = start; i <= end; i++) {
-      if (i < 10) {
-        options.push(
-          <option key={i + start} value={"0" + i}>
-            {i}
-          </option>
-        );
-      } else {
-        options.push(
-          <option key={i + start} value={i}>
-            {i}
-          </option>
-        );
-      }
-    }
-    return options;
-  };
-
   return (
     <div>
       {currentUser && (
@@ -260,57 +251,7 @@ const ProfileBox = ({ currentUser }) => {
             {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
             <br />
             <br />
-            <label> Date of Birth:</label>
-            <div className="select-date">
-              <select
-                id="select-day"
-                value={enteredDOBDay}
-                onChange={(e) => {
-                  setEnteredDOBDay(e.target.value);
-                }}
-              >
-                <option value="" disabled selected hidden>
-                  -DD
-                </option>
-                {loopNumber(1, 31)}
-              </select>
-              <select
-                id="select-month"
-                value={enteredDOBMonth}
-                onChange={(e) => {
-                  setEnteredDOBMonth(e.target.value);
-                }}
-              >
-                <option value="" disabled selected hidden>
-                  -MM
-                </option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-              <select
-                id="select-year"
-                value={enteredDOBYear}
-                onChange={(e) => {
-                  setEnteredDOBYear(e.target.value);
-                }}
-                placeholder="YYYY"
-              >
-                <option value="" disabled selected hidden>
-                  -YYYY
-                </option>
-                {loopNumber(1935, 2023)}
-              </select>
-            </div>
+            <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
             <br></br>
             <label> Gender:</label>
             <input
