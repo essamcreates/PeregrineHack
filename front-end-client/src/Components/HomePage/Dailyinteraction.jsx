@@ -63,12 +63,12 @@ const DailyInteraction = ({currentUser}) => {
                 if((index === 4) && (index % 2===0)){
                 choices.push(
                 <div key={index}class="col-span-2 flex items-center justify-center">
-                    <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-2/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                    <button class="text-lg bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-2/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
                 </div>
                 )}else{
                     choices.push(
                         <div key={index}class="flex items-center justify-center">
-                            <button class="text-sm bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                            <button class="text-lg bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
                         </div>)
                 }
             }
@@ -81,8 +81,8 @@ const DailyInteraction = ({currentUser}) => {
         <div><h3 class="text-xl ml-2">Question</h3></div>
         {question && !questionAnswered &&(
             <div>
-                <div class="text-center text-xl mt-1">{question.question}</div>
-                <div class="grid grid-cols-2 " >{displayOptions()}</div>
+                <div class="text-center text-2xl mt-5">{question.question}</div>
+                <div class="grid grid-cols-2 mt-4" >{displayOptions()}</div>
             </div>
         )}
         {questionAnswered && (

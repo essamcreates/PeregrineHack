@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MoodEntry = ({currentUser}) => {
 
@@ -10,9 +10,19 @@ const MoodEntry = ({currentUser}) => {
     const [usersMoodEntries, setUsersMoodEntries] = useState();
     const moodChoices = {"😁" : "Ecstatic", "🙂" : "Happy", "😌":"Ok", "🤯":"Frazzled","🥺":"Sad", "😡":"Frustrated"}
 
+    // need to format the users previous entries {useStates will be when moodEntryInProgress==false }
+    // note check that it allows for the new date to be fetched
+    // check unicode is converted correctly
+
     const fetchUserMoodEntries = async() =>{
-        
+        const response = await fetch(`http://localhost:8080/moodEntries/user/` + currentUser);
+        const data = await response.json();
+        setUsersMoodEntries(data);
     }
+
+    useEffect(()=>{
+        fetchUserMoodEntries();
+    },[])
 
     const postMoodEntry= async(userMoodEntry)=>{
         const url = `http://localhost:8080/moodEntries/` + currentUser.id;
