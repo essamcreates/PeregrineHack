@@ -5,10 +5,18 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
   const { day, month, year } = dateOfBirth;
 
-  const loopNumber = (start, end) => {
+  const getMonth = (month) => {
+    const date = new Date();
+    date.setMonth(month - 1);
+    return date.toLocaleString("en-US", {
+      month: "long"
+    });
+  };
+
+  const loopNumber = (start, end, isMonth) => {
     let options = [];
     for (let i = start; i <= end; i++) {
-      if (i < 10) {
+      if (isMonth) {
         options.push(
           <Listbox.Option
             key={i + start}
@@ -17,12 +25,12 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
                 active ? "bg-amber-100 text-amber-900" : "text-gray-900"
               }`
             }
-            value={"0" + i}
+            value={getMonth(i)}
           >
             {({ selected }) => (
               <>
                 <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                  {"0" + i}
+                  {getMonth(i)}
                 </span>
                 {selected ? (
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
@@ -34,19 +42,46 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
           </Listbox.Option>
         );
       } else {
-        options.push(
-          <Listbox.Option
-            key={i + start}
-            className={({ active }) =>
-              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                active ? "bg-amber-100 text-amber-900" : "text-gray-900"
-              }`
-            }
-            value={i}
-          >
-            {i}
-          </Listbox.Option>
-        );
+        if (i < 10) {
+          options.push(
+            <Listbox.Option
+              key={i + start}
+              className={({ active }) =>
+                `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                  active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                }`
+              }
+              value={"0" + i}
+            >
+              {({ selected }) => (
+                <>
+                  <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                    {"0" + i}
+                  </span>
+                  {selected ? (
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                      <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  ) : null}
+                </>
+              )}
+            </Listbox.Option>
+          );
+        } else {
+          options.push(
+            <Listbox.Option
+              key={i + start}
+              className={({ active }) =>
+                `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                  active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                }`
+              }
+              value={i}
+            >
+              {i}
+            </Listbox.Option>
+          );
+        }
       }
     }
     return options;
@@ -103,7 +138,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
                 leaveTo="opacity-0"
               >
                 <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {loopNumber(1, 12)}
+                  {loopNumber(1, 12, true)}
                 </Listbox.Options>
               </Transition>
             </div>
@@ -130,7 +165,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
                 leaveTo="opacity-0"
               >
                 <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {loopNumber(1, 12)}
+                  {loopNumber(1935, 2023)}
                 </Listbox.Options>
               </Transition>
             </div>
