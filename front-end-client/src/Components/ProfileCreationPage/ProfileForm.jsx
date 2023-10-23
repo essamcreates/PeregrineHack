@@ -239,21 +239,21 @@ const ProfileBox = ({ currentUser }) => {
             {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
                 <br> */}
-            <label> Career Goals:</label>
+            <label> Career Goals</label>
             {careerGoals && <>{loopCareerGoals()}</>}
             <br />
             <br />
-            <label> AccessNeeds:</label>
+            <label> Access Needs</label>
             {accessNeeds && <>{loopAccessNeeds()}</>}
             <br />
             <br />
-            <label> MentalHealthConditions:</label>
+            <label> Mental Health Conditions</label>
             {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
             <br />
             <br />
             <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
             <br></br>
-            <label> Gender:</label>
+            <label> Gender</label>
             <input
               className="input-box"
               type="text"

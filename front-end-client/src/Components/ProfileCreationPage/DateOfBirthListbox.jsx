@@ -174,58 +174,6 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
       </div>
     </>
   );
-
-  /* <label> Date of Birth:</label>
-<div className="select-date">
-  <select
-    id="select-day"
-    value={enteredDOBDay}
-    onChange={(e) => {
-      setEnteredDOBDay(e.target.value);
-    }}
-  >
-    <option value="" disabled selected hidden>
-      DD
-    </option>
-    {loopNumber(1, 31)}
-  </select>
-  <select
-    id="select-month"
-    value={enteredDOBMonth}
-    onChange={(e) => {
-      setEnteredDOBMonth(e.target.value);
-    }}
-  >
-    <option value="" disabled selected hidden>
-      MM
-    </option>
-    <option value="01">January</option>
-    <option value="02">February</option>
-    <option value="03">March</option>
-    <option value="04">April</option>
-    <option value="05">May</option>
-    <option value="06">June</option>
-    <option value="07">July</option>
-    <option value="08">August</option>
-    <option value="09">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
-  </select>
-  <select
-    id="select-year"
-    value={enteredDOBYear}
-    onChange={(e) => {
-      setEnteredDOBYear(e.target.value);
-    }}
-    placeholder="YYYY"
-  >
-    <option value="" disabled selected hidden>
-      YYYY
-    </option>
-    {loopNumber(1935, 2023)}
-  </select>
-</div> */
 };
 
 export default DateOfBirthListbox;
