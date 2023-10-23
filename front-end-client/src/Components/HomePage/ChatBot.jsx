@@ -221,7 +221,7 @@ const ChatBot = () => {
             key={index}
           >
             <button
-              class="w-11/12 h-full mt-3 m-2 border-2 bg-teal-100 border-teal-500 p1 text-center rounded-md transition-transform transform hover:bg-teal-300"
+              class="w-11/12 h-full mt-3 m-2 border-2 bg-white border-teal-500 p1 text-center rounded-md transition-transform transform hover:bg-teal-300"
               //   w-11/12 h-full mt-3 m-2 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md transition-transform transform hover:bg-red-300
               onClick={() => {
                 handleOptionClick(
@@ -282,7 +282,7 @@ const ChatBot = () => {
               key={index}
             >
               <button
-                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg"
+                class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg"
                 disabled
               >
                 {option.displayText}
@@ -293,7 +293,7 @@ const ChatBot = () => {
           choices.push(
             <div class=" flex items-center justify-center m-1" key={index}>
               <button
-                class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg"
+                class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg"
                 disabled
               >
                 {option.displayText}
@@ -307,7 +307,7 @@ const ChatBot = () => {
           <p class="text-sm ml-1 mb-0 font-semibold">Farai</p>
           {prevText.message && (
             <div>
-              <p class="bg-slate-100 text-black py-2 px-5 rounded mb-2 shadow-lg">
+              <p class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg">
                 {prevText.message}
               </p>
             </div>

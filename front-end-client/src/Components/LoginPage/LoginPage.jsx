@@ -12,8 +12,12 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         <div class="flex flex-col justify-center p-20 ml-10">
           <div class="min-h-screen flex items-center justify-center">
             <div class="bg-white shadow-lg rounded-lg w-[550px] h-96x p-0 ml-10 mb-20">
-              <h1 class="font-bold text-6xl opacity-40 line-through text-left ml-5 pt-5">Log In</h1>
-              <h1 class="font-bold text-6xl opacity-50 text-left ml-5 pt-2">Clock In.</h1>
+              <h1 class="font-bold text-6xl opacity-40 line-through text-left ml-5 pt-5">
+                Log In
+              </h1>
+              <h1 class="font-bold text-6xl opacity-50 text-left ml-5 pt-2">
+                Clock In.
+              </h1>
               {!currentUser && (
                 <div class="p-10">
                   <h2 class="text-2x1 mb-10 white text-center text-2xl font-medium pb-10 pt-2">
@@ -43,7 +47,8 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
                       navigate("/AccountRegistrationPage");
                     }}
                   >
-                    Don't have an account? <span class="underline">Sign Up</span>
+                    Don't have an account?{" "}
+                    <span class="underline font-semibold">Sign Up</span>
                   </button>
                 )}
               </div>
@@ -52,7 +57,9 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         </div>
         {/* Column two */}
         <div class="flex justify-center items-center pr-20">
-          <h1 class="flex-items-center text-6xl font-medium text-neutral-400">Dive Into</h1>
+          <h1 class="flex-items-center text-6xl font-medium text-neutral-400">
+            Dive Into
+          </h1>
           <span class="relative ml-3 h-[1em] w-36 text-6xl overflow-hidden">
             <span class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white">
               <p>Ideas</p>
