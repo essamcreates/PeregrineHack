@@ -105,26 +105,6 @@ const ProfileBox = ({ currentUser }) => {
     });
   };
 
-  const loopNumber = (start, end) => {
-    let options = [];
-    for (let i = start; i <= end; i++) {
-      if (i < 10) {
-        options.push(
-          <option key={i + start} value={"0" + i}>
-            {i}
-          </option>
-        );
-      } else {
-        options.push(
-          <option key={i + start} value={i}>
-            {i}
-          </option>
-        );
-      }
-    }
-    return options;
-  };
-
   const handleCareerCheckboxChange = (event) => {
     const { value } = event.target;
     if (enteredCareerGoals.includes(value)) {
@@ -193,12 +173,64 @@ const ProfileBox = ({ currentUser }) => {
     ));
   };
 
+  const handleMentalHealthConditionCheckboxChange = (event) => {
+    const { value } = event.target;
+    if (enteredMentalHealthConditions.includes(value)) {
+      setEnteredMentalHealthConditions(
+        enteredMentalHealthConditions.filter((item) => item !== value)
+      );
+    } else {
+      setEnteredMentalHealthConditions([...enteredMentalHealthConditions, value]);
+    }
+  };
+
   const loopMentalHealthConditions = () => {
     return mentalHealthConditions.map((mentalHealthCondition) => (
-      <option key={mentalHealthCondition.id} value={mentalHealthCondition.id}>
+      <label
+        key={mentalHealthCondition.id}
+        className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
+    ${
+      enteredMentalHealthConditions.includes(`${mentalHealthCondition.id}`)
+        ? "bg-blue-500 text-white"
+        : "bg-gray-200"
+    }
+    hover:bg-blue-300 hover:text-white
+  `}
+      >
+        <input
+          type="checkbox"
+          name="mentalHealthCondition"
+          key={mentalHealthCondition.id}
+          value={mentalHealthCondition.id}
+          onChange={(e) => {
+            handleMentalHealthConditionCheckboxChange(e);
+          }}
+          checked={enteredMentalHealthConditions.includes(`${mentalHealthCondition.id}`)}
+          className={"hidden"}
+        />
         {mentalHealthCondition.mentalHealthCondition}
-      </option>
+      </label>
     ));
+  };
+
+  const loopNumber = (start, end) => {
+    let options = [];
+    for (let i = start; i <= end; i++) {
+      if (i < 10) {
+        options.push(
+          <option key={i + start} value={"0" + i}>
+            {i}
+          </option>
+        );
+      } else {
+        options.push(
+          <option key={i + start} value={i}>
+            {i}
+          </option>
+        );
+      }
+    }
+    return options;
   };
 
   return (
@@ -217,23 +249,7 @@ const ProfileBox = ({ currentUser }) => {
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
                 <br> */}
             <label> Career Goals:</label>
-            {/* <input className="input-box" type="text" value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(e.target.value)}}/> */}
-            {careerGoals && (
-              <>{loopCareerGoals()}</>
-              // <select
-              //   className="select-multiple-goals block w-full mt-1 border border-gray-300 rounded-md p-2"
-              //   name="goals"
-              //   multiple
-              //   value={enteredCareerGoals}
-              //   onChange={(e) => {
-              //     setEnteredCareerGoals(
-              //       Array.from(e.target.selectedOptions, (option) => option.value)
-              //     );
-              //   }}
-              // >
-              //   {loopCareerGoals()}
-              // </select>
-            )}
+            {careerGoals && <>{loopCareerGoals()}</>}
             <br />
             <br />
             <label> AccessNeeds:</label>
@@ -241,22 +257,7 @@ const ProfileBox = ({ currentUser }) => {
             <br />
             <br />
             <label> MentalHealthConditions:</label>
-            {mentalHealthConditions && (
-              <select
-                multiple
-                className="select-multiple-conditions"
-                name="mentalHealthConditions"
-                size={3}
-                value={enteredMentalHealthConditions}
-                onChange={(e) => {
-                  setEnteredMentalHealthConditions(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  );
-                }}
-              >
-                {loopMentalHealthConditions()}
-              </select>
-            )}
+            {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
             <br />
             <br />
             <label> Date of Birth:</label>
