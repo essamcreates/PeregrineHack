@@ -35,9 +35,9 @@ public class ChatGPTController {
         // send also user logged in
         try {
             String response = chatWithGpt3(message);
-            UserResponse newUserResponse = new UserResponse(message, response, LocalDate.now());
+//            UserResponse newUserResponse = new UserResponse(message, response, LocalDate.now());
             // possible to remove json and extract string?
-            userResponseRepository.save(newUserResponse);
+//            userResponseRepository.save(newUserResponse);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
