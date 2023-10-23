@@ -1,5 +1,6 @@
 package com.hackathon.server.components;
 
+import com.hackathon.server.configurations.PropertiesConfig;
 import com.hackathon.server.models.*;
 import com.hackathon.server.models.enums.AccessNeedENUM;
 import com.hackathon.server.models.enums.GoalENUM;
@@ -110,8 +111,8 @@ public class DataLoader implements ApplicationRunner {
 
         if (userRepository.count() == 0) {
             List<User> users = Arrays.asList(
-                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail","/images/johnpfp.jpeg"),
-                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company","/images/johnpfp.jpeg")
+                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail", PropertiesConfig.getDefaultProfilePhoto()),
+                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company",PropertiesConfig.getDefaultProfilePhoto())
             );
             userRepository.saveAll(users);
         }

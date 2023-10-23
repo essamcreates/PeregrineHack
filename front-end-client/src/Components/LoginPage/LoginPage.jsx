@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
-// import './LoginPage.css';
+// import "./LoginPage.css";
 
-
-const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
-
-    const navigate = useNavigate();
+const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
+  const navigate = useNavigate();
 
     return (
       <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
@@ -60,8 +58,8 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
         </div>
       </div>
     </div>
-
-
-    )
+</div>
+</div>
+)
 }
 export default LoginPage;
