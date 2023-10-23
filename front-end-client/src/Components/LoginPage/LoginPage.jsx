@@ -58,8 +58,7 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         </div>
       </div>
     </div>
-</div>
-</div>
+
 )
 }
 export default LoginPage;
