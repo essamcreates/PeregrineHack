@@ -53,7 +53,7 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         {/* Column two */}
         <div class="flex justify-center items-center pr-20">
           <h1 class="flex-items-center text-6xl font-medium text-neutral-400">Dive Into</h1>
-          <span class="relative ml-3 h-[1em] w-36 text-6xl overflow-y-hidden">
+          <span class="relative ml-3 h-[1em] w-36 text-6xl overflow-hidden">
             <span class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white">
               <p>Ideas</p>
             </span>
