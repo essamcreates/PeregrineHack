@@ -1,4 +1,4 @@
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./NavDock.css"
 import HouseIcon from '@mui/icons-material/House';
@@ -53,7 +53,8 @@ const NavDock = ({currentUser}) => {
                     </div>)}
                 </div>)}
         </div>
-    )
-}
+      )}
+    </div>
+  );
+};
 export default NavDock;
-
