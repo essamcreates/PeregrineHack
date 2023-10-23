@@ -1,6 +1,6 @@
 // import { useState } from 'react'
-// import './App.css'
-import Container from './Container/Container'
+import "./App.css";
+import Container from "./Container/Container";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -8,11 +8,10 @@ function App() {
   return (
     <>
       <div>
-         <Container/> 
+        <Container />
       </div>
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
