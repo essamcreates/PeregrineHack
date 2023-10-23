@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import ProfileCreationBar from "./ProfileCreationBar";
