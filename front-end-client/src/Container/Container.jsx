@@ -10,7 +10,17 @@ import NavDock from "../Components/NavDock/NavDock";
 import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
 
 const Container = () => {
-  const [currentUser, setCurrentUser] = useState();
+//   const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const updateCurrentUser = (newUser) => {
+    setCurrentUser(newUser);
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+  };
+
   const [imageName, setImageName] = useState("");
 
   const authenticateUser = async (loginInfo) => {
@@ -22,7 +32,8 @@ const Container = () => {
     });
     if (response.status === 202) {
       const newResponse = await response.json();
-      setCurrentUser(newResponse);
+      updateCurrentUser(newResponse);
+    //   setCurrentUser(newResponse);
       return true;
     } else {
       return false;

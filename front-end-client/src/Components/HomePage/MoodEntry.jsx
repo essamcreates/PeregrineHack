@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Entry from "./Entry";
+import ZoomOutMapTwoToneIcon from '@mui/icons-material/ZoomOutMapTwoTone';
+import MoodEntryModal from "./MoodEntryModal";
 
 const MoodEntry = ({currentUser}) => {
 
@@ -9,6 +11,7 @@ const MoodEntry = ({currentUser}) => {
     const [enteredMoodNote, setEnteredMoodNote] = useState();
     const [placeholder, setPlaceholder] = useState("");
     const [usersMoodEntries, setUsersMoodEntries] = useState();
+    const [openModal, setOpenModal] = useState(false);
     const moodChoices = {"😁" : "Ecstatic", "🙂" : "Happy", "😌":"Ok", "🤯":"Frazzled","🥺":"Sad", "😡":"Frustrated"}
 
     // need to format the users previous entries {useStates will be when moodEntryInProgress==false }
@@ -18,8 +21,7 @@ const MoodEntry = ({currentUser}) => {
 
     const fetchUserMoodEntries = async() =>{
         console.log("here")
-        //  change below to currentuser Id
-        const response = await fetch(`http://localhost:8080/moodEntries/user/` + 1 );
+        const response = await fetch(`http://localhost:8080/moodEntries/user/` + currentUser.id );
         const data = await response.json();
         setUsersMoodEntries(data);
         console.log(data)
@@ -69,28 +71,35 @@ const MoodEntry = ({currentUser}) => {
                 <p>{description}</p>
             </div>)
         })
-
-    // may need to date sort moodentries
     
     const mappedMoodEntries = ()=>{
         const entries=[]
         usersMoodEntries.map((entry, index)=>{
             entries.push(<div key={index}>
-                <Entry moodChoices={moodChoices} entry={entry}/>
+                <Entry entry={entry}/>
             </div>)
         })
-        return entries;
+        return entries.reverse();;
     }
 
     return (
     <div class="border-2 border-slate-700 bg-amber-100 h-full rounded-lg shadow-xl">
         {!moodEntryInProgress &&(<>
-            <div class="flex justify-center items-center p-3 mt-3">
-                <button class="w-1/3 h-full border-2 border-yellow-900 bg-yellow-200 text-center rounded-md transition-transform transform hover:bg-yellow-300" onClick={()=>{setMoodEntryInProgress(true)}}>Create Mood Entry</button>
+            
+            <div class="grid grid-cols-5">
+            <div></div>
+            <div class="col-span-3">
+                <div class="flex justify-center items-center p-3 mt-3">
+                    <button class="w-2/3 h-full border-2 border-yellow-900 bg-yellow-200 text-center rounded-md transition-transform transform hover:bg-yellow-300" onClick={()=>{setMoodEntryInProgress(true)}}>Create Mood Entry</button>
+                </div>
             </div>
-            <p class="text-center">Mood Entry Log</p>
-            <div class="flex items-center justify-center h-full">
-            <div class="w-11/12 h-full overflow-scroll ">
+            <div class="text-end m-3">
+                <ZoomOutMapTwoToneIcon style={{ fontSize : "35px"}} onClick={()=>{setOpenModal(true)}} />
+            </div>
+            </div>
+            <p class="text-center font-mono text-xl underline">Mood Entry Log</p>
+            <div class="flex items-center justify-center h-2/3">
+            <div class="overflow-scroll h-full w-11/12 max-h-[300px]">
                 {usersMoodEntries ? (
                 <>
                 {mappedMoodEntries()}
@@ -114,6 +123,11 @@ const MoodEntry = ({currentUser}) => {
             </div>
             <div class="flex justify-center items-center p-3 mt-3"><button class="w-1/5 h-full border-2 border-yellow-900 bg-yellow-200 text-center rounded-md transition-transform transform hover:bg-yellow-300" onClick={()=>{handleMoodEntry()}}>Enter</button></div>
         </>)}
+        {openModal && (
+            <div>
+                <MoodEntryModal mappedMoodEntries={mappedMoodEntries} setOpenModal={setOpenModal}/>
+            </div>
+        )}
     </div>)
 }
 export default MoodEntry;

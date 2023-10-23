@@ -71,23 +71,4 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
     )
 }
 export default LoginForm;
-// =======
-//           </div>
-//         </form>
-//       )}
-//       {failedLogin && (
-//         <p className="text-red-500">Warning: incorrect email or password. Please try again</p>
-//       )}
-//       {currentUser && (
-//         <button
-//           className="bg-red-500 text-white py-2 px-4 rounded"
-//           onClick={() => setCurrentUser(null)}
-//         >
-//           Signout
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-// export default LoginForm;
-// >>>>>>> develop
+

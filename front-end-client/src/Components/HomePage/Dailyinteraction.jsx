@@ -6,9 +6,18 @@ const DailyInteraction = ({currentUser}) => {
     // fetch daily question 
     // display options to user
 
-    const [question, setQuestion] = useState();
+    const [question, setQuestion] = useState(() => {
+        const storedUser = localStorage.getItem('question');
+        return storedUser ? JSON.parse(storedUser) : null;
+      });
+    
     const [questionAnswered, setQuestionAnswered] = useState(false)
     const [userAnswer, setUserAnswer] = useState();
+
+    const updateQuestion = (newUser) => {
+        setQuestion(newUser);
+        localStorage.setItem('question', JSON.stringify(newUser));
+      };
 
     const fetchQuestion = async (id) => {
         try {
@@ -17,7 +26,7 @@ const DailyInteraction = ({currentUser}) => {
           });
           if (response.status === 302) {
             const data = await response.json();
-            setQuestion(data);
+            updateQuestion(data)
           } else {
             console.error("Failed to fetch data");
           }
