@@ -12,11 +12,11 @@ public class PersonalityTestDTO {
     private String description;
     @JsonProperty("lowest_range")
     private int lowestRange;
-    @JsonProperty("heighest_range")
+    @JsonProperty("highest_range")
     private int highestRange;
     @JsonProperty("lowest_range_name")
     private String lowestRangeName;
-    @JsonProperty("heighest_range_name")
+    @JsonProperty("highest_range_name")
     private String highestRangeName;
     @JsonProperty("personality_test_type")
     private String personalityTestType;

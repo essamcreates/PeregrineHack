@@ -1,5 +1,6 @@
 package com.hackathon.server.personalityAPI;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hackathon.server.models.PersonalityScore;
 import com.hackathon.server.services.PersonalityScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +37,17 @@ public class BigFiveQuestionController {
     }
 
 
-//    @PostMapping("/calculate-personality-score")
-//    public ResponseEntity<String> calculatePersonalityScore(@RequestBody UserScoreRequestDTO userScoreRequestDTO){
-//        try{
-//            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore(userScoreRequestDTO);
-//            return ResponseEntity.ok("Personality score calculated and saved");
-//        } catch (IllegalAccessException e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        } catch (RuntimeException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
-//    }
+    @PostMapping("/calculate-personality-score")
+    public ResponseEntity<Object> calculatePersonalityScore(@RequestBody UserScoreRequestDTO userScoreRequestDTO){
+        try{
+            PersonalityScore personalityScore = personalityScoreService.calculateAndSavePersonalityScore(userScoreRequestDTO);
+            return new ResponseEntity<>(personalityScore, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (RuntimeException | JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
     // TODO: Create POST Mapping to send to API to calculate user score
     // Pseudo code 1
@@ -67,17 +68,6 @@ public class BigFiveQuestionController {
 //    import org.springframework.http.ResponseEntity;
 //import org.springframework.web.client.RestTemplate;
 
-//    @RestController
-//    public class PersonalityScoreController {
-//        private final RestTemplate restTemplate;
-//        private final PersonalityScoreService personalityScoreService;
-//
-//        // Constructor for dependency injection
-//        public PersonalityScoreController(RestTemplate restTemplate, PersonalityScoreService personalityScoreService) {
-//            this.restTemplate = restTemplate;
-//            this.personalityScoreService = personalityScoreService;
-//        }
-//
 //        @PostMapping("/calculate-personality-score")
 //        public ResponseEntity<String> calculatePersonalityScore(@RequestBody UserScoreRequest userScoreRequest) {
 //            try {

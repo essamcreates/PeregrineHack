@@ -1,18 +1,17 @@
-import { useState } from 'react'
-import './App.css'
-import Container from './Container/Container'
+// import { useState } from 'react'
+import "./App.css";
+import Container from "./Container/Container";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <Container/>
+        <Container />
       </div>
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;

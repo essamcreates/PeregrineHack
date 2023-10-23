@@ -38,12 +38,12 @@ public class BigFiveQuestionService {
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         String responseBody = response.body();
 
-        List<BigFiveQuestion> bigFiveQuestions = mapQuestionsFromApiToModel(responseBody);
+        List<BigFiveQuestion> bigFiveQuestions = handleAPIResponse(responseBody);
 
         return bigFiveQuestions;
     }
 
-    public List<BigFiveQuestion> mapQuestionsFromApiToModel(String responseBody) throws JsonProcessingException {
+    public List<BigFiveQuestion> handleAPIResponse(String responseBody) throws JsonProcessingException {
 
         ArrayList<BigFiveQuestion> personalityTestQuestions = new ArrayList<>();
 
