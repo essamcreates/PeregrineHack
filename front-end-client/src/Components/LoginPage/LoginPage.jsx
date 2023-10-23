@@ -12,10 +12,10 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         <div class="flex flex-col justify-center p-20 ml-10">
           <div class="min-h-screen flex items-center justify-center">
             <div class="bg-white shadow-lg rounded-lg w-[550px] h-96x p-0 ml-10 mb-20">
-              <h1 class="font-bold text-6xl opacity-40 line-through text-left ml-5 pt-5">
+              <h1 class="font-bold text-6xl opacity-40 line-through text-left ml-5 pt-5 text-neutral-400">
                 Log In
               </h1>
-              <h1 class="font-bold text-6xl opacity-50 text-left ml-5 pt-2">
+              <h1 class="font-bold text-6xl opacity-50 text-left ml-5 pt-2 text-neutral">
                 Clock In.
               </h1>
               {!currentUser && (
@@ -41,7 +41,7 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
         </div>
         {/* Column two */}
         <div class="flex justify-center items-center pr-20">
-          <h1 class="flex-items-center text-6xl font-medium text-neutral-400">
+          <h1 class="flex-items-center text-6xl font-bold text-neutral-400">
             Dive Into
           </h1>
           <span class="relative ml-3 h-[1em] w-36 text-6xl overflow-y-hidden">
