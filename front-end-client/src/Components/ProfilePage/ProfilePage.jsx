@@ -10,13 +10,13 @@ const ProfilePage = ({imageName,currentUser}) => {
                 <BigFiveDisplay currentUser={currentUser}/>
             </div>
             <div>
-                {/*<img src={`http://localhost:8080${currentUser.profilePictureURL}`} alt="User Profile Picture" />*/}
-                <img src={`http://localhost:8080/profilePhoto/${imageName}`} alt="User Profile Picture" />
+                <img src={`http://localhost:8080/${currentUser.profilePictureURL}`} alt="User Profile Picture" />
+                {/*<img src={`http://localhost:8080/profilePhoto/${imageName}`} alt="User Profile Picture" />*/}
 
                 {currentUser && (<p>Hello {currentUser.name}</p>)}
             </div>
             <div>
-                <Link to="/ProfileCreationPage">Manage Account</Link>
+                <Link to="/EditProfile">Manage Account</Link>
             </div>
             <div>
                 <Link to="/UploadProfilePhoto">upload Profile Photo</Link>
