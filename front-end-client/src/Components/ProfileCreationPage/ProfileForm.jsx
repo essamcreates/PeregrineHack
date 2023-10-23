@@ -16,6 +16,7 @@ const ProfileBox = ({ currentUser }) => {
   const [mentalHealthConditions, setMentalHealthConditions] = useState();
   const [accessNeeds, setAccessNeeds] = useState();
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
 
   // need to fetch data; data, accessneeds and mental health conditions
   // have the user be able to choose multiple needs and conditions if they so wish
@@ -125,11 +126,40 @@ const ProfileBox = ({ currentUser }) => {
     return options;
   };
 
+  const handleCheckboxChange = (event) => {
+    const { value } = event.target;
+    if (enteredCareerGoals.includes(value)) {
+      setEnteredCareerGoals(enteredCareerGoals.filter((item) => item !== value));
+      setIsChecked(false);
+    } else {
+      setEnteredCareerGoals([...enteredCareerGoals, value]);
+      setIsChecked(true);
+    }
+    console.log(event.target.checked);
+  };
+
   const loopCareerGoals = () => {
     return careerGoals.map((careerGoal) => (
-      <option key={careerGoal.id} value={careerGoal.id}>
+      // <option key={careerGoal.id} value={careerGoal.id}>
+      //   {careerGoal.goal}
+      // </option>
+      <label>
+        <input
+          type="checkbox"
+          name="careerGoal"
+          key={careerGoal.id}
+          value={careerGoal.id}
+          onChange={(e) => {
+            handleCheckboxChange(e);
+          }}
+          checked={enteredCareerGoals.includes(careerGoal.id)}
+          className={`border p-2 m-2 rounded-lg cursor-pointer
+          ${enteredCareerGoals.includes(careerGoal.id) ? "bg-blue-500 text-white" : "bg-gray-200"}
+          hover:bg-blue-300 hover:text-white
+        `}
+        />
         {careerGoal.goal}
-      </option>
+      </label>
     ));
   };
 
@@ -167,20 +197,20 @@ const ProfileBox = ({ currentUser }) => {
             <label> Career Goals:</label>
             {/* <input className="input-box" type="text" value={enteredCareerGoals} onChange={(e)=>{setEnteredCareerGoals(e.target.value)}}/> */}
             {careerGoals && (
-              <select
-                className="select-multiple-goals"
-                name="goals"
-                multiple
-                size={3}
-                value={enteredCareerGoals}
-                onChange={(e) => {
-                  setEnteredCareerGoals(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  );
-                }}
-              >
-                {loopCareerGoals()}
-              </select>
+              <>{loopCareerGoals()}</>
+              // <select
+              //   className="select-multiple-goals block w-full mt-1 border border-gray-300 rounded-md p-2"
+              //   name="goals"
+              //   multiple
+              //   value={enteredCareerGoals}
+              //   onChange={(e) => {
+              //     setEnteredCareerGoals(
+              //       Array.from(e.target.selectedOptions, (option) => option.value)
+              //     );
+              //   }}
+              // >
+              //   {loopCareerGoals()}
+              // </select>
             )}
             <br />
             <br />
@@ -206,9 +236,9 @@ const ProfileBox = ({ currentUser }) => {
             <label> MentalHealthConditions:</label>
             {mentalHealthConditions && (
               <select
+                multiple
                 className="select-multiple-conditions"
                 name="mentalHealthConditions"
-                multiple
                 size={3}
                 value={enteredMentalHealthConditions}
                 onChange={(e) => {
@@ -224,15 +254,27 @@ const ProfileBox = ({ currentUser }) => {
             <br />
             <label> Date of Birth:</label>
             <div className="select-date">
-              <select id="select-day" value={enteredDOBDay} onChange={(e)=>{setEnteredDOBDay(e.target.value)}} >
-                    <option value="" disabled selected hidden>
-                        -DD
-                    </option>
+              <select
+                id="select-day"
+                value={enteredDOBDay}
+                onChange={(e) => {
+                  setEnteredDOBDay(e.target.value);
+                }}
+              >
+                <option value="" disabled selected hidden>
+                  -DD
+                </option>
                 {loopNumber(1, 31)}
               </select>
-              <select id="select-month" value={enteredDOBMonth}onChange={(e)=>{setEnteredDOBMonth(e.target.value)}} >
+              <select
+                id="select-month"
+                value={enteredDOBMonth}
+                onChange={(e) => {
+                  setEnteredDOBMonth(e.target.value);
+                }}
+              >
                 <option value="" disabled selected hidden>
-                    -MM
+                  -MM
                 </option>
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -247,10 +289,17 @@ const ProfileBox = ({ currentUser }) => {
                 <option value="11">November</option>
                 <option value="12">December</option>
               </select>
-              <select id="select-year"  value={enteredDOBYear} onChange={(e)=>{setEnteredDOBYear(e.target.value)}} placeholder="YYYY">
-                  <option value="" disabled selected hidden>
-                      -YYYY
-                  </option>
+              <select
+                id="select-year"
+                value={enteredDOBYear}
+                onChange={(e) => {
+                  setEnteredDOBYear(e.target.value);
+                }}
+                placeholder="YYYY"
+              >
+                <option value="" disabled selected hidden>
+                  -YYYY
+                </option>
                 {loopNumber(1935, 2023)}
               </select>
             </div>
