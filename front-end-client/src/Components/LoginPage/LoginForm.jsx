@@ -61,11 +61,11 @@ const LoginForm = ({authenticateUser, currentUser, setCurrentUser}) => {
         {failedLogin && (
           <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
         )}
-        {currentUser && (
-          <button class="bg-red-500 text-white py-2 px-4 rounded" onClick={() => setCurrentUser(null)}>
+        {currentUser && (<div class="flex items-center justify-center">
+          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => setCurrentUser(null)}>
             Signout
           </button>
-        )}
+        </div>)}
       </div>
     )
 }

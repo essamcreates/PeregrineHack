@@ -12,8 +12,8 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
         <div class="grid grid-cols-2 content-center">
             {/* column one */}
   <div>
-        <h1 class="flex font-bold text-6xl pt-10 opacity-40 line-through text-left">Log In</h1>
-        <h1 class="flex font-bold text-6xl pt-5 opacity-50 text-left">Clock In.</h1>
+        <h1 class="flex font-bold text-6xl pt-10 opacity-40 line-through text-left">{!currentUser ? (<>Log In</>):(<>Sign Out</>)}</h1>
+        <h1 class="flex font-bold text-6xl pt-5 opacity-50 text-left">{!currentUser ? (<>Clock In.</>):(<>Clock Out</>)}</h1>
         
  <div class="min-h-screen flex items-center justify-center">
    <div class="bg-white shadow-lg rounded-lg box-content w-96 h-96x p-20 ml-10 mb-20">
@@ -26,7 +26,7 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
     )}
     {currentUser && (
       <>
-        <h3>Sign Out</h3>
+        {/* <div class="text-center text-2xl font-serif"><h3>Have A Great Day</h3></div> */}
         <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </>
     )}
@@ -42,8 +42,8 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
     <div class="flex justify-center items-center pr-20"> 
     {/* <div class="absolute top-10 bottom-5 right-7"> */}
         <h1 class="flex-items-center text-6xl font-medium text-neutral-400">
-  Dive Into</h1>
-  <span class="relative ml-3 h-[1em] w-36  text-6xl overflow-hidden">
+            Dive Into</h1>
+  <span class="relative ml-3 h-[1em] w-36  text-6xl overflow-y-hidden">
     <span
       class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white "
     >
@@ -52,12 +52,12 @@ const LoginPage = ({authenticateUser, currentUser, setCurrentUser}) => {
     <span
       class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white [animation-delay:0.8s]"
     >
-      <p>Tech</p>
+      <p>Calm</p>
     </span>
     <span
       class="absolute h-full w-full -translate-y-full animate-slide leading-none text-white  [animation-delay:1.6s]"
     >
-      <p>Art</p>
+      <p>Goals</p>
     </span>
   </span>
 </div>

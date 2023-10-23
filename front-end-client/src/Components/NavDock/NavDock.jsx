@@ -1,6 +1,11 @@
 import {useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./NavDock.css"
+import HouseIcon from '@mui/icons-material/House';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import EditIcon from '@mui/icons-material/Edit';
+import LogoutIcon from '@mui/icons-material/Logout';
+import QuizIcon from '@mui/icons-material/Quiz';
 
 const NavDock = ({currentUser}) => {
     const [navOpen, setNavOpen] = useState(false)
@@ -20,19 +25,29 @@ const NavDock = ({currentUser}) => {
                         <div className="empty-cell-3"></div>
                         <div className="empty-cell-4"></div>
                         {location.pathname!=="/HomePage" && (<div>
-                            <button className="nav-icon-button" data-id="Home" onClick={()=>{setNavOpen(false);navigate("/HomePage")}}>🏠</button> {/* find icons later*/}
+                            <button className="nav-icon-button" data-id="Home" onClick={()=>{setNavOpen(false);navigate("/HomePage")}}>
+                                <HouseIcon style={{ color: "gray", fontSize : "50px"}} />
+                            </button> {/* find icons later*/}
                         </div>)}
                         {location.pathname!=="/ProfilePage" && (<div> 
-                            <button className="nav-icon-button" data-id="Profile" onClick={()=>{setNavOpen(false);navigate("/ProfilePage")}}>👥</button>
+                            <button className="nav-icon-button" data-id="Profile" onClick={()=>{setNavOpen(false);navigate("/ProfilePage")}}>
+                                <AccountBoxIcon style={{ color: "white", fontSize : "50px"}}/>
+                            </button>
                         </div>)}
                         {location.pathname!=="/ProfileCreationPage" && (<div>
-                            <button className="nav-icon-button" data-id="Edit Info" onClick={()=>{setNavOpen(false);navigate("/ProfileCreationPage")}}>📝</button>
+                            <button className="nav-icon-button" data-id="Edit Info" onClick={()=>{setNavOpen(false);navigate("/ProfileCreationPage")}}>
+                                <EditIcon style={{ color: "white", fontSize : "50px"}} />
+                            </button>
                          </div>)}
                         {location.pathname!=="/LoginPage" && (<div>
-                            <button className="nav-icon-button" data-id="Signout" onClick={()=>{setNavOpen(false);navigate("/LoginPage")}}>👋🏼</button>
+                            <button className="nav-icon-button" data-id="Signout" onClick={()=>{setNavOpen(false);navigate("/LoginPage")}}>
+                                <LogoutIcon style={{ color: "white", fontSize : "50px"}} />
+                            </button>
                         </div>)}
                         {location.pathname!=="/QuizPage" && (<div>
-                            <button className="nav-icon-button" data-id="Quiz" onClick={()=>{setNavOpen(false);navigate("/QuizPage")}}>Q</button>
+                            <button className="nav-icon-button" data-id="Quiz" onClick={()=>{setNavOpen(false);navigate("/QuizPage")}}>
+                                <QuizIcon style={{ color: "white", fontSize : "50px"}}/>
+                            </button>
                         </div>)}
                     </div>
                     </div>)}

@@ -6,7 +6,8 @@
   .nav-close-menu-button {
     width: 60px;
     height: 60px;
-    background-color: rgba(0, 0, 0, 0.9);
+    margin-left: 5px;
+    background-color: rgba(42, 40, 40, 0.9);
     border-radius: 10px;
     color: white;
     z-index: 3;
