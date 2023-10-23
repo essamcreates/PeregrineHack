@@ -34,8 +34,8 @@ const NavDock = ({currentUser}) => {
                                 <AccountBoxIcon style={{ color: "white", fontSize : "50px"}}/>
                             </button>
                         </div>)}
-                        {location.pathname!=="/ProfileCreationPage" && (<div>
-                            <button className="nav-icon-button" data-id="Edit Info" onClick={()=>{setNavOpen(false);navigate("/ProfileCreationPage")}}>
+                        {location.pathname!=="/EditProfile" && (<div>
+                            <button className="nav-icon-button" data-id="Edit Info" onClick={()=>{setNavOpen(false);navigate("/EditProfile")}}>
                                 <EditIcon style={{ color: "white", fontSize : "50px"}} />
                             </button>
                          </div>)}
