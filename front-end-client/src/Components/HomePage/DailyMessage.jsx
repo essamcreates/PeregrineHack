@@ -19,9 +19,9 @@ const DailyMessage = () => {
     // need to keep a track so keeps the same daily messsage on each day 
 
     return (
-        <div>
-        <h2>Daily Message</h2>
-        {message && (<p className="message">{message.message}</p>)}
+        <div class="border-2 border-slate-700 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-orange-400 via-yellow-400 to-yellow-100 h-full rounded-lg shadow-xl">
+        <h2 class="text-2xl pt-3">Pick Me Up </h2>
+        <div class="text-center">{message && (<p class="text-3xl pl-4">{message.message}</p>)}</div>
         </div>
     )
 }
