@@ -16,7 +16,7 @@ const ProfileBox = ({ currentUser }) => {
   const [mentalHealthConditions, setMentalHealthConditions] = useState();
   const [accessNeeds, setAccessNeeds] = useState();
   const navigate = useNavigate();
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
   // need to fetch data; data, accessneeds and mental health conditions
   // have the user be able to choose multiple needs and conditions if they so wish
@@ -130,10 +130,10 @@ const ProfileBox = ({ currentUser }) => {
     const { value } = event.target;
     if (enteredCareerGoals.includes(value)) {
       setEnteredCareerGoals(enteredCareerGoals.filter((item) => item !== value));
-      setIsChecked(false);
+      // setIsChecked(false);
     } else {
       setEnteredCareerGoals([...enteredCareerGoals, value]);
-      setIsChecked(true);
+      // setIsChecked(true);
     }
     console.log(event.target.checked);
   };
@@ -143,7 +143,7 @@ const ProfileBox = ({ currentUser }) => {
       // <option key={careerGoal.id} value={careerGoal.id}>
       //   {careerGoal.goal}
       // </option>
-      <label>
+      <label key={careerGoal.id}>
         <input
           type="checkbox"
           name="careerGoal"
@@ -152,7 +152,7 @@ const ProfileBox = ({ currentUser }) => {
           onChange={(e) => {
             handleCheckboxChange(e);
           }}
-          checked={enteredCareerGoals.includes(careerGoal.id)}
+          checked={enteredCareerGoals.includes(`${careerGoal.id}`)}
           className={`border p-2 m-2 rounded-lg cursor-pointer
           ${enteredCareerGoals.includes(careerGoal.id) ? "bg-blue-500 text-white" : "bg-gray-200"}
           hover:bg-blue-300 hover:text-white
