@@ -26,7 +26,7 @@ const NavDock = ({currentUser}) => {
                         <div className="empty-cell-4"></div>
                         {location.pathname!=="/HomePage" && (<div>
                             <button className="nav-icon-button" data-id="Home" onClick={()=>{setNavOpen(false);navigate("/HomePage")}}>
-                                <HouseIcon style={{ color: "gray", fontSize : "50px"}} />
+                                <HouseIcon style={{ color: "white", fontSize : "50px"}} />
                             </button> {/* find icons later*/}
                         </div>)}
                         {location.pathname!=="/ProfilePage" && (<div> 
