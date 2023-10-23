@@ -74,10 +74,16 @@ const Container = () => {
             path="/ProfilePage"
             element={<ProfilePage imageName={imageName} currentUser={currentUser} />}
           ></Route>
-          <Route path="/QuizPage" element={<QuizPage />}></Route>
           <Route
             path="/UploadProfilePhoto"
-            element={<UploadProfilePhoto setImageName={setImageName} currentUser={currentUser} />}
+            element={
+              <UploadProfilePhoto
+                setImageName={setImageName}
+                imageName={imageName}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
           ></Route>
         </Routes>
       </BrowserRouter>
