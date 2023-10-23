@@ -16,7 +16,6 @@ const ProfileBox = ({ currentUser }) => {
   const [mentalHealthConditions, setMentalHealthConditions] = useState();
   const [accessNeeds, setAccessNeeds] = useState();
   const navigate = useNavigate();
-  // const [isChecked, setIsChecked] = useState(false);
 
   // need to fetch data; data, accessneeds and mental health conditions
   // have the user be able to choose multiple needs and conditions if they so wish
@@ -126,23 +125,17 @@ const ProfileBox = ({ currentUser }) => {
     return options;
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleCareerCheckboxChange = (event) => {
     const { value } = event.target;
     if (enteredCareerGoals.includes(value)) {
       setEnteredCareerGoals(enteredCareerGoals.filter((item) => item !== value));
-      // setIsChecked(false);
     } else {
       setEnteredCareerGoals([...enteredCareerGoals, value]);
-      // setIsChecked(true);
     }
-    console.log(event.target.checked);
   };
 
   const loopCareerGoals = () => {
     return careerGoals.map((careerGoal) => (
-      // <option key={careerGoal.id} value={careerGoal.id}>
-      //   {careerGoal.goal}
-      // </option>
       <label
         key={careerGoal.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
@@ -156,7 +149,7 @@ const ProfileBox = ({ currentUser }) => {
           key={careerGoal.id}
           value={careerGoal.id}
           onChange={(e) => {
-            handleCheckboxChange(e);
+            handleCareerCheckboxChange(e);
           }}
           checked={enteredCareerGoals.includes(`${careerGoal.id}`)}
           className={"hidden"}
@@ -166,11 +159,37 @@ const ProfileBox = ({ currentUser }) => {
     ));
   };
 
+  const handleAccessNeedCheckboxChange = (event) => {
+    const { value } = event.target;
+    if (enteredAccessNeeds.includes(value)) {
+      setEnteredAccessNeeds(enteredAccessNeeds.filter((item) => item !== value));
+    } else {
+      setEnteredAccessNeeds([...enteredAccessNeeds, value]);
+    }
+  };
+
   const loopAccessNeeds = () => {
     return accessNeeds.map((accessNeed) => (
-      <option key={accessNeed.id} value={accessNeed.id}>
+      <label
+        key={accessNeed.id}
+        className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
+    ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
+    hover:bg-blue-300 hover:text-white
+  `}
+      >
+        <input
+          type="checkbox"
+          name="accessNeed"
+          key={accessNeed.id}
+          value={accessNeed.id}
+          onChange={(e) => {
+            handleAccessNeedCheckboxChange(e);
+          }}
+          checked={enteredAccessNeeds.includes(`${accessNeed.id}`)}
+          className={"hidden"}
+        />
         {accessNeed.accessNeedENUM}
-      </option>
+      </label>
     ));
   };
 
@@ -218,22 +237,7 @@ const ProfileBox = ({ currentUser }) => {
             <br />
             <br />
             <label> AccessNeeds:</label>
-            {accessNeeds && (
-              <select
-                className="select-multiple-needs"
-                name="accessNeeds"
-                multiple
-                size={3}
-                value={enteredAccessNeeds}
-                onChange={(e) => {
-                  setEnteredAccessNeeds(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  );
-                }}
-              >
-                {loopAccessNeeds()}
-              </select>
-            )}
+            {accessNeeds && <>{loopAccessNeeds()}</>}
             <br />
             <br />
             <label> MentalHealthConditions:</label>
