@@ -6,6 +6,7 @@ import WellnessBox from "./WellnessBox"
 import ResourcesBox from "./ResourcesBox"
 import ChatBot from "./ChatBot"
 import { useEffect, useState } from "react";
+import MoodEntry from "./MoodEntry";
 
 const HomePage = ({currentUser}) => {
 
@@ -29,19 +30,21 @@ const HomePage = ({currentUser}) => {
     },[])
 
     return (
-        <>
+        <div >
         <div className="welcome-home-page">
-            {currentDate && (<div className="date-time"> <h3>{currentDate} </h3></div>)}
             {currentUser && (<div className="welcome-name"> <h2>Hi, {currentUser.name}!</h2></div>)}
+            {currentDate && (<div className="date-time"> <h3>{currentDate} </h3></div>)}
+
         </div>
         <div className="dashboard">
         <div className="daily-message-box"><DailyMessage/></div>
         <div className="daily-interaction-box"><DailyInteraction currentUser={currentUser}/></div>
+        <div className="mood-entry-box"><MoodEntry currentUser={currentUser}/></div>
         <div className="chatbot-box"><ChatBot/></div>
         <div className="wellness-box"><WellnessBox/></div>
         <div className="resource-box"><ResourcesBox/></div>
         </div>
-        </>
+        </div>
     )
 }
 export default HomePage;

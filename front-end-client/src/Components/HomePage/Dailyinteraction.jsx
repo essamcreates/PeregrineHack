@@ -57,35 +57,41 @@ const DailyInteraction = ({currentUser}) => {
     const displayOptions = () => {
         const options=["optionOne","optionTwo","optionThree","optionFour","optionFive"]
         const choices=[]
-        options.map((option)=> {
+        options.map((option, index)=> {
             const choice = question[option]
             if(choice){
+                if((index === 4) && (index % 2===0)){
                 choices.push(
-                <div>
-                    <button value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                <div key={index}class="col-span-2 flex items-center justify-center">
+                    <button class="text-lg bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-2/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
                 </div>
-                )
+                )}else{
+                    choices.push(
+                        <div key={index}class="flex items-center justify-center">
+                            <button class="text-lg bg-pink-100 ring-offset-1 ring-1 m-2 p-1 w-4/5 rounded-lg shadow-lg" value={option} onClick={(e)=>{handleQuestionSubmit(e.target.value)}}>{choice}</button>
+                        </div>)
+                }
             }
         });
         return choices
     }
 
     return (
-        <>
-        <div><h3>Question</h3></div>
+        <div class="border-2 border-slate-700 bg-blue-50 h-full rounded-lg p-1 shadow-xl">
+        <div><h3 class="text-xl ml-2">Question</h3></div>
         {question && !questionAnswered &&(
             <div>
-                {question.question}
-                {displayOptions()}
+                <div class="text-center text-2xl mt-5">{question.question}</div>
+                <div class="grid grid-cols-2 mt-4" >{displayOptions()}</div>
             </div>
         )}
         {questionAnswered && (
-            <div>
-                <p>Question: {question.question}</p>
-                <p>Your Answer: {question[userAnswer]}</p>
+            <div >
+                <p class="text-2xl text-center mt-6">{question.question}</p>
+                <p class="text-xl text-center m-5" >{question[userAnswer]}</p>
             </div>
         )}
-        </>
+        </div>
     )
 }
 export default DailyInteraction;
