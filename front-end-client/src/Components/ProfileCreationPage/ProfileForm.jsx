@@ -128,8 +128,8 @@ const ProfileForm = ({ currentUser }) => {
         id="career-goal"
         key={careerGoal.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
-      ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
-      hover:bg-blue-300 hover:text-white
+      ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-teal-500 text-white" : "bg-gray-200"}
+  hover:bg-teal-600 hover:text-white
     `}
       >
         <input
@@ -163,8 +163,8 @@ const ProfileForm = ({ currentUser }) => {
         id="access-need"
         key={accessNeed.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
-    ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
-    hover:bg-blue-300 hover:text-white
+    ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-teal-500 text-white" : "bg-gray-200"}
+hover:bg-teal-600 hover:text-white
   `}
       >
         <input
@@ -198,13 +198,14 @@ const ProfileForm = ({ currentUser }) => {
     return mentalHealthConditions.map((mentalHealthCondition) => (
       <label
         key={mentalHealthCondition.id}
+        // "block bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
     ${
       enteredMentalHealthConditions.includes(`${mentalHealthCondition.id}`)
-        ? "bg-blue-500 text-white"
+        ? "bg-teal-500 text-white"
         : "bg-gray-200"
     }
-    hover:bg-blue-300 hover:text-white
+    hover:bg-teal-600 hover:text-white
   `}
       >
         <input

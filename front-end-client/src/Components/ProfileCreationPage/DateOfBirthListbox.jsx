@@ -22,7 +22,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
             key={i + start}
             className={({ active }) =>
               `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
-                active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                active ? "bg-teal-100 text-teal-900" : "text-gray-900"
               }`
             }
             value={getMonth(i)}
@@ -33,7 +33,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
                   {getMonth(i)}
                 </span>
                 {selected ? (
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-teal-600">
                     <CheckIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
                 ) : null}
@@ -48,7 +48,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
               key={i + start}
               className={({ active }) =>
                 `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
-                  active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                  active ? "bg-teal-100 text-teal-900" : "text-gray-900"
                 }`
               }
               value={"0" + i}
@@ -59,7 +59,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
                     {"0" + i}
                   </span>
                   {selected ? (
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-teal-600">
                       <CheckIcon className="h-5 w-5" aria-hidden="true" />
                     </span>
                   ) : null}
@@ -73,12 +73,23 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
               key={i + start}
               className={({ active }) =>
                 `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
-                  active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                  active ? "bg-teal-100 text-teal-900" : "text-gray-900"
                 }`
               }
               value={i}
             >
-              {i}
+              {({ selected }) => (
+                <>
+                  <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                    {i}
+                  </span>
+                  {selected ? (
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-teal-600">
+                      <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  ) : null}
+                </>
+              )}
             </Listbox.Option>
           );
         }
@@ -89,9 +100,9 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
 
   return (
     <>
-      <div className="grid grid-flow-col grid-rows-2">
+      <div className="grid grid-flow-col grid-rows-2 gap-x-4 justify-center my-1">
         {/* Day dropdown */}
-        <div>
+        <div className="text-center flex justify-center items-center h-full">
           <span>Day</span>
         </div>
         <div className="relative w-40 col-span-1">
@@ -100,7 +111,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
             onChange={(selectedDay) => setDateOfBirth({ ...dateOfBirth, day: selectedDay })}
           >
             <div className="relative mt-1">
-              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                 <span className="block truncate">{day}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -121,7 +132,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
         </div>
 
         {/* Month dropdown */}
-        <div>
+        <div className="text-center flex justify-center items-center h-full">
           <span>Month</span>
         </div>
         <div className="relative w-40">
@@ -130,7 +141,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
             onChange={(selectedMonth) => setDateOfBirth({ ...dateOfBirth, month: selectedMonth })}
           >
             <div className="relative mt-1">
-              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                 <span className="block truncate">{month}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -151,7 +162,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
         </div>
 
         {/* Year dropdown */}
-        <div>
+        <div className="text-center flex justify-center items-center h-full">
           <span>Year</span>
         </div>
         <div className="relative w-40">
@@ -160,7 +171,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
             onChange={(selectedYear) => setDateOfBirth({ ...dateOfBirth, year: selectedYear })}
           >
             <div className="relative mt-1">
-              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+              <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                 <span className="block truncate">{year}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
