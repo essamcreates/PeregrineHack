@@ -38,6 +38,18 @@ const WellnessBox = () => {
         wellnessResourcesRequest()}
     },[requestedResources])
 
+    const mappedWellnessResources = () =>{
+        const resources=[]
+        userWellnessResources.map((resource, link)=>{
+            resources.push(
+            <div key={index}>
+                <a src={resource} />
+            </div>
+            )
+        })
+        return resources;
+    }
+
     return (
         <>
         <div class="border-2 border-slate-700  bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-yellow-400 via-amber-300 to-green-100 h-full rounded-lg p-1 shadow-xl">
@@ -46,6 +58,7 @@ const WellnessBox = () => {
             {userWellnessResources && requestedResources && (
                 <div>
                     {userWellnessResources}
+                    {/* {mappedWellnessResources()} */}
                 </div>
             )}
         </div>
