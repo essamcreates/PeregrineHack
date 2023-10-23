@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DateOfBirthListbox from "./DateOfBirthListbox";
 
-const ProfileBox = ({ currentUser }) => {
+const ProfileForm = ({ currentUser }) => {
   // Add in validation when no current user that they need to login first
 
   // const [enteredJobRole, setEnteredJobRole] = useState ("")
@@ -12,9 +12,6 @@ const ProfileBox = ({ currentUser }) => {
     month: "MM",
     year: "YYYY"
   });
-  const [enteredDOBDay, setEnteredDOBDay] = useState();
-  const [enteredDOBMonth, setEnteredDOBMonth] = useState();
-  const [enteredDOBYear, setEnteredDOBYear] = useState();
   const [enteredGender, setEnteredGender] = useState("");
   const [enteredAccessNeeds, setEnteredAccessNeeds] = useState([]);
   const [enteredMentalHealthConditions, setEnteredMentalHealthConditions] = useState([]);
@@ -128,6 +125,7 @@ const ProfileBox = ({ currentUser }) => {
   const loopCareerGoals = () => {
     return careerGoals.map((careerGoal) => (
       <label
+        id="career-goal"
         key={careerGoal.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
       ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
@@ -162,6 +160,7 @@ const ProfileBox = ({ currentUser }) => {
   const loopAccessNeeds = () => {
     return accessNeeds.map((accessNeed) => (
       <label
+        id="access-need"
         key={accessNeed.id}
         className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
     ${enteredAccessNeeds.includes(`${accessNeed.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
@@ -209,6 +208,7 @@ const ProfileBox = ({ currentUser }) => {
   `}
       >
         <input
+          id="mental-health-condition"
           type="checkbox"
           name="mentalHealthCondition"
           key={mentalHealthCondition.id}
@@ -239,34 +239,47 @@ const ProfileBox = ({ currentUser }) => {
             {/* <label> Job Role/Title:</label>
                 <input className="input-box" type="text" value={enteredJobRole} onChange={(e)=>{setEnteredJobRole(e.target.value)}}/>
                 <br> */}
-            <label> Career Goals</label>
+            <label htmlFor="career-goals" className="block font-bold">
+              {" "}
+              Career Goals
+            </label>
             {careerGoals && <>{loopCareerGoals()}</>}
-            <br />
-            <br />
-            <label> Access Needs</label>
+            <label htmlFor="access-needs" className="block font-bold">
+              {" "}
+              Access Needs
+            </label>
             {accessNeeds && <>{loopAccessNeeds()}</>}
-            <br />
-            <br />
-            <label> Mental Health Conditions</label>
+            <label htmlFor="mental-health-conditions" className="block font-bold">
+              {" "}
+              Mental Health Conditions
+            </label>
             {mentalHealthConditions && <>{loopMentalHealthConditions()}</>}
-            <br />
-            <br />
+            <span className="block font-bold">Date Of Birth</span>
             <DateOfBirthListbox dateOfBirth={dateOfBirth} setDateOfBirth={setDateOfBirth} />
-            <br></br>
-            <label> Gender</label>
+            <label htmlFor="gender" className="block font-bold">
+              {" "}
+              Gender
+            </label>
             <input
-              className="input-box"
               type="text"
+              id="gender"
+              className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
               value={enteredGender}
               onChange={(e) => {
                 setEnteredGender(e.target.value);
               }}
             />
-            <input type="submit" value="Add" />
+            <button
+              className="block bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
+              type="submit"
+              name="submit-button"
+            >
+              Save
+            </button>
           </form>
         </>
       )}
     </div>
   );
 };
-export default ProfileBox;
+export default ProfileForm;
