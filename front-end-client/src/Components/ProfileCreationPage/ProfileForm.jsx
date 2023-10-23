@@ -143,7 +143,13 @@ const ProfileBox = ({ currentUser }) => {
       // <option key={careerGoal.id} value={careerGoal.id}>
       //   {careerGoal.goal}
       // </option>
-      <label key={careerGoal.id}>
+      <label
+        key={careerGoal.id}
+        className={`relative inline-block rounded-lg border p-2 m-2 cursor-pointer
+      ${enteredCareerGoals.includes(`${careerGoal.id}`) ? "bg-blue-500 text-white" : "bg-gray-200"}
+      hover:bg-blue-300 hover:text-white
+    `}
+      >
         <input
           type="checkbox"
           name="careerGoal"
@@ -153,10 +159,7 @@ const ProfileBox = ({ currentUser }) => {
             handleCheckboxChange(e);
           }}
           checked={enteredCareerGoals.includes(`${careerGoal.id}`)}
-          className={`border p-2 m-2 rounded-lg cursor-pointer
-          ${enteredCareerGoals.includes(careerGoal.id) ? "bg-blue-500 text-white" : "bg-gray-200"}
-          hover:bg-blue-300 hover:text-white
-        `}
+          className={"hidden"}
         />
         {careerGoal.goal}
       </label>
