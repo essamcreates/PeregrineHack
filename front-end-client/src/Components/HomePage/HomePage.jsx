@@ -30,7 +30,7 @@ const HomePage = ({currentUser}) => {
     },[])
 
     return (
-        <div >
+        <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
         <div className="welcome-home-page">
             {currentUser && (<div className="welcome-name"> <h2>Hi, {currentUser.name}!</h2></div>)}
             {currentDate && (<div className="date-time"> <h3>{currentDate} </h3></div>)}
