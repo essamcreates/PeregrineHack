@@ -32,7 +32,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
         <form onSubmit={(event) => handleLoginClick(event)}>
           {/* <label class="text-gray-700 p-4">Email: </label> */}
           <input
-            className="border border-gray-300 rounded p-2 w-full mb-4"
+            class="border border-gray-300 rounded p-2 w-full mb-5"
             type="text"
             value={currentEmail}
             onChange={(e) => setCurrentEmail(e.target.value)}
@@ -41,13 +41,16 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           <br />
           {/* <label class="text-gray-700 p-4">Password: </label> */}
           <input
-            className="border border-gray-300 rounded p-2 w-full"
+            class="border border-gray-300 rounded p-2 w-full mb-5"
             type="password"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             placeholder="Enter your password"
           />
-          <a href="#" className="underline w-full flex justify-end">
+          <a
+            href="#"
+            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-cyan-400 to-yellow-200"
+          >
             Forgotten Password?
           </a>
           <div class="w-full flex justify-end">
@@ -57,6 +60,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
             >
               Login
             </button>
+
             </div>
           </form>
         )}
@@ -67,9 +71,10 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => {setCurrentUser();updateCurrentUser(null); localStorage.clear();}}>
             Signout
           </button>
-        </div>)}
-      </div>
-    )
-}
+        </div>
+      )}
+    </div>
+  );
+};
 export default LoginForm;
 
