@@ -7,6 +7,7 @@ import ResourcesBox from "./ResourcesBox";
 import ChatBot from "./ChatBot";
 import { useEffect, useState } from "react";
 import MoodEntry from "./MoodEntry";
+import DigitalClock from "./DigitalClock";
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
@@ -36,31 +37,29 @@ const HomePage = ({ currentUser }) => {
   }, []);
 
   return (
-    <div className="h-screen">
-      <section className="relative block h-2/5 min-h-1/5 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-300 via-fuchsia-200 to-emerald-200">
-        <div className="relative top-0 w-full h-full">
-          <span className="w-full h-full absolute "></span>
-          <div className="daily-message-box">
-            <DailyMessage />
+    <div>
+      <div>
+        <section className="relative block h-[40vh] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-300 via-fuchsia-200 to-emerald-200">
+          <div className="relative top-0 w-full h-full flex justify-between items-center">
+            <div className="daily-message-box ml-12">
+              <DailyMessage />
+            </div>
+            <div>
+              <div className="flex flex-col items-centre mr-6">
+                <div className="mr-6">
+                  <DigitalClock />
+                </div>
+                {currentDate && (
+                  <div className="date-time whitespace-nowrap opacity-50">
+                    <p>{currentDate}</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-      {/* <div class="min-h-screen bg-[radial-gradient(ellipse_"> */}
-      {/* min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100 */}
-      <div className="welcome-home-page">
-        {currentUser && (
-          <div className="welcome-name">
-            {" "}
-            {/* <h2>Hi, {currentUser.name}!</h2> */}
-          </div>
-        )}
-        {currentDate && (
-          <div className="date-time">
-            {" "}
-            <h3>{currentDate} </h3>
-          </div>
-        )}
+        </section>
       </div>
+      <div className="welcome-home-page"></div>
       <div className="dashboard">
         <div className="daily-interaction-box">
           <DailyInteraction currentUser={currentUser} />
