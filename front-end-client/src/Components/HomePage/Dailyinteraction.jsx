@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 
 const DailyInteraction = ({currentUser}) => {
 
-    // fetch daily question 
-    // display options to user
-
     const [question, setQuestion] = useState(() => {
-        const storedUser = localStorage.getItem('question');
-        return storedUser ? JSON.parse(storedUser) : null;
+        const storedDailyQuestion = localStorage.getItem('question');
+        return (storedDailyQuestion && currentUser) ? JSON.parse(storedDailyQuestion) : null;
       });
     
     const [questionAnswered, setQuestionAnswered] = useState(false)
@@ -17,7 +14,15 @@ const DailyInteraction = ({currentUser}) => {
     const updateQuestion = (newUser) => {
         setQuestion(newUser);
         localStorage.setItem('question', JSON.stringify(newUser));
-      };
+      }
+
+    useEffect(() => {
+        if (!currentUser) {
+          setQuestion(null);
+        } else {
+          fetchQuestion(Math.floor((Math.random() * 2) + 1));
+        }
+      }, [currentUser]);
 
     const fetchQuestion = async (id) => {
         try {

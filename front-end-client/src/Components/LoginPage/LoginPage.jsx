@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 // import "./LoginPage.css";
 
-const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
+const LoginPage = ({ authenticateUser, currentUser, updateCurrentUser, setCurrentUser }) => {
   const navigate = useNavigate();
 
     return (
@@ -18,13 +18,13 @@ const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
       <>
         {/* <h1>User Login</h1> */}
         <h2 class="text-2x1 mb-10 white text-center text-2xl font-medium pb-10">Welcome back</h2>
-        <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} updateCurrentUser={updateCurrentUser} />
       </>
     )}
     {currentUser && (
       <>
         {/* <div class="text-center text-2xl font-serif"><h3>Have A Great Day</h3></div> */}
-        <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} updateCurrentUser={updateCurrentUser} setCurrentUser={setCurrentUser} />
       </>
     )}
     <div class="w-full flex justify-center">

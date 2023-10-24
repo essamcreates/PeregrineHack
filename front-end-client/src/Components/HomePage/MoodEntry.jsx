@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Entry from "./Entry";
 import ZoomOutMapTwoToneIcon from '@mui/icons-material/ZoomOutMapTwoTone';
 import MoodEntryModal from "./MoodEntryModal";
@@ -14,11 +14,7 @@ const MoodEntry = ({currentUser}) => {
     const [openModal, setOpenModal] = useState(false);
     const moodChoices = {"😁" : "Ecstatic", "🙂" : "Happy", "😌":"Ok", "🤯":"Frazzled","🥺":"Sad", "😡":"Frustrated"}
 
-    // need to format the users previous entries {useStates will be when moodEntryInProgress==false }
-    // format day and time
-    // note check that it allows for the new date to be fetched
-    // check unicode is converted correctly
-
+    // fetches all of users mood entries to be displayed in the mood entry log
     const fetchUserMoodEntries = async() =>{
         console.log("here")
         const response = await fetch(`http://localhost:8080/moodEntries/user/` + currentUser.id );
@@ -26,12 +22,6 @@ const MoodEntry = ({currentUser}) => {
         setUsersMoodEntries(data);
         console.log(data)
     }
-
-    // useEffect(()=>{
-    //     if(currentUser.id && currentUser){
-    //        fetchUserMoodEntries(); 
-    //     }
-    // },[currentUser])
 
     const postMoodEntry= async(userMoodEntry)=>{
         const url = `http://localhost:8080/moodEntries/` + currentUser.id;
@@ -52,18 +42,21 @@ const MoodEntry = ({currentUser}) => {
             "dateTime": now.toISOString(),
             "emojiUnicode" : enteredMoodEmoji.codePointAt(0).toString(16)
         }
+        // note that the emoji is saved as unicodeHex
         await postMoodEntry(template)
         setEnteredMoodEmoji()
         setEnteredMoodNote()
     }
 
     const handleEmojiEntry = (emoji) => {
+        //set placeholder for text area when entering a note for the mood entry
         setPlaceholder(`Why Do You Feel ${moodChoices[emoji]} ...`);
         setEmojiEntered(true)
         setEnteredMoodEmoji(emoji)
     }
 
     const mappedMoodChoices = Object.entries(moodChoices).map(([emoji, description],index)=>{
+        // for entering a mood entry gives the emoji and repective word to describe emoji/mood.
             return (<div key={index}>
                 <button value={emoji} class="text-center bg-transparent transition-transform transform-gpu hover:scale-105 text-6xl mt-2" onClick={(e)=>handleEmojiEntry(e.target.value)}>
                     {emoji}

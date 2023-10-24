@@ -10,7 +10,7 @@ import NavDock from "../Components/NavDock/NavDock";
 import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
 
 const Container = () => {
-//   const [currentUser, setCurrentUser] = useState();
+
   const [currentUser, setCurrentUser] = useState(() => {
     const storedUser = localStorage.getItem('currentUser');
     return storedUser ? JSON.parse(storedUser) : null;
@@ -33,7 +33,6 @@ const Container = () => {
     if (response.status === 202) {
       const newResponse = await response.json();
       updateCurrentUser(newResponse);
-    //   setCurrentUser(newResponse);
       return true;
     } else {
       return false;
@@ -69,6 +68,7 @@ const Container = () => {
               <LoginPage
                 authenticateUser={authenticateUser}
                 currentUser={currentUser}
+                updateCurrentUser={updateCurrentUser}
                 setCurrentUser={setCurrentUser}
               />
             }
