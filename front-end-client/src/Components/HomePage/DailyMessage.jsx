@@ -20,7 +20,6 @@ const DailyMessage = () => {
 
   return (
     <div class=" h-full rounded-lg shadow-xl bg-white text-black">
-      {/* bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-orange-400 via-yellow-400 to-yellow-100 */}
       <h2 class="text-xl pt-3">Pick Me Up </h2>
       <div class="text-center">
         {message && <p class="text-3xl pl-4 text-black">{message.message}</p>}

@@ -380,20 +380,8 @@ const ChatBot = () => {
                 />
               </svg>
             </button>
-// <<<<<<< developHP
-//             </div>)}
-//         </div>
-//         {!usingChatBot && (
-//             <div>
-//                 <div class=" flex items-center justify-center">
-//                     <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20 rounded-lg"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button>
-//                 </div>
-//             </div>
-// =======
-//           </div>
-// >>>>>>> develop
-        )}
-      </div>
+            </div>)}
+         </div>
       {!usingChatBot && (
         <div>
           <div class=" flex items-center justify-center">
@@ -404,9 +392,6 @@ const ChatBot = () => {
               Click to speak to Farai!
             </button>
           </div>
-          {/* ring-offset-1 ring-offset-stone-600 ring-4 p-20 rounded-lg */}
-          {/* <div class=" flex items-center justify-center mt-20 "><img onClick={()=>setUsingChatBot(true)} src="src/assets/bird-removebg-preview.png" class="w-1/2 " alt="Image of Farai the bird"/>
-                </div> */}
         </div>
       )}
       {usingChatBot && (

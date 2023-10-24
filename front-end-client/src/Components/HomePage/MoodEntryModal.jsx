@@ -11,7 +11,7 @@ const MoodEntryModal = ({mappedMoodEntries, setOpenModal}) =>{
                 </div>
 
                 {/* Is the actual modal box itself*/}
-                <div class="inline-block align-bottom bg-neutral-100 rounded-lg text-left overflow-scroll h-1/5 shadow-xl w-1/2 z-20 p-2">
+                <div class="inline-block align-bottom bg-neutral-100 rounded-lg text-left overflow-scroll h-1/5  shadow-xl w-1/2 z-20 p-2">
 
                     {/* Title */}
                     <div>
@@ -19,7 +19,7 @@ const MoodEntryModal = ({mappedMoodEntries, setOpenModal}) =>{
                     </div>
 
                     {/* box for mood entries includes a scroll */}
-                    <div class="overflow-scroll h-full w-full max-h-[600px]">
+                    <div class="overflow-scroll h-full w-full max-h-[500px]">
                         {/* style for mood entries is in Entry.jsx */}
                         {mappedMoodEntries()}
                     </div>
@@ -27,7 +27,7 @@ const MoodEntryModal = ({mappedMoodEntries, setOpenModal}) =>{
                     {/* Close button div centers button and class in button concerns the button itself*/}
                     <div class="flex items-center justify-center">
                         <button onClick={() => { setOpenModal(false); console.log("openModal"); }}
-                            class="w-1/6 text-center p-1 text-xl rounded-md shadow-sm bg-teal-500 font-medium text-white hover:bg-slate-300 relative z-20">
+                            class="w-1/6 text-center p-1 text-xl rounded-md shadow-sm bg-emerald-400 font-medium text-white hover:bg-slate-300 relative mt-2 z-20">
                             Close
                         </button>
                     </div>

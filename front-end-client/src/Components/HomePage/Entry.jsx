@@ -20,7 +20,7 @@ const Entry = ({entry}) => {
     return (
         // removes dot from list
         <ul class="list-none">
-        <li class="group relative hover:bg-teal-100 hover:text-slate-600 border-2 border-slate-400 m-2 bg-gray-50 rounded-xl">
+        <li class="group relative hover:bg-teal-100 hover:text-slate-600 border-2 border-slate-400 m-2 bg-emerald-50 rounded-xl">
           <div class="flex items-center p-4 ">
             <div class="w-20 ">
               <p class="text-5xl mr-4 ">{getMood()}</p>

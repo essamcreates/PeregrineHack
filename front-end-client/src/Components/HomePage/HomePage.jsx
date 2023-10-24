@@ -64,14 +64,8 @@ const HomePage = ({ currentUser }) => {
         <div className="chatbot-box">
           <ChatBot />
         </div>
-        <div className="dashboard">
-        <div className="daily-message-box"><DailyMessage/></div>
-        <div className="daily-interaction-box"><DailyInteraction currentUser={currentUser}/></div>
-        <div className="mood-entry-box"><MoodEntry currentUser={currentUser}/></div>
-        <div className="chatbot-box"><ChatBot/></div>
         <div className="wellness-box"><WellnessBox currentUser={currentUser}/></div>
         <div className="resource-box"><ResourcesBox currentUser={currentUser}/></div>
-        </div>
       </div>
     </div>
   );
