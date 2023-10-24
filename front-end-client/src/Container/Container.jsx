@@ -14,6 +14,7 @@ const Container = () => {
     const storedUser = localStorage.getItem("currentUser");
     return storedUser ? JSON.parse(storedUser) : null;
   });
+  const [isNewUser, setIsNewUser] = useState(false);
 
   const updateCurrentUser = (newUser) => {
     setCurrentUser(newUser);
@@ -73,12 +74,27 @@ const Container = () => {
         ></Route>
         <Route
           path="/AccountRegistrationPage"
-          element={<AccountRegistrationPage signupUser={signupUser} />}
+          element={<AccountRegistrationPage signupUser={signupUser} setIsNewUser={setIsNewUser} />}
         ></Route>
-        <Route path="/EditProfile" element={<EditProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} />}></Route>
+        <Route
+          path="/EditProfile"
+          element={
+            <EditProfilePage
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              isNewUser={isNewUser}
+            />
+          }
+        ></Route>
         <Route
           path="/ProfilePage"
-          element={<ProfilePage imageName={imageName} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+          element={
+            <ProfilePage
+              imageName={imageName}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
         ></Route>
         <Route path="/QuizPage" element={<QuizPage />}></Route>
         <Route

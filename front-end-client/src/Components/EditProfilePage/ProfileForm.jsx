@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DateOfBirthListbox from "./DateOfBirthListbox";
 
-const ProfileForm = ({ currentUser, setCurrentUser }) => {
+const ProfileForm = ({ currentUser, isNewUser }) => {
   // Add in validation when no current user that they need to login first
 
   // const [enteredJobRole, setEnteredJobRole] = useState ("")
