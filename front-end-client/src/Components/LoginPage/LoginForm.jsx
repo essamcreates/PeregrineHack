@@ -64,7 +64,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
         )}
         {currentUser && (<div class="flex items-center justify-center">
-          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => {setCurrentUser();updateCurrentUser(null) }}>
+          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => {setCurrentUser();updateCurrentUser(null); localStorage.clear();}}>
             Signout
           </button>
         </div>)}

@@ -42,7 +42,7 @@ const HomePage = ({currentUser}) => {
         <div className="mood-entry-box"><MoodEntry currentUser={currentUser}/></div>
         <div className="chatbot-box"><ChatBot/></div>
         <div className="wellness-box"><WellnessBox currentUser={currentUser}/></div>
-        <div className="resource-box"><ResourcesBox/></div>
+        <div className="resource-box"><ResourcesBox currentUser={currentUser}/></div>
         </div>
         </div>
     )

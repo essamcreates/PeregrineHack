@@ -209,8 +209,7 @@ const ChatBot = () => {
         {!usingChatBot && (
             <div>
                 <div class=" flex items-center justify-center">
-                    <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20 rounded-lg"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button></div>
-                    <div class=" flex items-center justify-center mt-20 "><img onClick={()=>setUsingChatBot(true)} src="src/assets/bird-removebg-preview.png" class="w-1/2 " alt="Image of Farai the bird"/>
+                    <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20 rounded-lg"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button>
                 </div>
             </div>
         )}

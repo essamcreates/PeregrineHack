@@ -16,15 +16,16 @@ const WellnessBox = ({currentUser}) => {
       };
 
     useEffect(() => {
-        if (!currentUser) {
-          setUserWellnessResources(null);
-          console.log("resoources set to null")
+        if (!userWellnessResources) {
+            setTimeout(function() {
+                wellnessResourcesRequest()
+            }, 300);
         }
-      }, [currentUser]);
+    }, []);
 
     const wellnessResourcesRequest = async()=>{
         try {
-            const request = "give me 3 resources with links that can help me improve my wellness, "
+            const request = "give me 3 resources with a short description and link that can help me improve my wellness, "
             // map through accessNeeds and mental health conditions
             // format an comma between 
             // add at end but not all resources should be focused on this
@@ -51,12 +52,6 @@ const WellnessBox = ({currentUser}) => {
        
     }
 
-    // need to add time delay as two requests to open ai at one time
-    useEffect(()=>{
-        if(requestedResources && !userWellnessResources){
-        wellnessResourcesRequest()}
-    },[requestedResources,userWellnessResources])
-
     const resources = () => {
         const lines = userWellnessResources.split('\n');
         const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude 
@@ -67,9 +62,13 @@ const WellnessBox = ({currentUser}) => {
           if (parts.length === 2) {
             const description = parts[0].trim();
             const link = parts[1].trim();
-            resourceList.push(<><a key={index} href={link}>
-                {description}
-            </a><br/></>);
+            // is the link and the box it is in , taget and rel allow for the link to open in a new tab
+            resourceList.push(<li class="font-serif w-3/4 m-3 text-center border-2 border-teal-200 bg-neutral-50 text-black hover:bg-slate-300 p-4 rounded-lg shadow-lg" key={index} >
+                    <a  href={link}  target="_blank" rel="noopener noreferrer">
+                        {description}
+                    </a>
+                </li>
+                );
           }
         });
         return resourceList;
@@ -79,12 +78,18 @@ const WellnessBox = ({currentUser}) => {
         <>
         <div class="border-2 border-slate-700  bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-yellow-400 via-amber-300 to-green-100 h-full rounded-lg p-1 shadow-xl">
             <h2 class="text-2xl pt-3">Wellness Resources</h2>
-            {!userWellnessResources || !requestedResources &&(<button class="border-1 border-slate-300 " onClick={()=>{setRequestedResources(true)}}>Click to see wellness resources</button>)}
-            {userWellnessResources && requestedResources && (
-               <div>
-               {resources()}
-             </div>
-            )}
+            {!userWellnessResources &&(<p class="border-1 border-slate-300 bg-slate-300 h-1/2 w-full text-center">Loading you tailored wellness resources <span class="animate-pulse">....</span> </p>)}
+            <div>
+            {userWellnessResources &&  (<>
+            
+            <p class="font-serif p-3 text-md mb-5 mt-3 text-center">Please click on these links to view your personalised resources, which have been tailored to suit your needs.......</p>
+                <div class="flex items-center justify-center h-full">
+                    <ul class="flex flex-col items-center w-full h-full ">
+                    {resources()}
+                    </ul>
+                </div>
+            </>)}
+        </div>
         </div>
         </>
     )
