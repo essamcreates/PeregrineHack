@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ChatBot = () => {
+const ChatBot = ({ currentUser }) => {
   const [usingChatBot, setUsingChatBot] = useState(false);
   const [requestString, setRequestString] = useState(""); // message that will be sent to openapi
   const [currentStep, setCurrentStep] = useState(1);
@@ -155,7 +155,6 @@ const ChatBot = () => {
   const handleOptionClick = async (choice, text, nextStep) => {
     setPrevChoices((prevChoices) => [...prevChoices, choice]);
     setRequestString(requestString + text);
-    
 
     if (nextStep !== 0) {
       setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
@@ -355,7 +354,11 @@ const ChatBot = () => {
 
   return (
     <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
-      <h3 class="text-xl p-5 mt-20">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? </h3>
+      <h3 class="text-xl p-5 mt-20">
+        Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve
+        considered your unique needs to offer advice that’s tailored to you.
+        What can I help you with?{" "}
+      </h3>
       <div class="grid grid-cols-2">
         {/* <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div> */}
         {usingChatBot && (
@@ -380,8 +383,9 @@ const ChatBot = () => {
                 />
               </svg>
             </button>
-            </div>)}
-         </div>
+          </div>
+        )}
+      </div>
       {!usingChatBot && (
         <div>
           <div class=" flex items-center justify-center">

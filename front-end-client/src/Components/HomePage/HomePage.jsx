@@ -36,12 +36,22 @@ const HomePage = ({ currentUser }) => {
   }, []);
 
   return (
-    <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
+    <div className="h-screen">
+      <section className="relative block h-2/5 min-h-1/5 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-300 via-fuchsia-200 to-emerald-200">
+        <div className="relative top-0 w-full h-full">
+          <span className="w-full h-full absolute "></span>
+          <div className="daily-message-box">
+            <DailyMessage />
+          </div>
+        </div>
+      </section>
+      {/* <div class="min-h-screen bg-[radial-gradient(ellipse_"> */}
+      {/* min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100 */}
       <div className="welcome-home-page">
         {currentUser && (
           <div className="welcome-name">
             {" "}
-            <h2>Hi, {currentUser.name}!</h2>
+            {/* <h2>Hi, {currentUser.name}!</h2> */}
           </div>
         )}
         {currentDate && (
@@ -52,9 +62,6 @@ const HomePage = ({ currentUser }) => {
         )}
       </div>
       <div className="dashboard">
-        <div className="daily-message-box">
-          <DailyMessage />
-        </div>
         <div className="daily-interaction-box">
           <DailyInteraction currentUser={currentUser} />
         </div>
@@ -62,10 +69,14 @@ const HomePage = ({ currentUser }) => {
           <MoodEntry currentUser={currentUser} />
         </div>
         <div className="chatbot-box">
-          <ChatBot />
+          <ChatBot currentUser={currentUser} />
         </div>
-        <div className="wellness-box"><WellnessBox currentUser={currentUser}/></div>
-        <div className="resource-box"><ResourcesBox currentUser={currentUser}/></div>
+        <div className="wellness-box">
+          <WellnessBox currentUser={currentUser} />
+        </div>
+        <div className="resource-box">
+          <ResourcesBox currentUser={currentUser} />
+        </div>
       </div>
     </div>
   );

@@ -19,10 +19,15 @@ const DailyMessage = () => {
   // need to keep a track so keeps the same daily messsage on each day
 
   return (
-    <div class=" h-full rounded-lg shadow-xl bg-white text-black">
-      <h2 class="text-xl pt-3">Pick Me Up </h2>
+    // <div class=" h-full rounded-lg shadow-xl bg-white text-black">
+    <div>
+      {/* <h2 class="text-xl pt-3">Pick Me Up </h2> */}
       <div class="text-center">
-        {message && <p class="text-3xl pl-4 text-black">{message.message}</p>}
+        {message && (
+          <p class="font-bold text-4xl opacity-50 text-left ml-5 pt-2">
+            {message.message}
+          </p>
+        )}
       </div>
     </div>
   );
