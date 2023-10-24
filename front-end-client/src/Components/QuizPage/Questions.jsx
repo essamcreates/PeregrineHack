@@ -123,7 +123,7 @@ const Questions = () => {
     return (
       <div>
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
-         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Send to API</button>)}
+         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Get results</button>)}
       </div>
     );
 }
