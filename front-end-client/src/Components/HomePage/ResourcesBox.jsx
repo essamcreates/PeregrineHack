@@ -63,7 +63,7 @@ const ResourcesBox = ({currentUser}) => {
                 link = 'https://' + link;
             }
             // is the link and the box it is in , taget and rel allow for the link to open in a new tab
-            resourceList.push(<li class="font-serif w-3/4 m-3 text-center text-md border-2 border-teal-100 bg-neutral-50 text-black hover:bg-slate-300 p-4 rounded-lg shadow-lg" key={index} >
+            resourceList.push(<li class="font-serif w-3/4 m-3 text-center bg-yellow-100 text-black hover:bg-green-100 p-4 rounded-lg shadow-inner shadow-md" key={index} >
                     <a  href={link} target="_blank" rel="noopener noreferrer">
                         {description}
                     </a>
@@ -76,8 +76,8 @@ const ResourcesBox = ({currentUser}) => {
 
     return (
         <>
-        <div class="border-2 border-slate-700 bg-blue-50 h-full rounded-lg p-1 shadow-xl">
-            <h2 class="text-2xl pt-3">Career Resources</h2>
+        <div class="bg-white border-2 border-gray-50  h-full rounded-lg p-1 shadow-xl">
+            <h2 class="text-2xl pt-3 mt-3">Career Resources</h2>
             {!userResources && (<div class="flex items-center justiy-center mt-6"><p class="border-1 border-grey-200 bg-neutral-50 h-1/2 w-full m-3 text-center text-2xl rounded-lg">Loading your tailored career resources  <span class="animate-pulse">....</span>  </p></div>)}
             <div>
                 {userResources && (<>

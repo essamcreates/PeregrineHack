@@ -66,7 +66,7 @@ const WellnessBox = ({currentUser}) => {
                 link = 'https://' + link;
             }
             // is the link and the box it is in , taget and rel allow for the link to open in a new tab
-            resourceList.push(<li class="font-serif w-3/4 m-3 text-center border-2 border-teal-100 bg-neutral-50 text-black hover:bg-slate-300 p-4 rounded-lg shadow-lg" key={index} >
+            resourceList.push(<li class="font-serif w-3/4 m-3 text-center bg-yellow-100 text-black hover:bg-green-100 p-4 rounded-lg shadow-inner shadow-md" key={index} >
                     <a  href={link}  target="_blank" rel="noopener noreferrer">
                         {description}
                     </a>
@@ -80,9 +80,9 @@ const WellnessBox = ({currentUser}) => {
 
     return (
         <>
-        <div class="border-2 border-slate-700  bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-yellow-400 via-amber-300 to-green-100 h-full rounded-lg p-1 shadow-xl">
-            <h2 class="text-2xl pt-3">Wellness Resources</h2>
-            {!userWellnessResources &&(<div class="flex items-center justiy-center mt-6"><p class="border-1 border-slate-300 h-1/2 w-full bg-neutral-100 m-3 text-center text-2xl rounded-lg">Loading you tailored wellness resources <span class="animate-pulse">....</span> </p></div>)}
+        <div class="bg-white border-2 border-gray-50  h-full rounded-lg p-1 shadow-xl">
+            <h2 class="text-2xl pt-3 mt-3">Wellness Resources</h2>
+            {!userWellnessResources &&(<div class="flex items-center justiy-center mt-6"><p class="border-1 border-slate-300 h-1/2 w-full bg-yellow-100 m-3 text-center text-2xl rounded-lg">Loading you tailored wellness resources <span class="animate-pulse">....</span> </p></div>)}
             <div>
             {userWellnessResources &&  (<>
                 <div class="flex items-center justify-center h-full mt-3">
