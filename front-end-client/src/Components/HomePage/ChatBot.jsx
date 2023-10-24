@@ -355,8 +355,9 @@ const ChatBot = () => {
 
   return (
     <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
+      <h3 class="text-xl p-5 mt-20">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? </h3>
       <div class="grid grid-cols-2">
-        <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div>
+        {/* <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div> */}
         {usingChatBot && (
           <div class="flex justify-end m-2 mt-3">
             <button
