@@ -70,42 +70,6 @@ const ProfilePage = ({ imageName, currentUser }) => {
                       Job Title Goes Here
                     </p>
                   </div>
-
-                  <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {/* First Column: Career Goals */}
-                      <div className="bg-white p-4 rounded-lg shadow-md">
-                        <CareerGoalsList currentUserGoals={currentUser.careerGoals} />
-                      </div>
-
-                      {/* Second Column: Big Five Information */}
-                      <div className="bg-white p-4 rounded-lg shadow-md">
-                        <BigFiveDisplay currentUser={currentUser} />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <Link to="/UploadProfilePhoto">upload Profile Photo</Link>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                    <div className="py-6 px-3 mt-32 sm:mt-0">
-                      <Link
-                        to="/EditProfile"
-                        className="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
-                      >
-                        Manage Account
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="text-center mt-12">
-                    <h3 className="text-4xl font-semibold leading-normal mb-0.5 text-neutral-700">
-                      Hello {currentUser.name}
-                    </h3>
-                    <p className="text-sm leading-normal mt-0 mb-2 text-neutral-400 font-bold uppercase">
-                      Job Title Goes Here
-                    </p>
-                  </div>
-
                   <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* First Column: Career Goals */}
