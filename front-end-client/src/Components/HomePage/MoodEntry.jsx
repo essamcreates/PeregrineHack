@@ -114,7 +114,6 @@ const MoodEntry = ({ currentUser }) => {
             </div></div>
             </>)}
 
-        {/*  */}
         {moodEntryInProgress && !enteredMoodEmoji && (<>
             <div class= "flex justify-center items-center p-3">
                 <p class="text-2xl mt-6">How Are You Feeling?</p></div>
@@ -140,8 +139,8 @@ const MoodEntry = ({ currentUser }) => {
       )}
         {moodEntryInProgress && enteredMoodEmoji && emojiEntered && (
                 <>
-                <div class="flex justify-center items-center p-2 mt-12">
-                    <p class="text-xl">Feel Free to Add A Note</p>
+                <div class="flex justify-center items-center">
+                    <p class="text-xl p-2 mt-12">Feel Free to Add A Note</p>
                 </div>
                 <div class="flex justify-center items-center ">
                     <textarea
