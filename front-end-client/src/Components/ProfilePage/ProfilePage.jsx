@@ -46,20 +46,20 @@ const ProfilePage = ({ imageName, currentUser }) => {
                           <img
                             src={`http://localhost:8080/${currentUser.profilePictureURL}`}
                             alt="User Profile Picture"
-                            className="shadow-xl rounded-full h-auto align-middle border-none relative -m-16 -ml-20 lg:-ml-16"
+                            className="shadow-xl rounded-full h-48 w-48 max-w-none align-middle border-none relative object-cover -m-16 -ml-20 lg:-ml-16"
                           />
                         </div>
                       </div>
                     </div>
-                    <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                      <div className="py-6 px-3 mt-32 sm:mt-0">
-                        <Link
-                          to="/EditProfile"
-                          className="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
-                        >
-                          Manage Account
-                        </Link>
-                      </div>
+                  </div>
+                  <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                    <div className="py-6 px-3 mt-32 sm:mt-0">
+                      <Link
+                        to="/EditProfile"
+                        className="bg-teal-500 text-white py-2 px-5 rounded mt-4 mb-6 hover:bg-teal-800"
+                      >
+                        Manage Account
+                      </Link>
                     </div>
                   </div>
                   <div className="text-center mt-12">
