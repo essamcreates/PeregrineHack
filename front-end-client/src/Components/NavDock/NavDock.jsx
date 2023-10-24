@@ -6,6 +6,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EditIcon from "@mui/icons-material/Edit";
 import LogoutIcon from "@mui/icons-material/Logout";
 import QuizIcon from "@mui/icons-material/Quiz";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const NavDock = ({ currentUser }) => {
   const [navOpen, setNavOpen] = useState(false);
