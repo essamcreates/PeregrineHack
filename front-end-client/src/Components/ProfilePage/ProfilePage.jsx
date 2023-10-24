@@ -3,9 +3,18 @@ import BigFiveDisplay from "./BigFiveDisplay.jsx";
 import CareerGoalsList from "./CareerGoalsList.jsx";
 import AccessNeedList from "./AccessNeedList.jsx";
 import MentalHealthConditionsList from "./MentalHealthConditionsList.jsx";
+import {useState} from "react";
 
 const ProfilePage = ({ imageName, currentUser }) => {
-  console.log(imageName);
+  // console.log(imageName);
+
+  const [imageError, setImageError] = useState(false);
+  const handleImageError = (e) => {
+    if (!imageError) {
+      e.target.src = "http://localhost:8080/images/stockUser.jpg";
+      setImageError(true);
+    }
+  };
 
   return (
     <>
@@ -31,6 +40,7 @@ const ProfilePage = ({ imageName, currentUser }) => {
                             <img
                               src={`http://localhost:8080/${currentUser.profilePictureURL}`}
                               alt="User Profile Picture"
+                              onError={handleImageError}
                               className="shadow-xl rounded-full h-48 w-48 max-w-none align-middle border-none relative object-cover -m-16 -ml-20 lg:-ml-16"
                             />
                           </div>
