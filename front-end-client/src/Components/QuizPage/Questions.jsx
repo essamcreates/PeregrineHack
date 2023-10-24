@@ -80,13 +80,31 @@ const Questions = () => {
       console.log(currentQuestion)
       const options= ["strongly disagree", "disagree", "neutral" , "agree", "strongly agree" ]
       const choices = []
+
       options.map((option, index)=>{
-        choices.push(<div key={index}><button value={index+1} onClick={(e)=>{handleAnswer(e.target.value) }}>{option}</button></div>)
+        choices.push(
+        <div key={index} className="inline-block mx-2 text-center">
+          <button 
+          value={index+1} 
+          onClick={(e)=>{handleAnswer(e.target.value) }}
+          className="bg-cyan-500 hover:bg-cyan-700 py-2 px-4 rounded-full"
+          >
+            {option}
+            </button>
+            </div>
+            )
       })
-      return (<div>
-        <p>Question : {currentQuestion.question}</p>
-        <div>{choices}</div>
-      </div>)
+
+      const questionNumber = currentQuestionId - 41;
+
+      return (
+      <div className="text-center transition-opacity duration-1000">
+        <p className="mb-8 font-bold">Question {questionNumber} : {currentQuestion.question}</p>
+        <div className="mt-4">
+          {choices}
+          </div>
+      </div>
+      )
     }else{
       return <div><p>Loading question</p></div>
     }
