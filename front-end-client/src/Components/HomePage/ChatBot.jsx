@@ -382,6 +382,8 @@ const ChatBot = () => {
             </button>
             </div>)}
          </div>
+         <h3 class="">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? 
+</h3>
       {!usingChatBot && (
         <div>
           <div class=" flex items-center justify-center">
