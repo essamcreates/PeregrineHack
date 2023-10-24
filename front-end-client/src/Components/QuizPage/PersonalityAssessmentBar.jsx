@@ -11,7 +11,7 @@ const PersonalityAssessmentBar = ({currentQuestionId, totalQuestions, questionsA
                 style={{width: `${progress}%`}}
                 ></div>
             </div>
-            <p className="text-center mt-2">{`Question ${currentQuestionId - 42} of ${totalQuestions}`}</p>
+            <p className="text-center mt-2">{`Question ${currentQuestionId - 41} of ${totalQuestions}`}</p>
         </div>
     )
 }
