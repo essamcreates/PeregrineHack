@@ -3,15 +3,15 @@ import BigFiveDisplay from "./BigFiveDisplay.jsx";
 import CareerGoalsList from "./CareerGoalsList.jsx";
 import AccessNeedList from "./AccessNeedList.jsx";
 import MentalHealthConditionsList from "./MentalHealthConditionsList.jsx";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
   // console.log(imageName);
-  const fetchUpdatedUser = async () =>{
-    const response = await fetch('http://localhost:8080/users/'+ currentUser.id);
+  const fetchUpdatedUser = async () => {
+    const response = await fetch("http://localhost:8080/users/" + currentUser.id);
     const data = await response.json();
     setCurrentUser(data);
-  }
+  };
   useEffect(() => {
     fetchUpdatedUser();
   }, []);
@@ -60,7 +60,7 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                             to="/EditProfile"
                             className="w-2/3 bg-teal-500 text-white text-center py-2 px-5 rounded mb-4 hover:bg-teal-800"
                           >
-                            Manage Account
+                            Edit Profile
                           </Link>
                           <Link
                             to="/UploadProfilePhoto"
