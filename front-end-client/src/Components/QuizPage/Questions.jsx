@@ -63,7 +63,7 @@ const Questions = () => {
       const updatedRequest = { ...request };
 
       // Update the copy with the user's chosen answer
-      updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
+      updatedRequest.questionAnswers[currentQuestionId - 41] = { [currentQuestionId.toString()]: chosenAnswerInt };
     
       // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);
@@ -98,7 +98,7 @@ const Questions = () => {
             )
       })
 
-      const questionNumber = currentQuestionId - 42;
+      const questionNumber = currentQuestionId - 41;
 
       return (
         <div>
