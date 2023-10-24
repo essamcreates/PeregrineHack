@@ -95,9 +95,11 @@ const Questions = () => {
             )
       })
 
+      const questionNumber = currentQuestionId - 41;
+
       return (
       <div className="text-center transition-opacity duration-1000">
-        <p className="mb-8 font-bold">Question : {currentQuestion.question}</p>
+        <p className="mb-8 font-bold">Question {questionNumber} : {currentQuestion.question}</p>
         <div className="mt-4">
           {choices}
           </div>
