@@ -153,8 +153,9 @@ const ChatBot = () => {
   ];
 
   const handleOptionClick = async (choice, text, nextStep) => {
-    setRequestString(requestString + text);
     setPrevChoices((prevChoices) => [...prevChoices, choice]);
+    setRequestString(requestString + text);
+    
 
     if (nextStep !== 0) {
       setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
@@ -174,7 +175,6 @@ const ChatBot = () => {
     }
     if (currentStep === 100) {
       // meaning user wants to input a question
-      //
       return (
         <div>
           {!sent && (
@@ -222,7 +222,6 @@ const ChatBot = () => {
           >
             <button
               class="w-11/12 h-full mt-3 m-2 border-2 bg-white border-teal-500 p1 text-center rounded-md transition-transform transform hover:bg-teal-300"
-              //   w-11/12 h-full mt-3 m-2 border-2 border-blue-900 bg-red-200 p-1 text-center rounded-md transition-transform transform hover:bg-red-300
               onClick={() => {
                 handleOptionClick(
                   option.displayText,
@@ -259,7 +258,7 @@ const ChatBot = () => {
         <p class="text-sm ml-2 mb-0">Farai</p>
         {currentLevel.message && (
           <div>
-            <p class="rounded-lg bg-teal-400 text-white py-4 px-5 mt-4 mb-6">
+            <p class="rounded-lg bg-teal-400 text-white py-4 px-5 mt-4 mb-6 w-5/6">
               {currentLevel.message}
             </p>
           </div>
@@ -306,7 +305,7 @@ const ChatBot = () => {
           <p class="text-sm ml-1 mb-0 font-semibold">Farai</p>
           {prevText.message && (
             <div>
-              <p class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg">
+              <p class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg w-5/6">
                 {prevText.message}
               </p>
             </div>
