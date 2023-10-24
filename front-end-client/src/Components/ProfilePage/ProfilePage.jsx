@@ -23,7 +23,7 @@ const ProfilePage = ({ imageName, currentUser }) => {
             <div className="container mx-auto px-4 mt-40">
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                 <div className="px-6">
-                  <div className="flex flex-wrap justify-center">
+                  <div className="flex flex-wrap justify-between">
                     <div className="w-full lg:w-3/12 px-4 lg:order-2 sm:w-3/12 flex justify-center">
                       <div className="relative">
                         <div className="flex justify-center">
@@ -39,20 +39,20 @@ const ProfilePage = ({ imageName, currentUser }) => {
                       <div className="py-6 px-3 mt-16 min-w-1/3 flex flex-col items-center sm:mt-0">
                         <Link
                           to="/EditProfile"
-                          className="w-2/3 bg-teal-500 text-white text-center py-2 px-5 rounded mt-4 hover:bg-teal-800"
+                          className="w-2/3 bg-teal-500 text-white text-center py-2 px-5 rounded mb-4 hover:bg-teal-800"
                         >
                           Manage Account
                         </Link>
                         <Link
                           to="/UploadProfilePhoto"
-                          className="w-2/3 bg-teal-500 text-white text-center py-2 px-5 rounded mt-4 hover:bg-teal-800"
+                          className="w-2/3 bg-teal-500 text-white text-center py-2 px-5 rounded hover:bg-teal-800"
                         >
                           Upload Profile Photo
                         </Link>
                       </div>
                     </div>
                   </div>
-                  <div className="text-center mt-12">
+                  <div className="text-center mt-2">
                     <h3 className="text-4xl font-semibold leading-normal mb-0.5 text-neutral-700">
                       Hello {currentUser.name}
                     </h3>
