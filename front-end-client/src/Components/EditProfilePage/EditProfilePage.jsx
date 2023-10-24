@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import ProfileCreationBar from "./ProfileCreationBar";
 
-const ProfileCreationPage = ({ currentUser }) => {
+const ProfileCreationPage = ({ currentUser,setCurrentUser}) => {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const ProfileCreationPage = ({ currentUser }) => {
             <label>Progress Bar</label>
             <ProfileCreationBar currentUser={currentUser} />
             {/* Profile creation bar */}
-            <ProfileForm currentUser={currentUser} />
+            <ProfileForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
           </div>
           <div>
             <Link to="/QuizPage">Click to take personality quiz</Link>
