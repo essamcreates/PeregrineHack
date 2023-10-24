@@ -5,6 +5,7 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
 
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [confirmedUpload, setConfirmedUpload] = useState("");
 
 
     const onDrop = (acceptedFiles) => {
@@ -49,6 +50,7 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
                 if (response.ok) {
                     // Update the image name in the state
                     setImageName(newFileName);
+                    setConfirmedUpload("Your profile photo has been uploaded successfully.");
                 }
             });
     }
@@ -88,6 +90,10 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
                     <img src={imagePreview} alt="Selected Image" style={{ maxWidth: "100%" }} />
                 </div>
             )}
+
+            <div>
+                {confirmedUpload && <p>{confirmedUpload}</p>}
+            </div>
 
         </>
     );
