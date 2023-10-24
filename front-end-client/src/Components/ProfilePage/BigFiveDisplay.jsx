@@ -13,15 +13,26 @@ const BigFiveDisplay = ({ currentUser }) => {
   }, []);
 
   return (
-    <div>
-      <p>Your Big Five:</p>
-
-      {currentUser && userScore && <p>Openness: {userScore.openness}</p>}
-      {currentUser && userScore && <p>Conscientiousness: {userScore.conscientiousness}</p>}
-      {currentUser && userScore && <p>Extraversion: {userScore.extraversion}</p>}
-      {currentUser && userScore && <p>Agreeableness: {userScore.agreeableness}</p>}
-      {currentUser && userScore && <p>Neuroticism: {userScore.neuroticism}</p>}
-    </div>
+    <>
+      <h2 className="text-2xl font-semibold">Big Five Information</h2>
+      <div className="mt-4">
+        <p>
+          <strong>Openness:</strong> {userScore.openness}
+        </p>
+        <p>
+          <strong>Conscientiousness:</strong> {userScore.conscientiousness}
+        </p>
+        <p>
+          <strong>Extraversion:</strong> {userScore.extraversion}
+        </p>
+        <p>
+          <strong>Agreeableness:</strong> {userScore.agreeableness}
+        </p>
+        <p>
+          <strong>Neuroticism:</strong> {userScore.neuroticism}
+        </p>
+      </div>
+    </>
   );
 };
 export default BigFiveDisplay;
