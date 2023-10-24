@@ -226,7 +226,7 @@ hover:bg-teal-600 hover:text-white
   };
 
   useEffect(() => {
-    if (currentUser) {
+    if (!isNewUser) {
       const dateOfBirthArray = currentUser.dateOfBirth.split("-");
 
       setEnteredCareerGoals(
