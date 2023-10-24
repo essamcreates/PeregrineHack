@@ -5,6 +5,7 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
 
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [confirmUpload, setConfirmUpload] = useState(null);
 
 
     const onDrop = (acceptedFiles) => {
@@ -58,6 +59,7 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
         const response = await fetch('http://localhost:8080/users/'+ currentUser.id);
         const data = await response.json();
         setCurrentUser(data);
+        setConfirmUpload("Your profile Photo has been successfully uploaded")
     }
 
     useEffect(()=>{
@@ -88,6 +90,10 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
                     <img src={imagePreview} alt="Selected Image" style={{ maxWidth: "100%" }} />
                 </div>
             )}
+
+            <div>
+                {confirmUpload && <p>{confirmUpload}</p>}
+            </div>
 
         </>
     );
