@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DateOfBirthListbox from "./DateOfBirthListbox";
 
-const ProfileForm = ({ currentUser, setCurrentUser }) => {
+const ProfileForm = ({ currentUser, isNewUser }) => {
   // Add in validation when no current user that they need to login first
 
   // const [enteredJobRole, setEnteredJobRole] = useState ("")
@@ -88,7 +88,11 @@ const ProfileForm = ({ currentUser, setCurrentUser }) => {
       addUserData(tempGoals, "careerGoals");
       addUserData(tempNeeds, "accessNeeds");
       addUserData(tempConditions, "mentalHealthConditions");
-      navigate("/HomePage");
+      if (!isNewUser) {
+        navigate("/ProfilePage");
+      } else {
+        navigate("/QuizPage");
+      }
     }
     console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
   };
@@ -224,6 +228,34 @@ hover:bg-teal-600 hover:text-white
       </label>
     ));
   };
+
+  useEffect(() => {
+    if (!isNewUser) {
+      const dateOfBirthArray = currentUser.dateOfBirth.split("-");
+
+      setEnteredCareerGoals(
+        currentUser.careerGoals.map((goal) => {
+          return `${goal.id}`;
+        })
+      );
+      setEnteredAccessNeeds(
+        currentUser.accessNeeds.map((accessNeed) => {
+          return `${accessNeed.id}`;
+        })
+      );
+      setEnteredMentalHealthConditions(
+        currentUser.mentalHealthConditions.map((condition) => {
+          return `${condition.id}`;
+        })
+      );
+      setDateOfBirth({
+        day: `${dateOfBirthArray[2]}`,
+        month: `${dateOfBirthArray[1]}`,
+        year: `${dateOfBirthArray[0]}`
+      });
+      setEnteredGender(currentUser.gender);
+    }
+  }, []);
 
   return (
     <div>
