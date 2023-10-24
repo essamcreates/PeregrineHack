@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   height: max-content;
+  margin: 5px;
 }
 
 .date-time,
@@ -75,7 +76,7 @@
 
 .wellness-box {
   /* border: 2px black solid ;*/
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: white;
   grid-row: 3;
   grid-column: 1;
@@ -84,7 +85,7 @@
 
 .resource-box {
   /* border: 2px black solid ; */
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: white;
   grid-row: 3;
   grid-column: 2;
