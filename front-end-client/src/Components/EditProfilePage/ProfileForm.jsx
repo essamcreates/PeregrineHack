@@ -88,7 +88,11 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       addUserData(tempGoals, "careerGoals");
       addUserData(tempNeeds, "accessNeeds");
       addUserData(tempConditions, "mentalHealthConditions");
-      navigate("/ProfilePage");
+      if (!isNewUser) {
+        navigate("/ProfilePage");
+      } else {
+        navigate("/QuizPage");
+      }
     }
     console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
   };

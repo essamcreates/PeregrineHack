@@ -25,9 +25,6 @@ const ProfileCreationPage = ({ currentUser, setCurrentUser, isNewUser }) => {
               isNewUser={isNewUser}
             />
           </div>
-          <div>
-            <Link to="/QuizPage">Click to take personality quiz</Link>
-          </div>
         </div>
       )}
       {!currentUser && (
