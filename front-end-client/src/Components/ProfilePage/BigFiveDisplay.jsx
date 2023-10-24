@@ -17,19 +17,19 @@ const BigFiveDisplay = ({ currentUser }) => {
       <h2 className="text-2xl font-semibold">Big Five Information</h2>
       <div className="mt-4">
         <p>
-          <strong>Openness:</strong> {userScore.openness}
+          <strong>Openness:</strong> {Math.round(userScore.openness)}
         </p>
         <p>
-          <strong>Conscientiousness:</strong> {userScore.conscientiousness}
+          <strong>Conscientiousness:</strong> {Math.round(userScore.conscientiousness)}
         </p>
         <p>
-          <strong>Extraversion:</strong> {userScore.extraversion}
+          <strong>Extraversion:</strong> {Math.round(userScore.extraversion)}
         </p>
         <p>
-          <strong>Agreeableness:</strong> {userScore.agreeableness}
+          <strong>Agreeableness:</strong> {Math.round(userScore.agreeableness)}
         </p>
         <p>
-          <strong>Neuroticism:</strong> {userScore.neuroticism}
+          <strong>Neuroticism:</strong> {Math.round(userScore.neuroticism)}
         </p>
       </div>
     </>
