@@ -226,11 +226,31 @@ hover:bg-teal-600 hover:text-white
   };
 
   useEffect(() => {
-    setEnteredCareerGoals(
-      currentUser.careerGoals.map((goal) => {
-        return `${goal.id}`;
-      })
-    );
+    if (currentUser) {
+      const dateOfBirthArray = currentUser.dateOfBirth.split("-");
+
+      setEnteredCareerGoals(
+        currentUser.careerGoals.map((goal) => {
+          return `${goal.id}`;
+        })
+      );
+      setEnteredAccessNeeds(
+        currentUser.accessNeeds.map((accessNeed) => {
+          return `${accessNeed.id}`;
+        })
+      );
+      setEnteredMentalHealthConditions(
+        currentUser.mentalHealthConditions.map((condition) => {
+          return `${condition.id}`;
+        })
+      );
+      setDateOfBirth({
+        day: `${dateOfBirthArray[2]}`,
+        month: `${dateOfBirthArray[1]}`,
+        year: `${dateOfBirthArray[0]}`
+      });
+      setEnteredGender(currentUser.gender);
+    }
   }, []);
 
   return (
