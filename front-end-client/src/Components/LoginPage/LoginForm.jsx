@@ -49,7 +49,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           />
           <a
             href="#"
-            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-cyan-400 to-yellow-200"
+            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-teal-500"
           >
             Forgotten Password?
           </a>
