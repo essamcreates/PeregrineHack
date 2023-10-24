@@ -10,15 +10,14 @@ import NavDock from "../Components/NavDock/NavDock";
 import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
 
 const Container = () => {
-
   const [currentUser, setCurrentUser] = useState(() => {
-    const storedUser = localStorage.getItem('currentUser');
+    const storedUser = localStorage.getItem("currentUser");
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
   const updateCurrentUser = (newUser) => {
     setCurrentUser(newUser);
-    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
   };
 
   const [imageName, setImageName] = useState("");
@@ -57,49 +56,44 @@ const Container = () => {
   };
 
   return (
-    <div>
-      <BrowserRouter>
-        <NavDock currentUser={currentUser} />
-        <Routes>
-          <Route path="/HomePage" element={<HomePage currentUser={currentUser} />}></Route>
-          <Route
-            path="/LoginPage"
-            element={
-              <LoginPage
-                authenticateUser={authenticateUser}
-                currentUser={currentUser}
-                updateCurrentUser={updateCurrentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          ></Route>
-          <Route
-            path="/AccountRegistrationPage"
-            element={<AccountRegistrationPage signupUser={signupUser} />}
-          ></Route>
-          <Route
-            path="/EditProfile"
-            element={<EditProfilePage currentUser={currentUser} />}
-          ></Route>
-          <Route
-            path="/ProfilePage"
-            element={<ProfilePage imageName={imageName} currentUser={currentUser} />}
-          ></Route>
-          <Route path="/QuizPage" element={<QuizPage />}></Route>
-          <Route
-            path="/UploadProfilePhoto"
-            element={
-              <UploadProfilePhoto
-                setImageName={setImageName}
-                imageName={imageName}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          ></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <NavDock currentUser={currentUser} />
+      <Routes>
+        <Route path="/HomePage" element={<HomePage currentUser={currentUser} />}></Route>
+        <Route
+          path="/LoginPage"
+          element={
+            <LoginPage
+              authenticateUser={authenticateUser}
+              currentUser={currentUser}
+              updateCurrentUser={updateCurrentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        ></Route>
+        <Route
+          path="/AccountRegistrationPage"
+          element={<AccountRegistrationPage signupUser={signupUser} />}
+        ></Route>
+        <Route path="/EditProfile" element={<EditProfilePage currentUser={currentUser} />}></Route>
+        <Route
+          path="/ProfilePage"
+          element={<ProfilePage imageName={imageName} currentUser={currentUser} />}
+        ></Route>
+        <Route path="/QuizPage" element={<QuizPage />}></Route>
+        <Route
+          path="/UploadProfilePhoto"
+          element={
+            <UploadProfilePhoto
+              setImageName={setImageName}
+              imageName={imageName}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default Container;
