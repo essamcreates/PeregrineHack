@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
+const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurrentUser }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
@@ -9,6 +9,7 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
 
   const handleLoginClick = async (event) => {
     event.preventDefault();
+    console.log(currentUser)
     let temp = {
       email: currentEmail,
       password: currentPassword
@@ -59,20 +60,15 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
             >
               Login
             </button>
-          </div>
-        </form>
-      )}
-      {failedLogin && (
-        <p class="text-red-500">
-          Warning: incorrect email or password. Please try again
-        </p>
-      )}
-      {currentUser && (
-        <div class="flex items-center justify-center">
-          <button
-            class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl"
-            onClick={() => setCurrentUser(null)}
-          >
+
+            </div>
+          </form>
+        )}
+        {failedLogin && (
+          <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
+        )}
+        {currentUser && (<div class="flex items-center justify-center">
+          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => {setCurrentUser();updateCurrentUser(null); localStorage.clear();}}>
             Signout
           </button>
         </div>
@@ -81,3 +77,4 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
   );
 };
 export default LoginForm;
+

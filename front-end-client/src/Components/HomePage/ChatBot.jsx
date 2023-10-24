@@ -380,7 +380,18 @@ const ChatBot = () => {
                 />
               </svg>
             </button>
-          </div>
+// <<<<<<< developHP
+//             </div>)}
+//         </div>
+//         {!usingChatBot && (
+//             <div>
+//                 <div class=" flex items-center justify-center">
+//                     <button class="bg-slate-400 ring-stone-400 ring-offset-1 ring-offset-stone-600 ring-4 p-20 rounded-lg"  onClick={()=>setUsingChatBot(true)}>Click to speak to Farai!</button>
+//                 </div>
+//             </div>
+// =======
+//           </div>
+// >>>>>>> develop
         )}
       </div>
       {!usingChatBot && (

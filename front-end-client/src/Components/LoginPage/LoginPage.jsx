@@ -2,8 +2,36 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 // import "./LoginPage.css";
 
-const LoginPage = ({ authenticateUser, currentUser, setCurrentUser }) => {
+const LoginPage = ({ authenticateUser, currentUser, updateCurrentUser, setCurrentUser }) => {
   const navigate = useNavigate();
+
+
+//     return (
+//      <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
+//         <div class="grid grid-cols-2 content-center">
+//             {/* column one */}
+//     <div>
+//         <h1 class="flex font-bold text-6xl pt-10 opacity-40 line-through text-left">{!currentUser ? (<>Log In</>):(<>Sign Out</>)}</h1>
+//         <h1 class="flex font-bold text-6xl pt-5 opacity-50 text-left">{!currentUser ? (<>Clock In.</>):(<>Clock Out</>)}</h1>   
+//     <div class="min-h-screen flex items-center justify-center">
+//    <div class="bg-white shadow-lg rounded-lg box-content w-96 h-96x p-20 ml-10 mb-20">
+//     {!currentUser && (
+//       <>
+//         {/* <h1>User Login</h1> */}
+//         <h2 class="text-2x1 mb-10 white text-center text-2xl font-medium pb-10">Welcome back</h2>
+//         <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} updateCurrentUser={updateCurrentUser} />
+//       </>
+//     )}
+//     {currentUser && (
+//       <>
+//         {/* <div class="text-center text-2xl font-serif"><h3>Have A Great Day</h3></div> */}
+//         <LoginForm authenticateUser={authenticateUser} currentUser={currentUser} updateCurrentUser={updateCurrentUser} setCurrentUser={setCurrentUser} />
+//       </>
+//     )}
+//     <div class="w-full flex justify-center">
+//     {!currentUser && (
+//       <button class="mb--3" onClick={() => {navigate("/AccountRegistrationPage")}}>Don't have an account? <span class="underline">Sign Up</span></button>
+//  )}
 
   return (
     <div class="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
