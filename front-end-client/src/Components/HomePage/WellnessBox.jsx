@@ -25,7 +25,7 @@ const WellnessBox = ({currentUser}) => {
 
     const wellnessResourcesRequest = async()=>{
         try {
-            const request = "give me 3 resources with a short description and link that can help me improve my wellness, "
+            const request = "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness, example -. use mindtools to help improve your mental health : www.mindtools.com -. very short description : link"
             // map through accessNeeds and mental health conditions
             // format an comma between 
             // add at end but not all resources should be focused on this
@@ -61,9 +61,12 @@ const WellnessBox = ({currentUser}) => {
           const parts = line.split(': ');
           if (parts.length === 2) {
             const description = parts[0].trim();
-            const link = parts[1].trim();
+            let link = parts[1].trim();
+            if (!link.startsWith('http')) {
+                link = 'https://' + link;
+            }
             // is the link and the box it is in , taget and rel allow for the link to open in a new tab
-            resourceList.push(<li class="font-serif w-3/4 m-3 text-center border-2 border-teal-200 bg-neutral-50 text-black hover:bg-slate-300 p-4 rounded-lg shadow-lg" key={index} >
+            resourceList.push(<li class="font-serif w-3/4 m-3 text-center border-2 border-teal-100 bg-neutral-50 text-black hover:bg-slate-300 p-4 rounded-lg shadow-lg" key={index} >
                     <a  href={link}  target="_blank" rel="noopener noreferrer">
                         {description}
                     </a>
@@ -71,6 +74,7 @@ const WellnessBox = ({currentUser}) => {
                 );
           }
         });
+        console.log(resourceList[1])
         return resourceList;
       };
 
@@ -78,12 +82,10 @@ const WellnessBox = ({currentUser}) => {
         <>
         <div class="border-2 border-slate-700  bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-yellow-400 via-amber-300 to-green-100 h-full rounded-lg p-1 shadow-xl">
             <h2 class="text-2xl pt-3">Wellness Resources</h2>
-            {!userWellnessResources &&(<p class="border-1 border-slate-300 bg-slate-300 h-1/2 w-full text-center">Loading you tailored wellness resources <span class="animate-pulse">....</span> </p>)}
+            {!userWellnessResources &&(<div class="flex items-center justiy-center mt-6"><p class="border-1 border-slate-300 h-1/2 w-full bg-neutral-100 m-3 text-center text-2xl rounded-lg">Loading you tailored wellness resources <span class="animate-pulse">....</span> </p></div>)}
             <div>
             {userWellnessResources &&  (<>
-            
-            <p class="font-serif p-3 text-md mb-5 mt-3 text-center">Please click on these links to view your personalised resources, which have been tailored to suit your needs.......</p>
-                <div class="flex items-center justify-center h-full">
+                <div class="flex items-center justify-center h-full mt-3">
                     <ul class="flex flex-col items-center w-full h-full ">
                     {resources()}
                     </ul>
