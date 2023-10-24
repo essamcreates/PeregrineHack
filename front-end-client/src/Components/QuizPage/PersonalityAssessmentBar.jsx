@@ -1,12 +1,8 @@
-import { useEffect } from "react";
+import React from "react";
 
-const PersonalityAssessmentBar = ({currentQuestionId, totalQuestions}) => {
-    const progress = (currentQuestionId / totalQuestions) * 100;
+const PersonalityAssessmentBar = ({currentQuestionId, totalQuestions, questionsAnswered}) => {
+    const progress = (questionsAnswered / totalQuestions) * 100;
 
-    useEffect (() => {
-        progress
-    }, [currentQuestionId]
-    )
     
     return (
         <div className="w-full mb-4">
@@ -15,7 +11,7 @@ const PersonalityAssessmentBar = ({currentQuestionId, totalQuestions}) => {
                 style={{width: `${progress}%`}}
                 ></div>
             </div>
-            <p className="text-center mt-2">{`Question ${currentQuestionId} of ${totalQuestions}`}</p>
+            <p className="text-center mt-2">{`Question ${currentQuestionId - 42} of ${totalQuestions}`}</p>
         </div>
     )
 }

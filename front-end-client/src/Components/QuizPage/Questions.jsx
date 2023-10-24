@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PersonalityAssessmentBar from "./PersonalityAssessmentBar";
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
-    const [currentQuestionId, setCurrentQuestionId] = useState(42)
+    const [currentQuestionId, setCurrentQuestionId] = useState(42);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0)
 
     const [request, setRequest] = useState(
           {
@@ -65,6 +67,7 @@ const Questions = () => {
     
       // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);
+      setQuestionsAnswered(questionsAnswered + 1);
     
       // Set the updated copy as the new state
       setRequest(updatedRequest)
@@ -95,16 +98,23 @@ const Questions = () => {
             )
       })
 
-      const questionNumber = currentQuestionId - 41;
+      const questionNumber = currentQuestionId - 42;
 
       return (
-      <div className="text-center transition-opacity duration-1000">
-        <p className="mb-8 font-bold">Question {questionNumber} : {currentQuestion.question}</p>
-        <div className="mt-4">
-          {choices}
-          </div>
-      </div>
-      )
+        <div>
+        <PersonalityAssessmentBar 
+            currentQuestionId={currentQuestionId}
+            totalQuestions={questions.length}
+            questionsAnswered={questionsAnswered}
+        />
+        <div className="text-center transition-opacity duration-1000">
+            <p className="mb-8 font-bold">{currentQuestion.question}</p>
+            <div className="mt-4">
+                {choices}
+            </div>
+        </div>
+    </div>
+      );  
     }else{
       return <div><p>Loading question</p></div>
     }
