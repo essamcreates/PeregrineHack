@@ -11,7 +11,7 @@ const ProfilePage = ({ imageName, currentUser }) => {
   const [imageError, setImageError] = useState(false);
   const handleImageError = (e) => {
     if (!imageError) {
-      e.target.src = "http://localhost:8080/images/stockUser.jpg";
+      e.target.src = "http://localhost:8080/images/stockUser.jpeg";
       setImageError(true);
     }
   };
