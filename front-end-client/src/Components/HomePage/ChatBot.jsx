@@ -355,23 +355,15 @@ const ChatBot = () => {
   };
 
   return (
-    <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
-      <div class="grid grid-cols-2">
-        <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div>
-        {usingChatBot && (
-          <div class="flex justify-end m-2 mt-3">
-            <button
-              onClick={() => {
-                handleExit();
-              }}
-            >
+    <div class="border-2 border-teal-700 h-full rounded-lg p-1 shadow-inner">
+      <div class="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-8 h-9"
+                class="w-8 h-8 text-teal-900"
               >
                 <path
                   strokeLinecap="round"
@@ -379,16 +371,26 @@ const ChatBot = () => {
                   d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
                 />
               </svg>
+              </div>
+      <div class="grid grid-cols-2">
+        {/* <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div> */}
+        {usingChatBot && (
+          <div class="flex justify-end m-2 mt-3">
+            <button
+              onClick={() => {
+                handleExit();
+              }}
+            >
             </button>
             </div>)}
          </div>
-         <h3 class="">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? 
+         <h3 class="text-2xl p-5 mt-20 text-teal-900">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? 
 </h3>
       {!usingChatBot && (
         <div>
           <div class=" flex items-center justify-center">
             <button
-              class="rounded-lg bg-teal-400 text-white py-2 px-5 mt-4 mb-6 hover:bg-teal-500"
+              class="rounded-lg bg-teal-400 text-white py-2 px-5 mt-10 mb-6 hover:bg-teal-500"
               onClick={() => setUsingChatBot(true)}
             >
               Click to speak to Farai!
