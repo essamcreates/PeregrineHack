@@ -225,6 +225,14 @@ hover:bg-teal-600 hover:text-white
     ));
   };
 
+  useEffect(() => {
+    setEnteredCareerGoals(
+      currentUser.careerGoals.map((goal) => {
+        return `${goal.id}`;
+      })
+    );
+  }, []);
+
   return (
     <div>
       {currentUser && (
