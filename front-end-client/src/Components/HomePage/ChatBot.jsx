@@ -180,7 +180,7 @@ const ChatBot = ({ currentUser }) => {
             <>
               <div class="h-full flex justify-end">
                 <textarea
-                  class="border-2 outline-none border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
+                  class="border-2 outline-non border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
                   placeholder="Ask Farai about career goals, skills, wellness..."
                   type="text"
                   maxlength="150"
@@ -328,8 +328,8 @@ const ChatBot = ({ currentUser }) => {
   };
 
   return (
-    <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
-      <h3 class="text-xl p-5 mt-20">
+    <div class="h-full rounded-lg p-1 shadow-xl bg-white">
+      <h3 class="text-xl p-5">
         Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve considered your unique
         needs to offer advice that’s tailored to you. What can I help you with?{" "}
       </h3>

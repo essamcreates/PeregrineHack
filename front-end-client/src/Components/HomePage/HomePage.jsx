@@ -8,6 +8,7 @@ import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
 import NoteTaking2 from "./NoteTaking2";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
+import imagefive from "/images/HomePageImages/imagefive.jpg"; 
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
@@ -41,9 +42,9 @@ const HomePage = ({ currentUser }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex bg-amber-50">
       {isSidebarOpen && (
-        <div className="w-1/4 h-screen bg-white overflow-y-auto border-l">
+        <div className="w-1/4 h-screen overflow-y-auto border-l">
           {/* <NoteTaking /> */}
           <NoteTaking2 />
         </div>
@@ -55,7 +56,10 @@ const HomePage = ({ currentUser }) => {
         >
           {isSidebarOpen ? "Close Notes" : "Open Notes"}
         </button>
-        <section className="header fixed top-0 w-full z-25 block h-32 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
+        <section
+  className="header fixed top-0 w-full z-25 block h-32 bg-cover"
+  style={{ backgroundImage: `url(${imagefive})`, backgroundSize: '50%' }}
+>
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -76,14 +80,14 @@ const HomePage = ({ currentUser }) => {
         </section>
         <div className="mt-32 z-1 pt-5">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2">My Notes</div>
+            <div className="col-span-2 bg-amber-50">My Notes</div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
                 <img
-                  src="images/HomePageImages/imageone.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -93,7 +97,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
               <img
-                  src="images/HomePageImages/imagetwo.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -103,7 +107,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
               <img
-                  src="images/HomePageImages/imagethree.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -113,7 +117,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
               <img
-                  src="images/HomePageImages/imagefour.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
