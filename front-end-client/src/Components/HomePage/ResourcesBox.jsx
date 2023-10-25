@@ -70,7 +70,6 @@ const ResourcesBox = ({ currentUser }) => {
           }
     }
 
-
   const careerResources = () => {
     const lines = userResources.split("\n");
     const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude

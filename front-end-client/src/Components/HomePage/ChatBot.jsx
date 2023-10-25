@@ -166,13 +166,15 @@ const ChatBot = ({ currentUser }) => {
       setCurrentStep(nextStep);
       chatBotText();
     } else {
-      // serach in prev choices for wellness then pass in mental health conditions
-      await chatBotRequest(requestString + text);
       setSent(true);
+      // serach in prev choices for wellness then pass in mental health conditions
+      
+      
       console.log(previousSteps);
       if (!previousSteps.includes(currentStep)) {
         setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
       }
+      await chatBotRequest(requestString + text);
     }
   };
 
