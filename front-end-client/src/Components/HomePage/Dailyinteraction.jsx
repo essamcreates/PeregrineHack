@@ -89,7 +89,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="col-span-2 flex items-center justify-center">
               <button
-                class="text-lg text-white bg-indigo-400 m-2 p-1 w-2/5 rounded-md shadow-lg transition-colors duration-500 inline
+                class="text-lg text-white bg-teal-500 m-2 p-1 w-1/5 rounded-md shadow-lg transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"
@@ -106,7 +106,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="flex items-center justify-center">
               <button
-                class="text-lg text-white bg-indigo-400 m-2 p-1 w-4/5 shadow-lg rounded-md transition-colors duration-500 inline
+                class="text-lg text-white bg-teal-500 m-2 p-1 w-2/5 shadow-lg rounded-md transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"

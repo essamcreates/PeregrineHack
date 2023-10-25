@@ -38,7 +38,7 @@ const NoteTaking2 = () => {
       <h2 className="text-xl font-bold mb-4">Notes</h2>
       <div className="mb-4">
         <textarea
-          className="w-full h-24 p-2 border rounded"
+          className="w-full h-24 p-2 border rounded text-black"
           value={newNote}
           onChange={(e) => setNewNote(e.target.value)}
         />
