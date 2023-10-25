@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const DailyInteraction = ({ currentUser }) => {
   const [question, setQuestion] = useState(() => {
-    const storedDailyQuestion = localStorage.getItem("question");
+ const storedDailyQuestion = localStorage.getItem("question");
     return storedDailyQuestion && currentUser ? JSON.parse(storedDailyQuestion) : null;
   });
 
@@ -88,7 +88,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="col-span-2 flex items-center justify-center">
               <button
-                class="text-lg text-white bg-indigo-400 m-2 p-1 w-2/5 rounded-md shadow-lg transition-colors duration-500 inline
+                class="text-lg text-white bg-teal-500 m-2 p-1 w-1/5 rounded-md shadow-lg transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"
@@ -105,7 +105,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="flex items-center justify-center">
               <button
-                class="text-lg text-white bg-indigo-400 m-2 p-1 w-4/5 shadow-lg rounded-md transition-colors duration-500 inline
+                class="text-lg text-white bg-teal-500 m-2 p-1 w-2/5 shadow-lg rounded-md transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"
@@ -125,7 +125,7 @@ const DailyInteraction = ({ currentUser }) => {
   };
 
   return (
-    <div class=" h-full rounded-md p-1 shadow-xl">
+    <div class="h-full rounded-md p-1 shadow-xl text-white">
       {/* <div> */}
       {/* <h3 class="text-xl ml-2">Question</h3> */}
       {/* </div> */}

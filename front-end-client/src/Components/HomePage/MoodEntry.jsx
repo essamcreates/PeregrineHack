@@ -88,7 +88,7 @@ const MoodEntry = ({ currentUser }) => {
   };
 
   return (
-    <div class="bg-white h-full rounded-lg shadow-xl">
+    <div class="h-full rounded-lg shadow-xl text-white">
       {/* mood entry log */}
       {!moodEntryInProgress && (
         <>
@@ -116,7 +116,6 @@ const MoodEntry = ({ currentUser }) => {
                 />
               )}
             </div>
-          </div>
           <p class="text-center font-mono text-xl underline">Mood Entry Log</p>
           <div class="flex items-center justify-center h-2/3">
             <div class="overflow-scroll h-full w-11/12 max-h-[300px]">
@@ -136,7 +135,7 @@ const MoodEntry = ({ currentUser }) => {
           </div>
           <div class="flex justify-center items-center p-3 mt-3 ">
             <button
-              class="w-1/3 h-full text-sm py-0.25 bg-emerald-200 text-center rounded-md transition-colors duration-500 inline
+              class="w-1/3 h-full text-sm text-white py-0.25 bg-teal-500 text-center p-2 rounded transition-colors duration-500 inline
              hover:bg-yellow-200
               hover:shadow-md
               hover:scale-110"
