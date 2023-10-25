@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PersonalityAssessmentBar from "./PersonalityAssessmentBar";
 
 const Questions = () => {
     const [questions, setQuestions] = useState([]);
-    const [currentQuestionId, setCurrentQuestionId] = useState(42)
+    const [currentQuestionId, setCurrentQuestionId] = useState(42);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0)
 
     const [request, setRequest] = useState(
           {
@@ -61,10 +63,11 @@ const Questions = () => {
       const updatedRequest = { ...request };
 
       // Update the copy with the user's chosen answer
-      updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
+      updatedRequest.questionAnswers[currentQuestionId - 41] = { [currentQuestionId.toString()]: chosenAnswerInt };
     
       // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);
+      setQuestionsAnswered(questionsAnswered + 1);
     
       // Set the updated copy as the new state
       setRequest(updatedRequest)
@@ -80,13 +83,38 @@ const Questions = () => {
       console.log(currentQuestion)
       const options= ["strongly disagree", "disagree", "neutral" , "agree", "strongly agree" ]
       const choices = []
+
       options.map((option, index)=>{
-        choices.push(<div key={index}><button value={index+1} onClick={(e)=>{handleAnswer(e.target.value) }}>{option}</button></div>)
+        choices.push(
+        <div key={index} className="inline-block mx-2 text-center">
+          <button 
+          value={index+1} 
+          onClick={(e)=>{handleAnswer(e.target.value) }}
+          className="bg-cyan-500 hover:bg-cyan-700 py-2 px-4 rounded-full"
+          >
+            {option}
+            </button>
+            </div>
+            )
       })
-      return (<div>
-        <p>Question : {currentQuestion.question}</p>
-        <div>{choices}</div>
-      </div>)
+
+      const questionNumber = currentQuestionId - 41;
+
+      return (
+        <div>
+        <PersonalityAssessmentBar 
+            currentQuestionId={currentQuestionId}
+            totalQuestions={questions.length}
+            questionsAnswered={questionsAnswered}
+        />
+        <div className="text-center transition-opacity duration-1000">
+            <p className="mb-8 font-bold">{currentQuestion.question}</p>
+            <div className="mt-4">
+                {choices}
+            </div>
+        </div>
+    </div>
+      );  
     }else{
       return <div><p>Loading question</p></div>
     }
@@ -95,7 +123,7 @@ const Questions = () => {
     return (
       <div>
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
-         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Send to API</button>)}
+         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Get results</button>)}
       </div>
     );
 }
