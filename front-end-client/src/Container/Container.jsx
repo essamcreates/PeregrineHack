@@ -3,14 +3,24 @@ import HomePage from "../Components/HomePage/HomePage";
 import LoginPage from "../Components/LoginPage/LoginPage";
 import QuizPage from "../Components/QuizPage/QuizPage";
 import AccountRegistrationPage from "../Components/AccountRegistrationPage/AccountRegistrationPage";
-import ProfileCreationPage from "../Components/ProfileCreationPage/ProfileCreationPage";
+import EditProfilePage from "../Components/EditProfilePage/EditProfilePage";
 import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import { useState } from "react";
 import NavDock from "../Components/NavDock/NavDock";
 import UploadProfilePhoto from "../Components/ProfilePage/UploadProfilePhoto.jsx";
 
 const Container = () => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  const [isNewUser, setIsNewUser] = useState(false);
+
+  const updateCurrentUser = (newUser) => {
+    setCurrentUser(newUser);
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+  };
+
   const [imageName, setImageName] = useState("");
 
   const authenticateUser = async (loginInfo) => {
@@ -22,7 +32,7 @@ const Container = () => {
     });
     if (response.status === 202) {
       const newResponse = await response.json();
-      setCurrentUser(newResponse);
+      updateCurrentUser(newResponse);
       return true;
     } else {
       return false;
@@ -39,7 +49,8 @@ const Container = () => {
     console.log(response);
     if (response.status === 201) {
       const newUser = await response.json();
-      setCurrentUser(newUser);
+    //   setCurrentUser(newUser);
+      updateCurrentUser(newUser);
       return true;
     } else {
       return false;
@@ -47,48 +58,59 @@ const Container = () => {
   };
 
   return (
-    <div>
-      <BrowserRouter>
-        <NavDock currentUser={currentUser} />
-        <Routes>
-          <Route path="/HomePage" element={<HomePage currentUser={currentUser} />}></Route>
-          <Route
-            path="/LoginPage"
-            element={
-              <LoginPage
-                authenticateUser={authenticateUser}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          ></Route>
-          <Route
-            path="/AccountRegistrationPage"
-            element={<AccountRegistrationPage signupUser={signupUser} />}
-          ></Route>
-          <Route
-            path="/EditProfile"
-            element={<ProfileCreationPage currentUser={currentUser} />}
-          ></Route>
-          <Route
-            path="/ProfilePage"
-            element={<ProfilePage imageName={imageName} currentUser={currentUser} />}
-          ></Route>
-          <Route path="/QuizPage" element={<QuizPage />}></Route>
-          <Route
-            path="/UploadProfilePhoto"
-            element={
-              <UploadProfilePhoto
-                setImageName={setImageName}
-                imageName={imageName}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          ></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <NavDock currentUser={currentUser} />
+      <Routes>
+        <Route path="/HomePage" element={<HomePage currentUser={currentUser} />}></Route>
+        <Route
+          path="/LoginPage"
+          element={
+            <LoginPage
+              authenticateUser={authenticateUser}
+              currentUser={currentUser}
+              updateCurrentUser={updateCurrentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        ></Route>
+        <Route
+          path="/AccountRegistrationPage"
+          element={<AccountRegistrationPage signupUser={signupUser} setIsNewUser={setIsNewUser} />}
+        ></Route>
+        <Route
+          path="/EditProfile"
+          element={
+            <EditProfilePage
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              isNewUser={isNewUser}
+            />
+          }
+        ></Route>
+        <Route
+          path="/ProfilePage"
+          element={
+            <ProfilePage
+              imageName={imageName}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        ></Route>
+        <Route path="/QuizPage" element={<QuizPage currentUser={currentUser}/>}></Route>
+        <Route
+          path="/UploadProfilePhoto"
+          element={
+            <UploadProfilePhoto
+              setImageName={setImageName}
+              imageName={imageName}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default Container;

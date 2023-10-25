@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
+const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurrentUser }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
@@ -9,6 +9,7 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
 
   const handleLoginClick = async (event) => {
     event.preventDefault();
+    console.log(currentUser)
     let temp = {
       email: currentEmail,
       password: currentPassword
@@ -31,7 +32,7 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
         <form onSubmit={(event) => handleLoginClick(event)}>
           {/* <label class="text-gray-700 p-4">Email: </label> */}
           <input
-            className="border border-gray-300 rounded p-2 w-full mb-4"
+            class="border border-gray-300 rounded p-2 w-full mb-5"
             type="text"
             value={currentEmail}
             onChange={(e) => setCurrentEmail(e.target.value)}
@@ -40,13 +41,16 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
           <br />
           {/* <label class="text-gray-700 p-4">Password: </label> */}
           <input
-            className="border border-gray-300 rounded p-2 w-full"
+            class="border border-gray-300 rounded p-2 w-full mb-5"
             type="password"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             placeholder="Enter your password"
           />
-          <a href="#" className="underline w-full flex justify-end">
+          <a
+            href="#"
+            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-teal-500"
+          >
             Forgotten Password?
           </a>
           <div class="w-full flex justify-end">
@@ -56,6 +60,7 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
             >
               Login
             </button>
+
             </div>
           </form>
         )}
@@ -63,31 +68,13 @@ const LoginForm = ({ authenticateUser, currentUser, setCurrentUser }) => {
           <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
         )}
         {currentUser && (<div class="flex items-center justify-center">
-          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => setCurrentUser(null)}>
+          <button class="bg-teal-500 text-white py-2 px-5 rounded text-xl hover:bg-teal-800" onClick={() => {localStorage.clear();setCurrentUser()}}>
             Signout
           </button>
-        </div>)}
-      </div>
-    )
-}
+        </div>
+      )}
+    </div>
+  );
+};
 export default LoginForm;
-// =======
-//           </div>
-//         </form>
-//       )}
-//       {failedLogin && (
-//         <p className="text-red-500">Warning: incorrect email or password. Please try again</p>
-//       )}
-//       {currentUser && (
-//         <button
-//           className="bg-red-500 text-white py-2 px-4 rounded"
-//           onClick={() => setCurrentUser(null)}
-//         >
-//           Signout
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-// export default LoginForm;
-// >>>>>>> develop
+

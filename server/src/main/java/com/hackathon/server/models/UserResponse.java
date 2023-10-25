@@ -28,7 +28,8 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(String userPrompt, String responseText, LocalDate dateTime) {
+    public UserResponse(User user, String userPrompt, String responseText, LocalDate dateTime) {
+        this.user = user;
         this.userPrompt = userPrompt;
         this.responseText = responseText;
         this.dateTime = dateTime;
@@ -64,5 +65,13 @@ public class UserResponse {
 
     public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

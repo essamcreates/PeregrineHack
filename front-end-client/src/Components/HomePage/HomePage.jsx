@@ -1,50 +1,124 @@
-import { Link } from "react-router-dom";
-import "./HomePage.css";
-import DailyInteraction from "./DailyInteraction";
-import DailyMessage from "./DailyMessage"
-import WellnessBox from "./WellnessBox"
-import ResourcesBox from "./ResourcesBox"
-import ChatBot from "./ChatBot"
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import DailyInteraction from "./Dailyinteraction";
+import DailyMessage from "./DailyMessage";
+import WellnessBox from "./WellnessBox";
+import ResourcesBox from "./ResourcesBox";
+import ChatBot from "./ChatBot";
 import MoodEntry from "./MoodEntry";
+import DigitalClock from "./DigitalClock";
+import NoteTaking2 from "./NoteTaking2";
+import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
 
-const HomePage = ({currentUser}) => {
+const HomePage = ({ currentUser }) => {
+  const [currentDate, setCurrentDate] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    const [currentDate, setCurrentDate] = useState("");
+  const formatDate = (date) => {
+    const day = date.getDate();
+    let suffix =
+      day === 1 || day === 21 || day === 31
+        ? "st"
+        : day === 2 || day === 22
+        ? "nd"
+        : day === 3 || day === 23
+        ? "rd"
+        : "th";
+    const monthFormat = { month: "long" };
+    const month = date.toLocaleDateString(undefined, monthFormat);
+    const weekdayFormat = { weekday: "long" };
+    const weekday = date.toLocaleDateString(undefined, weekdayFormat);
+    return `${weekday}, ${day}${suffix} ${month}`;
+  };
 
-    const formatDate= (date)=>{
-        const day = date.getDate(); // .getDate returns the day of the month
-        // to get suffix of day
-        let suffix = (day === 1 || day===21 || day === 31) ? "st" : (day === 2 || day===22)? "nd" : (day === 3 || day===23)? "rd" : "th";
-        const monthFormat = { month: 'long' };
-        const month = date.toLocaleDateString(undefined, monthFormat);
-        const weekdayFormat = { weekday: 'long' };
-        const weekday = date.toLocaleDateString(undefined, weekdayFormat);
-        return `${weekday}, ${day}${suffix} ${month}`;
-      }
-      
-    useEffect (()=>{
-        const currentDate = new Date();
-        const formattedDate = formatDate(currentDate);
-        setCurrentDate(formattedDate)
-    },[])
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = formatDate(currentDate);
+    setCurrentDate(formattedDate);
+  }, []);
 
-    return (
-        <div >
-        <div className="welcome-home-page">
-            {currentUser && (<div className="welcome-name"> <h2>Hi, {currentUser.name}!</h2></div>)}
-            {currentDate && (<div className="date-time"> <h3>{currentDate} </h3></div>)}
-
+  return (
+    <div className="flex">
+      {isSidebarOpen && (
+        <div className="w-1/4 h-screen bg-white overflow-y-auto border-l">
+          {/* <NoteTaking /> */}
+          <NoteTaking2 />
         </div>
-        <div className="dashboard">
-        <div className="daily-message-box"><DailyMessage/></div>
-        <div className="daily-interaction-box"><DailyInteraction currentUser={currentUser}/></div>
-        <div className="mood-entry-box"><MoodEntry currentUser={currentUser}/></div>
-        <div className="chatbot-box"><ChatBot/></div>
-        <div className="wellness-box"><WellnessBox/></div>
-        <div className="resource-box"><ResourcesBox/></div>
+      )}
+      <div className="flex-grow">
+        <section className="header fixed top-0 w-full z-25 block h-32 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
+          <div className="relative top-0 w-full h-full flex justify-between items-center">
+            <div className="daily-message-box ml-12">
+              <DailyMessage />
+            </div>
+            <div>
+              <div className="flex flex-col items-center mr-6">
+                <div className="mr-6">
+                  <DigitalClock />
+                </div>
+                {currentDate && (
+                  <div className="date-time whitespace-nowrap opacity-50">
+                    <p>{currentDate}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="mt-32 z-1 pt-5 bg-amber-50">
+          <section className="home-page grid grid-cols-12 gap-3 mx-3">
+            <div className="col-span-2">
+              <NoteTaking2 />
+            </div>
+            <section className="dashboard col-span-7 flex flex-col gap-3">
+              <div className="daily-interaction-box bg-white">
+                <DailyInteraction currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center h-64 bg-purple-300">
+                <img
+                  src="images/HomePageImages/imageone.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
+              </div>
+              <div className="mood-entry-box">
+                <MoodEntry currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center h-32 bg-purple-300">
+                <img
+                  src="images/HomePageImages/imagetwo.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
+              </div>
+              <div className="wellness-box">
+                <WellnessBox currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center h-32 bg-purple-300">
+                <img
+                  src="images/HomePageImages/imagethree.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
+              </div>
+              <div className="resource-box">
+                <ResourcesBox currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center h-32 bg-purple-300">
+                <img
+                  src="images/HomePageImages/imagefour.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
+              </div>
+            </section>
+            <div className="chatbot-box col-span-3 right-0">
+              <ChatBot currentUser={currentUser} />
+            </div>
+          </section>
         </div>
-        </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
+
 export default HomePage;
