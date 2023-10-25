@@ -37,7 +37,6 @@ const WellnessBox = ({ currentUser }) => {
         headers: { "Content-Type": "text/plain" },
         body: request
       });
-      // put into request, give them in a format of an object with an array link [description, link] for js. Here is my info you may want to take in my needs like ADHD and ocd, but not all resources should be focused on this
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -45,11 +44,30 @@ const WellnessBox = ({ currentUser }) => {
 
       const data = await response.text();
 
-      updateUserWellnessResources(data);
-      console.log(data);
-      // setUserWellnessResources(data)
-    } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
+
+    const wellnessResourcesRequest = async()=>{
+        try {
+            
+            const request = "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness,example -. use mindtools to help improve your mental health : www.mindtools.com "
+            const url = `http://localhost:8080/openAI`;
+            const response = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "text/plain" },
+              body: request,
+            });
+            
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+        
+            const data = await response.text();
+        
+            updateUserWellnessResources(data);
+            console.log(data)
+            // setUserWellnessResources(data)
+          } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+          }
     }
   };
 

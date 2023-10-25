@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDropzone} from "react-dropzone";
 
+
 const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser}) => {
 
     const [file, setFile] = useState(null);
@@ -70,32 +71,43 @@ const UploadProfilePhoto = ({setImageName,imageName,setCurrentUser,currentUser})
 // completed logic for profile photo image upload
 
     return (
-        <>
-            <form>
-                <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>Click or drag a file to upload</p>
-                </div>
-                {file && <p>Selected file: {file.name}</p>}
+        <div className="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100 flex flex-col items-center justify-center">
+           <div>
+               <img
+                   src={file ? imagePreview : `http://localhost:8080/${currentUser.profilePictureURL}`}
+                   alt="User Profile Picture"
+                   className="shadow-xl rounded-full h-48 w-48 max-w-none align-middle border-none relative object-cover -m-16 -ml-20 lg:-ml-16 mb-10"
+               />
+           </div>
 
-                <button type="submit" onClick={(e) => handleForm(e)}>
-                    Submit
-                </button>
-            </form>
+            <div className="bg-white shadow-lg rounded-lg p-8 w-3/4 mx-auto mt-4 text-center">
 
-            {file && (
-                <div>
+                <form>
+                    <div {...getRootProps()} className="w-1/2 mx-auto p-5 border-dashed border-2 border-gray-300 text-center cursor-pointer rounded-lg">
+                        <input {...getInputProps()} />
+                        <p className="text-base text-gray-700 font-weight: 600">Click or drag a file to upload</p>
+                    </div>
+                    {/*{file && <p>Selected file: {file.name}</p>}*/}
 
-                    <p>Chosen Image: Select Upload to Confirm:</p>
-                    <img src={imagePreview} alt="Selected Image" style={{ maxWidth: "100%" }} />
-                </div>
-            )}
+                    {file && (
+                        <div>
+                            <p className="mt-2 font-weight: 600">Select Upload to Confirm</p>
+                            {/*<img src={imagePreview} alt="Selected Image" style={{ maxWidth: "100%" }} />*/}
+                        </div>
+                    )}
 
-            <div>
-                {confirmedUpload && <p>{confirmedUpload}</p>}
+                    <div>
+                        <p className="font-weight: 600">{confirmedUpload}</p>
+                    </div>
+
+                    <button type="submit" onClick={(e) => handleForm(e)} className="w-1/2 my-4 bg-teal-500 text-white text-center py-2 px-4 rounded hover:bg-teal-800">
+                        Upload
+                    </button>
+
+                </form>
             </div>
+        </div>
 
-        </>
     );
 };
 
