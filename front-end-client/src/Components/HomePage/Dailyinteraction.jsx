@@ -115,7 +115,7 @@ const DailyInteraction = ({ currentUser }) => {
   };
 
   return (
-    <div class="h-full rounded-md p-1 bg-teal-700 shadow-xl text-white opacity-75">
+    <div class="h-full rounded-md p-1 bg-teal-700 shadow-xl text-white">
       {/* <div> */}
       {/* <h3 class="text-xl ml-2">Question</h3> */}
       {/* </div> */}
