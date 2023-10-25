@@ -2,14 +2,16 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PersonalityAssessmentBar from "./PersonalityAssessmentBar";
 
-const Questions = ({currentUser}) => {
+const Questions = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionId, setCurrentQuestionId] = useState(42);
-    const [questionsAnswered, setQuestionsAnswered] = useState(0)
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [score, setScore] = useState(null);
+    const [quizCompleted, setQuizCompleted] = useState(false)
 
     const [request, setRequest] = useState(
           {
-            "userId":currentUser.id,
+            "userId":2,
             "questionAnswers":[
               {"42":null},{"43":null},{"44":null},{"45":null},{"46":null},{"47":null},{"48":null},{"49":null},{"50":null},
               {"51":null},{"52":null},{"53":null},{"54":null},{"55":null},{"56":null},{"57":null},{"58":null},{"59":null},
@@ -20,7 +22,7 @@ const Questions = ({currentUser}) => {
         })
 
 //  fetches all questions
-    const fetchUserScore = async () => {
+    const fetchQuestions = async () => {
       try {
         const response = await fetch("http://localhost:8080/personalityQuestionnaire", {
           method: "GET"
@@ -38,7 +40,7 @@ const Questions = ({currentUser}) => {
     };
 //  useEffect means that all questions fetched on page load
     useEffect(() => {
-      fetchUserScore();
+      fetchQuestions();
     }, []);
 
 
@@ -50,8 +52,12 @@ const Questions = ({currentUser}) => {
         headers: { "Content-Type": "application/json" },
         body:JSON.stringify(request),
       })
+    if (response.status === 200) {
+      const data = await response.json();
+      setScore(data.score);
       console.log(response);
   }
+}
 
 
     const handleAnswer = (chosenAnswer) =>{
@@ -63,7 +69,7 @@ const Questions = ({currentUser}) => {
       const updatedRequest = { ...request };
 
       // Update the copy with the user's chosen answer
-      updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
+      updatedRequest.questionAnswers[currentQuestionId - 41] = { [currentQuestionId.toString()]: chosenAnswerInt };
     
       // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);
@@ -100,6 +106,19 @@ const Questions = ({currentUser}) => {
 
       const questionNumber = currentQuestionId - 41;
 
+      const displayScore = () => {
+        if (score !== null) {
+          return (
+            <div className="text-center">
+              <p>Your score: {score.openness} {score.conscientiousness} {score.extraversion} {score.agreableness} {score.neuroticism}</p>
+            </div>
+          )
+        }
+        return null;
+      }
+
+
+
       return (
         <div>
         <PersonalityAssessmentBar 
@@ -125,6 +144,8 @@ const Questions = ({currentUser}) => {
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
          {currentQuestionId===85 && (
           <div className="flex justify-center">
+                      {(<>{displayScore()}</>)}
+
             <button onClick={()=>{calculateScore()}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focuse:outline-none focuse:shadow-outline">
             Submit
           </button>
