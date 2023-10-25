@@ -111,8 +111,8 @@ public class DataLoader implements ApplicationRunner {
 
         if (userRepository.count() == 0) {
             List<User> users = Arrays.asList(
-                    new User("John", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail", PropertiesConfig.getDefaultProfilePhoto()),
-                    new User("Sarah", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company",PropertiesConfig.getDefaultProfilePhoto())
+                    new User("John","Software Engineer", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail", PropertiesConfig.getDefaultProfilePhoto()),
+                    new User("Sarah","Software Engineer",LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company",PropertiesConfig.getDefaultProfilePhoto())
             );
             userRepository.saveAll(users);
         }
