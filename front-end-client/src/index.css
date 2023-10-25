@@ -1,8 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Sometype+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
