@@ -1,58 +1,58 @@
 import { useEffect, useState } from "react";
 
 const DailyInteraction = ({ currentUser }) => {
+  const [question, setQuestion] = useState(() => {
+    const storedDailyQuestion = localStorage.getItem("question");
+    return storedDailyQuestion && currentUser ? JSON.parse(storedDailyQuestion) : null;
+  });
 
-    const [question, setQuestion] = useState(() => {
-        const storedDailyQuestion = localStorage.getItem('question');
-        return (storedDailyQuestion && currentUser) ? JSON.parse(storedDailyQuestion) : null;
+  const [questionAnswered, setQuestionAnswered] = useState(false);
+  const [userAnswer, setUserAnswer] = useState();
+
+  const updateQuestion = (newUser) => {
+    setQuestion(newUser);
+    localStorage.setItem("question", JSON.stringify(newUser));
+  };
+
+  useEffect(() => {
+    if (!currentUser) {
+      setQuestion(null);
+    } else {
+      fetchQuestion(Math.floor(Math.random() * 2 + 1));
+    }
+  }, [currentUser]);
+
+  const fetchQuestion = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/dailyQuestions/` + id, {
+        method: "GET"
       });
-    
-    const [questionAnswered, setQuestionAnswered] = useState(false)
-    const [userAnswer, setUserAnswer] = useState();
-
-    const updateQuestion = (newUser) => {
-        setQuestion(newUser);
-        localStorage.setItem('question', JSON.stringify(newUser));
+      if (response.status === 302) {
+        const data = await response.json();
+        updateQuestion(data);
+      } else {
+        console.error("Failed to fetch data");
       }
+    } catch {
+      console.error("Error while fetching data:", error);
+    }
+  };
 
-    useEffect(() => {
-        if (!currentUser) {
-          setQuestion(null);
-        } else {
-          fetchQuestion(Math.floor((Math.random() * 2) + 1));
-        }
-      }, [currentUser]);
+  useEffect(() => {
+    if (!question) {
+      // returns a random number between 1 and 2 (to be increase once data loader is done)
+      fetchQuestion(Math.floor(Math.random() * 2 + 1));
+    }
+  }, []);
 
-    const fetchQuestion = async (id) => {
-        try {
-          const response = await fetch(`http://localhost:8080/dailyQuestions/` + id , {
-            method: "GET"
-          });
-          if (response.status === 302) {
-            const data = await response.json();
-            updateQuestion(data)
-          } else {
-            console.error("Failed to fetch data");
-          }
-        } catch {
-          console.error("Error while fetching data:", error);
-        }
-    };
-
-    useEffect(()=>{
-        if( !question){
-        // returns a random number between 1 and 2 (to be increase once data loader is done)
-        fetchQuestion(Math.floor((Math.random() * 2) + 1))}
-    },[])
-
-    const postQuestionAnswer = async(info) => {
-        const url = `http://localhost:8080/answeredQuestions`;
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(info),
-        })
-    };
+  const postQuestionAnswer = async (info) => {
+    const url = `http://localhost:8080/answeredQuestions`;
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info)
+    });
+  };
 
   const handleQuestionSubmit = (answer) => {
     setQuestionAnswered(true);
@@ -75,7 +75,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="col-span-2 flex items-center justify-center">
               <button
-                class="text-lg bg-emerald-200 m-2 p-1 w-2/5 rounded-lg shadow-lg transition-colors duration-500 transform inline
+                class="text-lg bg-emerald-200 m-2 p-1 w-2/5 rounded-lg shadow-lg transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"
@@ -92,7 +92,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="flex items-center justify-center">
               <button
-                class="text-lg bg-emerald-200 m-2 p-1 w-4/5 rounded-lg shadow-lg transition-colors duration-500 transform inline
+                class="text-lg bg-emerald-200 m-2 p-1 w-4/5 rounded-lg shadow-lg transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"

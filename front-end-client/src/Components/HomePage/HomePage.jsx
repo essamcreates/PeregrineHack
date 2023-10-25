@@ -74,7 +74,7 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-[1/6]">
+        <div className="mt-[1/6] z-1">
           <section className="home-page grid grid-cols-12">
             <div className="col-span-2">NOTES</div>
             <section className="dashboard col-span-7">
