@@ -340,7 +340,7 @@ const ChatBot = ({ currentUser }) => {
   };
 
   return (
-    <div class="h-full rounded-lg p-1 shadow-xl bg-neutral-600 text-white">
+    <div class="h-full rounded-lg p-1 shadow-xl bg-neutral-500 text-white">
       <h3 class="text-xl p-5">
         Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve considered your unique
         needs to offer advice that’s tailored to you. What can I help you with?{" "}
