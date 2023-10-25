@@ -313,7 +313,7 @@ hover:bg-teal-600 hover:text-white
             </div>
             <div className="my-4">
               <label htmlFor="job-title" className="block font-bold">
-                Gender
+                Job Title
               </label>
               <input
                   type="text"
