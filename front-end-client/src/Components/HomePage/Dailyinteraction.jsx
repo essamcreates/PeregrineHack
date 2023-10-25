@@ -6,21 +6,40 @@ const DailyInteraction = ({ currentUser }) => {
     return storedDailyQuestion && currentUser ? JSON.parse(storedDailyQuestion) : null;
   });
 
-  const [questionAnswered, setQuestionAnswered] = useState(false);
-  const [userAnswer, setUserAnswer] = useState();
+    const [question, setQuestion] = useState(() => {
+        const storedDailyQuestion = localStorage.getItem('question');
+        return (storedDailyQuestion && currentUser) ? JSON.parse(storedDailyQuestion) : null;
+      });
+      
+    const updateQuestion = (newUser) => {
+                setQuestion(newUser);
+                localStorage.setItem('question', JSON.stringify(newUser));
+        }
+    
+    const [questionAnswered, setQuestionAnswered] = useState(
+        JSON.parse(localStorage.getItem('questionAnswered')) || false
+      );
 
-  const updateQuestion = (newUser) => {
-    setQuestion(newUser);
-    localStorage.setItem("question", JSON.stringify(newUser));
-  };
+      useEffect(() => {
+        localStorage.setItem('questionAnswered', JSON.stringify(questionAnswered));
+      }, [questionAnswered]);
 
-  useEffect(() => {
-    if (!currentUser) {
-      setQuestion(null);
-    } else {
-      fetchQuestion(Math.floor(Math.random() * 2 + 1));
-    }
-  }, [currentUser]);
+    const [userAnswer, setUserAnswer] = useState(
+        JSON.parse(localStorage.getItem('userAnswer')) || ''
+      );
+
+      useEffect(() => {
+        localStorage.setItem('userAnswer', JSON.stringify(userAnswer));
+      }, [userAnswer]);
+    
+      
+    useEffect(() => {
+        if (!currentUser) {
+          setQuestion(null);
+        } else {
+          fetchQuestion(Math.floor((Math.random() * 2) + 1));
+        }
+      }, [currentUser]);
 
   const fetchQuestion = async (id) => {
     try {
