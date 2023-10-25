@@ -49,7 +49,7 @@ const Container = () => {
     console.log(response);
     if (response.status === 201) {
       const newUser = await response.json();
-    //   setCurrentUser(newUser);
+      //   setCurrentUser(newUser);
       updateCurrentUser(newUser);
       return true;
     } else {
@@ -93,11 +93,11 @@ const Container = () => {
             <ProfilePage
               imageName={imageName}
               currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
+              updateCurrentUser={updateCurrentUser}
             />
           }
         ></Route>
-        <Route path="/QuizPage" element={<QuizPage currentUser={currentUser}/>}></Route>
+        <Route path="/QuizPage" element={<QuizPage currentUser={currentUser} />}></Route>
         <Route
           path="/UploadProfilePhoto"
           element={
