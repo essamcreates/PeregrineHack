@@ -1,10 +1,9 @@
 import {Link} from "react-router-dom";
 import PersonalityAssessmentBar from "./PersonalityAssessmentBar";
 import Questions from "./Questions";
-import "./QuizPage.css"
 import { useEffect, useState } from "react";
 
-const QuizPage = () => {
+const QuizPage = ({currentUser}) => {
     const [currentQuestionId, setCurrentQuestionId] = useState(42);
 
 
@@ -16,6 +15,7 @@ const QuizPage = () => {
                 <Questions
                 currentQuestionId={currentQuestionId}
                 setCurrentQuestionId={setCurrentQuestionId}
+                currentUser={currentUser}
                 />
             </div>
         </div>

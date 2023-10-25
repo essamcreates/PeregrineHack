@@ -8,25 +8,28 @@ public class UserDTO {
 
     private String name;
 
+    private String jobTitle;
+
     private LocalDate dateOfBirth;
 
     private String password;
 
     private String gender;
 
+    private String email;
 
-     private String email;
+    public UserDTO() {
 
-     public UserDTO() {
-     }
+    }
 
-     public UserDTO(String name, LocalDate dateOfBirth, String password, String gender) {
+     public UserDTO(String name, String jobTitle, LocalDate dateOfBirth, String password, String gender, String email) {
 
         this.name = name;
+        this.jobTitle = jobTitle;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
-         this.email = email;
+        this.email = email;
     }
 
     public String getName() {
@@ -70,4 +73,11 @@ public class UserDTO {
          this.email = email;
      }
 
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
 }
