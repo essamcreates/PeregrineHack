@@ -66,6 +66,11 @@ public class User {
     @Column(name = "mood_entries")
     private List<MoodEntry> moodEntries;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @Column(name = "notes")
+    private List<Note> notes;
+
 //    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 //    @JoinColumn(name = "personality_score_id")
 //    private PersonalityScore personalityScore;
@@ -226,5 +231,13 @@ public class User {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }

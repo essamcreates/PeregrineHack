@@ -8,6 +8,7 @@ import com.hackathon.server.models.enums.MentalHealthConditionENUM;
 import com.hackathon.server.personalityAPI.BigFiveQuestion;
 import com.hackathon.server.personalityAPI.BigFiveQuestionRepository;
 import com.hackathon.server.repositories.*;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -44,6 +45,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     PersonalityScoreRepository personalityScoreRepository;
+
+    @Autowired
+    NoteRepository noteRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -192,6 +196,15 @@ public class DataLoader implements ApplicationRunner {
                     new PersonalityScore(2.0,4.0,6.0,8.0,10.0,userRepository.findById(2L).get())
             );
             personalityScoreRepository.saveAll(userScore);
+        }
+
+        if (noteRepository.count() == 0) {
+            List<Note> notes = Arrays.asList(
+                    new Note(userRepository.findById(1L).get(),"Hello how are you doing today"),
+                    new Note(userRepository.findById(1L).get(),"im good how about you"),
+                    new Note(userRepository.findById(1L).get(),"Im good too thanks")
+            );
+            noteRepository.saveAll(notes);
         }
     }
 }
