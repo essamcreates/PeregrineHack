@@ -8,7 +8,6 @@ import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
 import NoteTaking2 from "./NoteTaking2";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
-import "./HomePage.css";
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
