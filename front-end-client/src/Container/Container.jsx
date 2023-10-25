@@ -97,7 +97,7 @@ const Container = () => {
             />
           }
         ></Route>
-        <Route path="/QuizPage" element={<QuizPage />}></Route>
+        <Route path="/QuizPage" element={<QuizPage currentUser={currentUser}/>}></Route>
         <Route
           path="/UploadProfilePhoto"
           element={
