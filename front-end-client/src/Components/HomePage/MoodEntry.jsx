@@ -93,7 +93,6 @@ const MoodEntry = ({ currentUser }) => {
       {!moodEntryInProgress && (
         <>
           <div class="grid grid-cols-5">
-            <div></div>
             <div class="col-span-3">
               <div class="flex justify-center items-center p-3 mt-3">
                 <button
@@ -116,10 +115,11 @@ const MoodEntry = ({ currentUser }) => {
                 />
               )}
             </div>
-          <p class="text-center font-mono text-xl underline">Mood Entry Log</p>
-          <div class="flex items-center justify-center h-2/3">
-            <div class="overflow-scroll h-full w-11/12 max-h-[300px]">
-              {usersMoodEntries ? <>{mappedMoodEntries()}</> : <p>No Mood Entries Found</p>}
+            <p class="text-center font-mono text-xl underline">Mood Entry Log</p>
+            <div class="flex items-center justify-center h-2/3">
+              <div class="overflow-scroll h-full w-11/12 max-h-[300px]">
+                {usersMoodEntries ? <>{mappedMoodEntries()}</> : <p>No Mood Entries Found</p>}
+              </div>
             </div>
           </div>
         </>

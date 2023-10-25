@@ -8,11 +8,9 @@ import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
 import NoteTaking2 from "./NoteTaking2";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
-import imagefive from "/images/HomePageImages/imagefive.jpg"; 
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const formatDate = (date) => {
     const day = date.getDate();
@@ -39,12 +37,6 @@ const HomePage = ({ currentUser }) => {
 
   return (
     <div className="flex bg-neutral-800">
-      {isSidebarOpen && (
-        <div className="w-1/4 h-screen overflow-y-auto border-l">
-          {/* <NoteTaking /> */}
-          <NoteTaking2 />
-        </div>
-      )}
       <div className="flex-grow">
         <section className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
@@ -58,7 +50,7 @@ const HomePage = ({ currentUser }) => {
                 </div>
                 {currentDate && (
                   <div className="date-time whitespace-nowrap opacity-50">
-                    <p>{currentDate}</p>
+                    <p className="text-lg">{currentDate}</p>
                   </div>
                 )}
               </div>
@@ -85,7 +77,7 @@ const HomePage = ({ currentUser }) => {
                 <MoodEntry currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
@@ -95,7 +87,7 @@ const HomePage = ({ currentUser }) => {
                 <WellnessBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
@@ -105,7 +97,7 @@ const HomePage = ({ currentUser }) => {
                 <ResourcesBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
