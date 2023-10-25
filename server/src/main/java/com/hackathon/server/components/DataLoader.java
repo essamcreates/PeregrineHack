@@ -128,9 +128,12 @@ public class DataLoader implements ApplicationRunner {
 
         if (dailyQuestionRepository.count() == 0) {
             List<DailyQuestion> dailyQuestions = Arrays.asList(
-                    new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
-                    new DailyQuestion("What do you enjoy doing in your spare time", "Time with family", "Doing sports", "Discovering new places", "Chilling at home", null)
-            new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
+                    new DailyQuestion("What aspect of your life would you like to focus on for personal growth?", "Relationships", "Career", "Health and well-being", "Emotional intelligence", null),
+                    new DailyQuestion("How do you prefer to practice mindfulness?", "Worship", "Deep breathing exercises", "Mindful walking", "Meditation", null),
+            new DailyQuestion("What motivates you the most?", "Achieving personal goals", "Making a difference in the world", "Recognition and praise", "Overcoming challenges", null),
+                    new DailyQuestion("How do you approach goal setting?", "Setting SMART goals", "Mentor guidance", "Visualizing success", "Breaking goals down into steps", null),
+                    new DailyQuestion("Which skill are you keen on developing further?", "Digital marketing", "Data analysis", "Time management", "Public speaking", null),
+
             );
             dailyQuestionRepository.saveAll(dailyQuestions);
         }
