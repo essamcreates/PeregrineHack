@@ -6,12 +6,11 @@ import ResourcesBox from "./ResourcesBox";
 import ChatBot from "./ChatBot";
 import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
-import NoteTaking2 from "./NoteTaking2";
+import NoteTaking from "./NoteTaking";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const formatDate = (date) => {
     const day = date.getDate();
@@ -37,15 +36,9 @@ const HomePage = ({ currentUser }) => {
   }, []);
 
   return (
-    <div className="flex">
-      {isSidebarOpen && (
-        <div className="w-1/4 h-screen bg-white overflow-y-auto border-l">
-          {/* <NoteTaking /> */}
-          <NoteTaking2 />
-        </div>
-      )}
+    <div className="flex bg-neutral-800">
       <div className="flex-grow">
-        <section className="header fixed top-0 w-full z-25 block h-32 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
+        <section className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -57,25 +50,25 @@ const HomePage = ({ currentUser }) => {
                 </div>
                 {currentDate && (
                   <div className="date-time whitespace-nowrap opacity-50">
-                    <p>{currentDate}</p>
+                    <p className="text-lg">{currentDate}</p>
                   </div>
                 )}
               </div>
             </div>
           </div>
         </section>
-        <div className="mt-32 z-1 pt-5 bg-amber-50">
+        <div className="mt-32 z-1 pt-5 bg-neutral-800">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2">
-              <NoteTaking2 />
+            <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">
+              <NoteTaking />
             </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
-              <div className="daily-interaction-box bg-white">
+              <div className="daily-interaction-box text-white">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
                 <img
-                  src="images/HomePageImages/imageone.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -85,7 +78,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
                 <img
-                  src="images/HomePageImages/imagetwo.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -95,7 +88,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
                 <img
-                  src="images/HomePageImages/imagethree.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
@@ -105,7 +98,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
                 <img
-                  src="images/HomePageImages/imagefour.jpg"
+                  src="images/HomePageImages/imagesix.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />

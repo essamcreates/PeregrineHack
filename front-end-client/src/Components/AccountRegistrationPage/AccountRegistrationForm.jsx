@@ -94,7 +94,7 @@ const AccountRegistrationForm = ({ signupUser, setIsNewUser }) => {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className="border border-gray-300 rounded p-2 w-full mb-4"
@@ -108,7 +108,7 @@ const AccountRegistrationForm = ({ signupUser, setIsNewUser }) => {
               Confirm Password
             </label>
             <input
-              type="text"
+              type="password"
               name="confirm-password"
               id="confirm-password"
               className="border border-gray-300 rounded p-2 w-full mb-4"

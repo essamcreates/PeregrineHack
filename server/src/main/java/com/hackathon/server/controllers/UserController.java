@@ -77,12 +77,13 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updateUser = userService.updateUser(id,user.getName(),user.getDateOfBirth(),user.getPassword(),user.getGender(),user.getEmail());
+        User updateUser = userService.updateUser(id,user.getName(),user.getDateOfBirth(),user.getPassword(),user.getGender(),user.getEmail(),user.getJobTitle());
         return new ResponseEntity<>(updateUser,HttpStatus.OK);
     }
 
     // post and put will be needed for sending profile picture from front end one for create new user and one for update user
     // get will be needed for sending profile picture to the front end
+    //done job title
 
 
     @PostMapping("/upload")
