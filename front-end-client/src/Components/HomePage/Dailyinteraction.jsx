@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const DailyInteraction = ({ currentUser }) => {
   const [question, setQuestion] = useState(() => {
- const storedDailyQuestion = localStorage.getItem("question");
+    const storedDailyQuestion = localStorage.getItem("question");
     return storedDailyQuestion && currentUser ? JSON.parse(storedDailyQuestion) : null;
   });
 
@@ -125,7 +125,7 @@ const DailyInteraction = ({ currentUser }) => {
   };
 
   return (
-    <div class="h-full rounded-md p-1 shadow-xl text-white">
+    <div class="h-full rounded-md p-1 bg-slate-500 shadow-xl text-white">
       {/* <div> */}
       {/* <h3 class="text-xl ml-2">Question</h3> */}
       {/* </div> */}

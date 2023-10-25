@@ -4,9 +4,7 @@ const DailyMessage = () => {
   const [message, setMessage] = useState();
 
   const fetchMessage = async () => {
-    const response = await fetch(
-      "http://localhost:8080/motivationMessage/random"
-    );
+    const response = await fetch("http://localhost:8080/motivationMessage/random");
     const data = await response.json();
     setMessage(data);
     console.log(data);
@@ -22,11 +20,9 @@ const DailyMessage = () => {
     // <div class=" h-full rounded-lg shadow-xl bg-white text-black">
     <div>
       {/* <h2 class="text-xl pt-3">Pick Me Up </h2> */}
-      <div class="text-center">
+      <div class="text-center font-calligraffiti">
         {message && (
-          <p class="font-bold text-4xl opacity-50 text-left ml-5 pt-2">
-            {message.message}
-          </p>
+          <p class="font-bold text-4xl opacity-50 text-left ml-5 pt-2">{message.message}</p>
         )}
       </div>
     </div>

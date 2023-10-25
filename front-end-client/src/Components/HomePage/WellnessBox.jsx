@@ -19,28 +19,33 @@ const WellnessBox = ({ currentUser }) => {
       // setTimeout(function () {
         wellnessResourcesRequest();
         setIsFetching(true)
+// =======
+//       wellnessResourcesRequest();
+// >>>>>>> develop
       // }, 300);
     }
   }, []);
 
 
   const formatUserInfo = () => {
-    if(!currentUser.mentalHealthConditions){
+    if (!currentUser.mentalHealthConditions) {
       return null;
-    }else {
-      let conditions = " you may want to take account their mental health conditions "
-      currentUser.mentalHealthConditions.forEach((condition)=>{
-        conditions += condition.mentalHealthCondition + ","
-      })
-      return conditions + " but not all resources should focus on this"
+    } else {
+      let conditions = " you may want to take account their mental health conditions ";
+      currentUser.mentalHealthConditions.forEach((condition) => {
+        conditions += condition.mentalHealthCondition + ",";
+      });
+      return conditions + " but not all resources should focus on this";
     }
-  }
+  };
 
   const wellnessResourcesRequest = async () => {
     try {
       const additionalUserInfo = formatUserInfo();
-            const request = "You are acting as a help coach for an employee at work, give a 3 pieces of advice / tips or one book recommendation that can help me improve their wellness," +
-             additionalUserInfo + " seperate by line ensure format like 'title | description' and number each (response max 50 words)"
+      const request =
+        "You are acting as a help coach for an employee at work, give a 3 pieces of advice / tips or one book recommendation that can help me improve their wellness," +
+        additionalUserInfo +
+        " seperate by line ensure format like 'title | description' and number each (response max 50 words)";
       // const request =
       //   "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness,example -. use mindtools to help improve your mental health : www.mindtools.com ";
       const url = `http://localhost:8080/openAI`;
@@ -66,25 +71,26 @@ const WellnessBox = ({ currentUser }) => {
   };
 
   const resources = () => {
-    const lines = userWellnessResources.split('\n');
+    const lines = userWellnessResources.split("\n");
     const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude
-    const resourceList=[]
+    const resourceList = [];
 
     linesExcluded.map((line) => {
-      const parts = line.split('| ');
+      const parts = line.split("| ");
       if (parts.length === 2) {
         const title = parts[0].trim().substring(2);
         let description = parts[1].trim();
 
-      resourceList.push(
-        <li class="w-5/6 m-3 text-center rounded-lg shadow-md " >
-          <span class="text-xl">{title}</span>
-          <br/>
-          {description}
-        </li>
-      )}
+        resourceList.push(
+          <li class="w-5/6 m-3 text-center rounded-lg shadow-md ">
+            <span class="text-xl">{title}</span>
+            <br />
+            {description}
+          </li>
+        );
+      }
     });
-    console.log(resourceList[1])
+    console.log(resourceList[1]);
     return resourceList;
   };
 
@@ -94,8 +100,8 @@ const WellnessBox = ({ currentUser }) => {
         <h2 class="text-2xl pt-3 mt-3">My Wellness Resources</h2>
         {!userWellnessResources && (
           <div class="flex items-center justiy-center mt-6">
-            <p class="border-1 border-slate-300 h-1/2 w-full bg-yellow-100 m-3 text-center text-2xl rounded-lg">
-              Loading you tailored wellness resources <span class="animate-pulse">....</span>{" "}
+            <p class="border-1 border-slate-300 h-1/2 w-full bg-gray-500 m-3 text-center text-2xl rounded-lg">
+              Loading your tailored wellness resources <span class="animate-pulse">....</span>{" "}
             </p>
           </div>
         )}
