@@ -6,9 +6,9 @@ import ResourcesBox from "./ResourcesBox";
 import ChatBot from "./ChatBot";
 import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
-import NoteTaking from "./NoteTaking";
 import NoteTaking2 from "./NoteTaking2";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
+import "./HomePage.css";
 
 const HomePage = ({ currentUser }) => {
   const [currentDate, setCurrentDate] = useState("");
@@ -56,7 +56,7 @@ const HomePage = ({ currentUser }) => {
         >
           {isSidebarOpen ? "Close Notes" : "Open Notes"}
         </button>
-        <section className="header fixed top-0 w-full z-25 block h-1/6 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-400 via-red-200 to-pink-400">
+        <section className="header fixed top-0 w-full z-25 block h-1/6 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -75,7 +75,7 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-[194px]">
+        <div className="mt-[1/6]">
           <section className="home-page grid grid-cols-12">
             <div className="col-span-2">NOTES</div>
             <section className="dashboard col-span-7">
@@ -86,9 +86,8 @@ const HomePage = ({ currentUser }) => {
                 <img
                   src="https://images.unsplash.com/photo-1651424810057-af80e351456d?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Scenic Landscape"
-                  className="bg-cover max-h-64"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
                 />
-                IMAGE
               </div>
               <div className="mood-entry-box">
                 <MoodEntry currentUser={currentUser} />
