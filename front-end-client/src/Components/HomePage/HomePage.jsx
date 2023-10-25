@@ -55,7 +55,7 @@ const HomePage = ({ currentUser }) => {
         >
           {isSidebarOpen ? "Close Notes" : "Open Notes"}
         </button>
-        <section className="header fixed top-0 w-full z-25 block h-1/6 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
+        <section className="header fixed top-0 w-full z-25 block h-32 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -74,7 +74,7 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-[1/6] z-1">
+        <div className="mt-32 z-1 pt-5">
           <section className="home-page grid grid-cols-12">
             <div className="col-span-2">NOTES</div>
             <section className="dashboard col-span-7">
