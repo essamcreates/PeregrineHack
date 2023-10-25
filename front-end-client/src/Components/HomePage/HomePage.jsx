@@ -64,13 +64,13 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-32 z-1 pt-5">
+        <div className="mt-32 z-1 pt-5 bg-amber-50">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
             <div className="col-span-2">
               <NoteTaking2 />
             </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
-              <div className="daily-interaction-box">
+              <div className="daily-interaction-box bg-white">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
