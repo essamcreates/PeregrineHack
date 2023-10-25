@@ -136,12 +136,6 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       alert("Please enter all fields");
       // highlight fields that are left empty
     } else {
-      let tempDoB = {
-        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day
-      };
-      let tempGender = {
-        gender: enteredGender
-      };
       let tempGoals = {
         goalIds: enteredCareerGoals
       };
@@ -151,13 +145,12 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       let tempConditions = {
         mentalHealthConditionIds: enteredMentalHealthConditions
       };
-      let tempJobTitle = {
-        jobTitle: enteredJobTitle
-      };
       // send info on gender and DOB
-      addUserInfo(tempDoB);
-      addUserInfo(tempGender);
-      addUserInfo(tempJobTitle);
+      addUserInfo({
+        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day,
+        gender: enteredGender,
+        jobTitle: enteredJobTitle
+      });
       addUserData(tempGoals, "careerGoals");
       addUserData(tempNeeds, "accessNeeds");
       addUserData(tempConditions, "mentalHealthConditions");
@@ -182,11 +175,12 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const addUserData = async (userInfo, path) => {
     const url = `http://localhost:8080/` + path + `/` + currentUser.id;
     console.log(url);
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo)
     });
+    console.log(response.json());
   };
 
   const handleCareerCheckboxChange = (event) => {
