@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ChatBot = () => {
+const ChatBot = ({ currentUser }) => {
   const [usingChatBot, setUsingChatBot] = useState(false);
   const [requestString, setRequestString] = useState(""); // message that will be sent to openapi
   const [currentStep, setCurrentStep] = useState(1);
@@ -155,7 +155,6 @@ const ChatBot = () => {
   const handleOptionClick = async (choice, text, nextStep) => {
     setPrevChoices((prevChoices) => [...prevChoices, choice]);
     setRequestString(requestString + text);
-    
 
     if (nextStep !== 0) {
       setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
@@ -194,10 +193,7 @@ const ChatBot = () => {
                   class="w-1/4 h-full mt-1 shadow-lg bg-teal-500 text-white p-1 text-center rounded-md transition-transform transform text-sm hover:bg-slate-500 hover:text-white"
                   onClick={() => {
                     chatBotRequest(userInput);
-                    setPrevChoices((prevChoices) => [
-                      ...prevChoices,
-                      userInput
-                    ]);
+                    setPrevChoices((prevChoices) => [...prevChoices, userInput]);
                     setSent(true);
                   }}
                 >
@@ -209,25 +205,16 @@ const ChatBot = () => {
         </div>
       );
     }
-    const currentLevel = conversationFlow.find(
-      (step) => step.id === currentStep
-    );
+    const currentLevel = conversationFlow.find((step) => step.id === currentStep);
     const choices = [];
     currentLevel.options.map((option, index) => {
       if (index === currentLevel.options.length - 1 && index % 2 === 0) {
         choices.push(
-          <div
-            class="col-span-2 flex items-center justify-center m-1"
-            key={index}
-          >
+          <div class="col-span-2 flex items-center justify-center m-1" key={index}>
             <button
               class="w-11/12 h-full mt-3 m-2 border-2 bg-white border-teal-500 p1 text-center rounded-md transition-transform transform hover:bg-teal-300"
               onClick={() => {
-                handleOptionClick(
-                  option.displayText,
-                  option.sendText,
-                  option.next
-                );
+                handleOptionClick(option.displayText, option.sendText, option.next);
               }}
             >
               {option.displayText}
@@ -240,11 +227,7 @@ const ChatBot = () => {
             <button
               class="w-10/12 h-full m-2 mt-2 border-2 border-teal-500 bg-white p-1 text-center rounded-md transition-transform transform hover:bg-teal-200"
               onClick={() => {
-                handleOptionClick(
-                  option.displayText,
-                  option.sendText,
-                  option.next
-                );
+                handleOptionClick(option.displayText, option.sendText, option.next);
               }}
             >
               {option.displayText}
@@ -275,14 +258,8 @@ const ChatBot = () => {
       prevText.options.map((option, index) => {
         if (index === prevText.options.length - 1 && index % 2 === 0) {
           choices.push(
-            <div
-              class="col-span-2 flex items-center justify-center m-1"
-              key={index}
-            >
-              <button
-                class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg"
-                disabled
-              >
+            <div class="col-span-2 flex items-center justify-center m-1" key={index}>
+              <button class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg" disabled>
                 {option.displayText}
               </button>
             </div>
@@ -290,10 +267,7 @@ const ChatBot = () => {
         } else {
           choices.push(
             <div class=" flex items-center justify-center m-1" key={index}>
-              <button
-                class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg"
-                disabled
-              >
+              <button class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg" disabled>
                 {option.displayText}
               </button>
             </div>
@@ -355,9 +329,11 @@ const ChatBot = () => {
 
   return (
     <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
-      <h3 class="text-xl p-5 mt-20">Hi, I’m Farai, your dedicated work coach. I’ve considered your unique needs to offer advice that’s tailored to you. What can I help you with? </h3>
+      <h3 class="text-xl p-5 mt-20">
+        Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve considered your unique
+        needs to offer advice that’s tailored to you. What can I help you with?{" "}
+      </h3>
       <div class="grid grid-cols-2">
-        {/* <div class="mt-3 m-2 text-2xl text-black ">Speak with Farai!</div> */}
         {usingChatBot && (
           <div class="flex justify-end m-2 mt-3">
             <button
@@ -380,8 +356,9 @@ const ChatBot = () => {
                 />
               </svg>
             </button>
-            </div>)}
-         </div>
+          </div>
+        )}
+      </div>
       {!usingChatBot && (
         <div>
           <div class=" flex items-center justify-center">

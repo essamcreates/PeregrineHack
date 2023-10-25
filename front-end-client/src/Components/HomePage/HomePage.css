@@ -1,8 +1,10 @@
 /* grid 1 includes date and welcome user (with name) */
 .welcome-home-page {
+  position: fixed;
   display: grid;
   grid-template-columns: 50% 50%;
   height: max-content;
+  margin: 5px;
 }
 
 .date-time,
@@ -34,10 +36,11 @@
 .welcome-name h2 {
   text-align: center;
 }
+
 /* end of grid 1 */
 
 /* grid 2 everything that is included in the dashboard */
-.dashboard {
+/* .dashboard {
   display: grid;
   grid-template-columns: 35% 35% 30%;
   grid-template-rows: 15% 36% 49%;
@@ -48,8 +51,6 @@
 }
 
 .daily-message-box {
-  /* border: 2px black solid ;
-    border-radius:10px; */
   grid-row: 1;
   grid-column: 1 / span 2;
   margin: 1%;
@@ -74,8 +75,6 @@
 }
 
 .wellness-box {
-  /* border: 2px black solid ;*/
-  border-radius: 10px;
   background-color: white;
   grid-row: 3;
   grid-column: 1;
@@ -83,13 +82,11 @@
 }
 
 .resource-box {
-  /* border: 2px black solid ; */
-  border-radius: 10px;
   background-color: white;
   grid-row: 3;
   grid-column: 2;
   margin: 2%;
-}
+} */
 
 /* below concerns the content inside each box */
 .daily-message-box h2,
@@ -106,6 +103,7 @@
   left: 2%;
   top: -1%;
 }
+
 /* end of grid 2 */
 
 /* css for daily message */
@@ -113,6 +111,7 @@
   font-size: xx-large;
   text-align: center;
 }
+
 /*  */
 
 /* css for chat bot */
