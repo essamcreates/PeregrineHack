@@ -122,6 +122,7 @@ const MoodEntry = ({ currentUser }) => {
               </div>
             </div>
           </div>
+          </div>
         </>
       )}
 
