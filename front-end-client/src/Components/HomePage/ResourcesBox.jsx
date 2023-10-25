@@ -6,18 +6,21 @@ const ResourcesBox = ({currentUser}) => {
         const userResources = localStorage.getItem('userResources');
         return userResources ? JSON.parse(userResources) : null;
       });
-    const [requestedCareerResources , setRequestedCareerResources] = useState(false);
+
 
      const updateUserResources = (newResources) => {
         setUserResources(newResources);
         localStorage.setItem('userResources', JSON.stringify(newResources));
     };
 
+    const [isFetching, setIsFetching] = useState(false);
+
     // set wellness resources to null in local storage useState when 
     useEffect(() => {
-        if(!userResources) {
+        if(!userResources && !isFetching) {
             // setTimeout(function() {
                 resourcesRequest()
+                setIsFetching(true)
             // }, 1500);
         }
     }, []);
@@ -43,8 +46,9 @@ const ResourcesBox = ({currentUser}) => {
         try {
             const additionalUserInfo = formatUserInfo();
             const request = "You are acting as a career coach for an employee at work, give a 3 pieces of advice / tips or method or a book recommendation that can help improve their career," + 
-                                additionalUserInfo + "separate by line ensure format like 'title | description' and number each (response max 60 words)"
+                                additionalUserInfo + "separate by line ensure format like 'title | description' and number each (response max 50 words)"
             const url = `http://localhost:8080/openAI`;
+            
             const response = await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "text/plain" },
@@ -68,31 +72,6 @@ const ResourcesBox = ({currentUser}) => {
        
     }
 
-
-    // const careerResources = () => {
-    //     const lines = userResources.split('\n');
-    //     const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude 
-    //     const resourceList=[]
-
-    //     linesExcluded.map((line, index) => {
-    //       const parts = line.split(': ');
-    //       if (parts.length === 2) {
-    //         const description = parts[0].trim();
-    //         let link = parts[1].trim();
-    //         if (!link.startsWith('http')) {
-    //             link = 'https://' + link;
-    //         }
-    //         // is the link and the box it is in , taget and rel allow for the link to open in a new tab
-    //         resourceList.push(<li class="font-serif w-3/4 m-3 text-center bg-yellow-100 text-black hover:bg-green-100 p-4 rounded-lg shadow-inner shadow-md" key={index} >
-    //                 <a  href={link} target="_blank" rel="noopener noreferrer">
-    //                     {description}
-    //                 </a>
-    //             </li>
-    //             );
-    //       }
-    //     });
-    //     return resourceList;
-    //   };
 
     const careerResources = () => {
         const lines = userResources.split('\n');
