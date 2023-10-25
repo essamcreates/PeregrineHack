@@ -42,7 +42,7 @@ const HomePage = ({ currentUser }) => {
   };
 
   return (
-    <div className="flex bg-amber-50">
+    <div className="flex bg-neutral-800">
       {isSidebarOpen && (
         <div className="w-1/4 h-screen overflow-y-auto border-l">
           {/* <NoteTaking /> */}
@@ -57,8 +57,8 @@ const HomePage = ({ currentUser }) => {
           {isSidebarOpen ? "Close Notes" : "Open Notes"}
         </button>
         <section
-  className="header fixed top-0 w-full z-25 block h-32 bg-cover"
-  style={{ backgroundImage: `url(${imagefive})`, backgroundSize: '50%' }}
+  className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100"
+  // style={{ backgroundImage: `url(${imagefive})`, backgroundSize: '50%' }}
 >
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
@@ -80,7 +80,7 @@ const HomePage = ({ currentUser }) => {
         </section>
         <div className="mt-32 z-1 pt-5">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2 bg-amber-50">My Notes</div>
+            <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">My Notes</div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box">
                 <DailyInteraction currentUser={currentUser} />
