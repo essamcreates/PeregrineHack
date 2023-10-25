@@ -8,7 +8,15 @@ const Questions = ({currentUser}) => {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [score, setScore] = useState()
     const [quizCompleted, setQuizCompleted] =useState(false)
-    const [explanation, setExplanation] = useState()
+    const [explanation, setExplanation] = useState((() => {
+      const explanation = localStorage.getItem('explanation');
+      return explanation ? JSON.parse(explanation) : null;
+    }))
+
+    const updateExplanation = (newResources) => {
+      setExplanation(newResources);
+      localStorage.setItem('explanation', JSON.stringify(newResources));
+  };
 
     const [request, setRequest] = useState(
           {
@@ -65,7 +73,7 @@ const Questions = ({currentUser}) => {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
-        body: "give an overall result of these big five personality scores and also infomation on what each mean. Here are my scores "+ input + " (response in less than 80 words)"
+        body: "give an overall result of my big five personality scores and also infomation on what each mean. Here are my scores "+ input + " (response in less than 100 words)"
       });
 
       if (!response.ok) {
@@ -75,7 +83,7 @@ const Questions = ({currentUser}) => {
       const data = await response.text();
 
       // Set the response data in the component's state
-      setExplanation(data);
+      updateExplanation(data);
       console.log(data);
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
@@ -84,7 +92,7 @@ const Questions = ({currentUser}) => {
 
 
   useEffect(() => {
-    if (quizCompleted) {
+    if (quizCompleted && !explanation) {
       const results = "Openness: " + Math.round(score.openness) + "%  Conscientiousness: " +
         Math.round(score.conscientiousness) + "%  extraversion: " + Math.round(score.extraversion) + "% Agreeableness: " +
         Math.round(score.agreeableness) + "% neuroticism: " + Math.round(score.neuroticism);
@@ -97,16 +105,18 @@ const Questions = ({currentUser}) => {
       if (score !== null) {
         return (<>
           <div className="text-center flex flex-col">
-            <h1 className="text-3xl"><b>Your score:</b></h1>
+            <h1 className="text-2xl"><b>Your Results:</b></h1>
             <p><b>Openness</b> : {Math.round(score.openness)}% </p>
             <p><b>Conscientiousness</b> : {Math.round(score.conscientiousness)}% </p>
             <p><b>Extraversion</b> : {Math.round(score.extraversion)}% </p> 
             <p><b>Agreeableness</b> : {Math.round(score.agreeableness)}% </p>
             <p><b>Neuroticism</b> : {Math.round(score.neuroticism)}%</p>
           </div>
+          <br/>
           <div>
             {explanation ? (<>
-              {explanation}
+              <p class="text-center text-3xl">About Your Results</p>
+              <p class="text-center">{explanation}</p>
             </>) 
             : 
             <p>Loading ....</p> }
