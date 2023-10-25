@@ -2,25 +2,39 @@ import { useEffect, useState } from "react";
 
 const DailyInteraction = ({ currentUser }) => {
   const [question, setQuestion] = useState(() => {
-    const storedDailyQuestion = localStorage.getItem("question");
-    return storedDailyQuestion && currentUser ? JSON.parse(storedDailyQuestion) : null;
-  });
+        const storedDailyQuestion = localStorage.getItem('question');
+        return (storedDailyQuestion && currentUser) ? JSON.parse(storedDailyQuestion) : null;
+      });
+      
+    const updateQuestion = (newUser) => {
+                setQuestion(newUser);
+                localStorage.setItem('question', JSON.stringify(newUser));
+        }
+    
+    const [questionAnswered, setQuestionAnswered] = useState(
+        JSON.parse(localStorage.getItem('questionAnswered')) || false
+      );
 
-  const [questionAnswered, setQuestionAnswered] = useState(false);
-  const [userAnswer, setUserAnswer] = useState();
+      useEffect(() => {
+        localStorage.setItem('questionAnswered', JSON.stringify(questionAnswered));
+      }, [questionAnswered]);
 
-  const updateQuestion = (newUser) => {
-    setQuestion(newUser);
-    localStorage.setItem("question", JSON.stringify(newUser));
-  };
+    const [userAnswer, setUserAnswer] = useState(
+        JSON.parse(localStorage.getItem('userAnswer')) || ''
+      );
 
-  useEffect(() => {
-    if (!currentUser) {
-      setQuestion(null);
-    } else {
-      fetchQuestion(Math.floor(Math.random() * 2 + 1));
-    }
-  }, [currentUser]);
+      useEffect(() => {
+        localStorage.setItem('userAnswer', JSON.stringify(userAnswer));
+      }, [userAnswer]);
+    
+      
+    useEffect(() => {
+        if (!currentUser) {
+          setQuestion(null);
+        } else {
+          fetchQuestion(Math.floor((Math.random() * 2) + 1));
+        }
+      }, [currentUser]);
 
   const fetchQuestion = async (id) => {
     try {
@@ -114,7 +128,7 @@ const DailyInteraction = ({ currentUser }) => {
   return (
     <div class="h-full rounded-md p-1 shadow-xl text-white">
       {/* <div> */}
-        {/* <h3 class="text-xl ml-2">Question</h3> */}
+      {/* <h3 class="text-xl ml-2">Question</h3> */}
       {/* </div> */}
       {question && !questionAnswered && (
         <div>

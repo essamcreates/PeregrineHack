@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PersonalityAssessmentBar from "./PersonalityAssessmentBar";
 
-const Questions = () => {
+const Questions = ({currentUser}) => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionId, setCurrentQuestionId] = useState(42);
     const [questionsAnswered, setQuestionsAnswered] = useState(0)
 
     const [request, setRequest] = useState(
           {
-            "userId":2,
+            "userId":currentUser.id,
             "questionAnswers":[
               {"42":null},{"43":null},{"44":null},{"45":null},{"46":null},{"47":null},{"48":null},{"49":null},{"50":null},
               {"51":null},{"52":null},{"53":null},{"54":null},{"55":null},{"56":null},{"57":null},{"58":null},{"59":null},
@@ -63,7 +63,7 @@ const Questions = () => {
       const updatedRequest = { ...request };
 
       // Update the copy with the user's chosen answer
-      updatedRequest.questionAnswers[currentQuestionId - 41] = { [currentQuestionId.toString()]: chosenAnswerInt };
+      updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
     
       // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DailyInteraction from "./DailyInteraction";
+import DailyInteraction from "./Dailyinteraction";
 import DailyMessage from "./DailyMessage";
 import WellnessBox from "./WellnessBox";
 import ResourcesBox from "./ResourcesBox";
@@ -37,10 +37,6 @@ const HomePage = ({ currentUser }) => {
     setCurrentDate(formattedDate);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
     <div className="flex bg-neutral-800">
       {isSidebarOpen && (
@@ -50,16 +46,7 @@ const HomePage = ({ currentUser }) => {
         </div>
       )}
       <div className="flex-grow">
-        <button
-          onClick={toggleSidebar}
-          className="fixed top-0 left-0 m-4 z-20 bg-slate-700 text-white px-2 py-1 rounded"
-        >
-          {isSidebarOpen ? "Close Notes" : "Open Notes"}
-        </button>
-        <section
-  className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100"
-  // style={{ backgroundImage: `url(${imagefive})`, backgroundSize: '50%' }}
->
+        <section className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -78,11 +65,13 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-32 z-1 pt-5">
+        <div className="mt-32 z-1 pt-5 bg-neutral-800">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">My Notes</div>
+            <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">
+              <NoteTaking2 />
+            </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
-              <div className="daily-interaction-box">
+              <div className="daily-interaction-box text-white">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
