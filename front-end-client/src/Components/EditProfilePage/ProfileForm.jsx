@@ -28,34 +28,101 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const fetchCareerGoals = async () => {
     const response = await fetch("http://localhost:8080/careerGoals");
     const data = await response.json();
-    setCareerGoals(data);
+
+    const formattedData = data.map((item) => {
+      if (item.goal.includes("_")) {
+        const formattedAccessNeed = item.goal
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(" ");
+        return {
+          ...item,
+          goal: formattedAccessNeed
+        };
+      } else {
+        const formattedAccessNeed =
+          item.goal.charAt(0).toUpperCase() + item.goal.slice(1).toLowerCase();
+        return {
+          ...item,
+          goal: formattedAccessNeed
+        };
+      }
+    });
+
+    setCareerGoals(formattedData);
     console.log(data);
   };
   useEffect(() => {
     fetchCareerGoals();
+    fetchAccessNeeds();
+    fetchMentalHealthConditions();
   }, []);
 
   const fetchMentalHealthConditions = async () => {
     const response = await fetch("http://localhost:8080/mentalHealthConditions");
     const data = await response.json();
-    setMentalHealthConditions(data);
+
+    const formattedData = data.map((item) => {
+      if (item.mentalHealthCondition.includes("_")) {
+        const formattedAccessNeed = item.mentalHealthCondition
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(" ");
+        return {
+          ...item,
+          mentalHealthCondition: formattedAccessNeed
+        };
+      } else {
+        const formattedAccessNeed =
+          item.mentalHealthCondition.charAt(0).toUpperCase() +
+          item.mentalHealthCondition.slice(1).toLowerCase();
+        return {
+          ...item,
+          mentalHealthCondition: formattedAccessNeed
+        };
+      }
+    });
+
+    setMentalHealthConditions(formattedData);
     console.log(data);
   };
-
-  useEffect(() => {
-    fetchMentalHealthConditions();
-  }, []);
 
   const fetchAccessNeeds = async () => {
     const response = await fetch("http://localhost:8080/accessNeeds");
     const data = await response.json();
-    setAccessNeeds(data);
+
+    const formattedData = data.map((item) => {
+      if (!(item.accessNeedENUM === "ADHD" || item.accessNeedENUM === "ASD")) {
+        if (item.accessNeedENUM.includes("_")) {
+          const formattedAccessNeed = item.accessNeedENUM
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ");
+          return {
+            ...item,
+            accessNeedENUM: formattedAccessNeed
+          };
+        } else {
+          const formattedAccessNeed =
+            item.accessNeedENUM.charAt(0).toUpperCase() +
+            item.accessNeedENUM.slice(1).toLowerCase();
+          return {
+            ...item,
+            accessNeedENUM: formattedAccessNeed
+          };
+        }
+      } else {
+        return {
+          ...item,
+          accessNeedENUM: item.accessNeedENUM
+        };
+      }
+    });
+
+    setAccessNeeds(formattedData);
+
     console.log(data);
   };
-
-  useEffect(() => {
-    fetchAccessNeeds();
-  }, []);
 
   const handleCreationClick = async (event) => {
     event.preventDefault();
