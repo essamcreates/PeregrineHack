@@ -6,7 +6,7 @@ import ResourcesBox from "./ResourcesBox";
 import ChatBot from "./ChatBot";
 import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
-import NoteTaking2 from "./NoteTaking";
+import NoteTaking from "./NoteTaking";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
 
 const HomePage = ({ currentUser }) => {
@@ -60,7 +60,7 @@ const HomePage = ({ currentUser }) => {
         <div className="mt-32 z-1 pt-5 bg-neutral-800">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
             <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">
-              <NoteTaking1 />
+              <NoteTaking />
             </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box text-white">
