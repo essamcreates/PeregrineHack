@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DailyInteraction from "./DailyInteraction";
+import DailyInteraction from "./Dailyinteraction";
 import DailyMessage from "./DailyMessage";
 import WellnessBox from "./WellnessBox";
 import ResourcesBox from "./ResourcesBox";
@@ -36,10 +36,6 @@ const HomePage = ({ currentUser }) => {
     setCurrentDate(formattedDate);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
     <div className="flex">
       {isSidebarOpen && (
@@ -49,12 +45,6 @@ const HomePage = ({ currentUser }) => {
         </div>
       )}
       <div className="flex-grow">
-        <button
-          onClick={toggleSidebar}
-          className="fixed top-0 left-0 m-4 z-20 bg-slate-700 text-white px-2 py-1 rounded"
-        >
-          {isSidebarOpen ? "Close Notes" : "Open Notes"}
-        </button>
         <section className="header fixed top-0 w-full z-25 block h-32 bg-gradient-to-bl from-orange-300 via-amber-50 to-indigo-700">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
@@ -76,7 +66,9 @@ const HomePage = ({ currentUser }) => {
         </section>
         <div className="mt-32 z-1 pt-5">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2">NOTES</div>
+            <div className="col-span-2">
+              <NoteTaking2 />
+            </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box">
                 <DailyInteraction currentUser={currentUser} />
@@ -92,7 +84,7 @@ const HomePage = ({ currentUser }) => {
                 <MoodEntry currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagetwo.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
@@ -102,7 +94,7 @@ const HomePage = ({ currentUser }) => {
                 <WellnessBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagethree.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
@@ -112,7 +104,7 @@ const HomePage = ({ currentUser }) => {
                 <ResourcesBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-              <img
+                <img
                   src="images/HomePageImages/imagefour.jpg"
                   alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
