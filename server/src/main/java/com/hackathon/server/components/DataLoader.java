@@ -71,10 +71,15 @@ public class DataLoader implements ApplicationRunner {
 
         if (motivationMessageRepository.count() == 0) {
             List<MotivationMessage> motivationMessages = Arrays.asList(
-                    new MotivationMessage("Hello, I hope you had a nice day"),
-                    new MotivationMessage("Keep Pushing You Will Get There One Day !!!!!!!"),
-                    new MotivationMessage("Never Back Down"),
-                    new MotivationMessage("Dont look at yourself through the eyes of the doubters, look from within.")
+                    new MotivationMessage("Slow down, you'll get there faster"),
+                    new MotivationMessage("Rejection is redirection"),
+                    new MotivationMessage("Every morning we are born again"),
+                    new MotivationMessage("Everything is hard before it is easy"),
+                    new MotivationMessage("You are the greatest project you will ever work on"),
+                    new MotivationMessage("First you dream, then you do"),
+                    new MotivationMessage("Energy goes when intention flows"),
+                    new MotivationMessage("Nature does not hurry, yet everything blooms"),
+                    new MotivationMessage("When things change inside, things change around")
             );
             motivationMessageRepository.saveAll(motivationMessages);
         }
@@ -124,7 +129,8 @@ public class DataLoader implements ApplicationRunner {
         if (dailyQuestionRepository.count() == 0) {
             List<DailyQuestion> dailyQuestions = Arrays.asList(
                     new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
-                    new DailyQuestion("What do you enjoy doing in your spare time", "Time with family", "Doing sports", "Discovering new places", "Chilling at home", "Going out")
+                    new DailyQuestion("What do you enjoy doing in your spare time", "Time with family", "Doing sports", "Discovering new places", "Chilling at home", null)
+            new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
             );
             dailyQuestionRepository.saveAll(dailyQuestions);
         }
