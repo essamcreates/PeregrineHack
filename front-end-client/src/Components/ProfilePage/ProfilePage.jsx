@@ -76,8 +76,9 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                         Hello {currentUser.name}
                       </h3>
                       <p className="text-sm leading-normal mt-0 mb-2 text-neutral-400 font-bold uppercase">
-                        Job Title Goes Here
+                        {currentUser.jobTitle ? currentUser.jobTitle : "Add Job Title"}
                       </p>
+
                     </div>
                     <div className="container mx-auto px-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

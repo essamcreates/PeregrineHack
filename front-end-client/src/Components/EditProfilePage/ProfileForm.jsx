@@ -18,6 +18,7 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const [careerGoals, setCareerGoals] = useState();
   const [mentalHealthConditions, setMentalHealthConditions] = useState();
   const [accessNeeds, setAccessNeeds] = useState();
+  const [enteredJobTitle, setEnteredJobTitle] = useState();
   const navigate = useNavigate();
 
   // need to fetch data; data, accessneeds and mental health conditions
@@ -82,9 +83,13 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       let tempConditions = {
         mentalHealthConditionIds: enteredMentalHealthConditions
       };
+      let tempJobTitle = {
+        jobTitle: enteredJobTitle
+      };
       // send info on gender and DOB
       addUserInfo(tempDoB);
       addUserInfo(tempGender);
+      addUserInfo(tempJobTitle);
       addUserData(tempGoals, "careerGoals");
       addUserData(tempNeeds, "accessNeeds");
       addUserData(tempConditions, "mentalHealthConditions");
@@ -304,6 +309,20 @@ hover:bg-teal-600 hover:text-white
                 onChange={(e) => {
                   setEnteredGender(e.target.value);
                 }}
+              />
+            </div>
+            <div className="my-4">
+              <label htmlFor="job-title" className="block font-bold">
+                Job Title
+              </label>
+              <input
+                  type="text"
+                  id="job-title"
+                  className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
+                  value={enteredJobTitle}
+                  onChange={(e) => {
+                    setEnteredJobTitle(e.target.value);
+                  }}
               />
             </div>
             <button
