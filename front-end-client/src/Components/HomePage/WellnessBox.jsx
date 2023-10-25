@@ -16,13 +16,8 @@ const WellnessBox = ({ currentUser }) => {
 
   useEffect(() => {
     if (!userWellnessResources && !isFetching) {
-      // setTimeout(function () {
         wellnessResourcesRequest();
         setIsFetching(true)
-// =======
-//       wellnessResourcesRequest();
-// >>>>>>> develop
-      // }, 300);
     }
   }, []);
 
@@ -46,8 +41,6 @@ const WellnessBox = ({ currentUser }) => {
         "You are acting as a help coach for an employee at work, give a 3 pieces of advice / tips or one book recommendation that can help me improve their wellness," +
         additionalUserInfo +
         " seperate by line ensure format like 'title | description' and number each (response max 50 words)";
-      // const request =
-      //   "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness,example -. use mindtools to help improve your mental health : www.mindtools.com ";
       const url = `http://localhost:8080/openAI`;
       
       const response = await fetch(url, {

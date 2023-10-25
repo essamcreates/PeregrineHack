@@ -1,36 +1,24 @@
 import { useState, useEffect } from "react";
 
 const ResourcesBox = ({ currentUser }) => {
+
   const [userResources, setUserResources] = useState(() => {
     const userResources = localStorage.getItem("userResources");
     return userResources ? JSON.parse(userResources) : null;
   });
-  const [requestedCareerResources, setRequestedCareerResources] = useState(false);
 
   const updateUserResources = (newResources) => {
     setUserResources(newResources);
     localStorage.setItem("userResources", JSON.stringify(newResources));
   };
 
-//   // set wellness resources to null in local storage useState when
-//   useEffect(() => {
-//     if (!userResources) {
-//       // setTimeout(function() {
-//       resourcesRequest();
-//       // }, 1500);
-//     }
-//   }, []);
-
-
     const [isFetching, setIsFetching] = useState(false);
 
     // set wellness resources to null in local storage useState when 
     useEffect(() => {
         if(!userResources && !isFetching) {
-            // setTimeout(function() {
                 resourcesRequest()
                 setIsFetching(true)
-            // }, 1500);
         }
     }, []);
   
@@ -60,7 +48,6 @@ const ResourcesBox = ({ currentUser }) => {
             const request = "You are acting as a career coach for an employee at work, give a 3 pieces of advice / tips or method or a book recommendation that can help improve their career," + 
                                 additionalUserInfo + "separate by line ensure format like 'title | description' and number each (response max 50 words)"
             const url = `http://localhost:8080/openAI`;
-            
             const response = await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "text/plain" },
@@ -82,14 +69,12 @@ const ResourcesBox = ({ currentUser }) => {
             console.error('There was a problem with the fetch operation:', error);
           }
     }
-  };
 
 
   const careerResources = () => {
     const lines = userResources.split("\n");
     const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude
     const resourceList = [];
-
     linesExcluded.map((line) => {
       const parts = line.split("| ");
       if (parts.length === 2) {
@@ -130,5 +115,5 @@ const ResourcesBox = ({ currentUser }) => {
       </div>
     </>
   );
-};
+}
 export default ResourcesBox;
