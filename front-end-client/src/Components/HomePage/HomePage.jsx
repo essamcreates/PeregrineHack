@@ -38,7 +38,7 @@ const HomePage = ({ currentUser }) => {
   return (
     <div className="flex bg-neutral-800">
       <div className="flex-grow">
-        <section className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
+        <section className="header fixed top-0 w-full z-25 block h-36 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -57,7 +57,7 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-32 z-1 pt-5 bg-neutral-800">
+        <div className="mt-32 z-1 pt-7 bg-neutral-800">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
             <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">
               <NoteTaking />

@@ -80,7 +80,7 @@ const ResourcesBox = ({ currentUser }) => {
         const title = parts[0].trim().substring(2);
         let description = parts[1].trim();
         resourceList.push(
-          <li class="w-5/6 m-3 text-center rounded-lg shadow-md ">
+          <li class="m-3 ml-5 text-left rounded-lg">
             <span class="text-xl">{title}</span>
             <br />
             {description}
@@ -94,9 +94,9 @@ const ResourcesBox = ({ currentUser }) => {
   return (
     <>
       <div class="h-full rounded-lg p-1 shadow-xl text-white">
-        <h2 class="text-2xl pt-3 mt-3">My Career Resources</h2>
+        <h2 class="text-2xl pt-1 mt-1 text-center"><b>My Career Resources</b></h2>
         {!userResources && (
-          <div class="flex items-center justiy-center mt-6">
+          <div class="flex items-center justify-center mt-6">
             <p class="border-1 border-grey-200 bg-gray-500 h-1/2 w-full m-3 text-center text-2xl rounded-lg">
               Loading your tailored career resources <span class="animate-pulse">....</span>{" "}
             </p>
@@ -105,8 +105,8 @@ const ResourcesBox = ({ currentUser }) => {
         <div>
           {userResources && (
             <>
-              <div class="flex items-center justify-center h-full mt-3">
-                <ul class="flex flex-col items-center w-full h-full ">{careerResources()}</ul>
+              <div class="flex items-center justify-center h-full mt-3 pb-5">
+                <ul class="flex flex-col items-center w-5/6 h-full bg-teal-700 rounded mb-3">{careerResources()}</ul>
               </div>
             </>
           )}
