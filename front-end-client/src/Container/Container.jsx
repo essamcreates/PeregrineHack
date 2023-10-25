@@ -49,7 +49,8 @@ const Container = () => {
     console.log(response);
     if (response.status === 201) {
       const newUser = await response.json();
-      setCurrentUser(newUser);
+    //   setCurrentUser(newUser);
+      updateCurrentUser(newUser);
       return true;
     } else {
       return false;
