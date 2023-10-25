@@ -12,13 +12,15 @@ const WellnessBox = ({ currentUser }) => {
     localStorage.setItem("userWellnessResources", JSON.stringify(newResources));
   };
 
+  const [isFetching, setIsFetching] = useState(false);
+
   useEffect(() => {
-    if (!userWellnessResources) {
-      // setTimeout(function () {
-      wellnessResourcesRequest();
-      // }, 300);
+    if (!userWellnessResources && !isFetching) {
+        wellnessResourcesRequest();
+        setIsFetching(true)
     }
   }, []);
+
 
   const formatUserInfo = () => {
     if (!currentUser.mentalHealthConditions) {
@@ -39,9 +41,8 @@ const WellnessBox = ({ currentUser }) => {
         "You are acting as a help coach for an employee at work, give a 3 pieces of advice / tips or one book recommendation that can help me improve their wellness," +
         additionalUserInfo +
         " seperate by line ensure format like 'title | description' and number each (response max 50 words)";
-      // const request =
-      //   "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness,example -. use mindtools to help improve your mental health : www.mindtools.com ";
       const url = `http://localhost:8080/openAI`;
+      
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
@@ -61,36 +62,6 @@ const WellnessBox = ({ currentUser }) => {
       console.error("There was a problem with the fetch operation:", error);
     }
   };
-
-  // const resources = () => {
-  //   const lines = userWellnessResources.split("\n");
-  //   const linesExcluded = lines.slice(2); // the ai returns two lines before so will exclude
-  //   const resourceList = [];
-
-  //   linesExcluded.map((line, index) => {
-  //     const parts = line.split(": ");
-  //     if (parts.length === 2) {
-  //       const description = parts[0].trim();
-  //       let link = parts[1].trim();
-  //       if (!link.startsWith("http")) {
-  //         link = "https://" + link;
-  //       }
-  //       // is the link and the box it is in , taget and rel allow for the link to open in a new tab
-  //       resourceList.push(
-  //         <li
-  //           class="font-serif w-3/4 m-3 text-center bg-yellow-100 text-black hover:bg-green-100 p-4 rounded-lg shadow-inner shadow-md"
-  //           key={index}
-  //         >
-  //           <a href={link} target="_blank" rel="noopener noreferrer">
-  //             {description}
-  //           </a>
-  //         </li>
-  //       );
-  //     }
-  //   });
-  //   console.log(resourceList[1]);
-  //   return resourceList;
-  // };
 
   const resources = () => {
     const lines = userWellnessResources.split("\n");
