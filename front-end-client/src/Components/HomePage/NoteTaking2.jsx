@@ -44,7 +44,7 @@ const NoteTaking2 = () => {
         />
       </div>
       <button
-        className="px-4 py-2 bg-pink-500 text-white rounded hover-bg-pink-400"
+        className="px-4 py-2 bg-teal-400 hover:bg-teal-600 text-white rounded"
         onClick={editedNoteIndex !== -1 ? updateNote : addNote}
       >
         {editedNoteIndex !== -1 ? "Update Note" : "Add Note"}

@@ -361,9 +361,9 @@ const ChatBot = ({ currentUser }) => {
       </div>
       {!usingChatBot && (
         <div>
-          <div class=" flex items-center justify-center">
+          <div class="flex items-right justify-end mr-4">
             <button
-              class="rounded-lg bg-teal-400 text-white py-2 px-5 mt-4 mb-6 hover:bg-teal-500"
+              class="rounded bg-teal-400 text-white py-2 px-5 mt-4 mb-6 hover:bg-teal-500"
               onClick={() => setUsingChatBot(true)}
             >
               Click to speak to Farai!

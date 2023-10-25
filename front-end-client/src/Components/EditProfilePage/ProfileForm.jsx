@@ -60,6 +60,7 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const handleCreationClick = async (event) => {
     event.preventDefault();
     if (
+      !enteredJobTitle ||
       !enteredGender ||
       dateOfBirth.day === "DD" ||
       dateOfBirth.month === "MM" ||
@@ -99,7 +100,6 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
         navigate("/QuizPage");
       }
     }
-    console.log(enteredDOBDay + "/" + enteredDOBMonth + "/" + enteredDOBYear);
   };
 
   const addUserInfo = async (userInfo) => {
@@ -259,6 +259,7 @@ hover:bg-teal-600 hover:text-white
         year: `${dateOfBirthArray[0]}`
       });
       setEnteredGender(currentUser.gender);
+      setEnteredJobTitle(currentUser.jobTitle);
     }
   }, []);
 
@@ -305,6 +306,7 @@ hover:bg-teal-600 hover:text-white
                 type="text"
                 id="gender"
                 className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
+                placeholder="Add Gender Here"
                 value={enteredGender}
                 onChange={(e) => {
                   setEnteredGender(e.target.value);
@@ -316,13 +318,14 @@ hover:bg-teal-600 hover:text-white
                 Job Title
               </label>
               <input
-                  type="text"
-                  id="job-title"
-                  className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
-                  value={enteredJobTitle}
-                  onChange={(e) => {
-                    setEnteredJobTitle(e.target.value);
-                  }}
+                type="text"
+                id="job-title"
+                className="border block border-gray-300 rounded p-2 w-1/4 mb-5"
+                placeholder="Add Job Title Here"
+                value={enteredJobTitle}
+                onChange={(e) => {
+                  setEnteredJobTitle(e.target.value);
+                }}
               />
             </div>
             <button
