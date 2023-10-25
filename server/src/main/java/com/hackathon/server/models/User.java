@@ -21,6 +21,9 @@ public class User {
     private String name;
 
     @Column
+    private String jobTitle;
+
+    @Column
     private String email;
 
     @Column
@@ -32,7 +35,10 @@ public class User {
     @Column
     private String gender;
 
-    @Column String profilePictureURL;
+    @Column
+    private String profilePictureURL;
+
+
 
     @ManyToMany
     @JoinTable(
@@ -80,8 +86,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, LocalDate dateOfBirth, String password, String gender, String email, String profilePictureURL) {
+    public User(String name, String jobTitle, LocalDate dateOfBirth, String password, String gender, String email, String profilePictureURL) {
         this.name = name;
+        this.jobTitle = jobTitle;
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.gender = gender;
@@ -211,5 +218,13 @@ public class User {
 
     public void setProfilePictureURL(String profilePictureURL) {
         this.profilePictureURL = profilePictureURL;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 }
