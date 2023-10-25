@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
-import ProfileCreationBar from "./ProfileCreationBar";
 
 const ProfileCreationPage = ({ currentUser, setCurrentUser, isNewUser }) => {
   const navigate = useNavigate();
@@ -16,9 +14,6 @@ const ProfileCreationPage = ({ currentUser, setCurrentUser, isNewUser }) => {
               yourself so I can get to know you better, {currentUser.name}! I'm excited to learn
               more about you!
             </h2>
-            <label>Progress Bar</label>
-            <ProfileCreationBar currentUser={currentUser} />
-            {/* Profile creation bar */}
             <ProfileForm
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
