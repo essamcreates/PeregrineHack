@@ -100,7 +100,7 @@ const DateOfBirthListbox = ({ dateOfBirth, setDateOfBirth }) => {
 
   return (
     <>
-      <div className="grid grid-flow-col grid-rows-2 gap-x-4 justify-center my-1">
+      <div className="grid grid-flow-col grid-rows-2 gap-x-4 justify-items-start justify-start my-2">
         {/* Day dropdown */}
         <div className="text-center flex justify-center items-center h-full">
           <span>Day</span>

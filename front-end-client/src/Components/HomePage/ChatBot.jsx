@@ -153,18 +153,28 @@ const ChatBot = ({ currentUser }) => {
   ];
 
   const handleOptionClick = async (choice, text, nextStep) => {
-    setPrevChoices((prevChoices) => [...prevChoices, choice]);
+    if (!prevChoices.includes(choice)) {
+      setPrevChoices((prevChoices) => [...prevChoices, choice]);
+    }
     setRequestString(requestString + text);
 
     if (nextStep !== 0) {
-      setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
+      if (!previousSteps.includes(currentStep)) {
+        setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
+      }
+      // setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
       setCurrentStep(nextStep);
       chatBotText();
     } else {
-      await chatBotRequest(requestString + text);
       setSent(true);
+      // serach in prev choices for wellness then pass in mental health conditions
+      
+      
       console.log(previousSteps);
-      setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
+      if (!previousSteps.includes(currentStep)) {
+        setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
+      }
+      await chatBotRequest(requestString + text);
     }
   };
 
@@ -180,7 +190,7 @@ const ChatBot = ({ currentUser }) => {
             <>
               <div class="h-full flex justify-end">
                 <textarea
-                  class="border-2 outline-none border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
+                  class="border-2 outline-non border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
                   placeholder="Ask Farai about career goals, skills, wellness..."
                   type="text"
                   maxlength="150"
@@ -316,8 +326,10 @@ const ChatBot = ({ currentUser }) => {
     prevChatBotText();
   }, [previousSteps]);
 
-  const handleExit = () => {
-    setUsingChatBot(false);
+  const handleExit = (choice) => {
+    if (choice === 1){
+      setUsingChatBot(false);
+    }
     setCurrentStep(1);
     setRequestString("");
     setResponse("");
@@ -328,17 +340,29 @@ const ChatBot = ({ currentUser }) => {
   };
 
   return (
-    <div class="border-2 border-black h-full rounded-lg p-1 shadow-inner">
-      <h3 class="text-xl p-5 mt-20">
+    <div class="h-full rounded-lg p-1 shadow-xl bg-neutral-600 text-white">
+      <h3 class="text-xl p-5">
         Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve considered your unique
         needs to offer advice that’s tailored to you. What can I help you with?{" "}
       </h3>
       <div class="grid grid-cols-2">
-        {usingChatBot && (
+        {usingChatBot && (<>
+          <div class="flex justify-start ml-5 m-2 mt-6">
+          {currentStep !==0 && currentStep!==1 && (<><button
+              onClick={() => {
+                handleExit(0);
+              }}
+            >
+            <svg onxmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            </button>
+            </>)}
+          </div>
           <div class="flex justify-end m-2 mt-3">
             <button
               onClick={() => {
-                handleExit();
+                handleExit(1);
               }}
             >
               <svg
@@ -357,7 +381,7 @@ const ChatBot = ({ currentUser }) => {
               </svg>
             </button>
           </div>
-        )}
+        </>)}
       </div>
       {!usingChatBot && (
         <div>

@@ -71,10 +71,15 @@ public class DataLoader implements ApplicationRunner {
 
         if (motivationMessageRepository.count() == 0) {
             List<MotivationMessage> motivationMessages = Arrays.asList(
-                    new MotivationMessage("Hello, I hope you had a nice day"),
-                    new MotivationMessage("Keep Pushing You Will Get There One Day !!!!!!!"),
-                    new MotivationMessage("Never Back Down"),
-                    new MotivationMessage("Dont look at yourself through the eyes of the doubters, look from within.")
+                    new MotivationMessage("Slow down, you'll get there faster"),
+                    new MotivationMessage("Rejection is redirection"),
+                    new MotivationMessage("Every morning we are born again"),
+                    new MotivationMessage("Everything is hard before it is easy"),
+                    new MotivationMessage("You are the greatest project you will ever work on"),
+                    new MotivationMessage("First you dream, then you do"),
+                    new MotivationMessage("Energy goes when intention flows"),
+                    new MotivationMessage("Nature does not hurry, yet everything blooms"),
+                    new MotivationMessage("When things change inside, things change around")
             );
             motivationMessageRepository.saveAll(motivationMessages);
         }
@@ -115,16 +120,20 @@ public class DataLoader implements ApplicationRunner {
 
         if (userRepository.count() == 0) {
             List<User> users = Arrays.asList(
-                    new User("John","Software Engineer", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail", PropertiesConfig.getDefaultProfilePhoto()),
-                    new User("Sarah","Software Engineer",LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company",PropertiesConfig.getDefaultProfilePhoto())
+                    new User("John", "Software Engineer", LocalDate.of(1989, 7, 13), "password123", "male", "John@gmail", PropertiesConfig.getDefaultProfilePhoto()),
+                    new User("Sarah", "Software Engineer", LocalDate.of(1975, 11, 27), "Hello000", "female", "sarah@company", PropertiesConfig.getDefaultProfilePhoto())
             );
             userRepository.saveAll(users);
         }
 
         if (dailyQuestionRepository.count() == 0) {
             List<DailyQuestion> dailyQuestions = Arrays.asList(
-                    new DailyQuestion("How would you describe your day so far?", "Excellent", "Terrible", "Average", "Ok", null),
-                    new DailyQuestion("What do you enjoy doing in your spare time", "Time with family", "Doing sports", "Discovering new places", "Chilling at home", "Going out")
+                    new DailyQuestion("What aspect of your life would you like to focus on for personal growth?", "Relationships", "Career", "Health and well-being", "Emotional intelligence", null),
+                    new DailyQuestion("How do you prefer to practice mindfulness?", "Worship", "Deep breathing exercises", "Mindful walking", "Meditation", null),
+                    new DailyQuestion("What motivates you the most?", "Achieving personal goals", "Making a difference in the world", "Recognition and praise", "Overcoming challenges", null),
+                    new DailyQuestion("How do you approach goal setting?", "Setting SMART goals", "Mentor guidance", "Visualizing success", "Breaking goals down into steps", null),
+                    new DailyQuestion("Which skill are you keen on developing further?", "Digital marketing", "Data analysis", "Time management", "Public speaking", null)
+
             );
             dailyQuestionRepository.saveAll(dailyQuestions);
         }
@@ -192,17 +201,17 @@ public class DataLoader implements ApplicationRunner {
         //double openness, double conscientiousness, double extraversion, double agreeableness, double neuroticism, User user
         if (personalityScoreRepository.count() == 0) {
             List<PersonalityScore> userScore = Arrays.asList(
-                    new PersonalityScore(1.0,2.0,3.0,4.0,5.0,userRepository.findById(1L).get()),
-                    new PersonalityScore(2.0,4.0,6.0,8.0,10.0,userRepository.findById(2L).get())
+                    new PersonalityScore(1.0, 2.0, 3.0, 4.0, 5.0, userRepository.findById(1L).get()),
+                    new PersonalityScore(2.0, 4.0, 6.0, 8.0, 10.0, userRepository.findById(2L).get())
             );
             personalityScoreRepository.saveAll(userScore);
         }
 
         if (noteRepository.count() == 0) {
             List<Note> notes = Arrays.asList(
-                    new Note(userRepository.findById(1L).get(),"Hello how are you doing today"),
-                    new Note(userRepository.findById(1L).get(),"im good how about you"),
-                    new Note(userRepository.findById(1L).get(),"Im good too thanks")
+                    new Note(userRepository.findById(1L).get(), "Hello how are you doing today"),
+                    new Note(userRepository.findById(1L).get(), "im good how about you"),
+                    new Note(userRepository.findById(1L).get(), "Im good too thanks")
             );
             noteRepository.saveAll(notes);
         }

@@ -5,8 +5,7 @@ import AccessNeedList from "./AccessNeedList.jsx";
 import MentalHealthConditionsList from "./MentalHealthConditionsList.jsx";
 import { useEffect, useState } from "react";
 
-const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
-  // console.log(imageName);
+const ProfilePage = ({ currentUser, setCurrentUser }) => {
   const fetchUpdatedUser = async () => {
     const response = await fetch("http://localhost:8080/users/" + currentUser.id);
     const data = await response.json();
@@ -71,21 +70,19 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="text-center mt-">
+                    <div className="text-center mt-2">
                       <h3 className="text-4xl font-semibold leading-normal mb-0.5 text-neutral-700">
                         Hello {currentUser.name}
                       </h3>
                       <p className="text-sm leading-normal mt-0 mb-2 text-neutral-400 font-bold uppercase">
-                        Job Title Goes Here
+                        {currentUser.jobTitle}
                       </p>
                     </div>
                     <div className="container mx-auto px-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* First Column: Career Goals */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
-                          <CareerGoalsList
-                            currentUserGoals={currentUser.careerGoals}
-                          />
+                          <CareerGoalsList currentUserGoals={currentUser.careerGoals} />
                         </div>
                         {/* Second Column: Big Five Information */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
@@ -101,9 +98,7 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                         </div>
                         {/* Fourth Column: Access Needs */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
-                          <AccessNeedList
-                            accessNeeds={currentUser.accessNeeds}
-                          />
+                          <AccessNeedList accessNeeds={currentUser.accessNeeds} />
                         </div>
                       </div>
                     </div>

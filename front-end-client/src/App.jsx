@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="font-light">
         <Container />
       </div>
     </>
