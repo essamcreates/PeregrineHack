@@ -31,21 +31,22 @@ public class UserResponseService {
         return userResponseRepository.findById(id).get();
     }
 
-//    public Optional<List<UserResponse>> getUserResponsesByUser(Long userId) {
-//        User user = userRepository.findById(userId).get();
-//        List<UserResponse> responses = user.getUserResponses();
-//        if(!responses.isEmpty()){
-//            return Optional.of(responses);
-//        }else{
-//            return Optional.empty();
-//        }
-//    }
 
-//    public void saveUserResponse(UserResponseDTO userResponseDTO, Long userId){
-//        User user = userRepository.findById(userId).get();
-//        UserResponse newUserResponse = new UserResponse(
-//                userResponseDTO.getUserPrompt(), userResponseDTO.getResponseText(), userResponseDTO.getDateTime());
-//        // add user to new user response
-//        userResponseRepository.save(newUserResponse);
-//    }
+    public Optional<List<UserResponse>> getUserResponsesByUser(Long userId) {
+        User user = userRepository.findById(userId).get();
+        List<UserResponse> responses = user.getUserResponses();
+        if(!responses.isEmpty()){
+            return Optional.of(responses);
+        }else{
+            return Optional.empty();
+        }
+    }
+// something up with this method...
+    public void saveUserResponse(UserResponseDTO userResponseDTO, Long userId){
+        User user = userRepository.findById(userId).get();
+        UserResponse newUserResponse = new UserResponse(
+           user,userResponseDTO.getUserPrompt(), userResponseDTO.getResponseText(), userResponseDTO.getDateTime());
+        // add user to new user response
+        userResponseRepository.save(newUserResponse);
+    }
 }

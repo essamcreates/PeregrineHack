@@ -32,20 +32,20 @@ public class UserResponseController {
         return new ResponseEntity<>(userResponseService.getUserResponseById(id), HttpStatus.OK);
     }
 
-//    @GetMapping(value = "/user/{userId}")
-//    public ResponseEntity<Optional<List<UserResponse>>> getUserResponsesByUser(@PathVariable Long userId){
-//        Optional<List<UserResponse>> userResponses= userResponseService.getUserResponsesByUser(userId);
-//        if(userResponses.isPresent()){
-//            return new ResponseEntity<>(userResponses, HttpStatus.OK);
-//        }else {
-//            return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
-//        }
-//    }
+    @GetMapping(value = "/user/{userId}")
+    public ResponseEntity<Optional<List<UserResponse>>> getUserResponsesByUser(@PathVariable Long userId){
+        Optional<List<UserResponse>> userResponses= userResponseService.getUserResponsesByUser(userId);
+        if(userResponses.isPresent()){
+            return new ResponseEntity<>(userResponses, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+        }
+    }
 
-//    @PostMapping(value = "/{userId}")
-//    public void createUserResponse(@RequestBody UserResponseDTO userResponseDTO, @PathVariable Long userId){
-//        userResponseService.saveUserResponse(userResponseDTO, userId);
-//    }
+    @PostMapping(value = "/{userId}")
+    public void createUserResponse(@RequestBody UserResponseDTO userResponseDTO, @PathVariable Long userId){
+        userResponseService.saveUserResponse(userResponseDTO, userId);
+    }
 }
 
 

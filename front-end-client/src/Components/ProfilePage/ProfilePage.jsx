@@ -30,7 +30,7 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
         <>
           <div className="h-screen">
             <section className="relative block h-1/5 min-h-1/5 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
-              <div className="relative top-0 w-full h-full bg-black opacity-30">
+              <div className="relative top-0 w-full h-full bg-black opacity-0">
                 <span
                   id="blackOverlay"
                   className="w-full h-full absolute opacity-50 bg-black"
@@ -83,7 +83,9 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* First Column: Career Goals */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
-                          <CareerGoalsList currentUserGoals={currentUser.careerGoals} />
+                          <CareerGoalsList
+                            currentUserGoals={currentUser.careerGoals}
+                          />
                         </div>
                         {/* Second Column: Big Five Information */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
@@ -99,7 +101,9 @@ const ProfilePage = ({ imageName, currentUser, setCurrentUser }) => {
                         </div>
                         {/* Fourth Column: Access Needs */}
                         <div className="bg-white p-4 rounded-lg shadow-md">
-                          <AccessNeedList accessNeeds={currentUser.accessNeeds} />
+                          <AccessNeedList
+                            accessNeeds={currentUser.accessNeeds}
+                          />
                         </div>
                       </div>
                     </div>
