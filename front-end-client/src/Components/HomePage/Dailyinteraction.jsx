@@ -92,7 +92,7 @@ const DailyInteraction = ({ currentUser }) => {
           choices.push(
             <div key={index} class="flex items-center justify-center">
               <button
-                class="text-lg bg-emerald-200 m-2 p-1 w-4/5 rounded-lg shadow-lg transition-colors duration-500 inline
+                class="text-lg text-white bg-indigo-400 m-2 p-1 w-4/5 rounded-lg shadow-lg transition-colors duration-500 inline
                 hover:bg-yellow-200
                  hover:shadow-md
                  hover:scale-110"
@@ -112,7 +112,7 @@ const DailyInteraction = ({ currentUser }) => {
   };
 
   return (
-    <div class="border-2 bg-white h-full rounded-lg p-1 shadow-xl">
+    <div class="bg-amber-50 h-full rounded-lg p-1 shadow-xl">
       <div>
         <h3 class="text-xl ml-2">Question</h3>
       </div>

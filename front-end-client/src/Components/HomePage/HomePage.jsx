@@ -75,16 +75,16 @@ const HomePage = ({ currentUser }) => {
           </div>
         </section>
         <div className="mt-32 z-1 pt-5">
-          <section className="home-page grid grid-cols-12">
+          <section className="home-page grid grid-cols-12 gap-3 mx-3">
             <div className="col-span-2">NOTES</div>
-            <section className="dashboard col-span-7">
+            <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
                 <img
-                  src="https://images.unsplash.com/photo-1651424810057-af80e351456d?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Scenic Landscape"
+                  src="images/HomePageImages/imageone.jpg"
+                  alt="Aura image"
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
               </div>
@@ -92,19 +92,31 @@ const HomePage = ({ currentUser }) => {
                 <MoodEntry currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-                IMAGE
+              <img
+                  src="images/HomePageImages/imagetwo.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
               </div>
               <div className="wellness-box">
                 <WellnessBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-                IMAGE
+              <img
+                  src="images/HomePageImages/imagethree.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
               </div>
               <div className="resource-box">
                 <ResourcesBox currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
-                IMAGE
+              <img
+                  src="images/HomePageImages/imagefour.jpg"
+                  alt="Aura image"
+                  className="bg-cover max-h-64 w-full h-full object-cover"
+                />
               </div>
             </section>
             <div className="chatbot-box col-span-3 right-0">
