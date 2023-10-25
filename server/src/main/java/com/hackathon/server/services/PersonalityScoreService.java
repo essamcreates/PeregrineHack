@@ -94,6 +94,8 @@ public class PersonalityScoreService {
    */
 
         long userId = userScoreRequestDTO.getUserId();
+        User user = userService.getUserById(userId);
+        Optional<PersonalityScore> currentPersonalityScore = getPersonalityScoreByUser(userId);
 
         String jsonRequestBody = formatPersonalityAPIRequest(userScoreRequestDTO);
 
@@ -101,6 +103,10 @@ public class PersonalityScoreService {
 
         PersonalityScore personalityScore = processPersonalityScore(userId,jsonResponseBody);
 
+        if (getPersonalityScoreByUser(userId).isPresent()) {
+            personalityScoreRepository.delete(currentPersonalityScore.get());
+            return personalityScoreRepository.save(personalityScore);
+        }
         return personalityScoreRepository.save(personalityScore);
     }
 

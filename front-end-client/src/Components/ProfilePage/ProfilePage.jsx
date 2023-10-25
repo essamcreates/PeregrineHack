@@ -5,11 +5,11 @@ import AccessNeedList from "./AccessNeedList.jsx";
 import MentalHealthConditionsList from "./MentalHealthConditionsList.jsx";
 import { useEffect, useState } from "react";
 
-const ProfilePage = ({ currentUser, setCurrentUser }) => {
+const ProfilePage = ({ currentUser, updateCurrentUser }) => {
   const fetchUpdatedUser = async () => {
     const response = await fetch("http://localhost:8080/users/" + currentUser.id);
     const data = await response.json();
-    setCurrentUser(data);
+    updateCurrentUser(data);
   };
   useEffect(() => {
     fetchUpdatedUser();

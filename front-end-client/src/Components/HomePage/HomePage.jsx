@@ -6,7 +6,7 @@ import ResourcesBox from "./ResourcesBox";
 import ChatBot from "./ChatBot";
 import MoodEntry from "./MoodEntry";
 import DigitalClock from "./DigitalClock";
-import NoteTaking from "./NoteTaking";
+import NoteTaking2 from "./NoteTaking2";
 import "./NoteTaking.css"; // Import the CSS file for NoteTaking component
 
 const HomePage = ({ currentUser }) => {
@@ -36,9 +36,9 @@ const HomePage = ({ currentUser }) => {
   }, []);
 
   return (
-    <div className="flex bg-neutral-800">
+    <div className="flex bg-[#D5E5C6]">
       <div className="flex-grow">
-        <section className="header fixed top-0 w-full z-25 block h-32 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
+        <section className="header fixed top-0 w-full z-25 block h-36 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -57,13 +57,13 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="mt-32 z-1 pt-5 bg-neutral-800">
+        <div className="mt-32 z-1 pt-7 bg-[#D5E5C6]">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2 rounded-md text-white bg-neutral-600 p-4 text-xl">
-              <NoteTaking />
+            <div className="col-span-2 rounded-md text-white bg-neutral-500 p-4 text-xl">
+              <NoteTaking2 />
             </div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
-              <div className="daily-interaction-box text-white">
+              <div className="daily-interaction-box text-white bg-white rounded shadow">
                 <DailyInteraction currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-64 bg-purple-300">
@@ -73,7 +73,7 @@ const HomePage = ({ currentUser }) => {
                   className="bg-cover max-h-64 w-full h-full object-cover"
                 />
               </div>
-              <div className="mood-entry-box">
+              <div className="mood-entry-box bg-white rounded">
                 <MoodEntry currentUser={currentUser} />
               </div>
               <div className="text-center flex justify-center items-center h-32 bg-purple-300">
