@@ -9,11 +9,15 @@ const ProfileCreationPage = ({ currentUser, setCurrentUser, isNewUser }) => {
       {currentUser && (
         <div className="min-h-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-emerald-200 via-cyan-400 to-yellow-100 bg-opacity-80 flex flex-col items-center justify-center">
           <div className="bg-white shadow-lg rounded-lg p-20 w-3/4 mx-auto mt-4">
-            <h2 className="text-4xl text-gray-700">
-              Welcome, I'm Farai, your personal development coach. 🚀 Please share a bit about
-              yourself so I can get to know you better, {currentUser.name}! I'm excited to learn
-              more about you!
-            </h2>
+            {isNewUser ? (
+              <h2 className="text-4xl text-gray-700">
+                Welcome, I'm Farai, your personal development coach. Please share a bit about
+                yourself so I can get to know you better, {currentUser.name}!
+              </h2>
+            ) : (
+              <h2 className="text-4xl text-gray-700">Welcome back! Please update your profile.</h2>
+            )}
+
             <ProfileForm
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
