@@ -107,8 +107,14 @@ const MoodEntry = ({ currentUser }) => {
               </div>
             </div>
             <div class="text-end m-3">
-                {usersMoodEntries && (<ZoomOutMapTwoToneIcon style={{ fontSize : "35px"}} onClick={()=>{setOpenModal(true)}} />)}
-            </div>
+              {usersMoodEntries && (
+                <ZoomOutMapTwoToneIcon
+                  style={{ fontSize: "35px" }}
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
+                />
+              )}
             </div>
           <p class="text-center font-mono text-xl underline">Mood Entry Log</p>
           <div class="flex items-center justify-center h-2/3">
