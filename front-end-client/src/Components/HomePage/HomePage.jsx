@@ -50,7 +50,7 @@ const HomePage = ({ currentUser }) => {
         </div>
       )}
       <div className="flex-grow">
-        <section className="relative block h-[40vh] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-400 via-red-200 to-pink-400">
+        <section className="header fixed top-0 w-full z-50 block h-1/5 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-400 via-red-200 to-pink-400">
           <div className="relative top-0 w-full h-full flex justify-between items-center">
             <div className="daily-message-box ml-12">
               <DailyMessage />
@@ -69,29 +69,37 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
         </section>
-        <div className="dashboard">
-          <div className="daily-interaction-box">
-            <DailyInteraction currentUser={currentUser} />
-          </div>
-          <div className="mood-entry-box">
-            <MoodEntry currentUser={currentUser} />
-          </div>
-          <div className="chatbot-box">
-            <ChatBot currentUser={currentUser} />
-          </div>
-          <div className="wellness-box">
-            <WellnessBox currentUser={currentUser} />
-          </div>
-          <div className="resource-box">
-            <ResourcesBox currentUser={currentUser} />
-          </div>
+        <div className="mt-[194px]">
+          <section className="home-page grid grid-cols-3">
+            <section className="dashboard col-span-2 grid grid-cols-2">
+              <div className="daily-interaction-box">
+                <DailyInteraction currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center">IMAGE</div>
+              <div className="text-center flex justify-center items-center">IMAGE</div>
+              <div className="mood-entry-box">
+                <MoodEntry currentUser={currentUser} />
+              </div>
+              <div className="wellness-box">
+                <WellnessBox currentUser={currentUser} />
+              </div>
+              <div className="text-center flex justify-center items-center">IMAGE</div>
+              <div className="text-center flex justify-center items-center">IMAGE</div>
+              <div className="resource-box">
+                <ResourcesBox currentUser={currentUser} />
+              </div>
+            </section>
+            <div className="chatbot-box col-span-1 right-0 right-column">
+              <ChatBot currentUser={currentUser} />
+            </div>
+          </section>
+          <button
+            onClick={toggleSidebar}
+            className="fixed top-0 left-0 m-4 bg-slate-700 text-white px-2 py-1 rounded"
+          >
+            {isSidebarOpen ? "Close Notes" : "Open Notes"}
+          </button>
         </div>
-        <button
-          onClick={toggleSidebar}
-          className="fixed top-0 left-0 m-4 bg-slate-700 text-white px-2 py-1 rounded"
-        >
-          {isSidebarOpen ? "Close Notes" : "Open Notes"}
-        </button>
       </div>
     </div>
   );
