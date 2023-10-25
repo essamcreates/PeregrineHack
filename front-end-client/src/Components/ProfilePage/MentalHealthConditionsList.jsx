@@ -1,18 +1,15 @@
 const MentalHealthConditionsList = ({ conditions }) => {
   const formatString = (string) => {
-    if (!(string === "ADHD" || string === "ASD")) {
-      if (string.includes("_")) {
-        const formattedString = string
-          .split("_")
-          .map((word) => word.toUpperCase())
-          .join(" ");
-        return formattedString;
-      } else {
-        const formattedString = string.toUpperCase();
-        return formattedString;
-      }
+    if (string.includes("_")) {
+      const formattedString = string
+        .split("_")
+        .map((word) => word.toUpperCase())
+        .join(" ");
+      return formattedString;
+    } else {
+      const formattedString = string.toUpperCase();
+      return formattedString;
     }
-    return string;
   };
 
   return (
