@@ -122,6 +122,7 @@ const MoodEntry = ({ currentUser }) => {
               {usersMoodEntries ? <>{mappedMoodEntries()}</> : <p>No Mood Entries Found</p>}
             </div>
           </div>
+          </div>
         </>
       )}
 

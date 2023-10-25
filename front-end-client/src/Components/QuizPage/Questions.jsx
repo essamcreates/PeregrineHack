@@ -9,7 +9,6 @@ const Questions = ({currentUser}) => {
     const [score, setScore] = useState()
     const [quizCompleted, setQuizCompleted] =useState(false)
     const [explanation, setExplanation] = useState()
-    const [postSent, setPostSent] = useState(false);
 
     const [request, setRequest] = useState(
           {
@@ -63,7 +62,6 @@ const Questions = ({currentUser}) => {
   const describeScores = async (input) => {
     try {
       const url = `http://localhost:8080/openAI`;
-      setPostSent(true)
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
@@ -84,14 +82,15 @@ const Questions = ({currentUser}) => {
     }
   };
 
-  useEffect(()=>{
-    if(postSent && score){
+
+  useEffect(() => {
+    if (quizCompleted) {
       const results = "Openness: " + Math.round(score.openness) + "%  Conscientiousness: " +
-      Math.round(score.conscientiousness) + "%  extraversion: " +Math.round(score.extraversion) + "% Agreeablness: " + 
-      Math.round(score.agreeableness) + "% neuroticism: " +Math.round(score.neuroticism)
-      describeScores(results)
+        Math.round(score.conscientiousness) + "%  extraversion: " + Math.round(score.extraversion) + "% Agreeableness: " +
+        Math.round(score.agreeableness) + "% neuroticism: " + Math.round(score.neuroticism);
+      describeScores(results);
     }
-  },[postSent])
+  }, [quizCompleted]);
   
 
     const displayScore = () => {
@@ -118,21 +117,11 @@ const Questions = ({currentUser}) => {
     }
 
     const handleAnswer = (chosenAnswer) =>{
-      // want to push their answer to json
-      // request.questionAnswers[currentQuestionId-42] = choosenAnswer
-      // setCurrentQuestionId(currentQuestionId+1)
-      // console.log(request)
       const chosenAnswerInt = parseInt(chosenAnswer, 10);
       const updatedRequest = { ...request };
-
-      // Update the copy with the user's chosen answer
       updatedRequest.questionAnswers[currentQuestionId - 42] = { [currentQuestionId.toString()]: chosenAnswerInt };
-    
-      // Update the currentQuestionId to move to the next question
       setCurrentQuestionId(currentQuestionId + 1);
       setQuestionsAnswered(questionsAnswered + 1);
-    
-      // Set the updated copy as the new state
       setRequest(updatedRequest)
     
       console.log(request);
@@ -143,7 +132,6 @@ const Questions = ({currentUser}) => {
       //  finds the question from its id
       if (questions && questions.length > 0) {
       const currentQuestion= questions.find((step) => step.id === currentQuestionId)
-      console.log(currentQuestion)
       const options= ["strongly disagree", "disagree", "neutral" , "agree", "strongly agree" ]
       const choices = []
 
@@ -160,8 +148,6 @@ const Questions = ({currentUser}) => {
             </div>
             )
       })
-
-      const questionNumber = currentQuestionId - 41;
 
       return (
         <div>
