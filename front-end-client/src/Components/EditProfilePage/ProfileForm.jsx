@@ -28,34 +28,101 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const fetchCareerGoals = async () => {
     const response = await fetch("http://localhost:8080/careerGoals");
     const data = await response.json();
-    setCareerGoals(data);
+
+    const formattedData = data.map((item) => {
+      if (item.goal.includes("_")) {
+        const formattedAccessNeed = item.goal
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(" ");
+        return {
+          ...item,
+          goal: formattedAccessNeed
+        };
+      } else {
+        const formattedAccessNeed =
+          item.goal.charAt(0).toUpperCase() + item.goal.slice(1).toLowerCase();
+        return {
+          ...item,
+          goal: formattedAccessNeed
+        };
+      }
+    });
+
+    setCareerGoals(formattedData);
     console.log(data);
   };
   useEffect(() => {
     fetchCareerGoals();
+    fetchAccessNeeds();
+    fetchMentalHealthConditions();
   }, []);
 
   const fetchMentalHealthConditions = async () => {
     const response = await fetch("http://localhost:8080/mentalHealthConditions");
     const data = await response.json();
-    setMentalHealthConditions(data);
+
+    const formattedData = data.map((item) => {
+      if (item.mentalHealthCondition.includes("_")) {
+        const formattedAccessNeed = item.mentalHealthCondition
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(" ");
+        return {
+          ...item,
+          mentalHealthCondition: formattedAccessNeed
+        };
+      } else {
+        const formattedAccessNeed =
+          item.mentalHealthCondition.charAt(0).toUpperCase() +
+          item.mentalHealthCondition.slice(1).toLowerCase();
+        return {
+          ...item,
+          mentalHealthCondition: formattedAccessNeed
+        };
+      }
+    });
+
+    setMentalHealthConditions(formattedData);
     console.log(data);
   };
-
-  useEffect(() => {
-    fetchMentalHealthConditions();
-  }, []);
 
   const fetchAccessNeeds = async () => {
     const response = await fetch("http://localhost:8080/accessNeeds");
     const data = await response.json();
-    setAccessNeeds(data);
+
+    const formattedData = data.map((item) => {
+      if (!(item.accessNeedENUM === "ADHD" || item.accessNeedENUM === "ASD")) {
+        if (item.accessNeedENUM.includes("_")) {
+          const formattedAccessNeed = item.accessNeedENUM
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ");
+          return {
+            ...item,
+            accessNeedENUM: formattedAccessNeed
+          };
+        } else {
+          const formattedAccessNeed =
+            item.accessNeedENUM.charAt(0).toUpperCase() +
+            item.accessNeedENUM.slice(1).toLowerCase();
+          return {
+            ...item,
+            accessNeedENUM: formattedAccessNeed
+          };
+        }
+      } else {
+        return {
+          ...item,
+          accessNeedENUM: item.accessNeedENUM
+        };
+      }
+    });
+
+    setAccessNeeds(formattedData);
+
     console.log(data);
   };
-
-  useEffect(() => {
-    fetchAccessNeeds();
-  }, []);
 
   const handleCreationClick = async (event) => {
     event.preventDefault();
@@ -69,12 +136,6 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       alert("Please enter all fields");
       // highlight fields that are left empty
     } else {
-      let tempDoB = {
-        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day
-      };
-      let tempGender = {
-        gender: enteredGender
-      };
       let tempGoals = {
         goalIds: enteredCareerGoals
       };
@@ -84,13 +145,12 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
       let tempConditions = {
         mentalHealthConditionIds: enteredMentalHealthConditions
       };
-      let tempJobTitle = {
-        jobTitle: enteredJobTitle
-      };
       // send info on gender and DOB
-      addUserInfo(tempDoB);
-      addUserInfo(tempGender);
-      addUserInfo(tempJobTitle);
+      addUserInfo({
+        dateOfBirth: dateOfBirth.year + "-" + dateOfBirth.month + "-" + dateOfBirth.day,
+        gender: enteredGender,
+        jobTitle: enteredJobTitle
+      });
       addUserData(tempGoals, "careerGoals");
       addUserData(tempNeeds, "accessNeeds");
       addUserData(tempConditions, "mentalHealthConditions");
@@ -115,11 +175,12 @@ const ProfileForm = ({ currentUser, isNewUser }) => {
   const addUserData = async (userInfo, path) => {
     const url = `http://localhost:8080/` + path + `/` + currentUser.id;
     console.log(url);
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo)
     });
+    console.log(response.json());
   };
 
   const handleCareerCheckboxChange = (event) => {
