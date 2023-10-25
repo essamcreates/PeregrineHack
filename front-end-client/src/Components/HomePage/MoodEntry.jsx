@@ -95,7 +95,7 @@ const MoodEntry = ({ currentUser }) => {
           <div class="grid grid-cols-5">
             <div><div class="flex justify-center items-center p-3 mt-1">
                 <button
-                  class="rounded-md border-2 p-2 flex justify-start font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-yellow-300 hover:scale-110"
+                  class="rounded-md p-2 flex justify-start bg-teal-500 hover:scale-110"
                   onClick={() => {
                     setMoodEntryInProgress(true);
                   }}
@@ -104,7 +104,7 @@ const MoodEntry = ({ currentUser }) => {
                 </button>
               </div></div>
             <div class="col-span-3">
-              <p class="text-center font-mono text-xl underline pb-3">Mood Entry Log</p>
+              <p class="text-center font-mono text-xl underline pb-3 text-black">Mood Entry Log</p>
               <div class="flex items-center justify-center h-2/3">
               <div class="overflow-scroll h-full w-11/12 max-h-[500px]">
                 {usersMoodEntries ? <>{mappedMoodEntries()}</> : <p>No Mood Entries Found</p>}
@@ -114,8 +114,7 @@ const MoodEntry = ({ currentUser }) => {
             <div class="text-end m-3">
               {usersMoodEntries && (
                 <ZoomOutMapTwoToneIcon
-                  style={{ fontSize: "35px" }}
-                  onClick={() => {
+                  style={{ fontSize: "35px", color:"black" }}onClick={() => {
                     setOpenModal(true);
                   }}
                 />
@@ -127,7 +126,7 @@ const MoodEntry = ({ currentUser }) => {
 
       {moodEntryInProgress && !enteredMoodEmoji && (
         <>
-         <p class="text-2xl mt-5 justify-start ml-4">How Are You Feeling?</p>
+         <p class="text-2xl mt-5 justify-start ml-4 text-black">How Are You Feeling?</p>
          <div class="flex justify-end p-3">
   <div class="w-2/3">
   

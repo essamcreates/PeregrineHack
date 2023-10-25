@@ -94,7 +94,7 @@ const ResourcesBox = ({ currentUser }) => {
   return (
     <>
       <div class="h-full rounded-lg p-1 shadow-xl text-white">
-        <h2 class="text-2xl pt-1 mt-1 text-center"><b>My Career Resources</b></h2>
+        <h2 class="text-2xl pt-1 mt-1 text-center text-neutral-800"><b>My Career Resources</b></h2>
         {!userResources && (
           <div class="flex items-center justify-center mt-6">
             <p class="border-1 border-grey-200 bg-gray-500 h-1/2 w-full m-3 text-center text-2xl rounded-lg">
