@@ -235,7 +235,7 @@ const ChatBot = ({ currentUser }) => {
         choices.push(
           <div class=" flex items-center justify-center m-1" key={index}>
             <button
-              class="w-10/12 h-full  bg-teal-300 m-2 mt-1  bg-white p-1 text-center rounded-md transition-transform transform hover:bg-teal-400"
+              class="w-10/12 h-full bg-teal-300 m-2 mt-1  p-1 text-center rounded-md transition-transform transform hover:bg-teal-400"
               onClick={() => {
                 handleOptionClick(option.displayText, option.sendText, option.next);
               }}
