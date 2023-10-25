@@ -190,7 +190,7 @@ const ChatBot = ({ currentUser }) => {
             <>
               <div class="h-full flex justify-end">
                 <textarea
-                  class="border-2 outline-non border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
+                  class="border-2 outline-none border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
                   placeholder="Ask Farai about career goals, skills, wellness..."
                   type="text"
                   maxlength="150"
@@ -222,7 +222,7 @@ const ChatBot = ({ currentUser }) => {
         choices.push(
           <div class="col-span-2 flex items-center justify-center m-1" key={index}>
             <button
-              class="w-11/12 h-full mt-3 m-2 border-2 bg-white border-teal-500 p1 text-center rounded-md transition-transform transform hover:bg-teal-300"
+              class="w-11/12 h-full mt-3 m-2 bg-teal-300 p1 text-center rounded-md transition-transform transform hover:bg-teal-400"
               onClick={() => {
                 handleOptionClick(option.displayText, option.sendText, option.next);
               }}
@@ -235,7 +235,7 @@ const ChatBot = ({ currentUser }) => {
         choices.push(
           <div class=" flex items-center justify-center m-1" key={index}>
             <button
-              class="w-10/12 h-full m-2 mt-2 border-2 border-teal-500 bg-white p-1 text-center rounded-md transition-transform transform hover:bg-teal-200"
+              class="w-10/12 h-full  bg-teal-300 m-2 mt-1  bg-white p-1 text-center rounded-md transition-transform transform hover:bg-teal-400"
               onClick={() => {
                 handleOptionClick(option.displayText, option.sendText, option.next);
               }}
@@ -251,7 +251,7 @@ const ChatBot = ({ currentUser }) => {
         <p class="text-sm ml-2 mb-0">Farai</p>
         {currentLevel.message && (
           <div>
-            <p class="rounded-lg bg-teal-400 text-white py-4 px-5 mt-4 mb-6 w-5/6">
+            <p class="rounded-md bg-teal-800 text-white py-3 px-5 mt-2 mb-6 w-5/6">
               {currentLevel.message}
             </p>
           </div>
@@ -269,7 +269,7 @@ const ChatBot = ({ currentUser }) => {
         if (index === prevText.options.length - 1 && index % 2 === 0) {
           choices.push(
             <div class="col-span-2 flex items-center justify-center m-1" key={index}>
-              <button class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg" disabled>
+              <button class="w-11/12 bg-slate-200 text-black mt-3 m-2 h-full rounded mb-2 shadow-lg " disabled>
                 {option.displayText}
               </button>
             </div>
@@ -277,7 +277,7 @@ const ChatBot = ({ currentUser }) => {
         } else {
           choices.push(
             <div class=" flex items-center justify-center m-1" key={index}>
-              <button class="bg-slate-200 text-black py-2 px-5 rounded mb-2 shadow-lg" disabled>
+              <button class="bg-slate-200 text-black mt-3 m-2 h-full w-10/12 rounded mb-2 shadow-lg" disabled>
                 {option.displayText}
               </button>
             </div>
@@ -311,7 +311,7 @@ const ChatBot = ({ currentUser }) => {
         <>
           {prev}
           <div class="flex justify-end">
-            <p class="mr-1 mt-2 w-4/5 border-2 bg-teal-100 p-1 text-center rounded-md">
+            <p class="mr-1 mt-2 w-4/5 bg-teal-500 p-1 text-center rounded-md">
               {userInput}
             </p>
           </div>
@@ -387,7 +387,7 @@ const ChatBot = ({ currentUser }) => {
         <div>
           <div class="flex items-right justify-end mr-4">
             <button
-              class="rounded bg-teal-400 text-white py-2 px-5 mt-4 mb-6 hover:bg-teal-500"
+              class="rounded text-md bg-teal-400 text-white py-2 px-5 mt-4 mb-6 hover:bg-teal-500"
               onClick={() => setUsingChatBot(true)}
             >
               Click to speak to Farai!
@@ -405,11 +405,11 @@ const ChatBot = ({ currentUser }) => {
               <div>
                 {response && <p class="text-sm ml-1 mb-0">Farai</p>}
                 {response ? (
-                  <p class="ml-1 border-2 border-blue-900 bg-blue-100 w-11/12 p-2 text-center rounded-md">
+                  <p class="ml-1 bg-teal-100 w-11/12 p-2 text-center text-slate-600 rounded-md">
                     {response}
                   </p>
                 ) : (
-                  <p class="ml-1 border-2 border-blue-900 bg-blue-100 w-2/12 p-2 text-center rounded-md">
+                  <p class="ml-1 bg-teal-100 w-2/12 p-2 text-slate-600 text-center rounded-md">
                     <span class="animate-ping">...</span>
                   </p>
                 )}
