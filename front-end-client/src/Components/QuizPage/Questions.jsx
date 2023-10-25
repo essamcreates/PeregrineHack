@@ -121,7 +121,7 @@ const Questions = () => {
   }
   
     return (
-      <div>
+            <div>
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
          {currentQuestionId===85 && (
           <div className="flex justify-center">
@@ -132,5 +132,6 @@ const Questions = () => {
           )}
       </div>
     );
+
 }
 export default Questions;

@@ -49,7 +49,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           />
           <a
             href="#"
-            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-cyan-400 to-yellow-200"
+            class="underline w-full flex justify-end font-semibold text-transparent bg-clip-text bg-teal-500"
           >
             Forgotten Password?
           </a>
@@ -68,7 +68,7 @@ const LoginForm = ({ authenticateUser, currentUser, updateCurrentUser, setCurren
           <p class="text-red-500">Warning: incorrect email or password. Please try again</p>
         )}
         {currentUser && (<div class="flex items-center justify-center">
-          <button class="bg-amber-200 text-slate-400 py-2 px-4 rounded text-2xl" onClick={() => {setCurrentUser();updateCurrentUser(null); localStorage.clear();}}>
+          <button class="bg-teal-500 text-white py-2 px-5 rounded text-xl hover:bg-teal-800" onClick={() => {localStorage.clear();setCurrentUser()}}>
             Signout
           </button>
         </div>

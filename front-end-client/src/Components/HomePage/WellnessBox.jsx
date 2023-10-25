@@ -7,8 +7,7 @@ const WellnessBox = ({currentUser}) => {
         const storedWellnessResources = localStorage.getItem('userWellnessResources');
         return storedWellnessResources ? JSON.parse(storedWellnessResources) : null;
       });
-    
-    const [requestedResources, setRequestedResources] = useState(false)
+  
 
     const updateUserWellnessResources = (newResources) => {
         setUserWellnessResources(newResources);
@@ -25,17 +24,14 @@ const WellnessBox = ({currentUser}) => {
 
     const wellnessResourcesRequest = async()=>{
         try {
-            const request = "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness, example -. use mindtools to help improve your mental health : www.mindtools.com -. very short description : link"
-            // map through accessNeeds and mental health conditions
-            // format an comma between 
-            // add at end but not all resources should be focused on this
+            
+            const request = "(note im in uk) give me 3 resources with a title and link (that works) that can help me improve my wellness,example -. use mindtools to help improve your mental health : www.mindtools.com "
             const url = `http://localhost:8080/openAI`;
             const response = await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "text/plain" },
               body: request,
             });
-            // put into request, give them in a format of an object with an array link [description, link] for js. Here is my info you may want to take in my needs like ADHD and ocd, but not all resources should be focused on this
             
             if (!response.ok) {
               throw new Error('Network response was not ok');
