@@ -27,12 +27,10 @@
   cursor: pointer;
 }
 
-.note-taking-sidebar.open {
+/* .note-taking-sidebar.open {
   width: 250px;
 }
 
 .note-taking-sidebar.closed {
   width: 0;
-  /* You can also set opacity to 0 to make it invisible */
-  /* opacity: 0; */
-}
+} */
