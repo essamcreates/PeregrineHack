@@ -123,7 +123,13 @@ const Questions = () => {
     return (
       <div>
          {questions && (currentQuestionId!==85) && (<div>{displayQuestion()}</div>)}
-         {currentQuestionId===85 && (<button onClick={()=>{calculateScore()}}>Send to API</button>)}
+         {currentQuestionId===85 && (
+          <div className="flex justify-center">
+            <button onClick={()=>{calculateScore()}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focuse:outline-none focuse:shadow-outline">
+            Submit
+          </button>
+          </div>
+          )}
       </div>
     );
 }
