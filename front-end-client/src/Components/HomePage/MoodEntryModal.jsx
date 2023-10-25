@@ -15,7 +15,7 @@ const MoodEntryModal = ({mappedMoodEntries, setOpenModal}) =>{
 
                     {/* Title */}
                     <div>
-                        <p class="text-3xl font-mono text-center text-slate-800 opacity-60 z-20 ">Mood Entry Log</p>
+                        <p class="text-3xl font-mono text-center text-slate-800 opacity-60 z-20 mt-5">Mood Entry Log</p>
                     </div>
 
                     {/* box for mood entries includes a scroll */}

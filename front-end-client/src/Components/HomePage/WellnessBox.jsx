@@ -90,7 +90,7 @@ const WellnessBox = ({ currentUser }) => {
   return (
     <>
       <div class="h-full rounded-lg p-1 shadow-xl text-white">
-        <h2 class="text-2xl pt-1 mt-2 text-center"><b>My Wellness Resources</b></h2>
+        <h2 class="text-2xl pt-1 mt-2 text-center text-neutral-800"><b>My Wellness Resources</b></h2>
         {!userWellnessResources && (
           <div class="flex items-center justiy-center mt-6">
             <p class="border-1 border-slate-300 h-1/2 w-full bg-gray-500 m-3 text-center text-2xl rounded-lg">
