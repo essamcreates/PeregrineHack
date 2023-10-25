@@ -81,57 +81,47 @@ const DailyInteraction = ({ currentUser }) => {
   const displayOptions = () => {
     const options = ["optionOne", "optionTwo", "optionThree", "optionFour", "optionFive"];
     const choices = [];
+  
     options.map((option, index) => {
       const choice = question[option];
+  
       if (choice) {
-        if (index === 4 && index % 2 === 0) {
-          choices.push(
-            <div key={index} class="col-span-2 flex items-center justify-center">
-              <button
-                class="text-lg text-white bg-teal-500 m-2 p-1 w-1/5 rounded-md shadow-lg transition-colors duration-500 inline
-                hover:bg-yellow-200
-                 hover:shadow-md
-                 hover:scale-110"
-                value={option}
-                onClick={(e) => {
-                  handleQuestionSubmit(e.target.value);
-                }}
-              >
-                {choice}
-              </button>
-            </div>
-          );
-        } else {
-          choices.push(
-            <div key={index} class="flex items-center justify-center">
-              <button
-                class="text-lg text-white bg-teal-500 m-2 p-1 w-2/5 shadow-lg rounded-md transition-colors duration-500 inline
-                hover:bg-yellow-200
-                 hover:shadow-md
-                 hover:scale-110"
-                value={option}
-                onClick={(e) => {
-                  handleQuestionSubmit(e.target.value);
-                }}
-              >
-                {choice}
-              </button>
-            </div>
-          );
-        }
+        const button = (
+          <button
+            class="text-lg text-white bg-teal-500 m-2 p-1 w-full shadow-lg rounded-md transition-colors duration-500 inline
+                  hover:bg-yellow-200 hover:shadow-md hover:scale-110"
+            value={option}
+            onClick={(e) => {
+              handleQuestionSubmit(e.target.value);
+            }}
+          >
+            {choice}
+          </button>
+        );
+  
+        choices.push(
+          <div key={index} class="flex items-center justify-center">
+            {button}
+          </div>
+        );
       }
     });
-    return choices;
+  
+    return (
+      <div class="flex flex-wrap">
+        {choices}
+      </div>
+    );
   };
 
   return (
-    <div class="h-full rounded-md p-1 bg-slate-500 shadow-xl text-white">
+    <div class="h-full rounded-md p-1 bg-teal-700 shadow-xl text-white opacity-75">
       {/* <div> */}
       {/* <h3 class="text-xl ml-2">Question</h3> */}
       {/* </div> */}
       {question && !questionAnswered && (
         <div>
-          <div class="text-center text-2xl mt-5">{question.question}</div>
+          <div class="text-left text-2xl mt-5 ml-3">{question.question}</div>
           <div class="grid grid-cols-2 mt-4">{displayOptions()}</div>
         </div>
       )}

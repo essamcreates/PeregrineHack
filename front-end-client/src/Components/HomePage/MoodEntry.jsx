@@ -127,25 +127,24 @@ const MoodEntry = ({ currentUser }) => {
 
       {moodEntryInProgress && !enteredMoodEmoji && (
         <>
-          <div class="flex justify-center items-center p-3">
-            <p class="text-2xl mt-6">How Are You Feeling?</p>
-          </div>
-          <div class="flex justify-center items-center p-3">
-            <div class="grid grid-cols-6 text-center gap-3">{mappedMoodChoices}</div>
-          </div>
-          <div class="flex justify-center items-center p-3 mt-3 ">
-            <button
-              class="w-1/3 h-full text-sm text-white py-0.25 bg-teal-500 text-center p-2 rounded transition-colors duration-500 inline
-             hover:bg-yellow-200
-              hover:shadow-md
-              hover:scale-110"
-              onClick={() => {
-                if (!usersMoodEntries) {
-                  fetchUserMoodEntries();
-                }
-                setMoodEntryInProgress(false);
-              }}
-            >
+         <p class="text-2xl mt-5 justify-start ml-4">How Are You Feeling?</p>
+         <div class="flex justify-end p-3">
+  <div class="w-2/3">
+  
+    <div class="grid grid-cols-6 text-center gap-3">{mappedMoodChoices}</div>
+  </div>
+  <button
+    class="w-1/6 h-full text-md text-white py-0.25 bg-teal-500 text-center p-2 rounded transition-colors duration-500 inline
+    hover:bg-yellow-200
+    hover:shadow-md
+    hover:scale-110 mt-[-3rem]"
+    onClick={() => {
+      if (!usersMoodEntries) {
+        fetchUserMoodEntries();
+      }
+      setMoodEntryInProgress(false);
+    }}
+  >
               Skip To Mood Log
             </button>
           </div>
