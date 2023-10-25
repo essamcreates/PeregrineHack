@@ -76,7 +76,7 @@ const HomePage = ({ currentUser }) => {
         </section>
         <div className="mt-32 z-1 pt-5">
           <section className="home-page grid grid-cols-12 gap-3 mx-3">
-            <div className="col-span-2">NOTES</div>
+            <div className="col-span-2">My Notes</div>
             <section className="dashboard col-span-7 flex flex-col gap-3">
               <div className="daily-interaction-box">
                 <DailyInteraction currentUser={currentUser} />
