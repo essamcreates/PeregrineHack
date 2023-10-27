@@ -168,8 +168,7 @@ const ChatBot = ({ currentUser }) => {
     } else {
       setSent(true);
       // serach in prev choices for wellness then pass in mental health conditions
-      
-      
+
       console.log(previousSteps);
       if (!previousSteps.includes(currentStep)) {
         setPreviousSteps((prevSteps) => [...prevSteps, currentStep]);
@@ -191,7 +190,7 @@ const ChatBot = ({ currentUser }) => {
               <div class="h-full flex justify-end">
                 <textarea
                   class="border-2 outline-none border-black bg-inherit w-3/4 h-20 mt-3 p-1 rounded-lg"
-                  placeholder="Ask Farai about career goals, skills, wellness..."
+                  placeholder="Ask FarAI about career goals, skills, wellness..."
                   type="text"
                   maxlength="150"
                   value={userInput}
@@ -269,7 +268,10 @@ const ChatBot = ({ currentUser }) => {
         if (index === prevText.options.length - 1 && index % 2 === 0) {
           choices.push(
             <div class="col-span-2 flex items-center justify-center m-1" key={index}>
-              <button class="w-11/12 bg-slate-200 text-black mt-3 m-2 h-full rounded mb-2 shadow-lg " disabled>
+              <button
+                class="w-11/12 bg-slate-200 text-black mt-3 m-2 h-full rounded mb-2 shadow-lg "
+                disabled
+              >
                 {option.displayText}
               </button>
             </div>
@@ -277,7 +279,10 @@ const ChatBot = ({ currentUser }) => {
         } else {
           choices.push(
             <div class=" flex items-center justify-center m-1" key={index}>
-              <button class="bg-slate-200 text-black mt-3 m-2 h-full w-10/12 rounded mb-2 shadow-lg" disabled>
+              <button
+                class="bg-slate-200 text-black mt-3 m-2 h-full w-10/12 rounded mb-2 shadow-lg"
+                disabled
+              >
                 {option.displayText}
               </button>
             </div>
@@ -311,9 +316,7 @@ const ChatBot = ({ currentUser }) => {
         <>
           {prev}
           <div class="flex justify-end">
-            <p class="mr-1 mt-2 w-4/5 bg-teal-500 p-1 text-center rounded-md">
-              {userInput}
-            </p>
+            <p class="mr-1 mt-2 w-4/5 bg-teal-500 p-1 text-center rounded-md">{userInput}</p>
           </div>
         </>
       );
@@ -327,7 +330,7 @@ const ChatBot = ({ currentUser }) => {
   }, [previousSteps]);
 
   const handleExit = (choice) => {
-    if (choice === 1){
+    if (choice === 1) {
       setUsingChatBot(false);
     }
     setCurrentStep(1);
@@ -342,46 +345,62 @@ const ChatBot = ({ currentUser }) => {
   return (
     <div class="h-full rounded-lg p-1 shadow-xl bg-neutral-500 text-white">
       <h3 class="text-xl p-5">
-        Hi {currentUser.name}, I’m Farai, your dedicated work coach. I’ve considered your unique
+        Hi {currentUser.name}, I’m FarAI, your dedicated work coach. I’ve considered your unique
         needs to offer advice that’s tailored to you. What can I help you with?{" "}
       </h3>
       <div class="grid grid-cols-2">
-        {usingChatBot && (<>
-          <div class="flex justify-start ml-5 m-2 mt-6">
-          {currentStep !==0 && currentStep!==1 && (<><button
-              onClick={() => {
-                handleExit(0);
-              }}
-            >
-            <svg onxmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-            </svg>
-            </button>
-            </>)}
-          </div>
-          <div class="flex justify-end m-2 mt-3">
-            <button
-              onClick={() => {
-                handleExit(1);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-8 h-9"
+        {usingChatBot && (
+          <>
+            <div class="flex justify-start ml-5 m-2 mt-6">
+              {currentStep !== 0 && currentStep !== 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      handleExit(0);
+                    }}
+                  >
+                    <svg
+                      onxmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                      />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+            <div class="flex justify-end m-2 mt-3">
+              <button
+                onClick={() => {
+                  handleExit(1);
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-                />
-              </svg>
-            </button>
-          </div>
-        </>)}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-8 h-9"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                  />
+                </svg>
+              </button>
+            </div>
+          </>
+        )}
       </div>
       {!usingChatBot && (
         <div>

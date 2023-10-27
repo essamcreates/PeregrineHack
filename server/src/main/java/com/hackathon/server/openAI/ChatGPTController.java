@@ -41,13 +41,14 @@ public class ChatGPTController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error in communication with OpenAI ChatGPT API.");
+                    .body(e.getMessage());
         }
     }
 
     @Autowired
     private ObjectMapper jsonMapper;
-    @Value("${openai.api_key}") private String openaiApiKey;
+    @Value("${openai.api_key}")
+    private String openaiApiKey;
     private HttpClient client = HttpClient.newHttpClient();
     private static final URI CHATGPT_URI = URI.create("https://api.openai.com/v1/completions");
 

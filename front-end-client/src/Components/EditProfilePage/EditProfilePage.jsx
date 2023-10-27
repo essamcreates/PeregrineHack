@@ -11,7 +11,7 @@ const ProfileCreationPage = ({ currentUser, setCurrentUser, isNewUser }) => {
           <div className="bg-white shadow-lg rounded-lg p-20 w-3/4 mx-auto mt-4">
             {isNewUser ? (
               <h2 className="text-4xl text-gray-700">
-                Welcome, I'm Farai, your personal development coach. Please share a bit about
+                Welcome, I'm FarAI, your personal development coach. Please share a bit about
                 yourself so I can get to know you better, {currentUser.name}!
               </h2>
             ) : (

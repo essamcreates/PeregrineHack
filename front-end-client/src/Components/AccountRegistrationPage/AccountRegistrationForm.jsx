@@ -139,7 +139,7 @@ const AccountRegistrationForm = ({ signupUser, setIsNewUser }) => {
               navigate("/LoginPage");
             }}
           >
-            Already have an account, <span class="underline">Login</span>
+            Already have an account? <span class="underline font-semibold">Login</span>
           </button>
         </div>
       </div>
